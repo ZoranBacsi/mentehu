@@ -1,0 +1,21 @@
+﻿#main-nav,
+.cat-box-content,
+#sidebar .widget-container,
+.post-listing {border-bottom-color: #e95ca2;}
+.search-block .search-button,
+#topcontrol,
+#main-nav ul li.current-menu-item a,
+#main-nav ul li.current-menu-item a:hover,
+#main-nav ul li.current-menu-parent a,
+#main-nav ul li.current-menu-parent a:hover,
+#main-nav ul li.current-page-ancestor a,
+#main-nav ul li.current-page-ancestor a:hover,
+.pagination span.current,
+.share-post span.share-text,
+.flex-control-paging li a.flex-active,
+.ei-slider-thumbs li.ei-slider-element,
+.review-percentage .review-item span span,.review-final-score   {background-color:#e95ca2 !important;}
+::-webkit-scrollbar-thumb{background-color:#e95ca2 !important;}
+#topcontrol:hover {background-color:#ed8aba !important;}
+footer, .top-nav, .top-nav ul li.current-menu-item:after  {border-top-color: #e95ca2;	}
+.search-block::after {border-right-color:#e95ca2;}

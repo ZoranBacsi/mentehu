@@ -1,0 +1,9 @@
+Subject: Azonosítója aktiválásra került!
+
+Kedves {USERNAME}!
+
+Az Ön azonosítója a "{SITENAME}" oldalon aktiválásra került, most már beléphet regisztrált felhasználónevével.
+
+A jelszava biztonságosan került eltárolásra az adatbázisunkban, így nincs mód a kiderítésére. Ha esetleg mégis elfelejtené, akkor az azonosítójához társított e-mail cím segítségével igényelhet egy újat.
+
+{EMAIL_SIG}

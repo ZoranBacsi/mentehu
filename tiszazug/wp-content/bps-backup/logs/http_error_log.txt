@@ -1,0 +1,4181 @@
+BPS SECURITY LOG
+=================
+=================
+
+[403 POST Request: 2017. április 27. - 19:33]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 80.110.76.26
+Host Name: 80-110-76-26.cgn.dynamic.surfer.at
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>jonathan</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 19:34]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 68.55.242.146
+Host Name: c-68-55-242-146.hsd1.mi.comcast.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>joshua1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 19:35]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 176.42.78.85
+Host Name: host-176-42-78-85.reverse.superonline.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>jessica</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 19:46]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 45.118.159.26
+Host Name: 45.118.159.26
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>john316</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 19:49]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 88.181.40.96
+Host Name: cau56-1-88-181-40-96.fbx.proxad.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>jordan23</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 20:41]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 88.130.65.37
+Host Name: mue-88-130-65-037.dsl.tropolys.de
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>karaoke</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 21:00]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 154.126.79.41
+Host Name: ceni-madagascar.mg
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>kamikaze</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 22:50]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 68.61.169.214
+Host Name: c-68-61-169-214.hsd1.mi.comcast.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>lakota</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 22:51]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 193.92.117.32
+Host Name: 193.92.117.32.dsl.dyn.forthnet.gr
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>kramer</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 22:56]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 49.146.187.248
+Host Name: dsl.49.146.187.248.pldt.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>knights</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 23:25]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 45.51.159.2
+Host Name: cpe-45-51-159-2.socal.res.rr.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>laurent</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 23:44]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 88.102.124.108
+Host Name: 108.124.broadband7.iol.cz
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>lancia</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 27. - 23:48]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 125.167.110.110
+Host Name: 125.167.110.110
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>letmein</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 00:27]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.18.11.35
+Host Name: 103.18.11.35
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>letmein1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 00:51]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 78.93.119.26
+Host Name: 78.93.119.26
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>linux</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 01:35]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 186.202.161.48
+Host Name: 186.202.161.48
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. április 28. - 02:37]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 187.138.200.206
+Host Name: dsl-187-138-200-206-dyn.prod-infinitum.com.mx
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>lol</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 03:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 2.24.9.145
+Host Name: 2.24.9.145
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>lol123</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 05:23]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 123.231.122.234
+Host Name: 123.231.122.234
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>maestro</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 05:40]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 202.126.91.101
+Host Name: 202.126.91.101
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>loulou</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 06:01]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 185.120.124.247
+Host Name: 185.120.124.247.NAT-DSL.099.net.il
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>magnus</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 06:22]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 85.154.165.242
+Host Name: 85.154.165.242
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>malibu</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 07:14]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 27.5.16.139
+Host Name: 27.5.16.139
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>manager</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 08:01]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.224.154.71
+Host Name: 71.154.224.103-in-addr.arpa-lsfiber.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>manchester</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 08:43]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 192.228.215.218
+Host Name: broadband.time.net.my
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>malaka</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 09:59]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 115.109.12.204
+Host Name: 115.109.12.204.dynamic-pune.vsnl.net.in
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?><methodCall><methodName>wp.getUsersBlogs</methodName><params><param><value>tiszazug</value></param><param><value>marshall</value></param></params></methodCall>
+
+[403 POST Request: 2017. április 28. - 10:49]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 147.30.88.67
+Host Name: 147.30.88.67
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>marianne</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 11:13]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 62.170.192.16
+Host Name: 62.170.192.16
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>martin</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 11:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 79.179.163.123
+Host Name: bzq-79-179-163-123.red.bezeqint.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>marvel</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 12:03]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 77.29.245.200
+Host Name: 77.29.245.200
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>lisalisa</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 13:14]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 84.245.120.90
+Host Name: 84-245-120-90.dynamic.swanmobile.sk
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>master1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 13:29]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 185.192.188.41
+Host Name: 185.192.188.41
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>master12</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 13:39]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 85.165.10.223
+Host Name: ti0040a400-2008.bb.online.no
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?><methodCall><methodName>wp.getUsersBlogs</methodName><params><param><value>tiszazug</value></param><param><value>michael</value></param></params></methodCall>
+
+[403 POST Request: 2017. április 28. - 14:18]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 151.54.205.160
+Host Name: 151.54.205.160
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>mazda626</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 14:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 162.194.26.37
+Host Name: 162-194-26-37.lightspeed.irvnca.sbcglobal.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>max123</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 14:55]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 41.189.182.180
+Host Name: 41.189.182.180
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>maureen</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 15:23]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 78.56.202.184
+Host Name: 78-56-202-184.static.zebra.lt
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>michael1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 16:14]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 200.68.113.38
+Host Name: h113-038.sslil.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>mimi</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 16:53]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 89.201.119.122
+Host Name: mbalt-119-122.mbalt.lv
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>moreno</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 18:45]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 177.10.81.213
+Host Name: 177.10.81.213.customers.viacom.com.br
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>national</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 18:57]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 42.241.128.42
+Host Name: n42-241-128-42.adl2.sa.optusnet.com.au
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>ncc1701d</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 19:58]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 186.235.105.185
+Host Name: power105-185.powerline.com.br
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>nonono</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 20:28]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 87.17.41.224
+Host Name: host224-41-dynamic.17-87-r.retail.telecomitalia.it
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>orgasm</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 21:41]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 112.134.71.36
+Host Name: 112.134.71.36
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pa55w0rd</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 22:00]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 117.215.193.62
+Host Name: 117.215.193.62
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>outsider</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 22:07]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 183.83.19.2
+Host Name: broadband.actcorp.in
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pajero</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 28. - 23:55]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 179.213.200.15
+Host Name: b3d5c80f.virtua.com.br
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pass</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 00:17]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 197.97.118.203
+Host Name: isp2-usc-118-203.igen.co.za
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>parola</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 00:33]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 188.71.220.19
+Host Name: 188.71.220.19
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>mylove</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 00:46]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 190.121.23.137
+Host Name: 190.121.23.137
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>paranoid</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 00:49]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 105.110.10.239
+Host Name: 105.110.10.239
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>passat</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 01:11]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 80.230.225.202
+Host Name: IGLD-80-230-225-202.inter.net.il
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>passpass</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 02:21]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 49.144.236.179
+Host Name: dsl.49.144.236.179.pldt.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>password1234</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 02:23]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 72.252.137.243
+Host Name: 72.252.137.243
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>password1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 02:26]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 212.34.226.101
+Host Name: hosting3.ucom.am
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. április 29. - 03:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 187.122.125.190
+Host Name: bb7a7dbe.virtua.com.br
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>password123456</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 04:34]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 175.156.230.126
+Host Name: 175.156.230.126
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pass1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 04:35]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 99.4.64.235
+Host Name: 99-4-64-235.lightspeed.bkfdca.sbcglobal.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pentium</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 04:40]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 201.27.187.63
+Host Name: 201-27-187-63.dsl.telesp.net.br
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pauline</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 04:55]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 189.127.126.28
+Host Name: 189.127.126.28
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pimpdaddy</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 06:57]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 177.53.26.140
+Host Name: dynamic.26-140.maxnettelecom.com.br
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>pisces</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 07:13]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 195.24.133.10
+Host Name: apex-alkar.apex.dp.ua
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>platypus</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 07:30]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 85.29.246.253
+Host Name: 253-246-29-85.dyn.estpak.ee
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>online</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 07:31]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 190.233.239.229
+Host Name: 190.233.239.229
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>placebo</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 07:50]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 112.210.50.10
+Host Name: 112.210.50.10.pldt.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>plokij</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 08:34]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 78.100.177.57
+Host Name: 78.100.177.57
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>predator</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 08:51]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 178.79.27.93
+Host Name: 178.79.27.93
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>polopolo</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 09:44]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 89.122.150.63
+Host Name: 89.122.150.63
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>printer</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 09:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.213.128.40
+Host Name: 103.213.128.40
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>q1w2e3r4</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 10:06]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 117.202.147.38
+Host Name: 117.202.147.38
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qaz123</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 10:14]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 14.207.43.9
+Host Name: mx-ll-14.207.43-9.dynamic.3bb.co.th
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qweasdzxc</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 10:20]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 176.45.125.250
+Host Name: 176.45.125.250
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwaszx</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 10:25]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 61.16.173.242
+Host Name: chn-static-242-173-16-61.direct.net.in
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qazwsx</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 10:39]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 212.252.100.73
+Host Name: host-212-252-100-73.reverse.superonline.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwer</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 11:01]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 157.51.55.90
+Host Name: 157.51.55.90
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qweqwe</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 11:41]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 41.82.24.213
+Host Name: 41.82.24.213
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwer1234</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 11:41]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 85.237.234.107
+Host Name: 85-237-234-107.dynamic.orange.sk
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwerty12</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 12:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 41.239.114.202
+Host Name: host-41.239.114.202.tedata.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwerty</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 12:42]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 39.33.97.172
+Host Name: 39.33.97.172
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>raptor</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 12:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 39.44.168.253
+Host Name: 39.44.168.253
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwqwqw</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 13:00]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 139.193.199.35
+Host Name: fm-dyn-139-193-199-35.fast.net.id
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>rainbow</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 13:02]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 217.103.91.238
+Host Name: ip-217-103-91-238.ip.prioritytelecom.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>r2d2c3po</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 13:27]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 180.149.212.139
+Host Name: 180.149.212.139
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>qwerty123</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 14:10]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 90.171.200.54
+Host Name: 90.171.200.54
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>robocop</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 14:22]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 88.139.76.42
+Host Name: 42.76.139.88.rev.sfr.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>renault</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 14:50]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 95.128.188.206
+Host Name: 95.128.188.206
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>rockrock</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 15:07]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 88.26.19.234
+Host Name: 234.red-88-26-19.staticip.rima-tde.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>santana</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 15:14]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 213.181.198.180
+Host Name: 213.181.198.180
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>salvador</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 15:35]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 79.180.42.134
+Host Name: bzq-79-180-42-134.red.bezeqint.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>scorpio1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 15:37]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 77.162.88.202
+Host Name: ip4da258ca.direct-adsl.nl
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>samuel1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 15:38]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 85.85.33.71
+Host Name: 71.85-85-33.dynamic.clientes.euskaltel.es
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>secret</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 15:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 78.224.97.233
+Host Name: sal64-1-78-224-97-233.fbx.proxad.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>scrabble</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:06]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 115.187.56.232
+Host Name: node-115-187-56-232.alliancebroadband.in
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>simpson</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:11]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 122.177.50.174
+Host Name: abts-north-dynamic-174.50.177.122.airtelbroadband.in
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>skater</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:22]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 36.230.108.104
+Host Name: 36-230-108-104.dynamic-ip.hinet.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>shorty</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:29]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 90.185.78.221
+Host Name: 0117400388.0.fullrate.ninja
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>simona</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:29]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 79.116.0.226
+Host Name: 79-116-0-226.rdsnet.ro
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>simone</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:30]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 124.29.237.95
+Host Name: 124.29.237.95
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>scorpio</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:33]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 39.46.128.46
+Host Name: 39.46.128.46
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>skyline</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:40]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 91.97.73.94
+Host Name: host-091-097-073-094.ewe-ip-backbone.de
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>sooners</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:45]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.10.28.13
+Host Name: 103-10-28-13.vianet.com.np
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>william</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:49]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.66.79.230
+Host Name: 103.66.79.230
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>skywalker</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 92.221.94.51
+Host Name: 51.92-221-94.customer.lyse.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>success1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:52]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 81.135.138.214
+Host Name: host81-135-138-214.range81-135.btcentralplus.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>sommer</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:54]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.255.4.73
+Host Name: 103.255.4.73
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>sinister</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 16:59]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 84.192.172.132
+Host Name: d54c0ac84.access.telenet.be
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>stefano</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:03]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 45.249.233.246
+Host Name: 45.249.233.246
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>simon</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:08]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 117.213.153.135
+Host Name: 117.213.153.135
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>snowboar</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:08]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 151.226.7.231
+Host Name: 97e207e7.skybroadband.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>test1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 86.97.129.143
+Host Name: bba483505.alshamil.net.ae
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>semperfi</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:19]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 109.90.205.149
+Host Name: ip-109-90-205-149.hsi11.unitymediagroup.de
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>supreme</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:22]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 80.62.116.248
+Host Name: 80-62-116-248-mobile.dk.customer.tdc.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>temppass</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:22]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 39.37.137.132
+Host Name: 39.37.137.132
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>victoria</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:24]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 180.254.35.9
+Host Name: 180.254.35.9
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>whisky</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:24]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 180.254.35.9
+Host Name: 180.254.35.9
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>whisky</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:25]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.44.107.44
+Host Name: 103.44.107.44
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>vertigo</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:26]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 77.228.76.22
+Host Name: static-22-76-228-77.ipcom.comunitel.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>temp123</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:27]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 24.135.123.194
+Host Name: cable-24-135-123-194.dynamic.sbb.rs
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>thomas</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:39]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 197.237.139.201
+Host Name: 197.237.139.201.wananchi.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>windows1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:44]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 175.145.214.128
+Host Name: 175.145.214.128
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>temp</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:51]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 99.109.84.216
+Host Name: 99-109-84-216.lightspeed.sndgca.sbcglobal.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>tomas</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:51]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 84.117.204.200
+Host Name: 84.117.204.200
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>tigger</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:51]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 41.215.2.98
+Host Name: 41.215.2.98.accesskenya.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>suzuki</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:55]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 152.66.237.224
+Host Name: vpkb302.vpk.bme.hu
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>website</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 17:58]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 200.229.155.131
+Host Name: 200.229.155.131
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>testing</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:00]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 190.22.27.84
+Host Name: 190-22-27-84.baf.movistar.cl
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>trustno1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:02]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 2.110.152.40
+Host Name: 0125200246.0.fullrate.ninja
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>thanatos</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:02]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 41.35.67.176
+Host Name: host-41.35.67.176.tedata.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>welcome</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:06]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 74.243.242.143
+Host Name: adsl-74-243-242-143.chs.bellsouth.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>tacobell</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:08]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 46.65.207.61
+Host Name: 2e41cf3d.skybroadband.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>thx1138</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 202.142.59.191
+Host Name: 202-142-59-191.tpgi.com.au
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>testtest</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.21.171.104
+Host Name: 103.21.171.104
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>tequila</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:12]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 39.40.135.134
+Host Name: 39.40.135.134
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>wookie</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:16]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 176.108.35.51
+Host Name: 176.108.35.51.hallsys.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>willy1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:17]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 92.52.206.66
+Host Name: 92.52.206.66
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>veritas</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:19]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 112.208.23.88
+Host Name: 112.208.23.88.pldt.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>whatever</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:19]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 95.77.186.253
+Host Name: 95.77.186.253
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>xyz123</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:20]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 112.162.42.83
+Host Name: 112.162.42.83
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>welcome1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:21]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 183.83.106.104
+Host Name: broadband.actcorp.in
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>sasasa</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:21]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 2.153.73.107
+Host Name: 2.153.73.107.dyn.user.ono.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>zzzxxx</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:25]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 31.167.45.72
+Host Name: 31.167.45.72
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>winston1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:30]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 87.116.181.111
+Host Name: 87.116.181.111
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>winner1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:32]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 85.105.158.187
+Host Name: 85.105.158.187.static.ttnet.com.tr
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>wxcvbn</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:38]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 46.5.2.7
+Host Name: HSI-KBW-046-005-002-007.hsi8.kabel-badenwuerttemberg.de
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>zaq12wsx</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:39]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 37.24.148.21
+Host Name: aftr-37-24-148-21.unity-media.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>yellow1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:39]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 79.173.212.97
+Host Name: 79.173.x.97.go.com.jo
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>zxcvbn</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:43]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 222.153.156.245
+Host Name: 222-153-156-245.jetstream.xtra.co.nz
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>zaq1xsw2</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 18:44]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 79.184.167.60
+Host Name: 79.184.167.60.ipv4.supernova.orange.pl
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>tennis</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 19:24]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 188.162.132.71
+Host Name: client.yota.ru
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>wildcats</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 19:45]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 67.255.14.78
+Host Name: cpe-67-255-14-78.twcny.res.rr.com
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>testpass</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 19:48]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 37.105.67.33
+Host Name: 37.105.67.33
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>rockstar</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 20:21]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 65.60.57.178
+Host Name: node02.tmddedicated102.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. április 29. - 20:37]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 142.160.241.102
+Host Name: wnpgmb0614w-ds01-241-102.dynamic.mtsallstream.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>stargate</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 20:57]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 83.137.166.95
+Host Name: 83.137.166.95
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>zxzxzx</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 29. - 21:23]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 105.184.83.67
+Host Name: 83-184-105-67.north.dsl.telkomsa.net
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?><methodCall><methodName>wp.getUsersBlogs</methodName><params><param><value>tiszazug</value></param><param><value>spirit</value></param></params></methodCall>
+
+[403 POST Request: 2017. április 29. - 21:54]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 77.126.32.137
+Host Name: 77.126.32.137
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>test</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 30. - 07:42]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 86.38.206.196
+Host Name: 196.206.38.86.mobile.mezon.lt
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>site</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 30. - 11:53]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 188.25.42.133
+Host Name: 188-25-42-133.rdsnet.ro
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>raymond</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. április 30. - 13:40]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 204.16.5.130
+Host Name: clickexperts.clickexperts.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. április 30. - 23:21]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 64.49.237.118
+Host Name: 64.49.237.118
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 1. - 08:38]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 39.43.113.66
+Host Name: 39.43.113.66
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>tiszazug</value></param>
+   <param><value>zxcvbnm1</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. május 1. - 13:45]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.9.22.88
+Host Name: 103.9.22.88
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 1. - 23:08]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 52.59.101.232
+Host Name: ec2-52-59-101-232.eu-central-1.compute.amazonaws.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 2. - 23:08]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 54.164.106.205
+Host Name: ec2-54-164-106-205.compute-1.amazonaws.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 3. - 13:57]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 62.109.16.170
+Host Name: for-ns.ru
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 GET Request: 2017. május 3. - 22:20]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 63.243.252.201
+Host Name: 63.243.252.201
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php?rsd
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)
+
+[403 POST Request: 2017. május 3. - 23:34]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 157.7.211.156
+Host Name: v157-7-211-156.myvps.jp
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 4. - 23:26]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 62.109.16.170
+Host Name: for-ns.ru
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 5. - 10:49]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 111.67.17.36
+Host Name: vmx19876.hosting24.com.au
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 5. - 21:43]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 152.74.132.110
+Host Name: 152.74.132.110
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 6. - 01:57]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 157.7.211.156
+Host Name: v157-7-211-156.myvps.jp
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 6. - 10:16]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 188.165.224.207
+Host Name: ns212390.ip-188-165-224.eu
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 6. - 16:05]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 167.114.145.231
+Host Name: 231.ip-167-114-145.net
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 6. - 23:36]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 188.165.224.207
+Host Name: ns212390.ip-188-165-224.eu
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 7. - 08:29]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 167.114.145.231
+Host Name: 231.ip-167-114-145.net
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 7. - 15:01]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 204.16.5.130
+Host Name: clickexperts.clickexperts.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 7. - 22:29]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 204.16.5.130
+Host Name: clickexperts.clickexperts.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 8. - 09:48]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 101.0.76.6
+Host Name: s6-sydney.accountservergroup.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 20. - 01:07]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 79.143.137.18
+Host Name: 79.143.137.18
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>test</value></param>
+   <param><value>stephane</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. május 24. - 05:15]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 36.82.89.244
+Host Name: 36.82.89.244
+SERVER_PROTOCOL: HTTP/1.1
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+REQUEST BODY: <?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+  <methodName>wp.getUsersBlogs</methodName>
+  <params>
+   <param><value>test</value></param>
+   <param><value>stephanie</value></param>
+  </params>
+</methodCall>
+
+[403 POST Request: 2017. május 27. - 00:44]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 103.6.29.2
+Host Name: da.feistysites.co.nz
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>
+
+[403 POST Request: 2017. május 27. - 22:55]
+Event Code: BFHS - Blocked/Forbidden Hacker or Spammer
+Solution: N/A - Hacker/Spammer Blocked/Forbidden
+REMOTE_ADDR: 65.182.209.48
+Host Name: ss010.sdf.hosting.com
+SERVER_PROTOCOL: HTTP/1.0
+HTTP_CLIENT_IP: 
+HTTP_FORWARDED: 
+HTTP_X_FORWARDED_FOR: 
+HTTP_X_CLUSTER_CLIENT_IP: 
+REQUEST_METHOD: GET
+HTTP_REFERER: 
+REQUEST_URI: /xmlrpc.php
+QUERY_STRING: 
+HTTP_USER_AGENT: 
+REQUEST BODY: <?xml version="1.0"?><methodCall><methodName>demo.sayHello</methodName><params></params></methodCall>

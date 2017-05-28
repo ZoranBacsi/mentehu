@@ -1,0 +1,150 @@
+0000.000 Opened log file at time: Tue, 26 Feb 2013 21:22:20 +0000
+0000.003 UpdraftPlus: 1.4.29 WordPress: 3.5.1 PHP: 5.2.17 (Linux levendovszky.lanten.hu 2.6.18-338.5.1.el5.lve0.8.25 #1 SMP Mon Mar 28 12:25:47 EEST 2011 x86_64) PHP Max Execution Time: 900 ZipArchive::addFile exists: Y
+0000.006 Free space on disk containing Updraft's temporary directory: 49338.1 Mb
+0000.008 Tasks: Backup files: 1 (schedule: unset) Backup DB: 1 (schedule: unset)
+0000.010 Processed schedules. Tasks now: Backup files: 1 Backup DB: 1
+0000.013 Backup run: resumption=0, nonce=9f68e303c5bd, begun at=1361913740, job type: backup
+0000.013 Scheduling a resumption (1) after 300 seconds in case this run gets aborted
+0000.018 Creation of backups of directories: beginning
+0000.021 Beginning creation of dump of plugins
+0001.800 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 100 files added (size: 337.8 Kb)
+0005.552 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 200 files added (size: 1992.1 Kb)
+0007.626 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 300 files added (size: 3347.2 Kb)
+0007.688 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 400 files added (size: 3347.2 Kb)
+0007.727 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 500 files added (size: 3347.2 Kb)
+0009.311 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 600 files added (size: 3975.4 Kb)
+0013.359 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 700 files added (size: 5290.1 Kb)
+0014.745 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip.tmp: 800 files added (size: 5912 Kb)
+0016.795 Created plugins zip - file size is 6520.1 Kb in 16.8 s (388.7 Kb/s)
+0016.796 Beginning creation of dump of themes
+0018.344 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-themes.zip.tmp: 100 files added (size: 374.7 Kb)
+0019.769 Zip: backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-themes.zip.tmp: 200 files added (size: 2345.9 Kb)
+0020.782 Created themes zip - file size is 3154.6 Kb in 4 s (791.7 Kb/s)
+0020.784 Beginning creation of dump of uploads
+0022.474 Zip::addFile apparently failed - retrying with PclZip
+0022.558 Created uploads zip - file size is 668.8 Kb in 1.8 s (379.2 Kb/s)
+0022.560 Beginning backup of other directories found in the content directory
+0022.561 Looking for candidates to back up in: /home/menteh01/public_html/tiszazug/wp-content
+0022.561 others: languages: adding to list
+0022.562 others: updraft: skipping: this is the updraft directory
+0022.563 others: index.php: skipping: excluded by options
+0022.570 others: themes: skipping: this is the themes directory
+0022.570 others: plugins: skipping: this is the plugins directory
+0022.571 others: upgrade: skipping: excluded by options
+0022.572 others: gallery: adding to list
+0022.575 others: uploads: skipping: this is the uploads directory
+0022.576 others: bps-backup: adding to list
+0039.068 Created others zip - file size is 18569.5 Kb in 16.5 s (1126.1 Kb/s)
+0039.125 Saving backup status to database (elements: 8)
+0039.185 Beginning creation of database dump
+0039.306 Table wptz_commentmeta: Total rows added: 0 in 0.04 seconds
+0039.326 Table wptz_commentmeta: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_commentmeta.table.gz)
+0039.406 Table wptz_comments: Total rows added: 0 in 0.06 seconds
+0039.426 Table wptz_comments: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_comments.table.gz)
+0039.507 Table wptz_links: Total rows added: 7 in 0.06 seconds
+0039.527 Table wptz_links: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_links.table.gz)
+0039.626 Table wptz_ngg_album: Total rows added: 2 in 0.08 seconds
+0039.646 Table wptz_ngg_album: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_ngg_album.table.gz)
+0039.747 Table wptz_ngg_gallery: Total rows added: 16 in 0.08 seconds
+0039.767 Table wptz_ngg_gallery: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_ngg_gallery.table.gz)
+0039.907 Table wptz_ngg_pictures: Total rows added: 296 in 0.12 seconds
+0039.927 Table wptz_ngg_pictures: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_ngg_pictures.table.gz)
+0040.147 Table wptz_options: Total rows added: 228 in 0.20 seconds
+0040.167 Table wptz_options: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_options.table.gz)
+0040.267 Table wptz_postmeta: Total rows added: 74 in 0.08 seconds
+0040.288 Table wptz_postmeta: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_postmeta.table.gz)
+0040.388 Table wptz_posts: Total rows added: 77 in 0.08 seconds
+0040.408 Table wptz_posts: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_posts.table.gz)
+0040.508 Table wptz_term_relationships: Total rows added: 14 in 0.08 seconds
+0040.528 Table wptz_term_relationships: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_term_relationships.table.gz)
+0040.628 Table wptz_term_taxonomy: Total rows added: 5 in 0.08 seconds
+0040.648 Table wptz_term_taxonomy: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_term_taxonomy.table.gz)
+0040.728 Table wptz_terms: Total rows added: 4 in 0.06 seconds
+0040.748 Table wptz_terms: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_terms.table.gz)
+0040.828 Table wptz_usermeta: Total rows added: 82 in 0.06 seconds
+0040.848 Table wptz_usermeta: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_usermeta.table.gz)
+0040.948 Table wptz_users: Total rows added: 4 in 0.08 seconds
+0040.968 Table wptz_users: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_users.table.gz)
+0041.048 Table wptz_wfBadLeechers: Total rows added: 0 in 0.06 seconds
+0041.068 Table wptz_wfBadLeechers: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfBadLeechers.table.gz)
+0041.148 Table wptz_wfBlocks: Total rows added: 0 in 0.06 seconds
+0041.169 Table wptz_wfBlocks: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfBlocks.table.gz)
+0041.271 Table wptz_wfConfig: Total rows added: 83 in 0.08 seconds
+0041.272 Table wptz_wfConfig: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfConfig.table.gz)
+0041.278 Table wptz_wfCrawlers: Total rows added: 0 in 0.01 seconds
+0041.279 Table wptz_wfCrawlers: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfCrawlers.table.gz)
+0041.636 Table wptz_wfFileMods: Total rows added: 2552 in 0.36 seconds
+0041.640 Table wptz_wfFileMods: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfFileMods.table.gz)
+0041.699 Table wptz_wfHits: Total rows added: 480 in 0.06 seconds
+0041.704 Table wptz_wfHits: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfHits.table.gz)
+0041.791 Table wptz_wfHoover: Total rows added: 0 in 0.08 seconds
+0041.792 Table wptz_wfHoover: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfHoover.table.gz)
+0041.809 Table wptz_wfIssues: Total rows added: 0 in 0.02 seconds
+0041.810 Table wptz_wfIssues: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfIssues.table.gz)
+0041.815 Table wptz_wfLeechers: Total rows added: 20 in 0.01 seconds
+0041.820 Table wptz_wfLeechers: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLeechers.table.gz)
+0041.844 Table wptz_wfLockedOut: Total rows added: 0 in 0.01 seconds
+0041.844 Table wptz_wfLockedOut: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLockedOut.table.gz)
+0041.886 Table wptz_wfLocs: Total rows added: 0 in 0.04 seconds
+0041.887 Table wptz_wfLocs: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLocs.table.gz)
+0041.929 Table wptz_wfLogins: Total rows added: 39 in 0.04 seconds
+0041.930 Table wptz_wfLogins: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLogins.table.gz)
+0041.932 Table wptz_wfNet404s: Total rows added: 0 in 0.00 seconds
+0041.933 Table wptz_wfNet404s: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfNet404s.table.gz)
+0041.955 Table wptz_wfReverseCache: Total rows added: 0 in 0.02 seconds
+0041.956 Table wptz_wfReverseCache: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfReverseCache.table.gz)
+0041.959 Table wptz_wfScanners: Total rows added: 0 in 0.00 seconds
+0041.959 Table wptz_wfScanners: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfScanners.table.gz)
+0042.033 Table wptz_wfStatus: Total rows added: 971 in 0.07 seconds
+0042.048 Table wptz_wfStatus: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfStatus.table.gz)
+0042.086 Table wptz_wfThrottleLog: Total rows added: 0 in 0.04 seconds
+0042.087 Table wptz_wfThrottleLog: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfThrottleLog.table.gz)
+0042.091 Table wptz_wfVulnScanners: Total rows added: 0 in 0.00 seconds
+0042.091 Table wptz_wfVulnScanners: finishing file (backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfVulnScanners.table.gz)
+0042.111 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_commentmeta.table.gz: adding to final database dump
+0042.170 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_comments.table.gz: adding to final database dump
+0042.171 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_links.table.gz: adding to final database dump
+0042.172 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_ngg_album.table.gz: adding to final database dump
+0042.181 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_ngg_gallery.table.gz: adding to final database dump
+0042.182 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_ngg_pictures.table.gz: adding to final database dump
+0042.193 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_options.table.gz: adding to final database dump
+0042.244 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_postmeta.table.gz: adding to final database dump
+0042.255 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_posts.table.gz: adding to final database dump
+0042.274 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_term_relationships.table.gz: adding to final database dump
+0042.285 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_term_taxonomy.table.gz: adding to final database dump
+0042.296 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_terms.table.gz: adding to final database dump
+0042.298 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_usermeta.table.gz: adding to final database dump
+0042.299 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_users.table.gz: adding to final database dump
+0042.311 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfBadLeechers.table.gz: adding to final database dump
+0042.330 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfBlocks.table.gz: adding to final database dump
+0042.350 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfConfig.table.gz: adding to final database dump
+0042.370 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfCrawlers.table.gz: adding to final database dump
+0042.390 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfFileMods.table.gz: adding to final database dump
+0042.442 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfHits.table.gz: adding to final database dump
+0042.456 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfHoover.table.gz: adding to final database dump
+0042.470 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfIssues.table.gz: adding to final database dump
+0042.490 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLeechers.table.gz: adding to final database dump
+0042.510 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLockedOut.table.gz: adding to final database dump
+0042.530 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLocs.table.gz: adding to final database dump
+0042.550 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfLogins.table.gz: adding to final database dump
+0042.570 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfNet404s.table.gz: adding to final database dump
+0042.590 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfReverseCache.table.gz: adding to final database dump
+0042.610 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfScanners.table.gz: adding to final database dump
+0042.631 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfStatus.table.gz: adding to final database dump
+0042.658 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfThrottleLog.table.gz: adding to final database dump
+0042.671 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db-table-wptz_wfVulnScanners.table.gz: adding to final database dump
+0042.691 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db.gz: finished writing out complete database file (272 Kb)
+0042.712 Total database tables backed up: 32
+0042.751 Saving backup history
+0042.831 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-plugins.zip: plugins: This file has not yet been successfully uploaded: will queue
+0042.851 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-themes.zip: themes: This file has not yet been successfully uploaded: will queue
+0042.871 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-uploads.zip: uploads: This file has not yet been successfully uploaded: will queue
+0042.891 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-others.zip: others: This file has not yet been successfully uploaded: will queue
+0042.911 backup_2013-02-26-2122_Tiszazug_Ifjsgrt_kumenikus_Egyeslet_9f68e303c5bd-db.gz: db: This file has not yet been successfully uploaded: will queue
+0042.931 Requesting backup of the files that were not successfully uploaded
+0042.951 Cloud backup selection: 
+0042.971 Beginning dispatch of backup to remote
+0042.991 Resume backup (9f68e303c5bd, 0): finish run
+0043.051 There were no errors in the uploads, so the 'resume' event is being unscheduled
+0043.131 No email will/can be sent - the user has not configured an email address.
+0043.151 The backup apparently succeeded and is now complete

@@ -1,0 +1,306 @@
+body{ 
+  background-color: #FFFF99;
+  color: #660000;
+  font-size:11px;
+  font-family:Tahoma,sans-serif;	
+}
+
+span.cim{
+  font-family: Comic Sans MS;
+  font-size: 14px;
+}
+
+.kozepre{
+  text-align: center;
+}
+
+input, select{
+   font-family:Tahoma,sans-serif;
+   font-weight:normal;
+   font-style:normal;
+   text-align:left;
+   color:#660000;
+   height:20px;
+   background-color:#FFFF99;
+   border-top-style:solid;
+   border-top-color:#660000;
+   border-top-width:1px;
+   border-bottom-style:solid;
+   border-bottom-color:#660000;
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-color:#660000;
+   border-left-width:3px;
+   border-right-style:solid;
+   border-right-color:#660000;
+   border-right-width:1px;
+   margin: 10px 0px 10px 0px;
+   text-align: left;
+   padding: 0px;
+}
+
+input.kotelezo, select.kotelezo, button.kotelezo{
+   font-family:Tahoma,sans-serif;
+   font-weight:normal;
+   font-style:normal;
+   text-align:left;
+   color:#660000;
+   height:20px;
+   background-color:rgb(255,204,51);
+   border-top-style:solid;
+   border-top-color:rgb(204,0,0);
+   border-top-width:1px;
+   border-bottom-style:solid;
+   border-bottom-color:rgb(204,0,0);
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-color:rgb(204,0,0);
+   border-left-width:3px;
+   border-right-style:solid;
+   border-right-color:rgb(204,0,0);
+   border-right-width:1px;
+   margin: 10px 0px 10px 0px;
+   text-align: left;
+   padding: 0px;
+}
+
+input.rejtett, select.rejtett{
+   border:1px dotted gray;
+   width:75px;
+   background-color:transparent;
+   margin:0px;
+   padding:0px;
+}
+
+table.sorki tr:hover td{
+  background-color: #FFFFD2;
+  color: #660000;
+}
+
+table.sorki tr td{
+  border-bottom: 1px dotted black;
+}
+
+input.kicsi{
+   font-size:9px;
+   font-family:Tahoma,sans-serif;
+   font-weight:normal;
+   font-style:normal;
+   text-align:left;
+   color:#660000;
+   height:15px;
+   background-color:#FFFF99;
+   border-top-style:solid;
+   border-top-color:#660000;
+   border-top-width:1px;
+   border-bottom-style:solid;
+   border-bottom-color:#660000;
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-color:#660000;
+   border-left-width:3px;
+   border-right-style:solid;
+   border-right-color:#660000;
+   border-right-width:1px;
+   margin: 5px 0px 5px 0px;
+}
+
+input.kozepes{
+   font-size:11px;
+   font-family:Tahoma,sans-serif;
+   font-weight:normal;
+   font-style:normal;
+   text-align:left;
+   color:#660000;
+   height:18px;
+   background-color:#FFFF99;
+   border-top-style:solid;
+   border-top-color:#660000;
+   border-top-width:1px;
+   border-bottom-style:solid;
+   border-bottom-color:#660000;
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-color:#660000;
+   border-left-width:3px;
+   border-right-style:solid;
+   border-right-color:#660000;
+   border-right-width:1px;
+   margin: 5px 0px 5px 0px;
+   text-align: center;
+}
+
+.mpgomb{
+   font-size:11px;
+   font-family:Tahoma,sans-serif;
+   font-weight:normal;
+   font-style:normal;
+   text-align:left;
+   color:#660000;
+   height:19px;
+   background-color:#FFFF99;
+   border-top-style:solid;
+   border-top-color:#660000;
+   border-top-width:1px;
+   border-bottom-style:solid;
+   border-bottom-color:#660000;
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-color:#660000;
+   border-left-width:3px;
+   border-right-style:solid;
+   border-right-color:#660000;
+   border-right-width:1px;
+   margin: 10px 0px 5px 0px;
+   text-align: center;
+   list-style-type: none;
+   padding: 0px;
+}
+
+.almpgomb{
+   margin:-7px 0px 7px 10px;
+   background-color:#F0F1AB;
+}
+
+.ujmpgomb{
+   font-size:11px;
+   font-family:Tahoma,sans-serif;
+   font-weight:normal;
+   font-style:normal;
+   text-align:left;
+   color:yellow;
+   height:19px;
+   background-color:red;
+   border-top-style:solid;
+   border-top-color:#660000;
+   border-top-width:1px;
+   border-bottom-style:solid;
+   border-bottom-color:#660000;
+   border-bottom-width:1px;
+   border-left-style:solid;
+   border-left-color:#660000;
+   border-left-width:3px;
+   border-right-style:solid;
+   border-right-color:#660000;
+   border-right-width:1px;
+   margin: 10px 0px 10px 0px;
+   text-align: center;
+   list-style-type: none;
+   padding: 0px;
+}
+
+
+option{
+  margin: 3px 0px 3px 0px;
+}
+
+hr{
+   color:#660000;
+}
+
+table tr td{
+   vertical-align: middle;
+   padding: 0px;
+}
+
+p{
+   margin: 10px 15px 0px 15px;
+}
+
+td.menu{
+  text-align: left;
+  margin: 1px #660000 solid;
+  background-color: #FFFFD2;
+}
+
+td#fomenu{
+  vertical-align: top;
+}
+
+span.szeles{
+  margin: 0px 15px 0px 15px;
+}
+
+td.balra{
+  text-align: left;
+}
+
+td.jobbra{
+  text-align: right;
+}
+
+td.kozepre{
+  text-align: center;
+}
+
+tr.fejlec{
+  background-color: #660000;
+  color: #FFFF99;
+}
+tr.fejlec td{
+  padding: 3px 5px;
+}
+
+tr.paros{
+  background-color: #FFFFD2;
+}
+
+tbody tr td{
+  padding: 0px 5px;
+}
+
+#tartalom{
+  vertical-align:top;
+  padding:10px;
+}
+
+tr.fejlec td a, tr.fejlec td a:visited{
+  color: white;
+  cursor: pointer;
+}
+
+td.sotet{
+  background-color: #660000;
+  color: #FFFF99;
+  text-align: right;
+}
+
+input:hover{
+  background-color: white;
+}
+
+h2{
+  margin:3px;
+}
+
+button{
+  cursor: pointer;
+}
+
+.link{
+  cursor: pointer;
+}
+
+div.rejtett{
+  visibility: hidden;
+  display: none;
+}
+
+div.lathato{
+  visibility: visible;
+  display: block;
+}
+
+hr{
+  margin:0px;
+  padding:0px;
+  color: white;
+}
+
+ul.szinesfelsorlas :hover{
+  background-color: white;
+}
+
+ul.szinesfelsorlas input{
+  font-size: 10pt;
+}

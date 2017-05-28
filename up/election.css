@@ -1,0 +1,557 @@
+@charset "utf-8";
+/* CSS Document */
+
+.themeTop #themeNaviTop a,
+.themeMember #themeNaviMember a,
+.themeResult #themeNaviResult a,
+.themeExpect #themeNaviExpect a {
+	-o-border-radius: .45em;
+	-ms-border-radius: .45em;
+	-moz-border-radius: .45em;
+	-webkit-border-radius: .45em;
+	border-radius: .45em;
+	color: #ffffff;
+	font-weight: bold;
+	background: #ff6fb9;
+}
+
+
+/* 開票結果
+----------------------------------------------- */
+#finalReport td {
+	color: #000000;
+	text-align: center;
+}
+
+#finalReport .rank {
+	color: #484848;
+	font-size: 90%;
+}
+
+#finalReport .rank span {
+	padding-right: -1px;
+	font-size: 150%;
+	color: #000000;
+}
+
+#finalReport .photo {
+	padding: 0;
+	width: 80px;
+	line-height: 1;
+}
+
+#finalReport .member {
+/*	padding: 0 1em;*/
+	color: #484848;
+	font-size: 90%;
+}
+
+#finalReport .member span {
+	color: #000000;
+	font-size: 150%;
+}
+
+#finalReport .point {
+/*	padding: 0 1em;*/
+	font-size: 120%;
+	font-weight: bold;
+}
+
+#finalReport .shift {
+/*	padding: 0 .5em;*/
+	font-size: 180%;
+	font-weight: bold;
+}
+
+#finalReport .shift.up {color: #bf0000;}
+#finalReport .shift.stay {color: #0000bf;}
+#finalReport .shift.down {color: #00bf00;}
+#finalReport .shift.new {
+	color: #efb13f;
+	font-weight: normal;
+}
+
+
+#finalReport .record {
+/*	padding-left: 1em;*/
+	text-align: left;
+}
+
+
+#finalReport td { padding: 2px 2px 1px; }
+
+
+/* 選挙メモ
+----------------------------------------------- */
+
+#ele04middleRepoTable td {
+	text-align: center;
+}
+
+#akbMemoWrap p {
+	font-size: 90%;
+	line-height: 1.6;
+}
+#akbMemoWrap dl { margin: 25px 0; }
+
+#akbMemoWrap dt,
+#akbMemoWrap dt a {
+	margin: 0.6em 0;
+	border-bottom: solid 3px #E989C8;
+	line-height: 1.1;
+	font-size: 100%;
+	font-weight: bold;
+	color: #E989C8;
+	padding-bottom: 5px;
+}
+
+#akbMemoWrap dt a { text-decoration: underline; }
+
+#akbMemoWrap dt span {
+	color: #666;
+	padding-left: 5px;
+	font-size: 90%;
+}
+#akbMemoWrap dd {
+	margin: 5px 0;
+	font-size: 90%;
+	padding-left: 10px;
+	line-height: 1.4em;
+}
+#akbMemoWrap span,
+#akbMemoWrap span.kome { font-weight: bold; }
+#akbMemoWrap span.kome { padding-left: 15px; font-size: 85%; }
+
+
+/* チームボタン
+----------------------------------------------- */
+#akbButton li {
+	float: left;
+	font-size: 90%;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+#akbButton li a {
+	-o-border-radius: .3em;
+	-ms-border-radius: .3em;
+	-moz-border-radius: .3em;
+	-khtml-border-radius: .3em;
+	-webkit-border-radius: .3em;
+	border-radius: .3em;
+	font-size: 90%;
+	font-weight: bold;
+	padding: 4px 10px 3px;
+}
+
+#akbButton li#teamA a { background: none repeat scroll 0 0 #FFF; color: #F576A3; border: 1px solid #F576A3; }
+#akbButton li#teamK a { background: none repeat scroll 0 0 #FFF; color: #82C400; border: 1px solid #82C400; }
+#akbButton li#teamB a { background: none repeat scroll 0 0 #FFF; color: #20ACE8; border: 1px solid #20ACE8; }
+/*#akbButton li#team4 a { background: none repeat scroll 0 0 #FFF; color: #F8D800; border: 1px solid #F8D800; }*/
+#akbButton li#teamATry a { background: none repeat scroll 0 0 #FFF; color: #C90000; border: 1px solid #C90000; }
+
+#akbButton li#teamS a,
+#akbButton li#teamSk a,
+#akbButton li#teamE a,
+#akbButton li#teamSTry a { background: none repeat scroll 0 0 #FFF; color: #F7B500; border: 1px solid #F3BC4E; }
+#akbButton li#teamN a,
+#akbButton li#teamM a,
+#akbButton li#teamBII a,
+#akbButton li#teamNTry a { background: none repeat scroll 0 0 #FFF; color: #6B552E; border: 1px solid #6B552E; }
+#akbButton li#teamH a,
+#akbButton li#teamHTry a { background: none repeat scroll 0 0 #FFF; color: #727271; border: 1px solid #727271; }
+
+#akbButton li#teamA.current a { background: none repeat scroll 0 0 #F576A3; color: #FFF; border: 1px solid #F576A3; }
+#akbButton li#teamK.current a { background: none repeat scroll 0 0 #82C400; color: #FFF; border: 1px solid #82C400; }
+#akbButton li#teamB.current a { background: none repeat scroll 0 0 #20ACE8; color: #FFF; border: 1px solid #20ACE8; }
+/*#akbButton li#team4.current a { background: none repeat scroll 0 0 #F8D800; color: #FFF; border: 1px solid #F8D800; }*/
+#akbButton li#teamATry.current a { background: none repeat scroll 0 0 #C90000; color: #FFF; border: 1px solid #C90000; }
+
+#akbButton li#teamS.current a,
+#akbButton li#teamSk.current a,
+#akbButton li#teamE.current a,
+#akbButton li#teamSTry.current a { background: none repeat scroll 0 0 #F3BC4E; color: #FFF; border: 1px solid #F3BC4E; }
+#akbButton li#teamN.current a,
+#akbButton li#teamM.current a,
+#akbButton li#teamBII.current a,
+#akbButton li#teamNTry.current a { background: none repeat scroll 0 0 #6B552E; color: #FFF; border: 1px solid #6B552E; }
+#akbButton li#teamH.current a,
+#akbButton li#teamHTry.current a { background: none repeat scroll 0 0 #727271; color: #FFF; border: 1px solid #727271; }
+
+
+/* メンバー表
+----------------------------------------------- */
+.election .pageTab { background: url(/mod/img/bg-pagetab.gif) repeat-x left bottom #FF6FB9; }
+.election .pageTab li { border: 1px solid #FF6FB9; border-right: none; }
+.election .pageTab li:last-child { border-right: 1px solid #FF6FB9; }
+
+.election .pageTab li a,
+.election .pageTab li span {
+	background: none repeat scroll 0 0 #fff4f8;
+	color: #FF6FB9;
+	font-weight: bold;
+}
+.election .pageTab li.current a,
+.election .pageTab li.current span {
+	background: none repeat scroll 0 0 #FF6FB9;
+	color: #FFF;
+}
+.election .pageTab li.current { border-bottom: none; }
+/*
+.election .pageTab li a,
+.election .pageTab li span {
+	background: none repeat scroll 0 0 #FF6FB9;
+	color: #FFF;
+}
+.election .pageTab li.current a,
+.election .pageTab li.current span {
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #000000;
+	font-weight: bold;
+}
+*/
+#teamButtom li {
+	margin: 2em 0 2em 2em;
+}
+
+#akb48Member {
+	margin-bottom: 1em;
+	width: 500px;
+}
+#akb48Member p {
+	font-size: 80%;
+	margin: 5px;
+	clear: both;
+}
+#akb48Member h3 {
+	letter-spacing: 0.04em;
+	background-position: 0 -118px;
+	box-shadow: 0 1px 3px #D1D1D1;
+	height: 21px;
+	margin: 0 0 5px;
+	padding: 8px 0 0 7px;
+	color: #FFF;
+	text-shadow: 0px 0px 2px #666666;
+	font-size: 95%;
+}
+
+#memberWrap01.teamA h3{ background-color: #F576A3; }
+/*#memberWrap01.teamA h3{ background-color: #FED1EA; }*/
+#memberWrap02.teamK h3{ background-color: #82C400; }
+/*#memberWrap02.teamK h3{ background-color: #B4DD68; }*/
+#memberWrap03.teamB h3{ background-color: #20ACE8; }
+/*#memberWrap03.teamB h3{ background-color: #77C9E5; }*/
+#memberWrap04.team4 h3{ background-color: #F4DF55; }
+#memberWrap05.teamATry h3{ background-color: #F99F9F; }
+
+#memberWrap01.teamS h3, #memberWrap02.teamSk h3, #memberWrap03.teamE h3, #memberWrap04.teamStry h3 { background-color: #F7C64C; }
+#memberWrap01.teamN h3, #memberWrap02.teamM h3, #memberWrap03.teamBII h3, #memberWrap04.teamNTry h3 { background-color: #6B552E; }
+#memberWrap01.teamH h3, #memberWrap02.teamHTry h3 { background-color: #727271; }
+
+#memberWrap01.teamOverseas h3 { background-color: #727271; }
+#memberWrap01.teamGraduate h3 { background-color: #727271; }
+
+
+#akb48Member dl { 
+/*	float: left;
+	width: 48.8%;*/
+	min-height: 140px;
+	margin: 0 2px 5px;
+	-o-border-radius: .3em;
+	-ms-border-radius: .3em;
+	-moz-border-radius: .3em;
+	-khtml-border-radius: .3em;
+	-webkit-border-radius: .3em;
+	border-radius: .3em;
+	overflow: auto;
+}
+#teamA dl { border: 2px solid #FED1EA; }
+#teamA dt { color:#FF9CC8; }
+#teamK dl { border: 2px solid #AFD666; }
+#teamK dt { color:#77B800; }
+#teamB dl { border: 2px solid #9DCFE0; }
+#teamB dt { color:#34B6E4; }
+#team4 dl { border: 2px solid #EDE000; }
+#team4 dt { color:#F8D800; }
+#teamATry dl { border: 2px solid #F97A7A; }
+#teamATry dt { color:#FF0000; }
+
+#teamSke dl { border: 2px solid #F3BC4E; }
+#teamSke dt { color:#F7B500; }
+#teamNmb dl { border: 2px solid #ADA493; }
+#teamNmb dt { color:#6B552E; }
+#teamHkt dl { border: 2px solid #B0B0B0; }
+#teamHkt dt { color:#4C4944; }
+
+#akb48Member dt {
+	margin: 5px 10px;
+/*	padding-left: 10px;*/
+	font-weight: bold;
+	line-height: 1.3;
+	border-bottom: 1px dotted #CCC;
+}
+#akb48Member dt span {
+	color: #999;
+	font-size: 80%;
+	padding-left: 4px;
+/*	display: block;*/
+}
+#akb48Member dd {
+	margin-top: 5px;
+	padding-left: 117px;
+	font-size: 85%;
+	color: #545454;
+}
+#akb48Member dd span {
+	display: block;
+	float: left;
+	margin: -1px 4px 0 0;
+	padding: 2px;
+	font-weight: bold;
+}
+
+
+
+/* 過去ＶＴＲ
+----------------------------------------------- */
+#akbResultWrap { width:100%; }
+/*#akbResultWrap { width:700px; }*/
+
+#leftSide {
+	float: none;
+/*	width: 400px;*/
+	width: 100%;
+}
+#leftSide dl { margin: 1em 0; text-align: left; }
+#leftSide dt.title { font-weight: bold; font-size: 104%; line-height: 1.2em; }
+#leftSide dt span { display: block; font-size: 85%; text-align:right; }
+#leftSide dd.photo { text-align:center; margin: 15px 0; }
+#leftSide dd.photo img.realPhoto { position:relative; border: 1px solid #DFDFDF; pointer-events: none; }
+#leftSide dd.photo img.veilPic {
+	position:absolute;
+	display:block;
+}
+
+#akbTable {
+/*	float: right;
+	width: 290px;
+	width: 40%;*/
+}
+
+#akbTable p { font-size: 85%; margin: 5px; line-height: 1.2em; }
+
+#akbTable .nsTable td {text-align: center;}
+
+
+/* 選挙予想
+----------------------------------------------- */
+#akbExpect { margin: 5px 0 0; }
+
+#akbExpect h2 { font-size: 120%; margin: 0 0 0.5em; }
+#akbExpect p {
+	font-size: 90%;
+	line-height: 1.6;
+	margin: 0 0 1em;
+}
+
+#akbExpect .maebun { margin-bottom: 5px; }
+
+#akbExpect #oshima {
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	border: 1px solid #CCCCCC;
+	border-radius: 0.5em 0.5em 0.5em 0.5em;
+	padding: 7px;
+	width: 180px;
+}
+
+p#line {
+	text-align: center;
+	letter-spacing: 1em;
+	color: #ccc;
+	font-size: 80%;
+}
+
+#akbExpect .nsTable{
+/*	float: right;*/
+	width: 100%;
+	margin: 0 0 0 5px;
+}
+
+
+#akbExpect .nsTable th.yanagida { color: #E00202; font-weight: bold; }
+#akbExpect .nsTable th.matsuda { color: #FF6600; font-weight: bold; }
+#akbExpect .nsTable th.setsu { color: #368C4B; font-weight: bold; }
+#akbExpect .nsTable th.morimoto { color: #035BC6; font-weight: bold; }
+#akbExpect .nsTable th.yokoyama { color: #7556B3; font-weight: bold; }
+
+#akbExpect span {
+	background-color: #666666;
+	-o-border-radius: 0.3em;
+	-ms-border-radius: 0.3em;
+	-moz-border-radius: 0.3em;
+	-webkit-border-radius: 0.3em;
+	border-radius: 0.3em;
+	color: #FFFFFF;
+	display: block;
+	font-size: 85%;
+	font-weight: bold;
+	margin: 1px 7px 0 0;
+	padding: 1px 0px 0px 2px;
+	text-align: center;
+	width: 15%;
+	float: left;
+}
+
+#akbExpect span.yanagida { background-color: #E00202; }
+#akbExpect span.matsuda{ background-color: #FF6600; }
+#akbExpect span.setsu { background-color: #368C4B; }
+#akbExpect span.morimoto { background-color: #035BC6; }
+#akbExpect span.yokoyama { background-color: #7556B3; }
+
+
+
+/* チェキ当たる
+----------------------------------------------- */
+#tckt {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+
+.themeChekiPresent #topAreaWrap p {
+	margin: 0 0 1em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+
+
+/* 立候補者一覧
+----------------------------------------------- */
+#akb48Member .pageTab { margin: 1.2em 0; }
+#akb48Member .pageTab li { line-height: 1.3; }
+#akb48Member .nsTable th {
+	border-left: 1px solid #ffffff !important;
+	border-top: 1px solid #ffffff !important;
+}
+#akb48Member .nsTable th.name { width: 20%; }
+#akb48Member .nsTable th.lank { width: 14%; }
+#akb48Member .nsTable th.announce { width: 10%; }
+#akb48Member .nsTable th.state {}
+#akb48Member .nsTable th:last-child { border-right-color: #ffffff !important; }
+
+#akb48Member .nsTable td { background: #ffffff !important; }
+#akb48Member .nsTable td:nth-child(1),
+#akb48Member .nsTable td:nth-child(2),
+#akb48Member .nsTable td:nth-child(3)  { text-align: center; }
+
+
+#memberWrap04.teamA h3 { background-color: #ffa3cf; }
+#memberWrap04.teamATry h3 { background-color: #C90000; }
+
+
+#teamA .nsTable { border-top: 1px solid #FED1EA; 	border-left: 1px solid #FED1EA; }
+#teamA .nsTable td { border-right: 1px solid #FED1EA; border-bottom: 1px solid #FED1EA; }
+#teamA .nsTable th {
+	border: 1px solid #FED1EA;
+	color: #F576A3;
+	background: #FED1EA;
+}
+#teamA .nsTable tr:nth-child(odd) td { background: #fff4f8 !important; }
+
+#teamK .nsTable { border-top: 1px solid #AFD666; 	border-left: 1px solid #AFD666; }
+#teamK .nsTable td { border-right: 1px solid #AFD666; border-bottom: 1px solid #AFD666; }
+#teamK .nsTable th {
+	border: 1px solid #AFD666;
+	color: #299B03;
+	background: #BFE892;
+}
+#teamK .nsTable tr:nth-child(odd) td { background-color: #F6FFED !important; }
+
+#teamB .nsTable { border-top: 1px solid #9DCFE0; 	border-left: 1px solid #9DCFE0; }
+#teamB .nsTable td { border-right: 1px solid #9DCFE0; border-bottom: 1px solid #9DCFE0; }
+#teamB .nsTable th {
+	border: 1px solid #9DCFE0;
+	color: #006899;
+	background: #73CAEF;
+}
+#teamB .nsTable tr:nth-child(odd) td { background-color: #EDFAFF !important; }
+
+#teamATry .nsTable { border-top: 1px solid #C90000; order-left: 1px solid #C90000; }
+#teamATry .nsTable td { border-right: 1px solid #C90000; border-bottom: 1px solid #C90000; }
+#teamATry .nsTable th {
+	border: 1px solid #C90000;
+	color: #C90000;
+	background: #FF9E9E;
+}
+#teamATry .nsTable tr:nth-child(odd) td { background-color: #FFEDED !important; }
+
+#teamSke .nsTable { border-top: 1px solid #E87700; border-left: 1px solid #E87700; }
+#teamSke .nsTable td { border-right: 1px solid #E87700; border-bottom: 1px solid #E87700; }
+#teamSke .nsTable th {
+	border: 1px solid #F7D088;
+	color: #E87700;
+	background: #F7D088;
+}
+#teamSke .nsTable tr:nth-child(odd) td { background-color: #FFFAED !important; }
+
+#teamNmb .nsTable { border-top: 1px solid #ADA493; border-left: 1px solid #ADA493; }
+#teamNmb .nsTable td { border-right: 1px solid #ADA493; border-bottom: 1px solid #ADA493; }
+#teamNmb .nsTable th {
+	border: 1px solid #ADA493;
+	color: #6B552E;
+	background: #ADA493;
+}
+#teamNmb .nsTable tr:nth-child(odd) td { background-color: #F2EFEA !important; }
+
+#teamHkt .nsTable { border-top: 1px solid #727271; border-left: 1px solid #727271; }
+#teamHkt .nsTable td { border-right: 1px solid #727271; border-bottom: 1px solid #727271; }
+#teamHkt .nsTable th {
+	border: 1px solid #727271;
+	color: #727271;
+	background: #D8D8D8;
+}
+#teamHkt .nsTable tr:nth-child(odd) td { background-color: #F4F4F4 !important; }
+
+#memberWrap01.teamOverseas h3{ background-color: #F45100; }
+#teamOverseas .nsTable { border-top: 1px solid #F45100; border-left: 1px solid #F45100; }
+#teamOverseas .nsTable td { border-right: 1px solid #F45100; border-bottom: 1px solid #F45100; }
+#teamOverseas .nsTable th {
+	border: 1px solid #F45100;
+	color: #F45100;
+	background: #FFC97F;
+}
+#teamOverseas .nsTable tr:nth-child(odd) td { background-color: #FFF8F2 !important; }
+
+#memberWrap01.teamGraduate h3{ background-color: #7844AF; }
+#teamGraduate .nsTable { border-top: 1px solid #9A65D3; border-left: 1px solid #9A65D3; }
+#teamGraduate .nsTable td { border-right: 1px solid #9A65D3; border-bottom: 1px solid #9A65D3; }
+#teamGraduate .nsTable th {
+	border: 1px solid #9A65D3;
+	color: #58189B;
+	background: #DFD3FF;
+}
+#teamGraduate .nsTable tr:nth-child(odd) td { background-color: #F5F2FF !important; }
+
+
+
+
+
+/* Clear Fix
+----------------------------------------------- */
+#finalReport dl,
+#akbExpect,
+#akb48Member,
+#akbButton,
+#akbResultWrap { /zoom: 1; } /* for IE 6,7 */
+
+#finalReport dl:after,
+#akbExpect:after,
+#akb48Member:after,
+#akbButton:after,
+#akbResultWrap:after { /* for Modern Browser */
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}

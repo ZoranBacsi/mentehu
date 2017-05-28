@@ -1,0 +1,377 @@
+# Translation of Twenty Ten in Hungarian
+# This file is distributed under the same license as the Twenty Ten package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2013-06-22 09:05:47+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: Twenty Ten\n"
+
+#: archive.php:33
+msgid "Daily Archives: <span>%s</span>"
+msgstr "<span>(%s)</span> nap bejegyzései"
+
+#: 404.php:16 loop.php:33
+msgid "Not Found"
+msgstr "Nem található"
+
+#: 404.php:18
+msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+msgstr "Elnézést, de a keresett oldal nem található!<br /> Lehetséges, hogy törölték, átnevezték vagy áthelyezték, de az is lehetséges, hogy rossz volt a megadott link.<br />Talán egy keresés segíthet megtalálni."
+
+#: archive.php:35
+msgid "Monthly Archives: <span>%s</span>"
+msgstr "<span>%s</span> hónap bejegyzései"
+
+#: archive.php:35
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "Y. F"
+
+#: archive.php:37
+msgid "Yearly Archives: <span>%s</span>"
+msgstr "<span>%s</span> év bejegyzései"
+
+#: archive.php:37
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y."
+
+#: archive.php:39
+msgid "Blog Archives"
+msgstr "Valamennyi bejegyzés"
+
+#: author.php:27
+msgid "Author Archives: %s"
+msgstr "%s bejegyzései"
+
+#: author.php:37 loop-single.php:43
+msgid "About %s"
+msgstr "%s névjegye"
+
+#: category.php:16
+msgid "Category Archives: %s"
+msgstr "%s kategória bejegyzései"
+
+#: comments.php:18
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "A bejegyzést jelszó védi. Meg kell adni a jelszót a hozzászólások megtekintéséhez."
+
+#: comments.php:35
+msgid "One Response to %2$s"
+msgid_plural "%1$s Responses to %2$s"
+msgstr[0] "%2$s bejegyzéshez 1 hozzászólás"
+msgstr[1] "%2$s bejegyzéshez %1$s hozzászólás"
+
+#: comments.php:41 comments.php:60
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Korábbi hozzászólások"
+
+#: comments.php:42 comments.php:61
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Újabb hozzászólások <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:70
+msgid "Comments are closed."
+msgstr "Elnézést, a hozzászólás ezen a részen nem engedélyezett."
+
+#: footer.php:33
+msgid "http://wordpress.org/"
+msgstr "http://wphu.org/"
+
+#: footer.php:33
+msgid "Semantic Personal Publishing Platform"
+msgstr "Szemantikus személyes publikációs platform"
+
+#: footer.php:33
+msgid "Proudly powered by %s."
+msgstr "Köszönjük %s!"
+
+#: functions.php:93
+msgid "Primary Navigation"
+msgstr "Elsődleges navigáció"
+
+#: functions.php:145
+msgid "Berries"
+msgstr "Bogyók"
+
+#: functions.php:151
+msgid "Cherry Blossoms"
+msgstr "Cseresznyevirágzás"
+
+#: functions.php:157
+msgid "Concave"
+msgstr "Konkáv"
+
+#: functions.php:163
+msgid "Fern"
+msgstr "Páfrány"
+
+#: functions.php:169
+msgid "Forest Floor"
+msgstr "Erdőalja"
+
+#: functions.php:175
+msgid "Inkwell"
+msgstr "Tintafoltok"
+
+#: functions.php:181
+msgid "Path"
+msgstr "Elérési út"
+
+#: functions.php:187
+msgid "Sunset"
+msgstr "Naplemente"
+
+#: functions.php:255 loop-attachment.php:104 loop.php:115 loop.php:143
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Egy kattintás ide a folytatáshoz.... <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:338
+msgid "%s <span class=\"says\">says:</span>"
+msgstr "%s <span class=\"says\">szerint:</span>"
+
+#: functions.php:341
+msgid "Your comment is awaiting moderation."
+msgstr "A hozzászólás rendszer-moderációra várakozik."
+
+#: functions.php:348
+msgid "%1$s at %2$s"
+msgstr "%1$s - %2$s"
+
+#: functions.php:348 functions.php:365
+msgid "(Edit)"
+msgstr "(Szerkeszt)"
+
+#: functions.php:365
+msgid "Pingback:"
+msgstr "Visszajelzés:"
+
+#: functions.php:384
+msgid "Primary Widget Area"
+msgstr "Elsődleges widget terület"
+
+#: functions.php:386
+msgid "The primary widget area"
+msgstr "Elsődleges widget terület"
+
+#: functions.php:395
+msgid "Secondary Widget Area"
+msgstr "Másodlagos widget terület"
+
+#: functions.php:397
+msgid "The secondary widget area"
+msgstr "Másodlagos widget terület"
+
+#: functions.php:406
+msgid "First Footer Widget Area"
+msgstr "Lábrész elsődleges widget terület"
+
+#: functions.php:408
+msgid "The first footer widget area"
+msgstr "Lábrész elsődleges widget terület"
+
+#: functions.php:417
+msgid "Second Footer Widget Area"
+msgstr "Lábrész másodlagos widget terület"
+
+#: functions.php:419
+msgid "The second footer widget area"
+msgstr "Lábrész másodlagos widget terület"
+
+#: functions.php:428
+msgid "Third Footer Widget Area"
+msgstr "Lábrész harmadlagos widget terület"
+
+#: functions.php:430
+msgid "The third footer widget area"
+msgstr "Lábrész harmadlagos widget terület"
+
+#: functions.php:439
+msgid "Fourth Footer Widget Area"
+msgstr "Lábrész negyedik widget terület"
+
+#: functions.php:441
+msgid "The fourth footer widget area"
+msgstr "Lábrész negyedik widget terület"
+
+#: functions.php:475
+msgid "<span class=\"%1$s\">Posted on</span> %2$s <span class=\"meta-sep\">by</span> %3$s"
+msgstr "<span class=\"%1$s\">Közzétéve </span> %2$s   |  <span class=\"meta-sep\">Szerző:</span> %3$s"
+
+#: functions.php:484 loop-attachment.php:36
+msgid "View all posts by %s"
+msgstr "%s valamennyi bejegyzése"
+
+#: functions.php:501
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "A bejegyzés kategóriája: %1$s<br />Kiemelt szavak: %2$s. <br /><a href=\"%3$s\" title=\"Közvetlen link a(z) %4$s bejegyzéshez\" rel=\"bookmark\">Közvetlen link</a>."
+
+#: functions.php:503
+msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Kategória: %1$s |  A <a href=\"%3$s\" title=\"Közvetlen link a(z) %4$s bejegyzéshez\" rel=\"bookmark\">közvetlen link</a>. "
+
+#: functions.php:505
+msgid "Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "<a href=\"%3$s\" title=\"Közvetlen link a(z) %4$s bejegyzéshez\" rel=\"bookmark\">közvetlen link</a>a könyvjelzőbe."
+
+#: header.php:33
+msgid "Page %s"
+msgstr "%s oldal"
+
+#: header.php:101
+msgid "Skip to content"
+msgstr "Kilépés a tartalomba"
+
+#: loop-attachment.php:21
+msgid "Return to %s"
+msgstr "Vissza: %s"
+
+#: loop-attachment.php:23
+msgid "<span class=\"meta-nav\">&larr;</span> %s"
+msgstr "<span class=\"meta-nav\">&larr;</span> %s"
+
+#: loop-attachment.php:32
+msgid "<span class=\"%1$s\">By</span> %2$s"
+msgstr "<span class=\"%1$s\">Szerző:</span> %2$s"
+
+#: loop-attachment.php:43
+msgid "<span class=\"%1$s\">Published</span> %2$s"
+msgstr "<span class=\"%1$s\">Közzétéve:</span> %2$s"
+
+#: loop-attachment.php:53
+msgid "Full size is %s pixels"
+msgstr "Teljes méret %s pixel"
+
+#: loop-attachment.php:56
+msgid "Link to full-size image"
+msgstr "Link a teljes méretű képhez"
+
+#: loop-attachment.php:63 loop-attachment.php:111 loop-page.php:30
+#: loop-single.php:56 loop.php:100 loop.php:123 loop.php:165
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: loop-attachment.php:105 loop-page.php:29 loop-single.php:34 loop.php:144
+msgid "Pages:"
+msgstr "Oldalak:"
+
+#: loop-single.php:21 loop-single.php:61
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: loop-single.php:22 loop-single.php:62
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: loop-single.php:47
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s összes bejegyzése <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop.php:25 loop.php:178
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Korábbi bejegyzés"
+
+#: loop.php:26 loop.php:179
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Újabb bejegyzés <span class=\"meta-nav\">&rarr;</span>"
+
+#: loop.php:35
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Elnézést, de a keresés az archívumban nem vezetett eredményre!<br /> Lehetséges, hogy törölték, átnevezték vagy áthelyezték, de az is lehetséges, hogy rossz volt a megadott link.<br />Talán egy keresés segíthet megtalálni."
+
+#: loop.php:60 loop.php:95 loop.php:96
+msgctxt "gallery category slug"
+msgid "gallery"
+msgstr "Galéria"
+
+#: loop.php:62 loop.php:83 loop.php:131
+msgid "Permalink to %s"
+msgstr "Közvetlen link a(z) %s bejegyzéshez"
+
+#: loop.php:82
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "A galéria <a %1$s> tartalmaz %2$s fotót</a>."
+msgstr[1] "A galéria <a %1$s> tartalmaz %2$s fotót</a>."
+
+#: loop.php:93
+msgid "View Galleries"
+msgstr "Galériák megtekintése"
+
+#: loop.php:93 loop.php:96
+msgid "More Galleries"
+msgstr "További galériák"
+
+#: loop.php:96
+msgid "View posts in the Gallery category"
+msgstr "A Galéria kategória bejegyzései"
+
+#: loop.php:99 loop.php:122 loop.php:164
+msgid "Leave a comment"
+msgstr "Szóljon hozzá most!"
+
+#: loop.php:99 loop.php:122 loop.php:164
+msgid "1 Comment"
+msgstr "1 hozzászólás"
+
+#: loop.php:99 loop.php:122 loop.php:164
+msgid "% Comments"
+msgstr "% hozzászólás"
+
+#: loop.php:106
+msgctxt "asides category slug"
+msgid "asides"
+msgstr "kivételek"
+
+#: loop.php:151
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">Kategória:</span> %2$s"
+
+#: loop.php:160
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">Címke:</span> %2$s"
+
+#: search.php:16
+msgid "Search Results for: %s"
+msgstr "Keresési eredmény a(z) %s kifejezésre"
+
+#: search.php:26
+msgid "Nothing Found"
+msgstr "Nincs találat!"
+
+#: search.php:28
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Sajnos, nem található a keresési feltételnek megfelelő tartalom. Próbáljuk meg újra, más kifejezésekkel."
+
+#: sidebar.php:27
+msgid "Archives"
+msgstr "Archívum"
+
+#: sidebar.php:34
+msgid "Meta"
+msgstr "Belépés, regisztráció"
+
+#: tag.php:16
+msgid "Tag Archives: %s"
+msgstr "Címke: %s"
+
+msgid "Twenty Ten"
+msgstr "Twenty Ten (2010)"
+
+msgid "http://wordpress.org/extend/themes/twentyten"
+msgstr "http://wordpress.org/extend/themes/twentyten"
+
+msgid "The 2010 theme for WordPress is stylish, customizable, simple, and readable -- make it yours with a custom menu, header image, and background. Twenty Ten supports six widgetized areas (two in the sidebar, four in the footer) and featured images (thumbnails for gallery posts and custom header images for posts and pages). It includes stylesheets for print and the admin Visual Editor, special styles for posts in the \"Asides\" and \"Gallery\" categories, and has an optional one-column page template that removes the sidebar."
+msgstr "A 2010 sablon a WordPress stílusos, testreszabható, egyszerű és olvasható sablona -- saját menüt, fejrész-képet és háttérképet is lehet vele magunknak készíteni. A Twenty Ten (magyarul: 2010) hat widget-területet támogat (kettőt az oldalsávon, négyet a láb-részen) és a kiemelt képeket (bélyegképeket a galéria-bejegyzésekhez és egyedi, saját fejrész képeket a bejegyzések és oldalak számára). Szerkesztői stíluslapokat a nyomtatáshoz és a grafikus szerkesztőhöz, egyedi stílusokat a közbevetésekhez és a galéria kategóriákhoz, és egy választható egy hasábos oldal sablont, amelyben nincs oldalsáv."
+
+msgid "the WordPress team"
+msgstr "a WordPress Magyarország csapata"
+
+msgid "One column, no sidebar"
+msgstr "Egy oszlop, oldalsáv nélkül"

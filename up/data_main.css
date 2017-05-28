@@ -1,0 +1,2514 @@
+@charset "UTF-8";
+
+/* ---------------------------------------------------------------------
+
+TITLE  : data_main.css
+DATE   : 2011/03/07
+UPDATE : 2012/12/26
+URL    : http: //www.nikkansports.com/mod/css/data_main.css
+AUTHOR : nikkansports.com
+
+--------------------------------------------------------------------- */
+
+#leftSide dl{
+	margin: 0 0 10px;
+	font-size: 90%;
+	text-align: center;
+	line-height: 1.6;
+}
+
+#leftSide dl strong{
+	font-size: 120%;
+}
+
+
+/* Table Style, dataTable
+----------------------------------------------- */
+p.upDate{
+	font-size: 80%;
+	text-align: right;
+	line-height: 1.6;
+}
+
+table.dataTable{
+	width: 100%;
+	border: 0;
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+}
+
+
+table.dataTable th{
+	padding: 3px;
+	font-size: 80%;
+	color: #ffffff;
+	text-align: center;
+	background: #afb8bc;
+	border-left: 1px solid #ffffff;
+}
+
+table.dataTable td{
+	padding: 3px;
+	background: #f1f6f9;
+}
+
+table.dataTable tr.bgGray td{background: #ffffff;}
+table.dataTable tr.bg2 td{background: #ffffff;}
+
+#schWrap p.upDate,
+#standingWrap p.upDate,
+#rankingWrap p.upDate,
+.standingWrap p.upDate,
+.rankingWrap p.upDate{margin: 0 5px 5px;}
+
+
+.tableData{
+	margin-top: 5px;
+	width: 100%;
+	border: 0 none;
+	border-collapse: collapse;
+}
+
+table.monthB{margin-top: 15px;}
+
+.tableData caption{
+	padding: 5px 6px;
+	font-size: 80%;
+	text-align: left;
+	font-weight: bold;
+}
+
+div.jpFlashTable table.tableData caption{
+	padding: 2px 6px;
+	background: #000000;
+}
+
+.tableData th{
+	padding: 4px;
+	font-size: 80%;
+	color: #ffffff;
+	text-align: center;
+	background: #afb8bc;
+	border: solid #ffffff;
+	border-width: 0 0 1px 1px;
+}
+
+div.jpFlashTable table.tableData th{padding: 1px;}
+
+.tableData td{
+	padding: 3px;
+	font-size: 90%;
+	text-align: center;
+	border: 0;
+	border-left: 1px solid #ffffff;
+	border-bottom: 1px solid #dfe4e6;
+	background: #f1f6f9;
+}
+
+.tableData tr.bg2 td{
+	background: #ffffff;
+}
+
+.tableStyle table.tableData tr: nth-child(2n+1) td{background: #ffffff;}
+
+table.monthB td{background: #f1f6f9;}
+
+div.jpFlashTable table.tableData td{width: 5em;}
+div.jpFlashTable table.tableData td.syohai{width: 7em;}
+
+.tableData td.team{text-align: left;}
+
+.tableData td.hit{
+	font-weight: bold;
+	color: #CC0000;
+}
+
+.tableData .vertical{
+	padding: 4px 3px;
+	width: 1.5em;
+}
+
+.tableData .daseki{width: 4em;}
+
+#jpResult .tableData .day{
+	width: 3.3em;
+	white-space: nowrap;
+}
+
+.tableData .score{width: 4.8em;}
+
+table.monthB th{width: 11.1%;}
+
+table.totalB th{width: 8.3%;}
+
+table.jpDataTableP td{width: 12%;}
+
+table.jpDataTableB td{width: 16%;}
+
+
+
+/* ----- Schedule Table ----- */
+#schWrap{
+	padding-bottom: 5px;
+	width: 100%;
+}
+
+#schWrap table.dataTable{margin-bottom: 10px;}
+
+#schWrap table.dataTable tr.bg1{background: #ffffff;}
+
+#schWrap table.dataTable tr.bg2{background: #f1f6f9;}
+
+#schWrap table.dataTable caption{
+	padding: 3px 0 3px 10px;
+	font-size: 80%;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: left;
+	background: #afb8bc;
+	border-left: none;
+}
+
+#schWrap table.dataTable td{font-size: 90%;}
+
+#schWrap table.dataTable td.team{
+	text-align: right;
+	width: 30%;
+}
+
+#schWrap table.dataTable td.team2{
+	text-align: left;
+	width: 30%;
+}
+
+#schWrap table.dataTable td.score{
+	text-align: center;
+	white-space: nowrap;
+	width: 10%;
+}
+
+#schWrap table.dataTable td.group{
+	padding-left: 5px;
+	width: 8%;
+}
+
+
+/* Prof Table
+----------------------------------------------- */
+#profTable{
+	margin: 0 0 15px;
+	border-collapse: collapse;
+	border: none;
+	width: 100%;
+	font-size: 90%;
+	line-height: 1.4;
+}
+
+#profTable caption{
+	margin: 0 0 -1px;
+	padding: 3px 6px 1px;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	color: #ffffff;
+	font-size: 90%;
+	text-align: left;
+	background: #446892;
+}
+
+#profTable th{
+	padding: 5px 15px 3px;
+	border: 1px solid #ffffff;
+	text-align: center;
+	font-weight: bold;
+	white-space: nowrap;
+	background: #f0f6f9;
+}
+
+#profTable td{
+	padding: 5px 15px 3px;
+	border: 1px solid #ffffff;
+	text-align: left;
+	background: #f0f6f9;
+}
+
+#profTable tr.odd th{
+	background: #f7f9f9;
+}
+
+#profTable tr.odd td{
+	background: #f7f9f9;
+}
+
+#profTable td p{
+	margin: 0.5em 0;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+nsTable, pageTab, pageNavi, scheduleNavi
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Page Tab
+
+<ul class="pageTab">
+<li class="current"><a href="#">Link1</a></li>
+<li><a href="#">Link2</a></li>
+<li><a href="#">Link3</a></li>
+<li><span>grey out style</span></li>
+</ul>
+------------------------------------------------------- */
+
+.pageTab{
+	margin: 5px 0 10px;
+	padding: 0 0 0 5px;
+	background: url(/mod/img/bg-pagetab.gif) repeat-x left bottom #c3d0da;
+}
+
+.pageTab li{
+	float: left;
+	border: 1px solid #c3d0da;
+	font-size: 80%;
+	line-height: 1.01;
+}
+
+.pageTab li+li{
+	border-left: 0;
+}
+
+.pageTab li a,
+.pageTab li span{
+	display: block;
+	float: left;
+	padding: 5px 10px 4px;
+	color: #0062de;
+	text-decoration: none;
+	background: #e3f3ff;
+}
+
+.pageTab li a: hover{
+	color: #003475;
+	background: #ffffff;
+	text-decoration: underline;
+}
+
+.pageTab li span{
+	color: #666666;
+	background: #ebeff2;
+}
+
+.pageTab li.current{
+	border-bottom: 1px solid #ffffff;
+}
+
+.pageTab li.current a{
+	color: #000000;
+	font-weight: bold;
+	background: #ffffff;
+}
+
+/* inline pageTab
+------------------------------------------------------
+<ul class="pageTab">
+<li class="pageTabGroup"><em>リスト見出し</em><ul class="inlinePageTab">
+	<li id="scheduleNavi01"><a href="">あ</a></li>
+	<li id="scheduleNavi02"><a href="">い</a></li>
+	<li id="scheduleNavi03"><a href="">う</a></li>
+</ul></li>
+<li class="pageTabGroup"><em>リスト見出し</em><ul class="inlinePageTab">
+	<li id="scheduleNavi04"><a href="">か</a></li>
+	<li id="scheduleNavi05"><a href="">き</a></li>
+	<li id="scheduleNavi06"><a href="">く</a></li>
+</ul></li>
+</ul>
+------------------------------------------------- */
+.pageTab li.pageTabGroup{
+	border: 0;
+	margin: 0 15px 0 -5px;
+}
+
+.pageTab li.pageTabGroup em{
+	display: block;
+	float: left;
+	margin: 0 0 0 5px;
+	padding: 5px 5px 4px;
+	border: 1px solid #8ea1b6;
+	border-left: 2px solid #8ea1b6;
+	color: #ffffff;
+	font-weight: bold;
+	background: #8ea1b6;
+}
+
+.pageTab li.pageTabGroup .inlinePageTab{float: left;}
+
+.pageTab li.pageTabGroup .inlinePageTab li{font-size: 100%;}
+
+
+.schedule01 .pageTab #scheduleNavi01,
+.schedule02 .pageTab #scheduleNavi02,
+.schedule03 .pageTab #scheduleNavi03,
+.schedule04 .pageTab #scheduleNavi04,
+.schedule05 .pageTab #scheduleNavi05,
+.schedule06 .pageTab #scheduleNavi06,
+.schedule07 .pageTab #scheduleNavi07,
+.schedule08 .pageTab #scheduleNavi08,
+.schedule09 .pageTab #scheduleNavi09,
+.schedule10 .pageTab #scheduleNavi10,
+.schedule11 .pageTab #scheduleNavi11,
+.schedule12 .pageTab #scheduleNavi12,
+.schedule13 .pageTab #scheduleNavi13,
+.schedule14 .pageTab #scheduleNavi14,
+.schedule15 .pageTab #scheduleNavi15{
+	border-bottom: 1px solid #ffffff;
+}
+
+.schedule01 .pageTab #scheduleNavi01 a,
+.schedule02 .pageTab #scheduleNavi02 a,
+.schedule03 .pageTab #scheduleNavi03 a,
+.schedule04 .pageTab #scheduleNavi04 a,
+.schedule05 .pageTab #scheduleNavi05 a,
+.schedule06 .pageTab #scheduleNavi06 a,
+.schedule07 .pageTab #scheduleNavi07 a,
+.schedule08 .pageTab #scheduleNavi08 a,
+.schedule09 .pageTab #scheduleNavi09 a,
+.schedule10 .pageTab #scheduleNavi10 a,
+.schedule11 .pageTab #scheduleNavi11 a,
+.schedule12 .pageTab #scheduleNavi12 a,
+.schedule13 .pageTab #scheduleNavi13 a,
+.schedule14 .pageTab #scheduleNavi14 a,
+.schedule15 .pageTab #scheduleNavi15 a{
+	color: #000000;
+	font-weight: bold;
+	background: #ffffff;
+}
+
+
+
+/* Schedule Navi
+------------------------------------------------------- */
+.scheduleNavi{
+	margin: 11px 0 7px 5px;
+	font-size: 80%;
+}
+
+.scheduleNavi dl,
+.scheduleNavi ul{
+	margin-right: 10px;
+	line-height: 1.6;
+}
+
+.scheduleNavi dl,
+.scheduleNavi dt,
+.scheduleNavi dd,
+.scheduleNavi li{float: left;}
+
+.scheduleNavi dt{font-weight: bold;}
+
+.scheduleNavi dd,
+.scheduleNavi li{
+	color: #848484;
+	border-right: 1px solid #ffffff;
+}
+
+.scheduleNavi dd a,
+.scheduleNavi li a{
+	padding: 5px 5px 4px;
+	background: #bee4ff;
+}
+body.schedule2003 li.scheduleNavi2003 a ,
+body.schedule2004 li.scheduleNavi2004 a ,
+body.schedule2005 li.scheduleNavi2005 a ,
+body.schedule2006 li.scheduleNavi2006 a ,
+body.schedule2007 li.scheduleNavi2007 a ,
+body.schedule2008 li.scheduleNavi2008 a ,
+body.schedule2009 li.scheduleNavi2009 a ,
+body.schedule2010 li.scheduleNavi2010 a ,
+body.schedule2011 li.scheduleNavi2011 a ,
+body.schedule2012 li.scheduleNavi2012 a ,
+.scheduleNavi dd.current a,
+.scheduleNavi dd.current a: visited,
+.scheduleNavi dd.current a: hover,
+.scheduleNavi dd.current a: active,
+.scheduleNavi li.current a,
+.scheduleNavi li.current a: visited,
+.scheduleNavi li.current a: hover,
+.scheduleNavi li.current a: active{
+	font-weight: bold;
+	color: #848484;
+	background: #ffffff;
+}
+
+.scheduleNavi dd span,
+.scheduleNavi li span{
+	padding: 5px 5px 4px;
+	color: #999999;
+}
+
+
+/* Page Navi
+------------------------------------------------------- */
+.pageNavi{
+	margin: 0 0 7px 5px;
+	font-size: 80%;
+}
+
+.pageNavi ul{
+	margin-right: 10px;
+	line-height: 1.6;
+}
+
+.pageNavi li{float: left;}
+
+.pageNavi li{
+	color: #848484;
+	border-right: 1px solid #ffffff;
+}
+
+.pageNavi li a{
+	padding: 5px 5px 4px;
+	background: #bee4ff;
+}
+
+.pageNavi li.current a,
+.pageNavi li.current a: visited,
+.pageNavi li.current a: hover,
+.pageNavi li.current a: active{
+	font-weight: bold;
+	color: #848484;
+	background: #ffffff;
+}
+
+.pageNavi li span{
+	padding: 5px 5px 4px;
+	color: #999999;
+}
+
+
+/* iTable, nsTable
+------------------------------------------------------- */
+.iTable,
+.nsTable{
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+	border: none;
+	border-top: 1px solid #c6d7e7;
+	border-left: 1px solid #c6d7e7;
+	width: 100%;
+	font-size: 90%;
+	line-height: 1.25;
+}
+
+.iTable caption,
+.nsTable caption{
+	margin: 0 0 -1px;
+	padding: 3px 6px 1px;
+	border-bottom: 1px solid #5d718b;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+	background: #73869e;
+}
+
+.iTable td,
+.nsTable td{
+	padding: 2px 3px 1px;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #c6d7e7;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #c6d7e7;
+	text-align: left;
+	background: #ffffff;
+}
+
+.iTable th,
+.nsTable th{
+	padding: 1px 2px 0;
+	border-left: 1px solid #c6d7e7;
+	border-right: 1px solid #afbdcb;
+	border-top: 1px solid #e5ecf2;
+	border-bottom: 1px solid #afbdcb;
+	color: #385c8c;
+	font-size: 90%;
+	text-align: center;
+	background: #c6d7e7;
+}
+
+.iTable th: last-child{border-right-color: #c6d7e7;}
+
+.nsTable th: last-child{border-right-color: #c6d7e7;}
+
+.iTable tr: nth-child(odd) td{background: #f1f6f9;}
+
+.iTable tr.even td{background: #f1f6f9;}
+
+.nsTable tr: nth-child(odd) td{background: #f1f6f9;}
+
+.nsTable tr.even td{background: #f1f6f9;}
+
+.iTable .subH,
+.nsTable .subH{background: #e5ecf2!important;}
+
+
+/* nsTable2
+------------------------------------------------------- */
+.nsTable2{
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+	border: none;
+	border-top: 1px solid #c6d7e7;
+	border-left: 1px solid #c6d7e7;
+	width: 100%;
+	font-size: 86%;
+	line-height: 1;
+}
+
+.nsTable2 caption{
+	margin: 0;
+	padding: 5px;
+	border: none;
+	border-bottom: 1px solid #5d718b;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+	text-shadow: 0 1px 0 #5d718b;
+	background: #73869e;
+	background: -webkit-linear-gradient(top,#5d718b,#73869e);
+	background: linear-gradient(to bttom,#5d718b,#73869e);
+}
+
+.nsTable2 th{
+	padding: 5px 5px 4px;
+	border: none;
+	border-right: 1px solid #b3c5d6;
+	border-bottom: 3px solid #8ea1b6;
+	color: #385c8c;
+	font-size: 90%;
+	font-weight: normal;
+	text-align: center;
+	text-shadow: 0 1px 0 #e5ecf2;
+	background: #c6d7e7;
+	background: -webkit-linear-gradient(top,#c6d7e7,#b3c5d6);
+	background: linear-gradient(to bottom,#c6d7e7,#b3c5d6);
+}
+
+.nsTable2 th: last-child{border-right-color: #c6d7e7;}
+
+.nsTable2 td{
+	padding: 5px;
+	border: none;
+	border-right: 1px solid #c6d7e7;
+	border-bottom: 1px solid #c6d7e7;
+	text-align: left;
+	background: #fafcff;
+}
+
+.nsTable2 tr: nth-child(odd) td{
+	background: #ebf1f7;
+	background: -webkit-linear-gradient(top,#f1f6f9,#e3ebf3);
+	background: linear-gradient(top,#f1f6f9,#e3ebf3);
+}
+
+.nsTable2 tr.even td{
+	background: #ebf1f7;
+	background: -webkit-linear-gradient(top,#f1f6f9,#e3ebf3);
+	background: linear-gradient(to bottom,#f1f6f9,#e3ebf3);
+}
+
+.nsTable2 tr: nth-child(odd) .subH,
+.nsTable2 tr.odd .subH,
+.nsTable2 tr.even .subH,
+.nsTable2 .subH{
+	background: #e5ecf2;
+	background: -webkit-linear-gradient(top,#dde6ef,#c6d7e7);
+	background: linear-gradient(to bottom,#dde6ef,#c6d7e7);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+BASEBALL
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Baseball Team Top
+----------------------------------------------- */
+#centralLeagueWrap{
+	border-radius: .3em;
+	background: #689a03;
+	background: -webkit-linear-gradient(top,#669900,#a4b457);
+	background: linear-gradient(to bottom,#669900,#a4b457);
+}
+
+#centralLeague{
+	border: 1px solid #669900;
+}
+
+#pacificLeagueWrap{
+	border-radius: .3em;
+	background: #5554a1;
+	background: -webkit-linear-gradient(top,#5353a0,#8281cd);
+	background: linear-gradient(to bottom,#5353a0,#8281cd);
+}
+
+#pacificLeague{
+	border: 1px solid #5353a0;
+}
+
+.leagueBox{
+	padding: 7px;
+	border-radius: .3em;
+}
+
+.leagueBox h2{
+	margin: 0 0 5px;
+	color: #ffffff;
+	font-size: 100%;
+}
+
+#centralLeague sub{
+	display: block;
+	float: right;
+	color: #8db240;
+	font-size: 80%;
+	font-family: Arial Black;
+}
+
+#pacificLeague sub{
+	display: block;
+	float: right;
+	color: #7b7bb7;
+	font-size: 80%;
+	font-family: Arial Black;
+}
+
+.teamTopBoxWrap{¥
+	border-radius: .3em;
+	background: #ffffff;¥
+	background: -webkit-linear-gradient(top,#b3b3b3 0,#ffffff 7px);¥
+	background: linear-gradient(to bottom,#b3b3b3 0,#ffffff 7px);
+}
+
+.teamTopBox{
+	padding: 10px 5px;
+	border-top: 1px dotted #c2c2c2;
+	overflow: auto;
+	font-size: 90%;
+}
+
+.teamTopBoxWrap .firstChild{
+	border: 0;
+}
+
+.teamLogo{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+}
+
+.teamTopBox h3 a{
+	padding: 0 0 3px 17px;
+	color: #333333;
+	font-size: 100%;
+	background: url(/mod/img/icon-arrow_basic2.png) no-repeat 0 1px;
+}
+
+.teamSubLink{
+	padding: 5px 0;
+}
+
+.teamSubLink li{
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+.teamSubLink a{
+	padding: 1px 5px 0;
+	border-radius: .2em;
+	font-size: 90%;
+}
+
+#centralLeague .teamSubLink a{
+	border: 1px solid #669966;
+	color: #669966;
+	background: #e0f0e0;
+}
+
+#pacificLeague .teamSubLink a{
+	border: 1px solid #5353a0;
+	color: #5353a0;
+	background: #e0e4f0;
+}
+
+.teamTopBox .newsList01{
+	margin: 0 0 0 55px;
+	font-size: 100%;
+}
+
+.teamTopBox .newsList01 li{
+	margin: 0;
+}
+
+
+/* Select Page
+------------------------------------------------------- */
+#selectPage{
+	margin: 0 0 10px;
+	padding: 6px 0;
+	border: 1px solid #dddcd1;
+	border-radius: .3em;
+	text-align: center;
+	background: #f0efe1;
+}
+
+#selectPage form{
+	margin: 0 auto;
+	width: 140px;
+	font-size: 80%;
+	font-weight: bold;
+}
+
+#selectPage form fieldset{
+	width: 140px;
+	color: #77715b;
+	text-align: left;
+}
+
+#selectPage form select{
+	margin-top: 4px;
+	width: 140px;
+}
+
+
+/* Baseball Schedule Top
+------------------------------------------------------- */
+#bbSchedule{width: 100%;}
+
+#bbSchedule p#upDate{
+	margin: 0 0 1.5em;
+	font-size: 80%;
+	text-align: right;
+}
+
+#bbSchedule span#teamLink{
+	padding: 5px 8px;
+	background: #DCDCDC;
+}
+
+#bbSchedule h4.leagueTitle{
+	margin-bottom: 0.5em;
+	clear: both;
+}
+
+.scheduleTitle{
+	margin: 1em 0 0;
+	font-size: 90%;
+}
+
+.seBox{
+	width: 49.5%;
+	float: left;
+	clear: left;
+}
+
+.paBox{
+	width: 49.5%;
+	float: right;
+}
+
+.seBox dl,
+.paBox dl{
+	margin: 0;
+	padding: 0;
+	font-size: 90%;
+}
+
+.seBox dt,
+.paBox dt{
+	margin: 10px 0 0;
+	padding: 5px;
+	font-weight: bold;
+	background: #dcdcdc;
+}
+
+.seBox dd,
+.paBox dd{
+	margin-bottom: 15px;
+	background: #EFEFEF;
+}
+
+.seBox dd ul,
+.paBox dd ul{
+	margin: 0;
+	padding: 5px 0;
+	text-align: center;
+	list-style: none;
+}
+
+.seBox dd ul li,
+.paBox dd ul li{
+	display: inline;
+	margin: 0;
+	padding: 0 2px 0 .5em;
+	border-left: 1px solid #999999;
+	font-size: 90%;
+}
+
+.seBox dd ul li.first,
+.paBox dd ul li.first{
+	border-left: none;
+}
+
+dl.noneBox{font-size: 90%;}
+
+dl.noneBox dt,
+dl.noneBox dd{background: none;}
+
+dl.noneBox dd ul li{border-left: none;}
+
+
+
+/* Schedule Top
+------------------------------------------------------- */
+#bbSchedule h3{
+	margin: 1em 0 0;
+	font-size: 90%;
+}
+
+
+/* ---------- MLB Schedule ---------- */
+
+/* MKB TOP */
+#transferWrap{margin: 1em 0;}
+
+#transferWrap .iTable,
+#transferWrap .nsTable{margin-bottom: 10px;}
+
+#transferWrap #position{width: 10%;}
+
+#transferWrap #name{width: 20%;}
+
+#transferWrap #team{width: 15%;}
+
+#transferWrap #age{width: 5%;}
+
+#transferWrap #fa{width: 15%;}
+
+#transferWrap #transferto{width: 35%;}
+
+#transferWrap td: nth-child(6){font-size: 90%;}
+
+.alBox{
+	width: 49%;
+	float: left;
+	clear: left;
+}
+
+.nlBox{
+	width: 49.5%;
+	float: right;
+}
+
+.alBox dl, .nlBox dl{
+	margin: 0;
+	padding: 0;
+	font-size: 90%;
+}
+
+.alBox dt, .nlBox dt{
+	margin: 10px 0 0;
+	padding: 2px 5px;
+	font-size: 90%;
+	font-weight: bold;
+	background: #DCDCDC;
+}
+
+.alBox dd, .nlBox dd{
+	margin-bottom: 15px;
+	background: #EFEFEF;
+}
+
+.alBox dd ul, .nlBox dd ul{
+	margin: 0;
+	padding: 5px 0;
+	text-align: center;
+	list-style: none;
+}
+
+.alBox dd ul li, .nlBox dd ul li{
+	margin: 0;
+	padding: 0 2px 0 6px;
+	border-left: 1px solid #999999;
+	display: inline;
+}
+
+.alBox dd ul li.first, .nlBox dd ul li.first{
+	padding-right: 2px;
+	border-left: none;
+}
+
+
+/* Monthly Link
+------------------------------------------------------- */
+#monthlyLink{
+	margin: 10px 0 0.5em;
+	position: relative;
+	}
+
+
+#monthlyLink ul{
+	padding: 2px 5px 2px 9px;
+	margin: 0 5px 0;
+	font-size: 80%;
+	list-style: none;
+	float: left;
+	font-weight: bold;
+	}
+
+#monthlyLink ul li{
+	padding: 2px 5px 2px 9px;
+	height: 16px;
+	border-left: 1px solid #333333;
+	display: inline;
+	list-style: none;
+	font-weight: normal;
+}
+
+#monthlyLink ul li.last{
+	border-right: 1px solid #333333;}
+
+
+#monthlyLink span#teamLink{
+	padding: 2px 5px 2px 9px;
+	float: right;
+}
+
+
+
+
+/* Schedule Box
+------------------------------------------------------- */
+#bbSchedule div.ScheduleBox{
+	border: none;
+	clear: both;
+}
+
+
+/* ----- Schedule Table ----- */
+#bbSchedule table td.txt1{text-align: center;}
+
+#bbSchedule table td.txt1h{padding: 0 2px;}
+
+#bbSchedule table td font b{
+	padding: 3px;
+	font-size: 100%;
+}
+
+
+table.ScheduleTable{
+	margin: 0 0 1.8em 0;
+	width: 100%;
+	border-collapse: collapse;
+	border-top: solid 1px #999999;
+	border-right: solid 1px #999999;
+	clear: both;
+}
+
+table.ScheduleTable caption{
+	padding: 3px 5px 2px;
+	font-size: 90%;
+	text-align: right;
+	font-weight: bold;
+	color: #FFFFFF;
+	background: #555555;
+}
+
+table.ScheduleTable th{
+	padding: 2px 5px;
+	width: 14.2%;
+	font-size: 80%;
+	text-align: center;
+	background: #CCCCCC;
+	border-bottom: solid 1px #999999;
+	border-left: solid 1px #999999;
+}
+
+table.ScheduleTable th.sun{background: #ff9999;}
+
+table.ScheduleTable th.sat{background: #9ee7fc;}
+
+
+table.ScheduleTable td{
+	padding: 2px 3px;
+	font-size: 80%;
+	line-height: 1.3em;
+	vertical-align: top;
+	border-bottom: solid 1px #999999;
+	border-left: solid 1px #999999;
+}
+
+table.ScheduleTable td dt{font-weight: bold;}
+
+table.ScheduleTable td dd{margin-bottom: 4px;}
+
+table.ScheduleTable td.bgGray{background: #EFEFEF;}
+
+#bbSchedule p.upDate{
+	margin: 0 5px 5px;
+	font-size: 80%;
+	text-align: right;
+}
+
+
+
+/* Person Data, Standing, Scoreline
+----------------------------------------------- */
+.bbResult{
+	width: 700px;
+}
+
+.bbResult p.upDate{
+	float: right;
+	margin: 0 0 10px;
+	font-size: 80%;
+	line-height: 1.6;
+}
+
+.bbResult p.txt2{
+	float: left;
+	margin: 0 0 10px;
+	font-size: 80%;
+	line-height: 1.6;
+}
+
+.bbResult table{
+	clear: both;
+	margin: 0 0 15px;
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+	border: 0;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #999999;
+	width: 100%;
+	font-size: 86%;
+}
+
+.bbResult tr: nth-child(2n) td{background: #ffffff;}
+
+.bbResult table tr: nth-child(2n+1) td{background: #efefef;}
+
+.bbResult caption{
+	padding: 3px 0 3px 5px;
+	font-size: 90%;
+	text-align: left;
+	font-weight: bold;
+	color: #fffff;
+	background: #555555;
+}
+
+.bbResult th{
+	padding: 2px 1px;
+	text-align: center;
+	background: #cccccc;
+	border: 0;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #999999;
+}
+
+.bbResult td{
+	border: 0;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #999999;
+}
+
+
+/* ----- Person Data ----- */
+#bbPerson th{padding: 2px 0;}
+
+#bbPerson td{
+	padding: 2px 1px;
+	text-align: right;
+}
+
+#bbPerson .rank{
+	width: 1.5em;
+	text-align: center;
+}
+
+#bbPerson th.vertical{width: 1.9em;}
+
+#bbPerson th.vertical1{width: 1.5em;}
+
+#bbPerson th.vertical2{width: 4em;}
+
+#bbPerson td.player{text-align: left;}
+
+#bbPerson td.none{
+	padding: 0;
+	font-size: 0;
+	height: 1px;
+}
+
+
+/* ----- Standings ----- */
+#bbStandings td{
+	padding: 3px;
+	text-align: right;
+}
+
+#bbStandings td.rank{
+	padding: 3px;
+	text-align: center;
+}
+
+#bbStandings td.team{
+	text-align: left;
+}
+
+#mlb #bbStandings caption{
+	color: #ffffff;
+}
+
+/* ----- Standings, ScoreLine ----- */
+#bbScoreline th.gameType{
+	width: 9%;
+	background: #EDEDED;
+}
+
+#bbScoreline td{
+	padding: 3px 1px;
+	text-align: center;
+}
+
+#bbScoreline td.rank{
+	padding: 3px;
+	text-align: center;
+}
+
+#bbScoreline td.team{
+	padding: 3px 2px;
+	text-align: left;
+	white-space: nowrap;
+}
+
+
+/* farm Style
+------------------------------------------------------- */
+body.farm .scheduleNavi dt{
+	margin-left: 10px;
+	color: #666666;
+	font-weight: normal;
+}
+
+body.farm .aste{
+	margin-bottom: 3px;
+	font-size: 85%;
+	text-align: right;
+}
+
+body.farm .scoreBox h4{
+	margin-bottom: 3px;
+	font-size: 90%;
+}
+
+body.farm .scoreBox h4 span{font-weight: normal;}
+
+body.farm .plyrData{
+	margin: 3px 0 30px;
+	font-size: 90%;
+	line-height: 1.35;
+}
+
+body.farm .farmHr{
+	margin: 10px 0;
+	padding: 0;
+	height: 3px;
+	border: 0 none;
+	border-top: 3px solid #E5E4D2;
+	font-size: 0.01em;
+	background: #E5E4D2;
+	overflow: hidden;
+}
+
+body.farm .farmResultTbl{
+	margin: 0 0 15px;
+	width: auto;
+}
+
+body.farm .farmResultTbl table{
+	margin: 0 0 10px;
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+	border: 0 none;
+	width: 100%;
+	line-height: 1.15;
+	font-size: 90%;
+}
+
+body.farm .farmResultTbl table caption{
+	margin: 5px 0 0 0;
+	padding: 2px 0 3px 7px;
+	border: 1px solid #94b0b0;
+	border-bottom: 1px solid #4d5354;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+	background: #94b0b0;
+}
+
+body.farm .farmResultTbl table caption span.date{padding-right: 7px;}
+
+body.farm .farmResultTbl table caption span.scrLink{
+	border-left: 1px solid #4d5354;
+	padding: 0 0 0 7px;
+	font-size: 90%;
+}
+
+body.farm .farmResultTbl table caption span.scrLink a{
+	padding: 1px 4px;
+	color: #ffffff;
+	font-weight: bold;
+	background: #485253;
+}
+
+body.farm .farmResultTbl table th{
+	border: 0 none;
+	border-right: 1px solid #cacaca;
+	border-bottom: 1px solid #cacaca;
+	color: #666666;
+	text-align: center;
+	background: #e9e9e9;
+}
+
+body.farm .farmResultTbl table th.bg{border-left: 1px solid #cacaca;}
+
+body.farm .farmResultTbl table td{
+	padding: 0 8px;
+	border: 0 none;
+	border-right: 1px solid #cacaca;
+	border-bottom: 1px solid #cacaca;
+	color: #333333;
+	line-height: 1.5;
+	background: #FFFFFF;
+}
+
+body.farm .farmResultTbl table td.home {width: 40%;    text-align: right; border-left: 1px solid #cacaca;}
+body.farm .farmResultTbl table td.score{width: 19.75%; text-align: center;}
+body.farm .farmResultTbl table td.away {width: 40%;    text-align: left;}
+
+body.farm .farmResultTbl .noData{
+	margin: 5px 0 10px;
+	padding: 0 0 0 7px;
+	border: 1px solid #d5d5d5;
+	color: #cf3311;
+	line-height: 1.6;
+	text-align: left;
+	background: #f2f2f2;
+}
+
+body.farm .scoreBox h4{margin-bottom: 5px;}
+
+body.farm .scoreTable th{background: url(http: //cache2.nipc.jp/img/th-bg00.gif) no-repeat left top #E5E4D2;}
+
+body.farm .plyrData{
+	margin: 3px 0 30px;
+	font-size: 90%;
+	line-height: 1.35;
+}
+
+
+
+/* Highschool
+------------------------------------------------------- */
+body.highschool #topdataWrap{margin: 15px 0;}
+
+
+
+
+/* pfData
+------------------------------------------------------- */
+#dataListWrap{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#dataListWrap dt{
+	display: none;
+}
+
+#dataListWrap dd{
+	float: right;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+MLB
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* MLB Top Table Result
+------------------------------------------------------- */
+div.topTableResult{
+	width: 100%;
+	margin-bottom: 18px;
+}
+
+div.topTableResult table{
+	margin-top: 0;
+	width: 100%;
+	border: 0;
+	border-top: 1px solid #505050;
+	border-right: 1px solid #505050;
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+}
+
+div.topTableResult caption{
+	padding: 0 0 7px;
+	font-size: 100%;
+	font-weight: bold;
+	text-align: left;
+}
+
+div.topTableResult th{
+	padding: 5px 2px;
+	font-size: 80%;
+	color: #cccccb;
+	text-align: center;
+	background: #2f2f2f;
+	border: solid #505050;
+	border-width: 0 0 1px 1px;
+}
+
+div.topTableResult td{
+	padding: 8px 0;
+	border: 0;
+	border-left: 1px solid #505050;
+	border-bottom: 1px solid #505050;
+	font-size: 120%;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: center;
+	background: #000000;
+}
+
+div.topTableResult dl{
+	margin-top: 8px;
+	font-size: 80%;
+}
+
+.topTableResult dt,
+.topTableResult ul,
+.topTableResult li{
+	list-style: none;
+	float: left;
+}
+
+.topTableResult dt{
+	padding-right: 5px;
+	font-weight: bold;
+	border-right: 1px solid #3f3f3f;
+}
+
+.topTableResult li{
+	padding: 0 5px;
+	border-right: 1px solid #3f3f3f;
+}
+
+#topTableSch,
+.bottomTableResult{
+	margin: 0 0 15px;
+}
+
+.bottomTableResult td{
+	text-align: center;
+}
+
+#topTableSch caption,
+.bottomTableResult caption{
+	padding: 4px 4px 3px 7px;
+	border-bottom: 1px solid #6c627a;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: left;
+	background: #938ca5;
+	text-shadow: 0 -1px 0 #6c627a;
+}
+
+.todayTotal th{
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 1px dashed #bfbfbf;
+	background: #e3e3e3;
+}
+
+.todayTotal td{
+	border-right: 0;
+	background: #e3e3e3;
+}
+
+.todayTotal td{
+	border-right: 0;
+	background: #e3e3e3;
+}
+
+/* -------------------------------------------------------
+   成績表下のキャプション20121121
+----------------------------------------------- */
+
+p.mlbTeamText{
+	display: none;
+}
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+SOCCER
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Soccer Team Top
+----------------------------------------------- */
+#j1LeagueWrap,
+#j2LeagueWrap{
+	border-radius: .3em;
+	background: url(/mod/img/bg-mesh_bk.gif) repeat left top #191919;
+}
+
+#j1League,
+#j2League{
+	border: 1px solid #666666;
+}
+
+#j1League sub,
+#j2League sub{
+	padding: 0 0 0 10px;
+	color: #666666;
+	font-size: 90%;
+	font-family: Arial Black;
+	vertical-align: middle;
+}
+
+#j1League .clubs,
+#j2League .clubs{
+	float: right;
+	margin: 5px 0 0;
+	font-size: 86%;
+}
+
+#j1League .clubs{
+	color: #ff9999;
+}
+
+#j2League .clubs{
+	color: #99c4ff;
+}
+
+#j1League .teamSubLink a{
+	border: 1px solid #bb4c4c;
+	color: #bb4c4c;
+	background: #ffd8d8;
+}
+
+#j2League .teamSubLink a{
+	border: 1px solid #436cb1;
+	color: #436cb1;
+	background: #d8ebff;
+}
+
+
+/* Standings Table
+------------------------------------------------------- */
+#standingWrap,
+#rankingWrap,
+.standingWrap,
+.rankingWrap{
+	padding-bottom: 15px;
+}
+
+.nabisco #standingWrap{margin-top: 0;}
+
+.nabisco #standingWrap table{margin-bottom: 15px;}
+
+#standingWrap table caption,
+.standingWrap table caption{
+	padding: 4px 5px 3px 7px;
+	font-size: 90%;
+	font-weight: bold;
+	color: #ffffff;
+	text-align: left;
+	background: #a8b8bc;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+}
+
+#standingWrap table.dataTable tr,
+#rankingWrap table.dataTable tr,
+.standingWrap table.dataTable tr,
+.rankingWrap table.dataTable tr{background: #ffffff;}
+
+#standingWrap table.dataTable tr.bg2,
+#rankingWrap table.dataTable tr.bg2,
+.standingWrap table.dataTable tr.bg2,
+.rankingWrap table.dataTable tr.bg2{background: #f1f6f9;}
+
+#standingWrap table.dataTable td,
+.standingWrap table.dataTable td{
+	padding: 3px 5px;
+	font-size: 90%;
+	text-align: left;
+	border-left: 1px solid #ffffff;
+}
+
+#rankingWrap table.dataTable th,
+.rankingWrap table.dataTable th{padding: 3px 0;}
+
+#rankingWrap table.dataTable td,
+.rankingWrap table.dataTable td{
+	padding: 4px 3px 3px;
+	font-size: 85%;
+	text-align: left;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+}
+
+#standingWrap table.dataTable th.team,
+.standingWrap table.dataTable th.team{width: 26%;}
+
+#standingWrap table.dataTable th.totalPoint,
+.standingWrap table.dataTable th.totalPoint{width: 10%;}
+
+#rankingWrap table.dataTable th.profile,
+.rankingWrap table.dataTable th.profile{width: 20%;}
+
+
+#standingWrap table.dataTable td.rank,
+#rankingWrap table.dataTable td.rank,
+.standingWrap table.dataTable td.rank,
+.rankingWrap table.dataTable td.rank{text-align: center;}
+
+#standingWrap table.dataTable td.num,
+#rankingWrap table.dataTable td.num,
+.standingWrap table.dataTable td.num,
+.rankingWrap table.dataTable td.num{text-align: right;}
+
+#rankingWrap table.dataTable th.num,
+.rankingWrap table.dataTable th.num{
+	margin-right: auto;
+	margin-left: auto;
+	width: 1.65em;
+}
+
+#rankingWrap table.dataTable th.num2,
+.rankingWrap table.dataTable th.num2{
+	margin-right: auto;
+	margin-left: auto;
+	width: 1.65em;
+}
+
+#rankingWrap table.dataTable th.num3,
+.rankingWrap table.dataTable th.num3{width: 3.5em;}
+
+
+#leftStandings{
+	margin-bottom: 15px;
+}
+
+.leftTitle{
+	margin: 0 0 1px 1px;
+	padding: 4px 5px 3px 7px;
+	color: #ffffff;
+	background: #93a9b2;
+	border-bottom: 1px solid #618ea1;
+}
+
+.leftTitle h2{
+	font-size: 80%;
+	float: left;
+}
+
+.leftTitle p{
+	font-size: 80%;
+	float: right;
+}
+
+#leftStandings .leftTitle p a{
+	padding: 0 2px;
+	color: #ffffff;
+}
+
+#leftStandings table.dataTable th{
+	padding: 4px 1px;
+	color: #1d4453;
+	background: #d5dee1;
+}
+
+#leftStandings table.dataTable tr{background: #eef2f3;}
+
+#leftStandings table.dataTable tr.bgGray{background: #f7f9f9;}
+
+#leftStandings table.dataTable td{
+	padding: 5px 3px;
+	font-size: 80%;
+	text-align: center;
+	border-left: 1px solid #ffffff;
+}
+
+#leftStandings table.dataTable td.left{
+	text-align: left;
+}
+
+
+/* Score Table
+------------------------------------------------------- */
+body#world #topScore{margin: 0 0 15px;}
+
+body#world #topScore .dataTable th{border: 0;}
+
+body#world #topScore .dataTable td.team,
+body#world #topScore .dataTable td.score{text-align: center;}
+
+body#world #topScore .dataTable tr: nth-child(1) td{
+	padding-right: 10px;
+	border-right: 1px solid #ffffff;
+	border-bottom: 1px solid #bfbfbf;
+	color: #484848;
+	font-size: 90%;
+	text-align: right;
+	background: #e5e5e5;
+}
+
+body#world #topScore .dataTable td: nth-child(1){border-left: 0; text-align: right;}
+body#world #topScore .dataTable td: nth-child(3){text-align: left;}
+
+
+
+/* Ranking Table
+------------------------------------------------------- */
+#topRanking td{text-align: right;}
+
+#topRanking td.left{text-align: left;}
+
+#topRanking td: first-child,
+#topRanking td.firstChild{
+	text-align: center;
+	border-left: none;
+}
+
+body.nabisco .dataContents{margin: 0 0 15px; text-align: center;}
+body.nabisco .dataContents th.bg{width: 7em;}
+body.nabisco .dataContents th.stadium{width: 7em;}
+body.nabisco #tournamentWrap{margin: 0 0 15px; text-align: center;}
+body.nabisco #tournamentWrap img{border: 4px solid #dfdfdf;}
+
+
+
+/* ----- j1 ,j2 top score ----- */
+#jlTopScore{
+	margin: 0 0 15px;
+}
+
+#jlTopScore tr: first-child td,
+#jlTopScore tr.firstChild td{
+	padding: 3px 5px;
+	font-size: 80%;
+	font-weight: bold;
+	color: #666666;
+	text-align: right;
+	background: #e3e3e3;
+	border: solid #ffffff;
+	border-width: 1px 0 0;
+}
+
+#jlTopScore th{
+	padding: 3px 5px;
+	font-size: 80%;
+	text-align: left;
+	color: #666666;
+	background: #e3e3e3;
+	border: solid #ffffff;
+	border-width: 1px 0 0;
+}
+
+#jlTopScore td{border-left: none;}
+
+#jlTopScore td: first-child,
+#jlTopScore td.firstChild{text-align: right;}
+
+#jlTopScore td.team{
+	padding: 3px 5px;
+	width: 25% !important;
+}
+
+#jlTopScore td.score{width: 10%;}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+WORLD SOCCER
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+/* League Top Page
+------------------------------------------------------- */
+
+#leagueAbout{
+	margin: 0 0 15px;
+}
+
+#leagueAbout img{
+	margin-left: 5px;
+	float: left;
+}
+
+.scotland #leagueAbout img{margin-top: 15px;}
+
+.netherlands #leagueAbout img{margin-top: 15px;}
+
+#leagueAbout dt{
+	margin-bottom: 5px;
+	padding: 0 5px 5px 5px;
+	font-size: 110%;
+	font-weight: bold;
+}
+
+#leagueAbout dt span{
+	padding-left: 0.8em;
+	font-size: 80%;
+	color: #b2b2b2;
+}
+
+#leagueAbout dd{
+	padding: 0 5px;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#leagueAbout dd a{padding: 0 2px;}
+
+
+/* ----- Guide Table ----- */
+.guideTable{width: 100%;}
+
+.guideTable table.dataTable th{
+	padding: 4px 8px 3px;
+	border-bottom: 1px solid #ffffff;
+	border-left: none;
+}
+
+.guideTable table.dataTable td{
+	padding: 3px;
+	font-size: 80%;
+	line-height: 1.3;
+	border-bottom: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+}
+
+.guideTable table.dataTable td.year{
+	padding: 3px 1px;
+	text-align: center;
+	white-space: nowrap;
+	width: 3.5em;
+}
+
+.cl .guideTable table.dataTable td,
+.uefa .guideTable table.dataTable td{text-align: center;}
+
+.cl .guideTable table.dataTable td.left,
+.uefa .guideTable table.dataTable td.left{text-align: left;}
+
+
+.guideTable table.dataTable td.koumoku{
+	padding: 3px 2px;
+	text-align: center;
+	white-space: nowrap;
+	width: 8em;
+}
+
+#leagueGuideWrap .tableStyle table tr: nth-child(even){background: #f7f9f9;}
+
+#leagueGuideWrap .tableStyle table tr.even{background: #f7f9f9;}
+
+#leagueGuideWrap .tableStyle table tr: nth-child(odd){background: #eef2f3;}
+
+#leagueGuideWrap .tableStyle table tr.odd{background: #eef2f3;}
+
+.guideTable p.attention{
+	margin: 0;
+	padding-top: 3px;
+	font-size: 80%;
+	line-height: 1.3;
+	border-top: 1px solid #f1f6f9;
+}
+
+
+/* League Guide
+------------------------------------------------------- */
+#leagueGuideWrap{
+	padding-bottom: 10px;
+	width: 100%;
+}
+
+#leagueGuide{
+	margin-left: -190px;
+	width: 100%;
+	float: right;
+}
+
+#leagueGuideInner{margin-left: 190px;}
+
+#leagueWinner{
+	width: 180px;
+	float: left;
+}
+
+#leagueGuideWrap h2{
+	margin-top: 15px;
+	padding: 3px 7px;
+	font-size: 90%;
+	color: #ffffff;
+	background: #afb8bc;
+}
+
+#leagueGuideWrap h2.contentsTitle{
+	margin: 0 0 5px;
+	padding: 0;
+	color: #333333;
+	font-size: 100%;
+	font-weight: bold;
+	background: none;
+}
+
+#world p.txt2h{
+	margin: 0 0 1em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#world p.txt2{
+	font-size: 86%;
+}
+
+.teamTable{margin: 10px 0 20px;}
+
+.teamTable td{
+	vertical-align: top;
+	width: 33%;
+	background: #efefef;
+	border: solid #ffffff;
+	border-width: 0 2px 2px 0;
+}
+
+.teamTable td.bgColor1{background: #d5dee1;}
+
+.teamTable td.bgColor2{background: #ffffff;}
+
+.teamTable td dl{padding: 5px;}
+
+.teamTable td dt{
+	margin-bottom: 5px;
+	font-size: 90%;
+	font-weight: bold;
+}
+
+.teamTable td dt span{
+	padding: 2px 3px;
+	color: #ffffff;
+	background: #e92929;
+}
+
+.teamTable td dt span.color1{background: #a8bac1;}
+
+.teamTable td dt span.color2{background: #999999;}
+
+.teamTable td dd{
+	padding-left: 5px;
+	font-size: 80%;
+	line-height: 1.4;
+}
+
+#leagueGuideWrap div.guideTable h2{
+	margin-top: 0;
+	font-size: 80%;
+	border-left: 1px solid #ffffff;
+}
+
+.cl #leagueGuideWrap div.guideTable,
+.uefa #leagueGuideWrap div.guideTable{margin-top: 20px;}
+
+#leagueGuideWrap div.guideTable table tr.bg2 th{
+	color: #999999;
+	background: #d5dee1;
+	border-left: 1px solid #ffffff;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+SUMO
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+MOTOR
+-------------------------------------------------------------------------------------------------------------------------------- */
+body.f1 #topAreaWrap .nsTable .subH{text-align: center;}
+
+body.f1.themeTop p.attention2{
+	font-size: 90%;
+	line-height: 1.6;
+	margin: 0.8em 0;
+}
+body.f1.themeTop #rankingWrap dd p{
+	padding-bottom: 0.5em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+ATHLETIC
+-------------------------------------------------------------------------------------------------------------------------------- */
+#atContents p{
+	font-size: 90%;
+	line-height: 1.6;
+	padding-bottom: 0.8em;
+}
+
+#atContents table{margin-bottom: 10px;}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+CYCLING
+-------------------------------------------------------------------------------------------------------------------------------- */
+body.cycling .ical p{
+	float: right;
+	padding-left: 19px;
+	background: url(/mod/img/icon-ical.gif) no-repeat 0 0.1em;
+}
+body.cycling #spCyclingS p{
+	padding-bottom: 0.8em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+body.cycling #spCyclingS table th#date{width: 15%;}
+body.cycling #spCyclingS table th#rank{width: 10%;}
+body.cycling #spCyclingS table th#race{width: 25%;}
+body.cycling #spCyclingS table th#place{width: 15%;}
+body.cycling #spCyclingS table th#champ{width: 35%;}
+
+body.cycling #spCyclingS #eventScheWrap{margin-bottom: 2em;}
+body.cycling #spCyclingS #eventrepoWrap table{margin-bottom: 10px;}
+
+body.cycling #spCyclingS table th.e_date{width: 15%;}
+body.cycling #spCyclingS table th.e_gernre{width: 10%;}
+body.cycling #spCyclingS table th.e_race{width: 45%;}
+body.cycling #spCyclingS table th.e_place{width: 30%;}
+
+body.cycling #spCyclingS .subH{
+	text-align: center;
+	white-space: nowrap;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+GOLF
+-------------------------------------------------------------------------------------------------------------------------------- */
+#golf p.attention{
+    font-size: 90%;
+    line-height: 1.6;
+}
+
+#golf .nsTable th.day,
+#golf .nsTable th.date{width: 10em;}
+
+
+/* ブログ新着
+------------------------------------------------------- */
+
+.golferBlog #topAreaWrap tr.odd{
+	background-color: #f0f0f0;
+}
+
+.golferBlog #topAreaWrap td.entryTitle,
+.golferBlog #topAreaWrap td.entryAuthor{
+	padding-left: 1em;
+}
+
+.golferBlog #topAreaWrap td.entryTitle{border-left: 0 none;}
+
+.golferBlog #topAreaWrap td.entryDate{
+	width: 12em;
+	text-align: center;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+BATTLE
+-------------------------------------------------------------------------------------------------------------------------------- */
+#battle .nsTable{
+	margin-bottom: 10px;
+}
+
+/* address
+------------------------------------------------------- */
+#battle.address .nsTable .h_dantai{
+	width: 40%;
+	word-wrap: break-word;
+}
+
+#battle.address .nsTable .h_address{width: 60%;}
+
+
+/* schedule
+------------------------------------------------------- */
+#battle p.attention{
+    text-align: right;
+    margin: 2px 0 0 5px;
+    font-size: 90%;
+    line-height: 1.5;
+}
+
+#battle p.t-right{
+    clear: both;
+    text-align: right;
+    font-size: 90%;
+}
+
+#battle.schedule dl.btHowto{
+	margin: 15px 0;
+	padding: 3px 0;
+	list-style: none;
+	clear: both;
+}
+
+#battle.schedule dl.btHowto dt{
+	float: left;
+	margin: 0 10px 0 0;
+	font-size: 90%;
+	font-weight: bold;
+}
+
+#battle.schedule dl.btHowto dd{display: inline;}
+
+#battle.schedule dl.btHowto dd ul li{
+	float: left;
+	display: block;
+	padding: 0 10px 0 5px ;
+	height: 18px;
+	font-size: 80%;
+	border: none;
+}
+
+#battle.schedule dl.btHowto dd ul li.mobile{
+	background: url("/battle/img/icon-flash01.gif") no-repeat;
+	padding-left: 30px;
+}
+
+#battle.schedule dl.btHowto dd ul li.web{
+	background: url("/battle/img/icon-flash02.gif") no-repeat;
+	padding-left: 25px;
+}
+
+#battle.schedule dl.btHowto dd ul li.mobile2{
+	background: url("/battle/img/icon-flash03.gif") no-repeat;
+	padding-left: 26px;
+}
+
+
+/* Result
+------------------------------------------------------- */
+#battle.result #battleData .listHead{
+	margin-bottom: 0.5em;
+}
+
+#battle.result #battleData h3{
+	margin: 0 3px 5px;
+	font-size: 105%;
+}
+
+#battle.result #battleData p{
+	padding-bottom: 0.8em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+
+/* 団体top
+------------------------------------------------------- */
+#battle.themeTop .subH,
+#battle.themeResult .subH,
+#battle.themeTop .link,
+#battle.themeResult .link{
+	text-align: center;
+}
+
+
+/* 速報記事
+------------------------------------------------------- */
+#btReportBox h3{
+	margin: 0 3px 5px;
+	font-size: 105%;
+}
+
+#btReportBox h4{
+	margin-bottom: 1em;
+}
+
+#btReportBox p{
+	padding-bottom: 0.8em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#btReportBox .c_left{width: 37%; text-align: right;}
+
+#btReportBox .c_result{width: 26%; text-align: center;}
+
+#btReportBox .c_right{width: 37%;}
+
+
+/*  亀田家
+------------------------------------------------------- */
+body.kameda.themeMemo #topAreaWrap p{
+	padding-bottom: 0.8em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+body.kameda.themeMemo #topAreaWrap dl{
+	margin: 20px 0;
+	font-size: 90%;
+	line-height: 1.6;
+}
+body.kameda.themeMemo #topAreaWrap dt{font-weight: bold;}
+body.kameda.themeMemo #topAreaWrap dd{margin: 0 0 10px 1em;}
+body.kameda.themeMemo #topAreaWrap dd p{font-size: 90%;}
+
+
+body.kameda.themeResult #topAreaWrap th.date{width: 20%;}
+body.kameda.themeResult #topAreaWrap th.win{width: 5%;}
+body.kameda.themeResult #topAreaWrap th.result{width: 10%;}
+body.kameda.themeResult #topAreaWrap th.versus{width: 35%;}
+body.kameda.themeResult #topAreaWrap th.note{width: 30%;}
+
+body.kameda.themeResult #topAreaWrap td.date,
+body.kameda.themeResult #topAreaWrap td.win{text-align: center;}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+RACE
+-------------------------------------------------------------------------------------------------------------------------------- */
+#raSchedule .nsTable{
+	margin-bottom: 10px;
+}
+
+#raSchedule p{
+	font-size: 90%;
+	line-height: 1.6;
+	padding-bottom: 0.8em;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+AUTO RACE
+-------------------------------------------------------------------------------------------------------------------------------- */
+body#public_race table.nsTable .subH{
+	text-align: center;
+	font-weight: bold;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+ENTERTAINMENT
+-------------------------------------------------------------------------------------------------------------------------------- */
+#entertainment #topAreaWrap .txtRed{
+	padding: 1px 2px;
+	color: #ffffff;
+	font-size: 90%;
+	font-weight: bold;
+	background: #990000;
+}
+
+#entertainment #topAreaWrap .notes{
+	text-align: right;
+	font-size: 80%;
+}
+
+#entertainment #salesInfoWrap p{
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#entertainment #topAreaWrap .nsTable{
+	margin: 5px 0 18px;
+}
+
+#entertainment #topAreaWrap .txtRed{
+	padding: 1px 2px;
+	color: #ffffff;
+	font-size: 90%;
+	font-weight: bold;
+	background: #990000;
+}
+
+#entertainment #topAreaWrap .notes{
+	text-align: right;
+	font-size: 80%;
+}
+
+#entertainment #salesInfoWrap p{
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#entertainment.cdranking .nsTable td{word-wrap: break-word;}
+
+#entertainment.cdranking .nsTable th.order{width: 5%;}
+
+#entertainment.cdranking .nsTable th.track_name{width: 75%;}
+
+#entertainment.cdranking .nsTable th.arthist_name{width: 20%;}
+
+#entertainment.cdranking .nsTable th.orderW{width: 7%;}
+
+#entertainment.cdranking .nsTable th.rankW{width: 10%;}
+
+#entertainment.cdranking .nsTable th.track_nameW{width: 63%;}
+
+#entertainment.cdranking .nsTable th.arthist_nameW{width: 20%;}
+
+
+/* Fortune Contents
+------------------------------------------------------- */
+#fortuneContents{
+	padding: 18px 0 10px;
+	width: 100%;
+}
+
+#fortuneContents h2{padding: 0 0 13px 5px;}
+
+#fortuneContents p{
+	margin: 5px;
+	font-size: 90%;
+}
+
+#fortuneContents dl{
+	padding: 10px 15px;
+	font-size: 90%;
+	line-height: 1.6;
+	background: #f5f5f5;
+}
+
+#fortuneContents dt{font-weight: bold;}
+
+#fortuneContents dd{
+	padding-left: 1em;
+	text-indent: 1em;
+}
+
+#fortuneContents table{
+	margin-bottom: 15px;
+	width: 100%;
+	border: 0 none;
+	border-collapse: separate;
+	/border-collapse: separate; /* for IE6,7 */
+	border-spacing: 0;
+}
+
+#fortuneContents tr.bgColor{background: #f4f0fc;}
+
+#fortuneContents th{
+	padding: 4px 1px;
+	font-size: 80%;
+	text-align: center;
+	color: #ffffff;
+	background: #c0bace;
+	border: solid #ffffff;
+	border-width: 1px 0 1px 1px;
+}
+
+#fortuneContents td{
+	padding: 4px;
+	font-size: 90%;
+	line-height: 1.3;
+	border: solid #ffffff;
+	border-width: 0 0 0 1px;
+}
+
+#fortuneContents td.mark{
+	padding: 4px 0;
+	text-align: center;
+	line-height: 1;
+	width: 1.8em;
+}
+
+#fortuneContents td.constellation{
+	padding: 4px 2px;
+	text-align: center;
+	width: 7.5em;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+RANKING
+-------------------------------------------------------------------------------------------------------------------------------- */
+body.themeYesterday li#themeNaviYesterday a,
+body.themeWeekly li#themeNaviWeekly a,
+body.themeMonthly li#themeNaviMonthly a,
+#themeNavi li a.current{
+	border-radius: .45em;
+	color: #ffffff;
+	font-weight: bold;
+	background: #007ada;
+}
+
+
+
+
+/* ---------------------------------------------------------------------
+ranking--list
+--------------------------------------------------------------------- */
+#rankHour{
+	display: block;
+	height: 1%;
+	overflow: hidden;
+}
+
+#rankHour .accessRanking{
+	padding: 10px;
+}
+
+#rankHour .accessRanking ol.newsList01{
+	font-size: 90%;
+	line-height: 1.8;
+	margin-bottom: 1px;
+	padding: 0 3px 0 0;
+}
+
+#rankHour .accessRanking ol.newsList01 li{
+	padding-left: 10px;
+}
+
+#rankHour .accessRanking ol.newsList01 li a,
+#rankHour .accessRanking ol.newsList01 li span{
+	display: inline;
+	float: none;
+}
+
+#rankHour .accessRanking ol li span.rank-1{
+	background: #878787 none repeat scroll 0 0;
+	font-size: 0.9em;
+	padding: 2px 1em;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#rankHour .accessRanking ol li span.rank-2{
+	background: #9a9a9a none repeat scroll 0 0;
+	font-size: 0.9em;
+	padding: 2px 1em;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#rankHour .accessRanking ol li span.rank-3{
+	background: #b2b2b2 none repeat scroll 0 0;
+	font-size: 0.9em;
+	padding: 2px 1em;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+
+#rankHour .accessRanking ol li span.rank-4,
+#rankHour .accessRanking ol li span.rank-5,
+#rankHour .accessRanking ol li span.rank-6,
+#rankHour .accessRanking ol li span.rank-7,
+#rankHour .accessRanking ol li span.rank-8,
+#rankHour .accessRanking ol li span.rank-9{
+	background: #EFEFEF none repeat scroll 0 0;
+	font-size: 0.9em;
+	padding: 2px 1em;
+
+}
+
+#rankHour .accessRanking ol li span.rank-10{
+	background: #EFEFEF none repeat scroll 0 0;
+	font-size: 0.9em;
+	padding: 2px 0.85em;
+
+}
+
+/* for Safari */
+html* #rankHour .accessRanking ol li span.rank-10{
+	padding: 2px 0.78em;
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+Hack
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Clear Fix
+----------------------------------------------- */
+.teamTopBox,
+.leagueBox h2,
+.teamSubLink,
+.topTableResult dl,
+.topTableResult ul,
+#leagueAbout,
+#leagueGuideWrap,
+.leftTitle,
+.scheduleNavi,
+.pageNavi,
+.pageNavi ul,
+.pageTab,
+#featureBoxWrap,
+.v_featureBox,
+#dataListWrap,
+#battle.schedule dl.btHowto,
+body.cycling .ical{/zoom: 1;} /*for IE 6, 7*/
+
+.teamTopBox:after,
+.leagueBox h2:after,
+.teamSubLink:after,
+.topTableResult dl:after,
+.topTableResult ul:after,
+#leagueAbout:after,
+#leagueGuideWrap:after,
+.leftTitle:after,
+.scheduleNavi:after,
+.pageNavi:after,
+.pageNavi ul:after,
+.pageTab:after,
+#featureBoxWrap:after,
+.v_featureBox:after,
+#dataListWrap:after,
+#battle.schedule dl.btHowto:after,
+body.cycling .ical:after{/* for Modern Browser */
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}

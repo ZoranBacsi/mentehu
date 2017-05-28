@@ -1,0 +1,3286 @@
+@charset "UTF-8";
+
+/* ---------------------------------------------------------------------
+
+TITLE  : common_main.css
+DATE   : 2011/03/07
+UPDATE : 2011/12/26
+UPDATE : 2012/12/25
+UPDATE : 2013/01/21
+UPDATE : 2013/03/29
+URL    : http://www.nikkansports.com/mod/css/common_main.css
+AUTHOR : nikkansports.com
+
+--------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+BASIC STYLE
+-------------------------------------------------------------------------------------------------------------------------------- */
+body, div,
+dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6,
+pre, form, fieldset, legend, input, textarea, p, blockquote, address,
+th, td{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font: 16px/1.05 "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "ＭＳ Ｐゴシック", Osaka, sans-serif;
+	color: #333333;
+	text-align: center;
+	background: #ffffff;
+}
+
+noscript{
+	line-height: 1.6;
+	background: #fff6d1;
+}
+
+address, cite, code, dfn, em, var{
+	font-style: normal;
+	font-weight: normal;
+}
+
+img,
+a img{
+	text-decoration: none;
+	vertical-align: bottom;
+	background: transparent;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+
+fieldset{
+	border: 0;
+}
+
+ul, ol{
+	list-style: none;
+}
+
+td, th{
+	vertical-align: middle;
+}
+
+.hide{
+	display: none;
+}
+
+.skip{
+	width: 200px;
+	position: absolute;
+	top: -999px;
+}
+
+.helpNavi{
+	width: 200px;
+	position: absolute;
+	top: -999px;
+}
+
+.helpNavi a{
+	text-decoration: none;
+	background: transparent;
+}
+
+
+
+/* Link
+----------------------------------------------- */
+a{
+	text-decoration: none;
+	outline: 0;
+}
+
+a:link{
+	color: #0062de;
+}
+
+a:visited{
+	color: #805496;
+}
+
+a:hover,
+a:active{
+	text-decoration: underline;
+}
+
+
+/* common.js added style
+----------------------------------------------- */
+html.mac #contents{
+	letter-spacing: -.05em;
+}
+
+html.mac .adPRtext dd{
+	letter-spacing: -0.08em;
+}
+
+html.mac #teamListPf,
+html.mac #teamListJ1,
+html.mac #sideScoreTab,
+html.mac .sideScoreTabInner{
+	letter-spacing: -.08em;
+}
+
+html.mac #sideRanking .newsList03 a {
+	letter-spacing: -.075em;
+}
+
+html.mac #pickupNewsHead,
+html.mac .nlhTab,
+html.mac .listHead,
+html.mac .listHead2 {
+	letter-spacing: .04em;
+}
+
+html.mac .listHead p,
+html.mac .listHead2 p {
+	letter-spacing: -.05em;
+}
+
+html.mac_chrome #routeNavi li {
+	letter-spacing: -.09em;
+}
+
+html.mac_chrome #topPnWrap .newsList01,
+html.mac_chrome #sideRanking .newsList03{
+	letter-spacing: -.08em;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+ADVERTISE
+-------------------------------------------------------------------------------------------------------------------------------- */
+#ad728x90{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.adPub {
+	padding: 1px;
+	border: 1px solid #cccccc;
+	text-align: center;
+}
+
+.adPub p {
+	background: #EDEDED;
+}
+
+.adPub img {
+	height: auto !important;
+	padding: 13px 13px 5px;
+	width: 120px;
+}
+
+.adPub span {
+	display: block;
+	padding: 0 7px 5px;
+	text-align: left;
+}
+
+.adPub a {
+	color: #333333;
+	font-size: 80%;
+	line-height: 1.4;
+}
+
+.adPRtext{
+	margin: 0 0 15px;
+}
+
+.adPRtext dl{
+	margin: 0 0 2px;
+	font-size: 86%;
+	line-height: 1.4;
+}
+
+.adPRtext dt{
+	display: inline;
+	padding: 1px 5px;
+	color: #ffffff;
+	font-size: 86%;
+	font-weight: normal;
+	border-radius: .3em;
+	background: #9DABB0;
+}
+
+.adPRtext dd{
+	display: inline;
+	padding: 0 0 0 5px;
+}
+
+.adPRtext2{
+	margin: 15px 0 10px;
+	border-radius: .45em;
+	font-size: 90%;
+	background: #e8ede8;
+	/zoom: 1;
+}
+
+.adPRtext2:after{
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+.adPRtext2 dt{
+	display: block;
+	float: left;
+	padding: 3px 6px;
+	border: 1px solid #6faa6c;
+	border-radius: .45em 0 0 .45em;
+	color: #ffffff;
+	font-weight: bold;
+	background: #6faa6c;
+}
+
+.adPRtext2 dd{
+	float: left;
+	padding: 3px 6px;
+}
+
+.adPRtextNews{
+	clear: both;
+	font-size: 90%;
+	line-height: 1;
+}
+
+.adPRtextNews dt{
+	font-size: 85%;
+	display: inline;
+}
+
+.adPRtextNews dd{
+	margin-top: 7px;
+}
+
+.adGIFtext{
+	margin: 5px 0 0;
+	/zoom: 1;
+}
+
+.adGIFtext:after{
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+.adGIFtext div{/* gif image */
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+}
+
+.adGIFtext dl{
+	font-size: 90%;
+	line-height: 1.4;
+}
+
+.adGIFtext dt{
+	padding: 0 0 10px;
+	font-weight: bold;
+}
+
+.adGIFtext dd{
+	color: #333333;
+}
+
+#adGoogleAdsense,
+.adBECOME{
+	margin: 15px 0;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+COLUMN LAYOUT
+-------------------------------------------------------------------------------------------------------------------------------- */
+#wrapper{
+	margin: 0 auto 5px;
+	padding: 0 0 10px;
+	width: 990px;
+	text-align: left;
+}
+
+#headerInner{
+	padding: 10px 10px 0;
+	border-radius: .3em .3em 0 0;
+	background: #ffffff;
+	position: relative;
+}
+
+#contents{
+	padding: 10px 10px 0;
+	background: #ffffff;
+}
+
+#mainWrap{
+	float: left;
+	width: 660px;
+}
+
+#menu{
+	float: left;
+	width: 150px;
+}
+
+#main{
+	float: right;
+	width: 500px;
+}
+
+.column2 #main{
+	float: none;
+	width: auto;
+}
+
+#topNewsArea,
+#topAreaWrap,
+#secondAreaWrap,
+#middleArea,
+#bottomArea{
+	margin: 20px 0;
+	width: 500px;
+}
+
+#home #topNewsArea{
+	margin-top: 5px;
+}
+
+.column2 #topNewsArea,
+.column2 #topAreaWrap,
+.column2 #secondAreaWrap,
+.column2 #middleArea,
+.column2 #bottomArea{
+	width: auto;
+	width: 660px;
+}
+
+
+#topArea{
+	float: right;
+	width: 500px;
+}
+
+#leftSide{
+	float: left;
+	width: 180px;
+}
+
+#side{
+	float: right;
+	width: 300px;
+}
+
+#footer{
+	padding: 10px;
+	border-radius: 0 0 .3em .3em;
+	background: #ffffff;
+}
+
+/* 1200px 時代の遺物 */
+html.w1200 #wrapper{width: 1200px;}
+html.w1200 #mainWrap{width: 865px;}
+html.w1200 #main{width: 700px;}
+
+html.w1200 #topNewsArea,
+html.w1200 #topAreaWrap,
+html.w1200 #secondAreaWrap,
+html.w1200 #middleArea,
+html.w1200 #bottomArea{width: 700px;}
+
+html.w1200 #topArea{width: 510px;}
+
+/* 1200px で 2カラムデザインのページ用 */
+html.w1200 .column2 #main,
+html.w1200 .column2 #topNewsArea,
+html.w1200 .column2 #topAreaWrap,
+html.w1200 .column2 #secondAreaWrap,
+html.w1200 .column2 #middleArea,
+html.w1200 .column2 #bottomArea {
+	width: auto;
+}
+
+/* プロ野球リアルタイム速報用 */
+html.w1250 #wrapper { width: 1250px; }
+html.w1250 #mainWrap{width: 915px;}
+html.w1250 #main{width: 750px;}
+
+html.w1250 #topNewsArea,
+html.w1250 #topAreaWrap,
+html.w1250 #secondAreaWrap,
+html.w1250 #middleArea,
+html.w1250 #bottomArea{width: 750px;}
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+HEADER
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+/* Site Navi
+----------------------------------------------- */
+#siteNaviWrap {
+	margin: 0 0 1px;
+	border-radius: .3em .3em 0 0;
+	height: 20px;
+	background: #e7e7e7;
+}
+
+#siteNaviWrap *{
+	display: block;
+	float: left;
+}
+
+#siteNaviWrap li {
+	border-right: 1px solid #999999;
+	margin: 5px 0 0;
+}
+
+#siteNaviWrap li.lastChild {border: 0 none;}
+
+#siteNaviWrap li a {
+	float: none;
+	padding: 0 8px;
+	font-size: 12px;
+}
+
+
+/* ---------- Nikkansports ID ---------- */
+#nsID{
+	float: right;
+	margin: 10px 10px 0 0;
+	font-size: 80%;
+}
+
+#nsID a{
+	color: #d8ebff;
+	text-shadow: 0 -1px 0 rgba(0,0,0, .45);
+}
+
+#siteNaviWrap #nsID{
+	float: right;
+	margin: 0;
+	padding: 0 10px;
+	border-radius: 0 .3em 0 0;
+	height: 20px;
+	background: #484848;
+	background: -webkit-linear-gradient(top, #b9b9b9, #484848);
+	background: linear-gradient(to bottom, #b9b9b9, #484848);
+}
+
+/* 新聞購読・朝日新聞デジタル */
+#siteNaviWrap #nsSubscription,
+#siteNaviWrap #digitalAsahi {
+	float: right;
+	margin: 0;
+	padding: 0 10px;
+	border-right: 1px solid #ffffff;
+	height: 20px;
+	background: #484848;
+}
+
+#siteNaviWrap #digitalAsahi{
+	background: rgb(182,68,66);
+	background: -webkit-linear-gradient(top, rgb(255,103,95), rgb(182,68,66));
+	background: linear-gradient(to bottom, rgb(255,103,95), rgb(182,68,66));
+}
+
+#siteNaviWrap #nsSubscription{
+	background: rgb(60,145,85);
+	background: -webkit-linear-gradient(top, rgb(138,200,54), rgb(60,145,85));
+	background: linear-gradient(to bottom, rgb(138,200,54), rgb(60,145,85));
+}
+
+#siteNaviWrap #nsID a,
+#siteNaviWrap #nsSubscription a,
+#siteNaviWrap #digitalAsahi a{
+	color: #ffffff;
+	font-size: 12px;
+	line-height: 22px;
+	text-shadow: 0 -1px 0 rgba(0,0,0, .45);
+}
+
+
+/* Head Frame
+----------------------------------------------- */
+#headFrame {
+	height: 90px;
+	/margin-bottom:10px;/* IE6,7 */
+}
+
+html.w1200 #headFrame{height: 100px;}
+
+
+/* Header Logo, Search Form
+----------------------------------------------- */
+#nikkanlogoWrap {margin: 10px 0;}
+
+html.w1200 #nikkanlogoWrap{
+	float: left;
+	margin: 36px 0 0;
+}
+
+#nikkanlogo{
+	width: 202px;
+	height: 23px;
+}
+
+#backhome{
+	display: block;
+	width: 203px;
+	height: 23px;
+	text-indent: -999px;
+	overflow: hidden;
+	background: url(http://cache2.nipc.jp/mod/img/logo-nikkansportscom_head.png) no-repeat left top;
+}
+
+#searchForm {
+	font-size: 86%;
+	line-height: 1;
+}
+
+html.w1200 #searchForm{
+	float: left;
+	margin: 32px 0 0 12px;
+}
+
+#searchForm form{
+	width: auto !important;
+}
+
+#popInSearchField{
+	padding: 3px;
+	border: 1px solid #b2b2b2 !important;
+	width: 165px !important;
+	line-height: 1 !important;
+	background-position: 3px 1px !important;
+}
+
+#searchForm input{
+	margin: 5px 0 0 3px !important;
+	/margin-top: 0 !important;/* IE6,7 */
+}
+
+#searchForm label{
+	font-size: 90%;
+	padding: 3px 5px 0 1px;
+}
+
+#searchForm #_popin_default{
+	margin: 0 0 0 3px !important;
+	width: auto !important;
+	height: auto !important;
+	font-size: 90% !important;
+}
+
+
+/*
+Global Navi
+----------------------------------------------- */
+#globalNaviWrap dl{
+	background: url(/mod/img/bg-globalnavi970-1200_right.gif) no-repeat right top transparent;
+	height: 36px;
+}
+
+#globalNavi{
+	width: 970px;
+	height: 36px;
+}
+
+html.w1200 #globalNavi{width: 950px;}
+
+#globalNavi,
+#globalNaviList a{
+	background: url(/mod/img/bg-globalnavi970-1200.gif) no-repeat left top transparent;
+}
+
+#globalNaviList,
+#globalNaviList li{
+	float: left;
+	display: block;
+	height: 36px;
+}
+
+#globalNaviList{padding-left: 13px;}
+
+#globalNaviList a{
+	display: block;
+	height: 28px;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+#globalNaviHome a{background-position:  -13px 0; width:  40px; height: 36px;}
+#globalNaviBB a  {background-position:  -53px 0; width:  52px;}
+#globalNaviMB a  {background-position: -105px 0; width:  56px;}
+#globalNaviSC a  {background-position: -161px 0; width:  77px;}
+#globalNaviWD a  {background-position: -238px 0; width: 104px;}
+#globalNaviSP a  {background-position: -342px 0; width:  78px;}
+#globalNaviGF a  {background-position: -420px 0; width:  65px;}
+#globalNaviBT a  {background-position: -485px 0; width:  65px;}
+#globalNaviRC a  {background-position: -550px 0; width:  52px;}
+#globalNaviPU a  {background-position: -602px 0; width: 129px;}
+#globalNaviET a  {background-position: -731px 0; width:  53px;}
+#globalNaviGN a  {background-position: -784px 0; width:  53px;}
+
+#globalNaviHome a:hover {background-position:  -13px -36px;}
+#globalNaviBB a:hover   {background-position:  -53px -36px;}
+#globalNaviMB a:hover   {background-position: -105px -36px;}
+#globalNaviSC a:hover   {background-position: -161px -36px;}
+#globalNaviWD a:hover   {background-position: -238px -36px;}
+#globalNaviSP a:hover   {background-position: -342px -36px;}
+#globalNaviGF a:hover   {background-position: -420px -36px;}
+#globalNaviBT a:hover   {background-position: -485px -36px;}
+#globalNaviRC a:hover   {background-position: -550px -36px;}
+#globalNaviPU a:hover   {background-position: -602px -36px;}
+#globalNaviET a:hover   {background-position: -731px -36px;}
+#globalNaviGN a:hover   {background-position: -784px -36px;}
+
+#baseball #globalNaviBB a     {background-position:  -53px -72px; height: 36px;}
+#mlb #globalNaviMB a          {background-position: -105px -72px; height: 36px;}
+#soccer #globalNaviSC a       {background-position: -161px -72px; height: 36px;}
+#world #globalNaviWD a        {background-position: -238px -72px; height: 36px;}
+#sports #globalNaviSP a       {background-position: -342px -72px; height: 36px;}
+#golf #globalNaviGF a         {background-position: -420px -72px; height: 36px;}
+#battle #globalNaviBT a       {background-position: -485px -72px; height: 36px;}
+#race #globalNaviRC a         {background-position: -550px -72px; height: 36px;}
+#public_race #globalNaviPU a  {background-position: -602px -72px; height: 36px;}
+#entertainment #globalNaviET a{background-position: -731px -72px; height: 36px;}
+#general #globalNaviGN a      {background-position: -784px -72px; height: 36px;}
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+MENU
+-------------------------------------------------------------------------------------------------------------------------------- */
+.menuBox {
+	margin: 0 0 7px;
+}
+
+/* Genre Header
+----------------------------------------------- */
+#genreHead{
+	width: 150px;
+	height: 87px;
+}
+
+
+/* ---------- Genre Navi ---------- */
+#genreNavi{
+	display: block;
+	border-left: 1px solid #d5dadd;
+	border-right: 1px solid #d5dadd;
+}
+
+#genreNavi li{
+	display: block;
+	clear: left;
+	float: left;
+	border-bottom: 1px solid #d5dadd;
+}
+
+#genreNavi li a{
+	display: block;
+	padding: 4px 5px;
+	width: 138px;
+	color: #666666;
+	font-size: 90%;
+	line-height: 1.4;
+	background: url(http://cache2.nipc.jp/mod/img/sprite_gradient.jpg) repeat-x 0 -287px;
+}
+
+#genreNavi li a:hover{
+	color: #000000;
+	background-position: 0 -348px;
+}
+
+#genreNavi li ul.gnInner{
+	margin-bottom: -1px;
+	overflow: hidden;
+}
+
+#genreNavi li.noLink{
+	border-top: 1px solid #d5dadd;
+}
+
+#genreNavi li.noLink span{
+	display: block;
+	padding: 3px 5px 1px;
+	width: 138px;
+	color: #333333;
+	font-size: 86%;
+	font-weight: bold;
+	line-height: 1.4;
+	background: #f1f1f1;
+}
+
+#genreNavi li ul{
+	display: block;
+	border-top: 1px solid #d5dadd;
+}
+
+#genreNavi li ul li{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #d5dadd;
+}
+
+#genreNavi li ul li a{
+	padding: 4px 10px 4px 20px;
+	width: 118px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_genrenavi.gif) no-repeat 137px 11px #f6fafc;
+}
+
+#genreNavi li ul li a:hover{
+	background-color: #e2edf6;
+}
+
+#genreNavi li.inlinelinks{
+	padding: 5px 0 5px 8px;
+	width: 140px;
+	color: #d5dadd;
+	font-size: 90%;
+	background: #f6fafc;
+}
+
+#genreNavi li.inlinelinks a{
+	display: inline;
+	padding: 0 3px;
+	width: auto;
+	background: none;
+}
+
+#genreNavi li.inlinelinks a:hover{
+	background: none;
+}
+
+
+/* ---------- Archives List ---------- */
+#archivesListWrap{
+	padding: 1px;
+	border: 1px solid #bfd1e7;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+#archivesListHead{
+	border-radius: .2em;
+	font-size: 90%;
+	background: #d5e1f1;
+}
+
+#archivesListHead a{
+	display: block;
+	padding: 6px 3px 5px 18px;
+	color: #333333;
+	font-weight: bold;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_blue.png) no-repeat 7px center;
+	text-shadow: 0 1px 0 #ffffff;
+}
+
+#archivesList{
+	padding: 5px;
+	font-size: 80%;
+	line-height: 1.4;
+}
+
+#archivesList p{
+	padding-left: 2px;
+	color: #919191;
+}
+
+#archivesList hr.line{
+	border: 0;
+	border-top: 1px dotted #CCCCCC;
+}
+
+
+/* ---------- Enjoy, Event ---------- */
+#ejEvSmWrap{
+	padding: 1px;
+	border: 1px solid #dfdbd4;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+#menuEnjoy,
+#menuEvent{
+	margin: 0 0 5px;
+}
+
+#mejHeadAnc,
+#mevHeadAnc{
+	display: block;
+	margin: 0 0 5px;
+	padding: 5px 3px 5px 18px;
+	border-radius: .2em;
+	color: #333333;
+	font-size: 90%;
+	font-weight: bold;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_bronze.png) no-repeat 7px center #ededed;
+	text-shadow: 0 1px 0 #ffffff;
+}
+
+#mejLink,
+#mevLink{
+	padding: 0 2px;
+	color: #000000;
+	font-size: 86%;
+}
+
+#mejLink a,
+#mevLink a{
+	display: block;
+	margin: 0 auto;
+	width: 134px;
+	text-indent: -999px;
+	overflow: hidden;
+}
+
+#mejLink a{
+	height: 44px;
+	background: url(http://cache2.nipc.jp/mod/img/left/left_enjoy.gif) no-repeat 0 0;
+}
+
+#mevLink a{
+	height: 57px;
+	background: url(http://cache2.nipc.jp/mod/img/left/left_event.gif) no-repeat 0 0;
+}
+
+
+/* ---------- social media -------- */
+#menuSocialMedia{
+	display: block;
+	border-radius: 0 0 .2em .2em;
+	background: #e9edf3;
+}
+
+#menuSocialMedia li{
+	display: block;
+	border-top: 1px dotted #cccccc;
+}
+
+#menuSocialMedia a{
+	display: block;
+	margin: 0 0 0 6px;
+	padding: 6px 0 5px;
+	height: 14px;
+	color: #5c5d4d;
+	font-size: 90%;
+	line-height: 14px;
+}
+
+#menuSocialMedia a:hover{
+	color: #000000;
+	background-color: #f1f6f9;
+}
+
+#menuSocialMedia li span{
+	display: block;
+	float: left;
+	margin: 0 4px 0 0;
+	width: 14px;
+	height: 14px;
+	background: url(/mod/img/sprite_left-social.gif) no-repeat 0 0;
+}
+
+#menuSocialMedia #mslTw span	{background-position: 0 0;}
+#menuSocialMedia #mslFb span	{background-position: 0 -14px;}
+#menuSocialMedia #mslGl span	{background-position: 0 -28px;}
+#menuSocialMedia #mslMx span	{background-position: 0 -42px;}
+#menuSocialMedia #mslYt span	{background-position: 0 -56px;}
+#menuSocialMedia #mslNc span	{background-position: 0 -70px;}
+#menuSocialMedia #mslUst span	{background-position: 0 -84px;}
+
+
+/* ---------- Contents Store -------- */
+#menuContentstore a{
+	display: block;
+	width: 150px;
+	height: 113px;
+	text-indent: -999px;
+	background: url(http://cache2.nipc.jp/mod/img/button-side_contentStore.png) no-repeat left top;
+	overflow: hidden;
+}
+
+#menuContentstore a:hover{ background-position: left bottom; }
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+左カラム有料サイトリンク用スタイル
+-------------------------------------------------------------------------------------------------------------------------------- */
+.leftBox {
+	margin: 0 0 10px;
+	padding: 1px;
+	border: 1px solid #d2d9e3;
+	border-radius: .3em;
+	font-size: 90%;
+	background: #e9edf3;
+}
+
+#leftPayServiceWrap dt a {
+	display: block;
+	margin: 0 0 5px;
+	padding: 2px 3px 2px 18px;
+	border-radius: .2em;
+	color: #ffffff;
+	font-weight: bold;
+	line-height: 1.4;
+	background: url("http://cache2.nipc.jp/mod/img/icon-arrow_white.png") no-repeat 7px 5px #7e8cb2;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+#leftPayServiceWrap dd {
+	font-size: 80%;
+	line-height: 1.4;
+	padding: 0 5px 3px;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+SIDE
+-------------------------------------------------------------------------------------------------------------------------------- */
+.sideBox{
+	margin: 10px 0;
+	background: #ffffff;
+}
+
+.sideBoxHead{
+	border-bottom: 1px solid #ffffff;
+	height: 37px;
+	font-size: 90%;
+	line-height: 37px;
+	background: #f3f3f3;
+	background: -webkit-linear-gradient(top, #fefefe, #f3f3f3);
+	background: linear-gradient(to bottom, #fefefe, #f3f3f3);
+}
+
+#subscription{
+	margin: 0 0 10px;
+}
+
+
+/* Side Ranking
+----------------------------------------------- */
+#sideRanking{
+	margin-top: 10px;
+	padding: 1px;
+	border: 1px solid #d5d5d5;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+
+#sideRanking .sideBoxHead a{
+	display: block;
+	padding: 0 0 0 35px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-side_rank.png) no-repeat 10px 9px;
+}
+
+#sideRanking .newsList03{
+	margin: 0 -1px;
+	padding: 5px 0 5px 6px;
+	border-top: 1px solid #d5d5d5;
+}
+
+
+/* Side Score Board
+----------------------------------------------- */
+#sideScoreBoard{
+	margin-top: 10px;
+	padding: 1px;
+	border: 1px solid #d5d5d5;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+#sideScoreBoard dl{
+	padding: 22px 5px 5px;
+	background: url(http://cache2.nipc.jp/mod/img/bg-side_scoreboard.gif) no-repeat right top #e0e4ea;
+}
+
+#sideScoreTab{
+	padding: 0 0 0 5px;
+}
+
+#sideScoreTab li{
+	float: left;
+	margin: 0 2px 0 0;
+}
+
+#sideScoreTab a{
+	display: block;
+	padding: 3px 5px 1px;
+	border-bottom: 2px solid #9db3d4;
+	border-radius: .3em .3em 0 0;
+	width: auto;
+	color: #ffffff;
+	font-size: 80%;
+	text-align: center;
+	background: #9db3d4;
+}
+
+#sideScoreTab .cr a{
+	border-top: 2px solid #0062de;
+	border-bottom: 0;
+	color: #000000;
+	background: #ffffff;
+}
+
+
+/* ---------- ２段目のタブ ---------- */
+.sideScoreTabInner{
+	padding: 2px 0 0;
+}
+
+.sideScoreTabInner li{
+	display: block;
+	float: left;
+	margin: 0 0 0 3px;
+}
+
+.sideScoreTabInner a{
+	display: block;
+	float: left;
+	padding: 0 2px;
+	font-weight: normal;
+	border-radius: .3em;
+	height: 1.4em;
+	color: #333333;
+	font-size: 84%;
+	line-height: 1.5;
+	background: #ececec;
+}
+
+.sideScoreTabInner a:hover{
+	background: #d7d7d7;
+}
+
+.sideScoreTabInner .cr a{
+	color: #ffffff;
+	background: #0062de;
+	position: relative;
+}
+
+.sideScoreTabInner li#li-s3a a,
+.sideScoreTabInner li#li-s3b a{
+	padding: 0 15px;
+}
+
+.sideScoreTabInner li#li-s4a a,
+.sideScoreTabInner li#li-s4b a,
+.sideScoreTabInner li#li-s4c a,
+.sideScoreTabInner li#li-s4d a{
+	padding: 0 3px;
+}
+
+/* ---------- スコアテーブル ---------- */
+.dataPack{
+	display: none;
+	padding: 5px;
+	font-weight: normal;
+	border-radius: .3em;
+	background: #ffffff;
+}
+
+.tabChild{
+	clear: both;
+}
+
+#tabs-s1,
+#tabs-s3a,
+#tabs-s4a{
+	display: block;
+}
+
+.dataPack .dataContents{
+	font-size: 96%;
+}
+
+.dataPack p.linkText{
+	margin: 8px 0 0;
+	font-size: 90%;
+	line-height: 1;
+	text-align: right;
+}
+
+
+/* Side Recommend
+----------------------------------------------- */
+.sRecoPack{
+	padding: 7px 3px 7px 7px;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #d5d5d5;
+	background: #fcfcfc;
+	background: -webkit-linear-gradient(top, #f3f3f3, #fcfcfc);
+	background: linear-gradient(to bottom, #f3f3f3, #fcfcfc);
+}
+
+#sideRecommend .sideIcon{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+}
+
+.sRecoPack dl{
+	font-size: 86%;
+	line-height: 1.4;
+	overflow: hidden;
+}
+
+.sRecoTitle{
+	padding: 0 0 0 15px;
+	font-weight: bold;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic5.png) no-repeat 0 3px;
+}
+
+.sRecoTxt{
+	color: #666666;
+}
+
+
+/* Side Column
+----------------------------------------------- */
+#sideColumn{
+	padding: 1px;
+	border: 1px solid #d5d5d5;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+
+#sideColumn .sideBoxHead a{
+	display: block;
+	padding: 0 0 0 32px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-side_arrow.png) no-repeat 10px 9px;
+}
+
+.sClmPack{
+	margin: 0 -1px;
+	padding: 7px 0 7px 4px;
+	border-top: 1px solid #d5d5d5;
+}
+
+#sideColumn .sideIcon{
+	display: block;
+	float: left;
+	margin: 0 5px 0 0;
+	border: 3px solid #d8d8d8;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+#sideColumn .sideIcon:hover{
+	border: 3px solid #0062de;
+}
+
+#sideColumn .sideIcon img{
+	border: 1px solid #ffffff;
+	border-radius: .2em;
+}
+
+.sClmPack dl{
+	font-size: 86%;
+	line-height: 1.4;
+	overflow: hidden;
+}
+
+.sClmName{
+	font-weight: bold;
+}
+
+.sClmTime{
+	color: #666666;
+}
+
+
+/* Side Tsukiji Lunch
+----------------------------------------------- */
+#sideLunchBanner{
+	margin: 10px 0;
+}
+
+
+/* Side Twitter
+----------------------------------------------- */
+#sideTwHead{
+	border-radius: .45em .45em 0 0;
+	background: #111111;
+	background: -webkit-linear-gradient(top,#333333,#111111);
+	background: linear-gradient(to bottom,#333333,#111111);
+	position: relative;
+}
+
+#sideTwHead h2{
+	padding: 7px;
+	font-size: 86%;
+	font-weight: normal;
+	line-height: 1.2;
+}
+
+#sideTwHead #sideTwHeadLink{
+	color: #ffffff;
+}
+
+#sideTwHead img{
+	display: block;
+	float: left;
+	margin: 0 10px 7px 0;
+	width: 32px;
+	height: 32px;
+}
+
+#sideTwHead #twOfficial{
+	display: block;
+	_display: none; /* Goodbye IE6! */
+	margin: -10px 0 0;
+	width: 108px;
+	height: 20px;
+	text-indent: -999px;
+	background: url(/mod/img/twitter_logo_right.png) left top;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	right: 3px;
+}
+
+#sideTweetWrap{
+	padding: 7px;
+	border-radius: 0 0 .45em .45em;
+	background: #0099b9;
+	background: -webkit-linear-gradient(top,#00667b 0,#0099b9 4px);
+	background: linear-gradient(to bottom,#00667b 0,#0099b9 4px);
+	position: relative;
+}
+
+#sideTweetWrap:before{
+	content: "";
+	display: block;
+	border: 8px solid transparent;
+	border-bottom: 8px solid #ffffff;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -6px;
+	left: 13px;
+}
+
+.tweet{
+	padding: 7px;
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #ffffff;
+	color: #484848;
+	font-size: 86%;
+	line-height: 1.4;
+	background: #ffffff;
+	background: -webkit-linear-gradient(top,#ffffff,#f9f9f9);
+	background: linear-gradient(to bottom,#ffffff,#f9f9f9);
+	background-clip: padding-box;
+}
+
+.tweet:first-child{
+	border-top: 0;
+	border-radius: .3em .3em 0 0;
+}
+
+.tweet:last-child{
+	border-bottom: 0;
+	border-radius: 0 0 .3em .3em;
+}
+
+.tweet:first-child:last-child{
+	border-top: 0;
+	border-bottom: 0;
+	border-radius: .3em;
+}
+
+.tweet a{
+	white-space: pre;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: pre-wrap;
+	white-space: pre-line;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.tweet .twAutherIcon{
+	display: block;
+	float: left;
+	margin: 0 3px 0 0;
+	padding: 2px;
+	border-radius: .3em;
+	width: 32px;
+	height: 32px;
+}
+
+.tweet .twAutherLink:hover .autherIcon{
+	background: #0062de;
+}
+
+.tweet .twAutherName{
+	padding: 0 .5em 0 0;
+	font-weight: bold;
+}
+
+.tweet .tweetago,
+.tweet .tweetTime{
+	padding-left: 5px;
+	font-size: 90%;
+	color: #666666;
+}
+
+
+/* Side AI
+----------------------------------------------- */
+#sideAI .imgLink{
+	display: block;
+	float: left;
+	margin: 5px 5px 0 0;
+	border: 1px solid #ffffff;
+}
+
+#sideAiPack{
+	margin: 5px 0 0;
+	font-size: 86%;
+	line-height: 1.6;
+	overflow: hidden;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+FOOTER
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Footer Link List
+----------------------------------------------- */
+#footerRouteNaviWrap{
+	border-radius: .4em .4em 0 0;
+	width: 100%;
+	background: #999999;
+}
+
+#footerRouteNavi{
+	padding: 7px 10px 5px;
+}
+
+#footerRouteNavi,
+#footerRouteNavi li{
+	display: block;
+	float: left;
+	margin: 0 10px 0 0;
+	color: #ffffff;
+	font-size: 100%;
+}
+
+#footerRouteNavi li{
+	padding: 0 18px 0 0;
+	background: url(http://cache2.nipc.jp/mod/img/routenavi-next_foot.gif) no-repeat right center;
+}
+
+#footerRouteNavi li:last-child{
+	padding: 0;
+	background: none;
+}
+
+#footerRouteNaviHome{
+	display: block;
+	margin: 3px 0 0 4px;
+	width: 25px;
+	text-indent: -999px;
+	overflow: hidden;
+	background: url(http://cache2.nipc.jp/mod/img/routenavi-home_foot.gif) no-repeat center top;
+}
+
+#footerRouteNaviHome:hover{
+	background-position: center 1px;
+}
+
+#footerRouteNavi a{
+	color: #ffffff;
+	font-weight: normal;
+	text-shadow: 0 -1px 0 #666666;
+}
+
+#footerRouteNavi strong{
+	font-weight: bold;
+	text-shadow: 0 -1px 0 #666666;
+}
+
+
+
+/* Footer Link List
+----------------------------------------------- */
+#footerLinkList{
+	clear: both;
+	width: 100%;
+	border-collapse: collapse;
+	border: 1px solid #b2b2b2;
+	table-layout: fixed;
+}
+
+#footerLinkList td{
+	padding: 0 5px 5px;
+	border: 1px solid #b2b2b2;
+	font-size: 86%;
+	line-height: 1.4;
+	vertical-align: top;
+}
+
+#footerLinkList a{
+	color: #666666;
+}
+
+#footerLinkList h3{
+	margin: 10px 0 2px;
+	padding: 0 0 0 16px;
+	color: #000000;
+	font-size: 100%;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic5.png) no-repeat 0 3px;
+}
+
+#footerLinkList h3 a{
+	color: #000000;
+}
+
+#footerLinkList ul{
+	padding: 0 0 0 16px;
+}
+
+
+
+/* Other Copylight
+----------------------------------------------- */
+#otherCopyrightWrap{
+	margin: 10px 0 15px;
+	padding: 5px 0;
+	font-weight: normal;
+	border-radius: .3em;
+	background: #e6e6e6;
+}
+
+#otherCopyrightWrap h3{
+	float: left;
+	margin: 0 0 0 15px;
+	font-size: 86%;
+	line-height: 1.6;
+}
+
+#otherCopyrightList{
+	float: left;
+	margin: 0 0 0 10px;
+	border-left: 1px solid #cfcfcf;
+}
+
+.otherCopyright{
+	padding: 0 0 0 10px;
+	border-left: 1px solid #ffffff;
+	font-size: 86%;
+	line-height: 1.6;
+}
+
+.otherCopyright dt,
+.otherCopyright dd{
+	display: block;
+	float: left;
+}
+
+
+/* Footer Company Navi
+----------------------------------------------- */
+#companyNaviWrap{
+	position: relative;
+	overflow: hidden;
+}
+
+address{
+	margin: 0 0 15px;
+	color: #666666;
+	font-size: 90%;
+}
+
+#footerCompanyNavi{
+	float: left;
+	position: relative;
+	left: 50%;
+}
+
+#footerCompanyNavi li{
+	float: left;
+	padding: 0 7px;
+	border-right: 1px solid #cfcfcf;
+	font-size: 86%;
+	position: relative;
+	left: -50%;
+}
+
+#footerCompanyNavi .firstChild{
+	border-left: 1px solid #cfcfcf;
+}
+
+#footerCompanyNavi a{
+	color: #003399;
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+MAIN CONTENTS AREA STYLE
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Route Navi
+----------------------------------------------- */
+#routeNavi{
+	margin: 0;
+	font-weight: normal;
+	border-radius: .3em;
+	background: #dbdcdc;
+}
+
+#routeNavi ol{
+	display: block;
+	float: left;
+}
+
+#routeNavi li#routeNaviHome a,
+#routeNavi li{
+	background: url(http://cache2.nipc.jp/mod/img/bg-route.gif) no-repeat right top;
+}
+
+#routeNavi li{
+	display: block;
+	float: left;
+	padding: 6px 13px 0 3px;
+	font-size: 14px;
+	height: 19px;
+}
+
+#routeNavi h1{
+	font-size: 14px;
+}
+
+#routeNavi li.next{
+	background-position: right -50px;
+}
+
+#routeNavi li.next2{
+	background-position: right top;
+}
+
+#routeNavi #mainTitle{
+	font-weight: bold;
+	background-color: #aedaff;
+	background-position: right -25px;
+}
+
+#routeNavi li#routeNaviHome a{
+	display: block;
+	margin: -6px 0 0;
+	width: 27px;
+	height: 25px;
+	text-indent: -999px;
+	overflow: hidden;
+	background-position: 5px -75px;
+}
+
+#routeNavi li#routeNaviHome a:hover{
+	background-position: 5px -100px;
+}
+
+#routeNavi a{
+	font-weight: bold;
+	color: #666666;
+}
+
+#mainTitle,
+#mainTitle a{
+	color: #003366;
+}
+
+#routeNaviRSS{
+	float: right;
+	margin: 3px 3px 0 0;
+}
+
+
+/* Top News Area
+----------------------------------------------- */
+#topNewsHeading{
+	margin: 0 0 .5em;
+}
+
+#topNewsHeading a{
+	color: #000000;
+	font-size: 120%;
+}
+
+#topNews p{
+	margin: 0 0 1em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#topNews #timeStamp{
+	margin: 0 0 .5em;
+	color: #666666;
+	font-size: 80%;
+}
+
+
+/* News
+----------------------------------------------- */
+#newsBacknumber{
+	margin: 20px 0;
+}
+
+.pageTop{
+	margin: 0 0 10px;
+	padding: 6px 0 0;
+	border-top: 1px dotted #b2b2b2;
+	text-align: right;
+}
+
+.pageTop a{
+	font-size: 80%;
+	font-weight: bold;
+}
+
+#contentsTitle,
+.contentsTitle{
+	margin: 18px 5px;
+	font-size: 110%;
+	font-weight: bold;
+}
+
+.linkText a{
+	padding: 0 0 0 16px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic2.png) no-repeat 0 0;
+}
+
+
+/* Photo News
+----------------------------------------------- */
+#photoListNum{
+	margin: 0 0 15px;
+	padding: 6px 8px;
+	border-bottom: 1px dotted #b2b2b2;
+	font-size: 80%;
+	font-weight: bold;
+	line-height: 1;
+}
+
+#pageMove{
+	margin: 0 0 20px;
+	padding: 0 0 15px;
+	border-bottom: 1px dotted #b2b2b2;
+	font-size: 86%;
+	text-align: center;
+}
+
+#pageMove span{
+	padding: 2px;
+}
+
+#pageMove span a{
+	padding: 3px 5px 2px;
+	border: 1px solid #66baf7;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+#pageMove #pageMoveList a{
+	color: #ffffff;
+	font-weight: bold;
+	border: 1px solid #66baf7;
+	background: #66baf7;
+}
+
+#pageMove #pageMoveList a:hover{
+	border: 1px solid #0062de;
+	background: #0062de;
+}
+
+#photoNewsTop div.thumbWrap{
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px dotted #b2b2b2;
+}
+
+.thumbWrap div,
+.thumbWrap dl{
+	float: left;
+	width: 19.98%;
+	text-align: center;
+}
+
+.thumbWrap dt,
+.thumbWrap dd{
+	display: block;
+	margin: 0 auto;
+	width: 92px;
+	text-align: left;
+}
+
+html.w1200 .thumbWrap dt,
+html.w1200 .thumbWrap dd{
+	width: 122px;
+}
+
+.thumbWrap .thumbtitle,
+.thumbWrap .thumbdate{
+	font-size: 75%;
+	line-height: 1.4;
+}
+
+.thumbWrap div p,
+.thumbWrap dl dt{
+	margin: 0 auto;
+	padding: 0;
+	background: #ffffff;
+	width: 88px;
+	height: auto !important;
+	border: 1px solid #cacaca;
+}
+
+html.w1200 .thumbWrap div p,
+html.w1200 .thumbWrap dl dt {
+	width: 122px;
+}
+
+.thumbWrap div p img,
+.thumbWrap dl dt img {
+	max-width: 86px;
+	height: auto;
+}
+
+html.w1200 .thumbWrap div p img,
+html.w1200 .thumbWrap dl dt img{
+	max-width: 120px;
+}
+
+.thumbWrap p:hover{ border: 1px solid #0162de; }
+.thumbWrap dt:hover{ border: 1px solid #0162de; }
+
+.thumbWrap p a,
+.thumbWrap dt a{
+	max-height: 90px;
+	border: 1px solid #ffffff;
+	display: block;
+	overflow: hidden;
+}
+
+html.w1200 .thumbWrap p a,
+html.w1200 .thumbWrap dt a{
+	max-height: 120px;
+}
+
+#bigPhoto{
+	margin: 20px 0 0;
+	text-align: center;
+}
+
+#bigPhoto h1{
+	font-size: 100%;
+	line-height: 1;
+	display: inline;
+}
+
+#bigPhoto p#readEntry{
+	padding-left: 5px;
+	font-size: 80%;
+	line-height: 1;
+	display: inline;
+}
+
+#photoPrint p#print{
+	float: right;
+	padding: 5px 0 5px 20px;
+	line-height: 1.05;
+}
+
+#photoMove li,
+#photoMove a{
+	background: url(http://cache2.nipc.jp/mod/img/bg-photomove.gif) no-repeat left top;
+}
+
+#photoMove{
+	margin: 15px auto;
+	width: 309px;
+	height: 29px;
+}
+
+#photoMove li,
+#photoMove a{
+	display: block;
+	float: left;
+	width: 101px;
+	height: 29px;
+}
+
+#photoMove li#prevPhoto{ background-position: 0 -58px; margin-right: 3px; }
+#photoMove li#topPhotolist{ background-position: -101px -58px; margin-right: 3px; }
+#photoMove li#nextPhoto{ background-position: -202px -58px; }
+
+#photoMove a{
+	text-indent: -999px;
+	overflow: hidden;
+}
+
+#photoMove a#prevPhotoLink{ background-position: 0 0; }
+#photoMove a#topPhotoLink{ background-position: -101px 0; }
+#photoMove a#nextPhotoLink{ background-position: -202px 0; }
+
+#photoMove a#prevPhotoLink:hover{ background-position: 0 -29px; }
+#photoMove a#topPhotoLink:hover{ background-position: -101px -29px; }
+#photoMove a#nextPhotoLink:hover{ background-position: -202px -29px; }
+
+
+#bigPhoto dl{
+	padding: 0 0 15px;
+}
+
+#bigPhoto dt img{
+	border: 1px solid #ffffff;
+}
+
+#bigPhoto dt a:hover img{
+	border: 1px solid #0162de;
+}
+
+#bigPhoto dd{
+	margin-top: 8px;
+	font-size: 90%;
+}
+
+.galleryWrap,
+#nextPhotos,
+#relevantPhotoWrap,
+.relevantPhotoWrap{
+	margin: 0 0 20px;
+	border: 1px solid #a5bddd;
+	font-weight: normal;
+	border-radius: .3em;
+	text-align: center;
+	background: #e1ebf9;
+}
+
+.galleryWrap h2,
+.galleryWrap h3,
+#nextPhotos h2,
+#relevantPhotoWrap h2,
+#relevantPhotoWrap h3,
+.relevantPhotoWrap h2,
+.relevantPhotoWrap h3{
+	padding: 4px 10px;
+	font-size: 86%;
+	text-align: left;
+}
+
+.galleryWrap h2 a,
+.galleryWrap h3 a,
+#nextPhotos h2 a,
+#relevantPhotoWrap h2 a,
+#relevantPhotoWrap h3 a,
+.relevantPhotoWrap h2 a,
+.relevantPhotoWrap h3 a{
+	padding: 2px 0 2px 19px;
+	line-height: 1.6;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic.png) no-repeat 0 2px;
+}
+
+.galleryWrap .thumbWrap,
+#nextPhotos .thumbWrap,
+#relevantPhotoWrap .thumbWrap,
+.relevantPhotoWrap .thumbWrap{
+	padding: 8px 0;
+	border-top: 1px solid #bfd3ee;
+	position: relative;
+}
+
+.galleryWrap .thumbWrap:before,
+#nextPhotos .thumbWrap:before,
+#relevantPhotoWrap .thumbWrap:before,
+.relevantPhotoWrap .thumbWrap:before{
+	content: "";
+	display: block;
+	border-top: 1px solid #ffffff;
+	width: 100%;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.galleryWrap .thumbBox,
+#nextPhotos .thumbBox,
+#relevantPhotoWrap .thumbBox,
+.relevantPhotoWrap .thumbBox {
+	width: 19.7%;
+}
+
+html.w1200 .galleryWrap .thumbBox,
+html.w1200 #nextPhotos .thumbBox,
+html.w1200 #relevantPhotoWrap .thumbBox,
+html.w1200 .relevantPhotoWrap .thumbBox{
+	width: 19.98%;
+}
+
+#nextPhotos p.cr{
+	border: 1px solid #ffc600;
+}
+
+#nextPhotos p.cr a{
+	border: 1px solid #fffea1;
+}
+
+
+/* ----------gellery  ---------- */
+#relevantPhotoWrap.gellery,
+.relevantPhotoWrap.gellery{
+}
+
+
+/* News Individual Page
+----------------------------------------------- */
+#mainHeading{
+	margin: 20px 0 10px;
+}
+
+#mainHeading h1{
+	margin: 0;
+	font-size: 140%;
+}
+
+#print{
+	float: right;
+	margin: 0;
+	padding: 0 3px 0 21px;
+	font-size: 80%;
+	line-height: 1;
+	background: url(http://cache2.nipc.jp/mod/img/icon-printer.gif) no-repeat 0 .25em;
+}
+
+#mainHeading #print{
+	margin-top: 5px;
+	line-height: 1.9;
+	background-position: 0 .3em;
+}
+
+
+/* Web Tool, Social Bookmark
+----------------------------------------------- */
+#webToolWrap{
+	margin: 5px 0;
+}
+
+#webTool{
+	display: block;
+	float: right;
+	margin: 0 0 1em;
+}
+
+#webTool li{
+	display: block;
+	float: left;
+	font-size: 80%;
+}
+
+#webTool li#toolHatena,
+#webTool li#toolMixi,
+#webTool li#toolEvernote,
+#webTool li#toolTumblr{
+	margin-left : 4px;
+}
+
+#webTool li#toolGoogleButton{
+	margin-left : 1px;
+}
+
+#webTool li#toolEvernote,
+#webTool li#toolTumblr{
+	margin-top: 1px;
+}
+
+#webTool li#toolTwitter {
+	width:120px;
+}
+
+#news{
+	text-align: left;
+	background: #ffffff;
+}
+
+#newsBody{
+	margin: 0 0 1em;
+}
+
+#newsBody p{
+	margin: 0 0 1em;
+	font-size: 90%;
+	line-height: 1.6;
+}
+
+#photo {
+	float: left;
+	margin: 0 9px 5px 0;
+	padding-right: 10px;
+	border-right: 1px solid #d9d9d9;
+	/width: 142px; /* IE6,7 */
+	/height: auto !important; /* IE6,7 */
+	max-width: 142px;
+	overflow:hidden;
+}
+
+html.w1200 #photo{/* old template news article page */
+	max-width: 300px;
+}
+
+#photo a{
+	display:block;
+	width: 142px;
+}
+
+#photo img{
+	border: 1px solid #ffffff;
+	width: 140px;
+	height: auto;
+}
+
+html.w1200 #photo img{
+	width: 300px;
+}
+
+#photo a:hover img{
+	border: 1px solid #0162de;
+}
+
+#photo dt,
+#photo dt a,
+#photo dt img,
+#photo dt a img{
+	height:auto !important;
+	/height:auto !important;/* IE6,7 */
+	height:auto\9;/* IE8 */
+}
+
+:root #photo dt,
+:root #photo dt a,
+:root #photo dt a img{ height:auto\9; }/* IE9 */
+
+#photo dd{
+	padding-top: 3px;
+	font-size: 80%;
+	line-height: 1.35;
+}
+
+/* 日刊スポーツのオススメ */
+#nsRelevant{
+	margin: 1em 0;
+	font-size: 95%;
+}
+
+#nsRelevant dt{
+	padding: 0 0 0 18px;
+	font-size: 90%;
+	line-height: 24px;
+	background: url(/mod/img/icon-relevant.gif) no-repeat left top;
+}
+
+#nsRelevant dd{
+	margin: 4px 0 0 5px;
+	padding: 0 0 0 10px;
+	background: url(/mod/img/icon-arrow_gray.gif) no-repeat 0 0.2em;
+}
+
+.fresheyepedia{
+	margin: 20px 0 15px;
+}
+
+
+/* Relevance News
+----------------------------------------------- */
+#relevance{
+	margin: 0 0 15px;
+	padding: 15px 0 0;
+	border-top: 1px dotted #d9d9d9;
+}
+
+#relevance h2{
+	float: left;
+	margin: 5px 0 0 5px;
+	font-size: 80%;
+}
+
+#relevance ul{
+	float: left;
+	margin: 0 0 0 10px;
+	padding-left: 13px;
+	border-left: 5px solid #e5e5e5;
+}
+
+
+/* Keyword Search
+----------------------------------------------- */
+#keywordSearch{
+	margin: 15px  0;
+	padding: 0 0 0 5px;
+	line-height: 1;
+	background: #ffffff;
+}
+
+#keywordSearch h3{
+	float: left;
+	padding: 4px 0 0;
+	font-size: 80%;
+}
+
+#keywordSearch dl{
+	font-size: 80%;
+}
+
+#keywordSearch dt{
+	margin-left: 1px;
+	padding: 2px 5px;
+	line-height: 1;
+	border: 1px solid;
+	border-color: #c7c7c7 #000000 #000000 #c7c7c7;
+}
+
+#keywordSearch ul{
+	margin: 3px 0 0 15px;
+	border-left: 1px solid #939393;
+}
+
+#keywordSearch li{
+	padding: 0 7px;
+	line-height: 1;
+	border-right: 1px solid #939393;
+}
+
+#keywordSearch dt,
+#keywordSearch dd,
+#keywordSearch li{
+	float: left;
+}
+
+
+/* ns2 Track Back
+----------------------------------------------- */
+#ns2TB,
+#ns2Howto,
+#ns2TBList,
+#news #ns2Write{display: none !important;}/* エヌスク終了のお知らせにつき、トラバリンクを隠す */
+
+
+/* News Photo List
+----------------------------------------------- */
+#newsPhotoList{
+	padding: 1px;
+	border: 1px solid #bfd1e7;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+#newsPhotoList h2{
+	margin: 0 0 10px;
+	padding: 6px 0 4px 5px;
+	border-radius: .2em .2em 0 0;
+	color: #33336d;
+	font-size: 86%;
+	background: #bfd1e7;
+}
+
+.npl{
+	float: left;
+	width: 139px;
+	height: auto !important;
+	height: 122px;
+	min-height: 122px;
+	text-align: center;
+}
+
+.npl a{
+	display: block;
+	margin: 0 auto 10px;
+	width: 120px;
+	border: 1px solid #ffffff;
+}
+
+.npl a img{
+	width: 120px; /* テスト用 */
+}
+
+.npl a:hover{
+	border-color: #0062de;
+}
+
+.npl span{
+	display: block;
+	width: 120px;
+	max-height: 120px;
+	overflow: hidden;
+}
+
+
+/* Top News Photo
+----------------------------------------------- */
+#topPnWrap {
+	margin: 0 0 10px;
+	width: 500px;
+}
+
+html.w1200 #topPnWrap{
+	margin: 0;
+	width: 700px;
+}
+
+#topNewsPhotoWrap {
+	float: right;
+	padding: 4px;
+	border: 1px solid #cccccc;
+	border-radius: .3em;
+	width: 127px;
+	overflow: hidden;
+}
+
+html.w1200 #topNewsPhotoWrap{
+	width: 222px;
+}
+
+#topNewsPhoto {
+	border: 1px solid #ffffff;
+	max-height: 125px;
+	overflow: hidden;
+}
+
+html.w1200 #topNewsPhoto{
+	max-height: 210px;
+}
+
+#topNewsPhoto:hover{
+	border: 1px solid #0062de;
+}
+
+#topNewsPhoto img{
+	max-width: 140px;
+}
+
+#topNewsPhotoTxt{
+	padding: 3px 0 0;
+	font-size: 80%;
+	line-height: 1.4;
+}
+
+
+/* News List
+----------------------------------------------- */
+
+/* ----- news list default style ----- */
+.newsList01{
+	margin: 7px 2px 15px;
+	font-size: 86%;
+	line-height: 1.28;
+}
+
+#topPnWrap .newsList01 {
+	float: left;
+	margin: 0;
+	width: 349px;
+}
+
+html.w1200 #topPnWrap .newsList01{
+	width: 454px;
+}
+
+.newsList01 li{
+	margin: 0 0 7px;
+	color: #666666;
+}
+
+.newsList01 span{
+	display: block;
+	float: left;
+	margin: 1px 4px 0 0;
+	padding: 1px 2px;
+	font-weight: normal;
+	border-radius: .3em;
+	width: 6em;
+	color: #ffffff;
+	font-size: 69.44%;
+	text-align: center;
+	background: #9dabb0;
+	position: relative; /* for IE pie fix */
+}
+
+.newsList01 span.nowplaying{ /* 速報中red */
+	color: #ffffff;
+	background: #eb4d4d;
+}
+.newsList01 a{
+	padding: 0 3px 0 0;
+}
+
+.newsList01 a[href=""]{ /* リンクが空だったとき */
+	display: none;
+}
+
+.newsList01 img{
+	padding: 2px 2px 0 0;
+	vertical-align: top;
+}
+
+#topPnWrap .newsList01 img{padding-right: 0;}
+
+.newsList01 .live span{
+	background: #c18b93;
+}
+
+/* ----- news list with disc icon ----- */
+.newsList02{
+	font-size: 90%;
+	line-height: 1.4;
+}
+
+.newsList02 li{
+	margin: 0 0 5px;
+	padding: 0 0 0 15px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-disc.png) no-repeat 3px .4em;
+}
+
+/* ----- ranking list ----- */
+.newsList03{
+	font-size: 90%;
+	line-height: 1.8;
+}
+
+.newsList03 span{
+	padding: 2px 4px;
+	font-weight: normal;
+	border-radius: .3em;
+	font-size: 86%;
+	background: #efefef;
+}
+
+.newsList03 .rank3{
+	background: #fec6c7;
+}
+
+.newsList03 .rank2{
+	background: #fe7e7c;
+}
+
+.newsList03 .rank1{
+	color: #ffffff;
+	font-weight: bold;
+	background: #fe4d4a;
+}
+
+.newsList03 .rank10{
+	margin: 0 0 0 -3px;
+}
+
+
+/* News Link List
+----------------------------------------------- */
+.newsLinkList{
+	float: right;
+	margin: 7px 0 0;
+	font-size: 79%;
+}
+
+.newsLinkList li{
+	float: left;
+	padding: 0 0 0 10px;
+}
+
+.newsLinkList a{
+	padding: 4px 0 2px 16px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic2.png) no-repeat 0 4px;
+}
+
+
+/* News List Head
+----------------------------------------------- */
+.newsListHead{
+	margin: 15px 0 10px;
+	border-bottom: 2px solid #0151da;
+}
+
+.nlhTab{
+	float: left;
+	margin-left: 7px;
+	padding: 0 8px;
+	border-radius: .3em .3em 0 0;
+	height: 25px;
+	overflow: hidden;
+	color: #ffffff;
+	font-size: 90%;
+	font-weight: bold;
+	line-height: 27px;
+	text-shadow: 0 -1px 0 #0151da;
+	background: #207ee9;
+	background: -webkit-linear-gradient(top,#3da8f7,#0151da);
+	background: linear-gradient(to bottom,#3da8f7,#0151da);
+}
+
+
+/* List Head
+----------------------------------------------- */
+.listHead{
+	margin: 0 0 5px;
+	border: 1px solid #cddcea;
+	border-top: 2px solid #1664b0;
+	height: 21px;
+	background: #fbfdff;
+	background: -webkit-linear-gradient(top,#edf7ff,#fbfdff);
+	background: linear-gradient(to bottom,#edf7ff,#fbfdff);
+	box-shadow: 0 1px 3px #e5edf3;
+}
+
+.listHead h2,
+.listHead h3,
+.listHead h4,
+.listHead h5{
+	float: left;
+	margin: 4px 0 0 6px;
+	font-size: 90%;
+}
+
+.listHead h2 a,
+.listHead h3 a,
+.listHead h4 a,
+.listHead h5 a{
+	padding: 0 0 1px 18px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic.png) no-repeat 0 0;
+}
+
+.listHead p{
+	float: right;
+	margin: 4px 0 0;
+	padding: 0 7px 0 9px;
+	/padding-top: 1px; /* for IE6,7 */
+	border-left: 1px solid #b3bbc5;
+	font-size: 86%;
+}
+
+#adGoogleAdsense .listHead h2 a,
+#adGoogleAdsense .listHead h3 a,
+#adGoogleAdsense .listHead h4 a,
+#adGoogleAdsense .listHead h5 a{
+	padding: 0 0 1px 1px;
+	background-image: none;
+}
+
+
+/* List Head2
+----------------------------------------------- */
+.listHead2{
+	border-radius: .45em .45em 0 0;
+	border-bottom: 1px solid #00428c;
+	height: 23px;
+	background: #4082c5;
+	background: -webkit-linear-gradient(top,#1663b1,#4182c6);
+	background: linear-gradient(to bottom,#1663b1,#4182c6);
+}
+
+.listHead2 h2,
+.listHead2 h3,
+.listHead2 h4{
+	float: left;
+	padding: 5px 0 3px 7px;
+	font-size: 90%;
+}
+
+.listHead2 p{
+	float: right;
+	margin: 5px 0 0;
+	_padding-top: 1px;
+	border-left: 1px solid #00458b;
+	font-size: 86%;
+}
+
+.listHead2 p a{
+	padding: 0 10px;
+	border-left: 1px solid #76aad1;
+}
+
+.listHead2 a{
+	color: #ffffff;
+}
+
+.listHead2 a:link,
+.listHead2 a:visited,
+.listHead2 a:hover,
+.listHead2 a:active{
+	color: #ffffff;
+}
+
+.listHead2 h2 a,
+.listHead2 h3 a,
+.listHead2 h4 a{
+	padding: 0 0 0 18px;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_listhead.png) no-repeat 0 0;
+}
+
+
+/* Side Photo thumbnail with Genre News List
+----------------------------------------------- */
+.genreNpWrap{
+	padding: 0 3px 15px;
+}
+
+.genreNewsPhoto{
+	float: left;
+	margin: 5px 7px 0 0;
+	width: 106px;
+}
+
+.genreNewsPhoto a{
+	display: block;
+	padding: 2px;
+	border: 1px solid #b3b3b3;
+	font-weight: normal;
+	border-radius: .3em;
+}
+
+.genreNewsPhoto a:hover{
+	border-color: #0062de;
+}
+
+.genreNewsPhoto span{
+	display: block;
+	max-height: 80px;
+	overflow: hidden;
+}
+
+.genreNpWrap .newsList01{
+	margin: 8px 0 0;
+	float: left;
+	width: 580px;
+}
+
+
+/* Ganre Middle Data
+----------------------------------------------- */
+#genreMiddleData{
+	margin: 0 0 15px;
+}
+
+#genrePhotolist{
+	padding: 8px 0;
+	border: 1px solid #a5bddd;
+	border-top: 1px solid #ffffff;
+	border-radius: 0 0 .3em .3em;
+	background: #e1ebf9;
+}
+
+
+/* Index Photo Gallery
+----------------------------------------------- */
+#photoGallery{
+	margin: 15px 0;
+	padding: 3px 4px;
+	border: 1px solid #a5bddd;
+	font-weight: normal;
+	border-radius: .3em;
+	line-height: 1;
+	text-align: center;
+	background: #e1ebf9;
+	position: relative;
+}
+
+#pgPrev,
+#pgNext{
+	display: block;
+	float: left;
+	margin: 26px 0 0;
+	width: 20px;
+	height: 124px;
+	text-indent: -999px;
+	background: url(http://cache2.nipc.jp/mod/img/bg-photoscroll.gif) no-repeat left top;
+	overflow: hidden;
+}
+
+#pgPrev{
+	background-position: -20px top;
+}
+
+#pgNext{
+	float: right;
+	background-position: -40px top;
+}
+
+#pgPrev:hover{ background-position: left top; }
+#pgNext:hover{ background-position: right top; }
+
+#pgWrap{
+	margin: 0 auto;
+	padding: 5px 4px;
+	width: 630px;
+	height: ;
+	border: 1px solid #c4d2e7;
+	font-weight: normal;
+	border-radius: .3em;
+	background: #ffffff;
+}
+
+.pg{
+	float: left;
+	margin: 0 2px;
+	width: 122px;
+	text-align: center;
+}
+
+.pgImg a{
+	display: block;
+	width: 120px;
+	border: 1px solid #ffffff;
+}
+
+.pgImg a:hover{
+	border-color: #0062de;
+}
+
+.pgImg span{
+	display: block;
+	max-height: 120px;
+	overflow: hidden;
+}
+
+.pgImg img{
+	width: 120px;
+}
+
+.pgTxt{
+	margin: 2px auto 0;
+	width: 120px;
+	font-size: 86%;
+	line-height: 1.2;
+	text-align: left;
+}
+
+
+/* Pick Up News
+----------------------------------------------- */
+#pickupNews{
+	margin: 0 0 15px;
+}
+
+#pickupNewsHead{
+	padding: 4px 0 4px 8px;
+	border: 1px solid #6fa23c;
+	border-radius: .3em .3em 0 0;
+	color: #ffffff;
+	font-family: "Arial Black";
+	font-size: 90%;
+	background: #6fa23c;
+}
+
+#pickupNewsHead span{
+	padding: 8px 0 0;
+	color: #90b56a;
+	letter-spacing: -0.4em;
+}
+
+#pickupNewsHead span + span{
+	color: #cadcb9;
+}
+
+#pickupNewsHead span + span +span{
+	color: #ffffff;
+}
+
+#pickupNewsListWrap{
+	padding: 7px 7px 0;
+	border: 1px solid #6fa23c;
+	border-radius: 0 0 .3em .3em;
+	background: #eeffb2;
+	background: -webkit-linear-gradient(top,#fbffec,#f2ffc2);
+	background: linear-gradient(to bottom,#fbffec,#f2ffc2);
+}
+
+#pickupNewsListWrap .newsList01{
+	margin: 0;
+}
+
+#pickupNewsListWrap .newsList01 li{
+	margin: 0 0 4px;
+}
+
+
+/* Feature Box List
+----------------------------------------------- */
+#featureBoxWrap{
+	margin: 0 0 15px;
+}
+
+#featureBoxWrap .newsListHead{
+	border-bottom: 2px solid #e97123;
+}
+
+#featureBoxWrap .nlhTab{
+	text-shadow: 0 -1px 0 #e97123;
+	background: #f1a508;
+	background: -webkit-linear-gradient(top,#f3b500,#e97123);
+	background: linear-gradient(to bottom,#f3b500,#e97123);
+}
+
+.featureBox{
+	padding: 5px 0;
+	font-size: 90%;
+	line-height: 1.4;
+}
+
+.featureBox+.featureBox{
+	border-top: 1px dotted #dcdad2;
+}
+
+.featureIcon{
+	float: left;
+	margin: 0 5px 0 0;
+	width: 78px;
+}
+
+.featureLinks{
+	float: left;
+	width: 415px;
+}
+
+html.w1200 .featureLinks{
+	width: 617px;
+}
+
+.featureTitle a{
+	padding: 0 0 0 16px;
+	color: #333333;
+	font-weight: bold;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic2.png) no-repeat 0 0;
+}
+
+.featureLinks li{
+	float: left;
+	padding: 0 5px;
+	font-size: 90%;
+}
+
+.featureLinks li+li{
+	border-left: 1px solid #b2b2b2;
+}
+
+.featureLinks li a{
+	white-space: nowrap;
+}
+
+
+
+/* Feature Box List (2 column)
+----------------------------------------------- */
+.featureBoxLeft{
+	float: left;
+	width: 245px;
+	padding-right: 5px;
+	border-right: 1px dotted #dcdad2;
+}
+
+.featureBoxRight{
+	float: right;
+	width: 245px;
+}
+
+html.w1200 .featureBoxLeft{width: 335px;}
+html.w1200 .featureBoxLeft{width: 350px;}
+
+.v_featureBox{
+	margin-bottom: 8px;
+	font-size: 90%;
+	line-height: 1.4;
+}
+
+.v_featureBox dt{
+	float: left;
+	width: 78px;
+	margin-right: 5px;
+}
+
+.v_featureBox dd{ font-size: 90%; }
+
+
+
+/* Team List
+----------------------------------------------- */
+#teamListWrap{
+	margin: 0 0 15px;
+}
+
+.teamList{
+	margin: 0 0 8px;
+	font-size: 14px;
+}
+
+.teamList .teamListHd,
+.teamList dd,
+.teamList ul,
+.teamList li{
+	display: block;
+	float: left;
+}
+
+.teamListHd{
+	padding: 1px 2px;
+	border: 1px solid #b1c9de;
+	font-weight: normal;
+	border-radius: .3em;
+	font-weight: bold;
+	background: #dbeeff;
+}
+
+#teamListPf li,
+#teamListJ1 li{
+	margin: 0 0 0 3px;
+	padding: 1px;
+	border: 1px solid #dbeeff;
+	font-weight: normal;
+	border-radius: .3em;
+	background: #f1f6f9;
+}
+
+
+/* Genre Middle Data
+----------------------------------------------- */
+#genreMiddleData .newsListHead{
+	border-bottom: 2px solid #234786;
+}
+
+#genreMiddleData .newsListHead .nlhTab{
+	text-shadow: 0 -1px 0 #234786;
+	background-color: #4f74b6;
+	background: -webkit-linear-gradient(top,#668bce,#234786);
+	background: linear-gradient(to bottom,#668bce,#234786);
+}
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+OTHER CONTENTS STYLE
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Theme Navi
+----------------------------------------------- */
+#themeNavi{
+	margin: 0;
+	padding: 0 0 2px;
+	border-bottom: 1px dotted #999999;
+}
+
+#themeNavi li{
+	display: block;
+	float: left;
+	margin: 2px 1px 0;
+	padding: 0;
+	font-size: 80%;
+	white-space: nowrap;
+}
+
+#themeNavi a{
+	display: block;
+	padding: 3px 5px;
+}
+
+#themeNavi a:hover{
+	border-radius: .45em;
+	color: #ffffff;
+	background: #007ada;
+}
+
+.themeTop #themeNaviTop a,
+.themeBN #themeNaviBN a,
+.themePhoto #themeNaviPhoto a,
+.themeRN #themeNaviRN a,
+.themeRN2 #themeNaviRN2 a,
+.themeRP #themeNaviRP a,
+.themeAS #themeNaviAS a,
+.themeRepo #themeNaviRepo a,
+.themeSche #themeNaviSche a,
+.themeResult #themeNaviResult a,
+.themeFirst #themeNaviFirst a,
+.themeFinal #themeNaviFinal a,
+.themeTournament #themeNaviTournament a,
+.themeYagura #themeNaviYagura a,
+.themeScore #themeNaviScore a,
+.themeSta #themeNaviSta a,
+.themePO #themeNaviPO a,
+.themeTeam #themeNaviTeam a,
+.themeMember #themeNaviMember a,
+.themePlayer #themeNaviPlayer a,
+.themeData #themeNaviData a,
+.themeRecord #themeNaviRecord a,
+.themeHistory #themeNaviHistory a,
+.themeMemo #themeNaviMemo a,
+.themeRank #themeNaviRank a,
+.themeBlog #themeNaviBlog a,
+#themeNavi a.current{
+	border-radius: .45em;
+	color: #ffffff;
+	font-weight: bold;
+	background: #007ada;
+}
+
+
+/* Data Contents
+----------------------------------------------- */
+.dataContents{}
+
+.dataContentsL {
+	padding: 0 0 3px;
+	width: 500px;
+}
+
+.dataContentsR {
+	padding: 0 0 3px;
+	width: 500px;
+}
+
+.dataContentsW{
+	float: left;
+	margin-right: 1px;
+	padding: 0 0 3px;
+	width: 166px;
+}
+
+.dataContentsC{
+	float: left;
+	padding: 0 0 3px;
+	width: 166px;
+}
+
+.dataContentsE{
+	float: right;
+	padding: 0 0 3px;
+	width: 166px;
+}
+
+html.w1200 .dataContentsL{
+	float: left;
+	padding: 0;
+	width: 345px;
+}
+
+html.w1200 .dataContentsR{
+	float: right;
+	padding: 0;
+	width: 345px;
+}
+
+html.w1200 .dataContentsW{
+	margin-right: 10px;
+	padding: 0;
+	width: 226px;
+}
+
+html.w1200 .dataContentsC{
+	padding: 0;
+	width: 226px;
+}
+
+html.w1200 .dataContentsE{
+	padding: 0;
+	width: 226px;
+}
+
+
+/* Data Contents Title
+----------------------------------------------- */
+.tableTitle{
+	margin: 0;
+	padding: 4px 4px 3px 7px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.tableTitle h2,
+.tableTitle h3,
+.tableTitle h4{
+	font-size: 80%;
+	line-height: 1;
+	float: left;
+}
+
+.tableTitle p{
+	font-size: 80%;
+	line-height: 1;
+	float: right;
+}
+
+.tableTitle a{
+	padding: 0 5px;
+	color: #ffffff;
+}
+
+.tableTitleP{
+	border-bottom: 1px solid #6c627a;
+	background: #938ca5;
+	text-shadow: 0 -1px 0 #6c627a;
+}
+
+.tableTitleB{
+	border-bottom: 1px solid #555c87;
+	background: #7e8cb2;
+	text-shadow: 0 -1px 0 #555c87;
+}
+
+.tableTitleG{
+	border-bottom: 1px solid #648755;
+	background: #95b27e;
+	text-shadow: 0 -1px 0 #648755;
+}
+
+.tableTitleR{
+	border-bottom: 1px solid #875855;
+	background: #b27e82;
+	text-shadow: 0 -1px 0 #875855;
+}
+
+
+/* Data Contents Table
+----------------------------------------------- */
+p.attention,
+p.dataAttention{
+	margin: 2px 0 0 5px;
+	font-size: 90%;
+	line-height: 1.5;
+}
+
+.dataContents table{
+	width: 100%;
+	border: 0 none;
+	border-collapse: separate;
+	/border-collapse: collapse; /* for IE6,7 */
+	border-spacing: 0;
+	font-size: 90%;
+}
+
+.dataContents caption{
+	padding: 4px 0 3px 5px;
+	color: #000000;
+	text-align: left;
+	background: #cadef0;
+}
+
+#genreMiddleData .dataContents table{
+	margin: 0 0 5px;
+}
+
+.dataContents th{
+	padding: 4px 3px 2px;
+	border: 0;
+	border-top: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #bfbfbf;
+	text-align: center;
+	font-size: 90%;
+	background: #e3e3e3;
+}
+
+.dataContents td{
+	padding: 4px 3px;
+	border: 0;
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #d2d2d2;
+	border-bottom: 1px dashed #bfbfbf;
+}
+
+.dataContents th.bg,
+.dataContents td.line,
+.dataContents th.nbL,
+.dataContents td.nbL{
+	border-left: 0;
+}
+
+.dataContents th.nbR,
+.dataContents td.nbR{
+	border-right: 0;
+}
+
+.dataContents th:last-child,
+.dataContents td:last-child{
+	border-right: 0;
+}
+
+.dataContents td.home{ text-align: right; }
+.dataContents td.homeP{ text-align: right; }
+.dataContents td.away{ text-align: left; }
+.dataContents td.num{ text-align: center; }
+.dataContents td.score{ text-align: center; }
+
+.dataContents td.num2{
+	padding: 3px 5px 3px 2px;
+	text-align: right;
+}
+
+.dataContents td.rank{
+	width: 1.2em;
+	text-align: center;
+}
+
+#soccer .dataContents td.home,
+#soccer .dataContents td.away{ width: 20%; }
+#soccer .dataContents td.team{ width: 65%; }
+#soccer.themeTop .dataContents td.player{ width: 25%; }
+
+
+
+
+/* --------------------------------------------------------------------------------------------------------------------------------
+Hack
+-------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* pie.htc
+----------------------------------------------- */
+#headerInner,
+#footer,
+#footerRouteNaviWrap,
+.newsList01 span{
+	behavior: url(/mod/js/pie.htc);
+}
+
+
+/* alpha-png replace gif for IE6・ω・`)
+----------------------------------------------- */
+* html #backhome{ background-image: url(http://cache2.nipc.jp/mod/img/logo-nikkansportscom_head.gif); }
+* html #archivesListHead a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_blue.gif); }
+* html .sideBoxHead a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-side_rank.gif); }
+* html .sideBoxHead a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-side_arrow.gif); }
+* html .sRecoTitle,
+* html .stTitle,
+* html #footerLinkList h3{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic5.gif); }
+* html .linkText a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic2.gif); }
+* html #nextPhotos h2 a,
+* html #relevantPhotoWrap h2 a,
+* html #relevantPhotoWrap h3 a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic.gif); }
+* html .newsList02 li{ background-image: url(http://cache2.nipc.jp/mod/img/icon-disc.gif); }
+* html .newsLinkList a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic2.gif); }
+* html .listHead h2 a,
+* html .listHead h3 a,
+* html .listHead h4 a,
+* html .listHead h5 a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic.gif); }
+* html .listHead2 h2 a,
+* html .listHead2 h3 a,
+* html .listHead2 h4 a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_listhead.gif); }
+* html .featureTitle a{ background-image: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic2.gif); }
+
+
+/* Clear Fix
+----------------------------------------------- */
+#headFrame,
+#globalNavi,
+#headerInner,
+#contents,
+.sRecoPack,
+.sClmPack,
+#sideAI,
+#sideScoreTab,
+.sideScoreTabInner,
+#sideTwHead,
+.tweetbox,
+.tweetmain,
+#footerRouteNaviWrap,
+#otherCopyrightWrap,
+.otherCopyright,
+#companyNaviWrap,
+.genreNpWrap,
+.teamList,
+.featureBox,
+.featureLinks ul,
+#genreNavi,
+#routeNavi,
+#themeNavi,
+.newsList01 li,
+#topPnWrap,
+#topNewsArea,
+#topAreaWrap,
+#mainHeading,
+#webToolWrap,
+#webTool,
+#newsBody,
+#relevance,
+#keywordSearch,
+#keywordSearch dl,
+#keywordSearch ul,
+#newsPhotoList,
+#tweetFormHeader,
+#twformInner,
+.twBox,
+#photoGallery,
+#pgWrap,
+.thumbWrap,
+.newsListHead,
+.dataContents,
+.tableTitle,
+.clearfix{ /zoom: 1; } /* for IE 6,7 */
+
+.socialBookmark:after,#socialBookmark:after,
+#headerNaviWrap:after,
+#headFrame:after,
+#globalNavi:after,
+#headerInner:after,
+#contents:after,
+.appList a:after,
+.sRecoPack:after,
+.sClmPack:after,
+#sideAI:after,
+#sideScoreTab:after,
+.sideScoreTabInner:after,
+#sideTwHead:after,
+.tweetbox:after,
+.tweetmain:after,
+#footerRouteNaviWrap:after,
+#otherCopyrightWrap:after,
+.otherCopyright:after,
+#companyNaviWrap:after,
+.genreNpWrap:after,
+.teamList:after,
+.featureBox:after,
+.featureLinks ul:after,
+#genreNavi:after,
+.newsList01 li:after,
+#topPnWrap:after,
+#routeNavi:after,
+#themeNavi:after,
+#topNewsArea:after,
+#topAreaWrap:after,
+#mainHeading:after,
+#webToolWrap:after,
+#webTool:after,
+#newsBody:after,
+#relevance:after,
+#keywordSearch:after,
+#keywordSearch dl:after,
+#keywordSearch ul:after,
+#newsPhotoList:after,
+#tweetFormHeader:after,
+#twformInner:after,
+.twBox:after,
+#photoGallery:after,
+#pgWrap:after,
+.thumbWrap:after,
+.newsListHead:after,
+.dataContents:after,
+.tableTitle:after,
+.clearfix:after{ /* for Modern Browser */
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}

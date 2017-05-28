@@ -1,0 +1,6 @@
+/*echo("<tr><td colspan='4'>Kezdőbetű:<br/>");
+foreach ($kb as $key=>$value) {
+	echo(" <a href='#kb-$value'>$value</a> |");
+};                                      
+echo("</td><td><a href='http://vera.mente.hu/index.php?muv=szemszerk' style='float:right;width:150px;'><button class='mpgomb'>Új személy...</button></a>
+      </td></tr>"); */

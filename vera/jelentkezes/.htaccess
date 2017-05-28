@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^jelentkezes\.mente\.hu$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.jelentkezes\.mente\.hu$
+RewriteRule ^/?$ "http\:\/\/goo\.gl\/forms\/BnJTrzbnBk" [R=301,L]
+

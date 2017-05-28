@@ -1,0 +1,357 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*body {background: url(/entertainment/akb48/img/bg-body_akb48.gif) repeat-x left top fixed #fbe4ec;}*/
+
+
+/* ---------- #headerNavi ---------- */
+#headerNaviWrap,
+#siteNavi a,
+#siteNavi span,
+#siteNavi2 span {
+	background-repeat: no-repeat;
+	background-image: url(/entertainment/akb48/img/sprite_header-navi_akb48.gif);
+}
+
+#headerNaviWrap {
+	border: 1px solid #aa145d;
+	border-top: 0;
+	background-color: #aa145d;
+	background-repeat: repeat-x;
+	-webkit-box-shadow: 0 1px 0 #fbe4ec;
+	-khtml-box-shadow: 0 1px 0 #fbe4ec;
+	-moz-box-shadow: 0 1px 0 #fbe4ec;
+	-ms-box-shadow: 0 1px 0 #fbe4ec;
+	-o-box-shadow: 0 1px 0 #fbe4ec;
+	box-shadow: 0 1px 0 #fbe4ec;
+}
+
+#siteNavi a {color: #aa145d;}
+#siteNavi a:hover {color: #99044f;}
+
+#siteNavi2 a,
+#nsID a {
+	color: #fbe4ec;
+	-webkit-text-shadow: 0 -1px 0 #aa145d;
+	-khtml-text-shadow: 0 -1px 0 #aa145d;
+	-moz-text-shadow: 0 -1px 0 #aa145d;
+	-ms-text-shadow: 0 -1px 0 #aa145d;
+	-o-text-shadow: 0 -1px 0 #aa145d;
+	text-shadow: 0 -1px 0 #aa145d;
+}
+
+
+/* ---------- #headerNavi ---------- */
+/*#globalNavi {background: url(/entertainment/akb48/img/bg-globalnavi_akb48.gif) no-repeat left top;}*/
+
+/*#globalNaviHomeanc,
+#globalNaviBBanc,
+#globalNaviMBanc,
+#globalNaviSCanc,
+#globalNaviWDanc,
+#globalNaviSPanc,
+#globalNaviGFanc,
+#globalNaviBTanc,
+#globalNaviRCanc,
+#globalNaviPUanc,
+#globalNaviETanc,
+#globalNaviGNanc {background-image: url(/entertainment/akb48/img/bg-globalnavi_akb48.gif);}*/
+
+#entertainment #globalNaviETanc { height: 36px; background-position: -731px -72px; }
+
+
+/* ---------- #menu ---------- */
+/*h2#genreHead a {
+	display: block;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	background: url(/entertainment/akb48/img/genre-head_akb48.gif) no-repeat left top;
+}*/
+
+/*#genreNavi li a {background: url(/entertainment/akb48/img/bg-genre-navi_akb48.gif) #ffffff repeat-x 0 0;}
+#genreNavi li a:hover {background-position: 0 -61px;}*/
+
+/*#genreNavi li ul li a {background-color: #fffcff;}
+#genreNavi li ul li a:hover {background-color: #fff0fb;}*/
+
+
+/* ---------- #main ---------- */
+/*#routeNavi li#routeNaviHome a,
+#routeNavi li {
+	background-image: url(/entertainment/akb48/img/bg-route_akb48.gif);
+}
+
+#routeNavi #mainTitle { background-color: #fdc2ed; }*/
+
+/*#mainTitle,
+#mainTitle a { color: #663300; }*/
+
+/*#themeNavi a:hover {background: #ff6fb9;}
+
+.themeTop #themeNaviTop a,
+.themeBN #themeNaviBN a,
+.themePhoto #themeNaviPhoto a,
+.themeRN #themeNaviRN a,
+.themeRN2 #themeNaviRN2 a,
+.themeRP #themeNaviRP a,
+.themeRepo li#themeNaviRepo a,
+.themeSche #themeNaviSche a,
+.themeResult #themeNaviResult a,
+.themeFirst #themeNaviFirst a,
+.themeFinal #themeNaviFinal a,
+.themeTournament #themeNaviTournament a,
+.themeYagura #themeNaviYagura a,
+.themeScore #themeNaviScore a,
+.themeSta #themeNaviSta a,
+.themePO #themeNaviPO a,
+.themeTeam #themeNaviTeam a,
+.themePlayer #themeNaviPlayer a,
+.themeMember #themeNaviMember a,
+.themeData #themeNaviData a,
+.themeRecord #themeNaviRecord a,
+.themeHistory #themeNaviHistory a,
+.themeMemo #themeNaviMemo a,
+.themeRank #themeNaviRank a,
+.themeBlog #themeNaviBlog a,
+#themeNavi a.current {background: #ff6fb9;}
+
+#topNewsArea .newsListHead {border-bottom: 2px solid #f958a6;}
+
+#topNewsArea .nlhTab {
+	-webkit-text-shadow: 0 -1px 0 #f958a6;
+	-khtml-text-shadow: 0 -1px 0 #f958a6;
+	-moz-text-shadow: 0 -1px 0 #f958a6;
+	-ms-text-shadow: 0 -1px 0 #f958a6;
+	-o-text-shadow: 0 -1px 0 #f958a6;
+	text-shadow: 0 -1px 0 #f958a6;
+	background: url(/entertainment/akb48/img/bg-nlhTab_akb48.gif) #f958a6 repeat-x 0 0;
+}
+
+#topNewsArea .newsList01 span,
+#newsBacknumber .newsList01 span {background: #ff8ac2;}*/
+/*#akb48Pickup span {background: #9dabb0 !important;}*/
+
+/*#photoMove li,
+#photoMove a {background-image: url(/entertainment/akb48/img/bg-photomove_akb48.gif);}*/
+
+#akb48ChekiPhoto/* {
+	margin: 0 0 20px;
+	border: 1px solid #ff6fb9;
+	font-weight: normal;
+	-webkit-border-radius: .3em;
+	-khtml-border-radius: .3em;
+	-moz-border-radius: .3em;
+	-ms-border-radius: .3em;
+	-o-border-radius: .3em;
+	border-radius: .3em;
+	text-align: center;
+	background: #fbe4ec;
+}*/{
+	margin: 0 0 20px;
+	border: 1px solid #a5bddd;
+	font-weight: normal;
+	-webkit-border-radius: .3em;
+	-khtml-border-radius: .3em;
+	-moz-border-radius: .3em;
+	-ms-border-radius: .3em;
+	-o-border-radius: .3em;
+	border-radius: .3em;
+	text-align: center;
+	background: #e1ebf9;
+}
+
+#akb48ChekiPhoto h2 {
+	padding: 4px 10px;
+	font-size: 86%;
+	text-align: left;
+}
+
+#akb48ChekiPhoto h2 a {
+	padding: 2px 0 2px 19px;
+	line-height: 1.6;
+	background: url(http://cache2.nipc.jp/mod/img/icon-arrow_basic.png) no-repeat 0 2px;
+}
+
+#akb48ChekiPhoto .thumbWrap {
+	padding: 8px 0;
+	border-top: 1px solid #BFD3EE;
+	position: relative;
+}
+
+#akb48ChekiPhoto .thumbWrap:before {
+	content: "";
+	display: block;
+	border-top: 1px solid #ffffff;
+	width: 100%;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#akb48ChekiPhoto .thumbBox {width: 19.8%;}
+
+
+/* ---------- #data nsTable ---------- */
+.nsTable {
+	border-top: 1px solid #ffa3cf;
+	border-left: 1px solid #ffa3cf;
+}
+
+.nsTable caption {
+	border-bottom: 1px solid #ff6fb9;
+	background: #ff6fb9;
+	color: #ffffff;
+}
+
+.nsTable td {
+	border-right: 1px solid #ffa3cf;
+	border-bottom: 1px solid #ffa3cf;
+	background: #ffffff !important;
+}
+
+.nsTable th {
+	border-left: 1px solid #ffa3cf;
+	border-right: 1px solid #ff6fb9;
+	border-top: 1px solid #fff4f8;
+	border-bottom: 1px solid #ff6fb9;
+	color: #aa145d;
+	background: #ffa3cf;
+}
+
+.nsTable th:last-child { border-right-color: #ffa3cf !important; }
+
+.nsTable tr:nth-child(odd) td { background: #fff4f8 !important; }
+.nsTable tr.even td { background: #fff4f8 !important; }
+
+
+
+/* Top Twitter
+----------------------------------------------- */
+.srchdTwHead {
+	-o-border-radius: .5em .5em 0 0;
+	-ms-border-radius: .5em .5em 0 0;
+	-moz-border-radius: .5em .5em 0 0;
+	-webkit-border-radius: .5em .5em 0 0;
+	border-radius: .5em .5em 0 0;
+	background: #111111;
+	background: -webkit-gradient(linear,left top,left bottom,from(#333333),to(#111111));
+	background: -khtml-gradient(linear,left top,left bottom,from(#333333),to(#111111));
+	background: -webkit-linear-gradient(top,#333333,#111111);
+	background: -khtml-linear-gradient(top,#333333,#111111);
+	background: -moz-linear-gradient(top,#333333,#111111);
+	background: -ms-linear-gradient(top,#333333,#111111);
+	background: -o-linear-gradient(top,#333333,#111111);
+	background: linear-gradient(top,#333333,#111111);
+	position: relative;
+	overflow: hidden;
+}
+
+.srchdTwHead h2,
+.srchdTwHead h3 {
+	float: left;
+	padding: 12px 10px 11px;
+	font-size: 86%;
+	font-weight: normal;
+}
+
+.srchdTwHead .srchdTwHeadLink {
+	color: #fbe4ec;
+}
+
+.srchdTwHeadLink img {
+	display: block;
+	float: left;
+	margin: 0 10px 0 0;
+	width: 48px;
+	height: 48px;
+}
+
+.srchdTwHead .twOfficial {
+	display: block;
+	_display: none;
+	margin: -10px 0 0;
+	width: 108px;
+	height: 20px;
+	text-indent: -999px;
+	background: url(http://a2.twimg.com/a/1297125922/phoenix/img/twitter_logo_right.png) no-repeat left top;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	right: 10px;
+}
+
+.srchdTwHead #followMeButton {
+	float: left;
+	margin: 5px 0 0;
+}
+
+.srchdTwWrap {
+	margin: 0 0 15px;
+	padding: 10px;
+	-o-border-radius: 0 0 .5em .5em;
+	-ms-border-radius: 0 0 .5em .5em;
+	-moz-border-radius: 0 0 .5em .5em;
+	-webkit-border-radius: 0 0 .5em .5em;
+	border-radius: 0 0 .5em .5em;
+	border-top: 1px solid #ffa3cf;
+	background: #aa145d;
+	background: -o-linear-gradient(top,#aa145d,#ffa3cf 25px);
+	background: -ms-linear-gradient(top,#aa145d,#ffa3cf 25px);
+	background: -moz-linear-gradient(top,#aa145d,#ffa3cf 25px);
+	background: -webkit-linear-gradient(top,#aa145d,#ffa3cf 25px);
+	background: linear-gradient(top,#aa145d,#ffa3cf 25px);
+	position: relative;
+}
+
+.srchdTwWrap:before {
+	content: "";
+	display: block;
+	border: 7px solid transparent;
+	border-bottom: 7px solid #ffffff;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -4px;
+	left: 26px;
+}
+
+.srchdTwHead {/zoom: 1;}
+.srchdTwHead:after {
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+
+/* ---------- Janken 201209 ---------- */
+
+body.janken ul#webTool { margin: .5em 0 0 0; }
+
+body.janken.themeTop #topAreaWrap ul { margin: 0.8em 0; }
+body.janken.themeTop #topAreaWrap li {
+	font-size: 90%;
+	line-height: 1.4;
+	margin-bottom: 3px;
+}
+body.janken.themeTop #topAreaWrap li span { color: #e8027f; }
+
+body.janken #topAreaWrap .linkText { margin: 0.8em 0; }
+
+body.janken.themeArchive #topAreaWrap dl { margin-bottom: 0.8em; }
+body.janken.themeArchive #topAreaWrap dt { margin-bottom: 5px; }
+body.janken.themeArchive #topAreaWrap dd {
+	padding: 3px 5px;
+	font-size: 90%;
+	line-height: 1.4;
+	background: #eeeeee;
+}
+
+body.janken #yaguWrap {
+	text-align: center;
+	margin-bottom: 10px;
+}

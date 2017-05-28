@@ -1,0 +1,15 @@
+﻿.overlay-icon{ display:none;}
+.group_items {
+	width: 614px;
+	height:175px !important;
+}
+#main-content , .breaking-news, header{
+   filter: progid:DXImageTransform.Microsoft.Shadow(Color=#dcdcdc, Strength=3, Direction=0),
+         progid:DXImageTransform.Microsoft.Shadow(Color=#dcdcdc, Strength=3, Direction=90),
+         progid:DXImageTransform.Microsoft.Shadow(Color=#dcdcdc, Strength=3, Direction=180),
+         progid:DXImageTransform.Microsoft.Shadow(Color=#dcdcdc, Strength=3, Direction=270);
+}
+#main-nav ul li {margin-top:8px;}
+.top-nav ul , #main-nav ul li.current-menu-item, #main-nav ul li.current-menu-parent, #main-nav ul li.current-page-ancestor {margin-top:3px;}
+.flex-direction-nav a { display:none}
+.flexslider:hover .flex-next:hover, .flexslider:hover .flex-prev:hover , .flexslider:hover .flex-prev , .flexslider:hover .flex-next { display:block;}

@@ -1,0 +1,501 @@
+                <?php
+if($_SESSION['bent']!==TRUE){
+echo("Ez az oldal azonosításhoz kötött, lépj be!");
+die;
+};
+
+if((isset($_POST['szemsorsz'])) or (isset($_GET['szemsorsz']))) { 
+  if(isset($_POST['szemsorsz'])){
+    $szemsorsz=$_POST['szemsorsz'];
+  }else{
+    $szemsorsz=$_GET['szemsorsz'];
+  };
+  $e=ab_lek("SELECT * FROM t_szemelyek WHERE sorsz=".$szemsorsz);
+  $sor=mysql_fetch_assoc($e);
+  $sz_nev=$sor['nev'];
+  $sz_szev=$sor['szev'];
+  $sz_mobil=$sor['mobil'];
+  $sz_kf=$sor['kf'];
+  $sz_irsz=$sor['lakirsz'];
+  $sz_telep=$sor['laktelep'];
+  $sz_cim=$sor['lakcim'];
+  $sz_pleb=$sor['pleb'];
+  $sz_email1=$sor['email'];
+  $sz_email2=$sor['email2'];
+  $sz_sorsz=$sor['sorsz'];
+  $sz_utmod=$sor['utmod'];
+  $sz_megj=$sor['megj'];
+  $sz_nem=$sor['nem'];
+}else{
+  $sz_nev='';
+  $sz_szev='';
+  $sz_mobil='';
+  $sz_kf='';
+  $sz_irsz='';
+  $sz_telep='';
+  $sz_cim='';
+  $sz_pleb='';
+  $sz_email1='';
+  $sz_email2='';
+  $sz_utmod="-";
+  $sz_megj='';
+  $sz_nem='';
+};
+
+?>
+
+<script type="text/javascript">
+  var nevOK='';
+  var szevOK='';
+  var mail1OK='';
+  var mail2OK='';
+  var mobilOK='';
+  var irszOK='';
+  var telepOK='';
+  var cimOK='';
+  var nemOK='';
+  
+  function kuld_ell(){
+    // if ((nevOK+szevOK+mail1OK+mail2OK+mobilOK+irszOK+telepOK+cimOK+nemOK+etelepOK) == 'iiiiiiiiii'){
+    if (2 == 2){
+      document.getElementById('szemadatlapmentesgomb').style.display = block;
+    }else{
+      document.getElementById('szemadatlapmentesgomb').style.display = none;
+    };
+  };
+ 
+  function nev_ell(){
+    ok='n';
+    m=document.getElementById('nev');
+    var minta=new RegExp("^[a-zA-ZáéíóöőúüűÁÉÍÓÖÚÜŰ -\.]{6,55}$");
+      if (minta.test(m.value)==true){
+        ok='i';
+    };
+    if(ok=='i'){
+      document.getElementById('nevhiba').src='pipa.gif';
+    }else{
+      document.getElementById('nevhiba').src='hiba.gif';      
+    };
+    nevOK=ok;
+    kuld_ell();
+  };
+
+  function szev_ell(){
+    ok='i';
+    m=document.getElementById('szev');
+    ev=new Date().getFullYear();
+    if(isNaN(Number(m.value))){
+      ok='n';
+    }else{
+      if(Number(m.value)<1900){
+        ok='n';
+      };
+      if(Number(m.value)>ev){
+        ok='n';
+      };
+    };
+    if(ok=='i'){
+      document.getElementById('szevhiba').src='pipa.gif';
+    }else{
+      document.getElementById('szevhiba').src='hiba.gif';
+    };
+    szevOK=ok;
+    kuld_ell();
+  };
+
+  function mail1_ell(){
+    ok='i';
+    ma=document.getElementById('email1');
+    var minta=new RegExp("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
+    if (minta.test(ma.value)==false){
+      ok='n';
+    };
+    if (ma.value==''){
+      ok='n';
+    };
+    if(ok=='i'){
+      document.getElementById('mail1hiba').src='pipa.gif';
+    }else{
+      document.getElementById('mail1hiba').src='hiba.gif';
+    };
+    mail1OK=ok;
+    kuld_ell();
+  }; 
+
+  function mail2_ell(){
+    ok='i';
+    ma=document.getElementById('email2');
+    var minta=new RegExp("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$");
+    if (minta.test(ma.value)==false){
+      ok='n';
+    };
+    if (ma.value==''){
+      ok='i';
+    };
+    if(ok=='i'){
+      document.getElementById('mail2hiba').src='pipa.gif';
+    }else{
+      document.getElementById('mail2hiba').src='hiba.gif';
+    };
+    mail2OK=ok;
+    kuld_ell();
+  };
+
+  function mobil_ell(){
+    ok='i';
+    mk=document.getElementById('mobilkorzet');
+    m=document.getElementById('mobilszam');
+    if(mk.value=='nincs'){
+      ok='i';
+    }else{
+      var minta=new RegExp("^[0-9]{7}$");
+      if (minta.test(m.value)==true){
+        ok='i';
+      }else{
+        ok='n';
+      };        
+    };
+    if(ok=='i'){
+      document.getElementById('mobilhiba').src='pipa.gif';
+    }else{
+      document.getElementById('mobilhiba').src='hiba.gif';
+    };
+    mobilOK=ok;
+    kuld_ell();
+  };
+
+  function irsz_ell(){
+    ok='i';
+    m=document.getElementById('irsz');
+    if(m.value.length!=4){
+      ok='n';
+    };
+    if(isNaN(Number(m.value))){
+      ok='n';
+    }else{
+      if(Number(m.value)<1010){
+        ok='n';
+      };
+    };
+    if(m.value==''){
+      ok='i';
+    };
+    if(ok=='i'){
+      document.getElementById('irszhiba').src='pipa.gif';
+    }else{
+      document.getElementById('irszhiba').src='hiba.gif';
+    };
+    irszOK=ok;
+    kuld_ell();
+  };
+    
+  function telep_ell(){
+    ok='n';
+    m=document.getElementById('telep');
+    var minta=new RegExp("^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ -]{2,25}$");
+      if (minta.test(m.value)==true){
+        ok='i';
+    };
+    if(ok=='i'){
+      document.getElementById('telephiba').src='pipa.gif';
+    }else{
+      document.getElementById('telephiba').src='hiba.gif';
+    };
+    telepOK=ok;
+    kuld_ell();
+  };  
+ 
+  function cim_ell(){
+    ok='n';
+    m=document.getElementById('cim');
+    var minta=new RegExp("^[a-zA-Z0-9áéíóöőúüűÁÉÍÓÖÚÜŰ /.-//]{4,25}$");
+      if (minta.test(m.value)==true){
+        ok='i';
+    };
+    if(m.value==''){
+      ok='i';
+    };     
+    if(ok=='i'){
+      document.getElementById('cimhiba').src='pipa.gif';
+    }else{
+      document.getElementById('cimhiba').src='hiba.gif';
+    };
+    cimOK=ok; 
+    kuld_ell();  
+  };
+  
+  function nem_ell(){
+    ok='n';
+    m=document.getElementById('nem');
+    if((m.value=='f') || (m.value=='n')){
+      ok='i';
+      document.getElementById('nemhiba').src='pipa.gif';
+    }else{
+      document.getElementById('nemhiba').src='hiba.gif';      
+    };
+    nemOK=ok;
+    kuld_ell();
+  };
+
+  function etelep_ell(){
+    ok='n';
+    m=document.getElementById('etelepuj');
+    var minta=new RegExp("^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ -]{2,25}$");
+      if (minta.test(m.value)==true){
+        ok='i';
+    };
+     if(m.value==''){
+      ok='i';
+    };
+    if(ok=='i'){
+      document.getElementById('etelephiba').src='pipa.gif';
+    }else{
+      document.getElementById('etelephiba').src='hiba.gif';
+    };
+    etelepOK=ok;
+    kuld_ell();
+  };  
+
+   
+</script>
+
+<p style="float:right;">
+<?php
+if(isset($szemsorsz)){
+?>
+Utolsó módosítás: <?php echo($sz_utmod); ?>
+<?php
+};
+?>
+<input type="text" readonly value=" Az ilyen mezők kitöltése kötelező! " class="kotelezo" style="width:175px;cursor: none;margin-left:20px;" />
+</p>
+<h1>Adatlap</h1>
+<?php
+/*if(substr($_SERVER['HTTP_REFERER'],0,40)=='http://vera.mente.hu/index.php?muv=regel'){
+  $act=$_SERVER['HTTP_REFERER'];
+}else{
+  $act=$_SERVER['HTTP_URI'];
+};*/
+?>
+<form method="post"> <!--
+                     action="<?php //echo($act); ?>"
+                    -->
+<input type="hidden" name="szemsorsz" value="<?php echo($sz_sorsz); ?>"/>
+<table border="0">
+<tr style="">
+<td class="fejlec" style="text-align:right;border-bottom:1px dotted black;">Név:</td>
+<td style="border-bottom:1px dotted black;">
+    <input type="text" name="nev" required id="nev" size="33" value="<?php echo($sz_nev); ?>" 
+     onBlur="nev_ell();" class="kotelezo" />
+     <img id="nevhiba" src="hiba.gif" title="Helyes forma: abc kis/nagy betűi, szóköz, kötőjel és pont" />
+    <span style="font-style:italic;margin-left:5px;">Szül.év:</span>
+    <input type="text" name="szev" required id="szev" size="4" value="<?php echo($sz_szev); ?>"
+     onBlur="szev_ell();" class="kotelezo" />
+     <img id="szevhiba" src="hiba.gif" title="Helyes forma: 1900 utáni és nem jövő beli" />
+    <span style="font-style:italic;margin-left:5px;">Nem:</span>
+    <input type="text" name="nem" required id="nem" size="1" value="<?php echo($sz_nem); ?>"
+     onBlur="nem_ell();" class="kotelezo" />
+     <img id="nemhiba" src="hiba.gif" title="Helyes forma: f vagy n betű" /> 
+</td>
+<td rowspan="7" style="vertical-align:top;border-left:1px dotted black;<?php
+if($_SESSION['regio']!=='7R'){
+  echo("display:none;");
+};
+?>"" >
+Megjegyzés:<br />
+<textarea name="megj" style="height:300px;width:200px;"><?php echo($sz_megj); ?></textarea>
+<br />max: 2.147.483.647 karakter :)<br />
+*törlésre megjelöléshez bárhol<br />szerepeljen benne a "KITÖRÖLNI" szó!
+</td>
+</tr>
+<tr>
+<td class="fejlec" style="text-align:right;border-bottom:1px dotted black;">Email:</td>
+<td style="border-bottom:1px dotted black;">
+  <input type="text" name="email1" required id="email1" style="width:300px;" value="<?php echo($sz_email1); ?>" class="kotelezo" onBlur="mail1_ell();" />
+  <img src="citromail.png" title="Citromail" onClick="document.getElementById('email1').value+='@citromail.hu';mail1_ell();" />
+  <img src="gmail.png" title="Gmail" onClick="document.getElementById('email1').value+='@gmail.com';mail1_ell();" />
+  <img src="freemail.png" title="Freemail" onClick="document.getElementById('email1').value+='@freemail.hu';mail1_ell();" />
+  <img src="indamail.png" title="Indamail" onClick="document.getElementById('email1').value+='@indamail.hu';mail1_ell();" />
+  <img src="hotmail.png" title="Hotmail" onClick="document.getElementById('email1').value+='@hotmail.com';mail1_ell();" />
+  <img id="mail1hiba" src="hiba.gif" title="Helyes forma: azonostíó@szolgáltató.domain" /> 
+  <br />
+  <input type="text" name="email2" id="email2" style="width:300px;" value="<?php echo($sz_email2); ?>" onBlur="mail2_ell();" />
+  <img src="citromail.png" title="Citromail" onClick="document.getElementById('email2').value+='@citromail.hu';" />
+  <img src="gmail.png" title="Gmail" onClick="document.getElementById('email2').value+='@gmail.com';" />
+  <img src="freemail.png" title="Freemail" onClick="document.getElementById('email2').value+='@freemail.hu';" />
+  <img src="indamail.png" title="Indamail" onClick="document.getElementById('email2').value+='@indamail.hu';" />
+  <img src="hotmail.png" title="Hotmail" onClick="document.getElementById('email2').value+='@hotmail.com';" />
+  <img id="mail2hiba" src="pipa.gif" title="Helyes forma: azonostíó@szolgáltató.domain" />
+</td>
+</tr>
+<tr>
+<td class="fejlec" style="text-align:right;border-bottom:1px dotted black;" >Mobil:</td>
+<td style="border-bottom:1px dotted black;">+36 - 
+<select name="mobilkorzet" id="mobilkorzet" class="kotelezo" 
+ onChange="if(this.value=='nincs'){document.getElementById('mobilszam').style.visibility='hidden';
+                                   document.getElementById('mobilszam').value='';}
+                            else{document.getElementById('mobilszam').style.visibility='visible';}; mobil_ell();">
+ <option <?php if($sz_mobil==''){echo(' selected="selected" ');}; ?>>nincs</option>
+ <option <?php if(substr($sz_mobil,0,2)==20){echo(' selected="selected" ');}; ?>>20</option>
+ <option <?php if(substr($sz_mobil,0,2)==30){echo(' selected="selected" ');}; ?>>30</option>
+ <option <?php if(substr($sz_mobil,0,2)==70){echo(' selected="selected" ');}; ?>>70</option>
+</select>
+<input type="text" name="mobil" id="mobilszam" size="9" value="<?php echo(substr($sz_mobil,2,7)); ?>" 
+class="kotelezo" onBlur="mobil_ell();" <?php if($sz_mobil==''){echo(' style="visibility:hidden;"');}; ?> />
+<img id="mobilhiba" src="pipa.gif" title="Helyes forma: 7 számjegy" />
+<p style="float:right;margin:0px;padding:0px;">
+<input type="checkbox" name="kf" title="Katolikus Flottás Mobilszám" <?php if($sz_kf=='i'){echo('checked="checked"');}; ?> />KF
+</p>
+</td>
+</tr>
+<tr>
+<td class="fejlec" style="text-align:right;border-bottom:1px dotted black;">Lakhely:</td>
+<td style="border-bottom:1px dotted black;">
+    <input type="text" name="irsz" id="irsz" size="3" title="Irányítószám"  value="<?php echo($sz_irsz); ?>" 
+    onBlur="irsz_ell();"/><img id="irszhiba" src="pipa.gif" title="Helyes forma: 1010 és 9999 közti szám" /> 
+    <input type="text" name="telep" required id="telep" title="Település" style="width:100px;" value="<?php echo($sz_telep); ?>" class="kotelezo"
+    onBlur="telep_ell();" />
+    <img id="telephiba" src="hiba.gif" title="Helyes forma: abc kis/nagy betűi, szóköz és kötőjel" /> 
+    <input type="text" name="cim" id="cim" title="Címrész" style="width:150px;" value="<?php echo($sz_cim); ?>" onBlur="cim_ell();" />
+    <img id="cimhiba" src="pipa.gif" title="Helyes forma: abc kis/nagy betűi, szóköz,pont,kötőjel és / jel" /></td>
+</tr>
+<tr>
+<td class="fejlec" style="text-align:right;border-bottom:1px dotted black;">Plébánia:</td>
+<td style="border-bottom:1px dotted black;">  
+  <select name="etelep">
+    <?php
+    $ep=ab_lek("SELECT DISTINCT pleb FROM t_szemelyek WHERE length(pleb)>0 ORDER BY pleb");
+    while ($sp=mysql_fetch_assoc($ep)) {
+    	echo("<option");
+      if($sp['pleb']==$sz_pleb){
+        echo(' selected="selected" ');
+      };
+      echo(">".$sp['pleb']."</option>");
+    };
+    ?>
+  </select>
+  vagy:
+  <input type="text" name="etelepuj" id="etelepuj" title="Egyházközség"  value="" onBlur="etelep_ell();" />
+  <img id="etelephiba" src="pipa.gif" title="Helyes forma: abc kis/nagy betűi, szóköz és kötőjel" />
+</td>
+</tr>        
+<?php
+if(!isset($szemsorsz))
+{
+?>
+<tr>
+<td style="border-bottom:1px dotted black;">
+  Kezdőcsoport
+</td>
+<td style="border-bottom:1px dotted black;">
+  <select name="kezdocsop" >
+    <option>nincs</option>
+    <?php
+    $ecs=ab_lek("SELECT * FROM t_csoportok ORDER BY csnev ASC");
+    while ($scs=mysql_fetch_assoc($ecs)) {
+    	echo("<option value='".$scs['csid']."'>".$scs['csnev']."</option>");
+    };
+    ?>
+  </select>
+</td>
+</tr>
+<?php
+};
+?>
+<tr>
+  <td colspan="2">
+    <input type="button" value="Bezár módosítás nélkül..." onClick="window.close();" style="float:right;margin-left:5px;" />
+    <input type="submit" value="Adatlap mentése" name="szemadatlapmentesgomb" id="szemadatlapmentesgomb" style="margin-left: 77px;float:right;display:none;" class="kotelezo" /> 
+    <input type="checkbox" name="ablakbezaras" /> Ablak bezárása mentés után!
+  </td>
+</tr>
+</table>
+</form>
+<?php
+if($_SESSION['regio']=='7R'){
+?>
+<h2 style="margin-top:15px;">Csoporttagságok</h2>
+<table border="0">
+<tr>
+<td style="vertical-align:top;border-right:1px dotted black;">Jelenlegi tagságok:
+<?php
+$e2=ab_lek("SELECT * FROM vCsopTagsagNevvel WHERE szid=$sz_sorsz");
+if(mysql_num_rows($e2)==0){
+ echo("<br />Nincs még tagság...");
+}else{
+  echo("<ul>");
+  while($sor2=mysql_fetch_assoc($e2)){
+    echo("<li>".$sor2['csnev']."</li>");
+  };
+  echo("</ul>");
+};
+?>
+</td>
+<td style="vertical-align:top;border-right:1px dotted black;">
+<span style="font-weight:bold;color:red;"><br />Új csoportba felvétel:</span><br />
+<form method="post">
+  <select name="csoportbahova">
+   <?php
+    $e2=ab_lek("SELECT * FROM t_csoportok WHERE csid NOT IN (SELECT csid FROM t_csoptagsagok WHERE szid=$sz_sorsz)");
+    while($sor2=mysql_fetch_assoc($e2)){
+      echo("<option value='".$sor2['csid']."'>".$sor2['csnev']."</option>");
+    };
+   ?>
+ </select>
+ <input type="hidden" name="szemsorsz" value="<?php echo($sz_sorsz); ?>" />
+ <input type="submit" name="csoportbasorolasgomb" value="Csoportba felvétel!" />
+</form>
+<span style="font-weight:bold;color:red;"><br />Csoportból törlés:</span><br />
+<form method="post">
+  <select name="ebbolki">
+   <?php
+    $e2=ab_lek("SELECT * FROM t_csoportok WHERE csid IN (SELECT csid FROM t_csoptagsagok WHERE szid=$sz_sorsz)");
+    while($sor2=mysql_fetch_assoc($e2)){
+      echo("<option value='".$sor2['csid']."'>".$sor2['csnev']."</option>");
+    };
+   ?>
+ </select>
+ <input type="hidden" name="szemsorsz" value="<?php echo($sz_sorsz); ?>" />
+ <input type="submit" name="csoportboltorlesgomb" value="Csoportból törlés!" />
+</form>
+</td>
+<td style="width:50px;"></td>
+<td style="vertical-align:top;">Regisztrált a következő eseményeken:
+  <ul>
+   <?php
+    $e2=ab_lek("SELECT * FROM vEseReg WHERE ssorsz=$sz_sorsz");
+    while($sor2=mysql_fetch_assoc($e2)){
+      echo("<li>".$sor2['eNev']." - ".$sor2['eTelep']." (".$sor2['rKod'].") ".$sor2['eDatumK']."</li>");
+    };
+   ?>
+   </ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<?php
+};
+
+?>
+
+<?php
+//if($sz_nev<>''){
+?>
+
+<script type="text/javascript">
+nev_ell();
+szev_ell();
+nem_ell();
+mail1_ell();
+mail2_ell(); 
+mobil_ell(); 
+irsz_ell();    
+telep_ell();
+cim_ell();     
+etelep_ell();  
+</script>
+
+<?php
+//};
+?>

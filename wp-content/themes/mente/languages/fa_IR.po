@@ -1,0 +1,656 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sahifa 1.3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-10 23:02+0200\n"
+"PO-Revision-Date: 2013-02-10 23:02+0200\n"
+"Last-Translator: Fouad Badawy <fouad@mo3aser.com>\n"
+"Language-Team: Tielabs <info@tielabs.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_EG\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../404.php:6
+#: ../loop.php:3
+#: ../page.php:7
+msgid "Not Found"
+msgstr "پیدا نشد"
+
+#: ../404.php:9
+msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+msgstr "پوزش می طلبیم، ولی برگی که درخواست کرده اید پیدا نشد. شاید اگر دنبال آن بگردید پیدا شود."
+
+#: ../404.php:13
+msgid "Pages"
+msgstr "برگ ها"
+
+#: ../404.php:18
+msgid "Categories"
+msgstr "دسته بندی ها"
+
+#: ../404.php:23
+msgid "Tags"
+msgstr "برچسب ها"
+
+#: ../404.php:35
+msgid "Authors"
+msgstr "نویسنده‌گان"
+
+#: ../archive.php:9
+#, php-format
+msgid "Daily Archives: <span>%s</span>"
+msgstr "بایگانی/آرشیف روزانه: <span>%s</span>"
+
+#: ../archive.php:11
+#, php-format
+msgid "Monthly Archives: <span>%s</span>"
+msgstr "بایگانی/آرشیو ماهانه: <span>%s</span>"
+
+#: ../archive.php:13
+#, php-format
+msgid "Yearly Archives: <span>%s</span>"
+msgstr "بایگانی/آرشیو سالانه: <span>%s</span>"
+
+#: ../archive.php:15
+msgid "Blog Archives"
+msgstr "بایگانی/آرشیو وبگاه ها"
+
+#: ../author.php:9
+#, php-format
+msgid "Author Archives: %s"
+msgstr "بایگانی نویسنده: %s"
+
+#: ../author.php:12
+#: ../category.php:10
+msgid "Feed Subscription"
+msgstr "اشتراک به خبردهی"
+
+#: ../author.php:27
+msgid " 's site"
+msgstr "وبسایت"
+
+#: ../author.php:30
+msgid "  on Twitter"
+msgstr "  در Twitter"
+
+#: ../author.php:33
+msgid "  on Facebook"
+msgstr "  در Facebook"
+
+#: ../author.php:36
+msgid "  on Google+"
+msgstr "  در Google+"
+
+#: ../author.php:39
+msgid "  on Linkedin"
+msgstr "  در  Linkedin"
+
+#: ../author.php:42
+msgid "  on Flickr"
+msgstr "  در Flickr"
+
+#: ../author.php:45
+msgid "  on YouTube"
+msgstr "  در YouTube"
+
+#: ../author.php:48
+msgid "  on Pinterest"
+msgstr "  در Pinterest"
+
+#: ../category.php:7
+#, php-format
+msgid "Category Archives: %s"
+msgstr "بایگانی دسته بندی ها : %s"
+
+#: ../comments.php:3
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "این نوشته دارای گذر واژه است. برای دیدن نظرها لطف کرده و گذر واژه را داخل کنید."
+
+#: ../comments.php:12
+msgid "No comments"
+msgstr "نظری نیست."
+
+#: ../comments.php:12
+msgid "One comment"
+msgstr "یک نظر"
+
+#: ../comments.php:12
+msgid "comments"
+msgstr "نظر"
+
+#: ../comments.php:17
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> نظرهای قبلی"
+
+#: ../comments.php:18
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "نظرهای تازه‌تر <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../comments.php:34
+msgid "Comments are closed."
+msgstr "نظر دادن بسته است."
+
+#: ../comments.php:46
+msgid "Name"
+msgstr "نام"
+
+#: ../comments.php:48
+msgid "Email"
+msgstr "ایمیل"
+
+#: ../comments.php:50
+msgid "Website"
+msgstr "وبسایت/تارک"
+
+#: ../comments.php:53
+msgid " Required fields are marked"
+msgstr "خانه های ضروری نشانه گذاری شده است."
+
+#: ../comments.php:57
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr "شما باید <a href=\"%s\">داخل شوید </a> تا نظر داده بتوانید."
+
+#: ../comments.php:58
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
+msgstr "شما فعلا با این نام داخل شده اید <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"از این حساب خارج شوید\">می خواهید خارج شوید؟</a>"
+
+#: ../comments.php:59
+msgid "Your email address will not be published."
+msgstr "ایمیل شما نشر نخواهد شد"
+
+#: ../comments.php:60
+msgid "Leave a Reply"
+msgstr "جوابی بنویسید"
+
+#: ../comments.php:61
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "جوابی بنویسید %s"
+
+#: ../comments.php:62
+msgid "Cancel reply"
+msgstr "جواب را باطل کن"
+
+#: ../comments.php:63
+msgid "Post Comment"
+msgstr "نشر نظر"
+
+#: ../footer.php:23
+msgid "Scroll To Top"
+msgstr ""
+
+#: ../header.php:13
+#, php-format
+msgid "Page %s"
+msgstr "برگ %s"
+
+#: ../header.php:41
+msgid "Search"
+msgstr "جستجو"
+
+#: ../header.php:42
+msgid "Search..."
+msgstr "جستجوی ..."
+
+#: ../header.php:77
+msgid "Random Article"
+msgstr "نوشته شانسی"
+
+#: ../index.php:23
+msgid "You can use Homepage builder to build your homepage"
+msgstr ""
+
+#: ../loop.php:5
+#: ../page.php:9
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "پوزش می طلبیم ولی نتیجه یی در ارشیو پیدا نشد. شاید اگر جستجو کنید بتوانید مطلب مشابه یی را پیدا کنید."
+
+#: ../loop.php:19
+#: ../loop.php:53
+msgid "Leave a comment"
+msgstr "نظری بدهید"
+
+#: ../loop.php:19
+#: ../loop.php:53
+msgid "1 Comment"
+msgstr "یک نظر"
+
+#: ../loop.php:19
+#: ../loop.php:53
+msgid "% Comments"
+msgstr "% نظرها"
+
+#: ../loop.php:24
+#: ../loop.php:36
+#: ../loop.php:57
+msgid "Read More &raquo;"
+msgstr "بیشتر بخوانید &raquo;"
+
+#: ../page.php:32
+msgid "Pages:"
+msgstr "برگ ها:"
+
+#: ../page.php:34
+msgid "Edit"
+msgstr "ویرایش"
+
+#: ../search.php:8
+#, php-format
+msgid "Search Results for: %s"
+msgstr "نتیجه جستجو برای :  %s"
+
+#: ../search.php:10
+msgid "Nothing Found"
+msgstr "چیزی پیدا نشد."
+
+#: ../search.php:22
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "پوزش می طلبیم ولی نتیجه یی در مورد چیزی که جستجو کرده اید پیدا نشد. شاید اگر کلمات دیگری را استفاده کنید بتوانید مطلب را پیدا کنید."
+
+#: ../single.php:55
+msgid "Tagged with: "
+msgstr "برچسب زده شده با :"
+
+#: ../single.php:68
+msgid "About"
+msgstr "درباره‌ی"
+
+#: ../single.php:79
+msgid "Previous:"
+msgstr "پیشین:"
+
+#: ../single.php:80
+msgid "Next:"
+msgstr "پسین:"
+
+#: ../tag.php:7
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "بایگانی/آرشیو برچسب ها : %s"
+
+#: ../template-restrict.php:43
+msgid "You must be "
+msgstr "شما باید"
+
+#: ../template-restrict.php:43
+msgid "logged in"
+msgstr "داخل شده باشید"
+
+#: ../template-restrict.php:43
+msgid " to view this page."
+msgstr "تا این برگ را ببینید."
+
+#: ../template-timeline.php:60
+#, php-format
+msgid "Permalink to %s"
+msgstr "پیوند همیشگی به %s"
+
+#: ../functions/theme-functions.php:26
+msgid "Top Menu Navigation"
+msgstr ""
+
+#: ../functions/theme-functions.php:27
+msgid "Primary Navigation"
+msgstr ""
+
+#: ../functions/theme-functions.php:52
+msgid "You can use WP menu builder to build menus"
+msgstr ""
+
+#: ../functions/theme-functions.php:68
+msgid "Go to..."
+msgstr "برو به ..."
+
+#: ../functions/theme-functions.php:694
+msgid "Social Networking"
+msgstr "شبکه های اجتماعی"
+
+#: ../functions/theme-functions.php:779
+msgid "No items."
+msgstr "نوشته‌یی نیست."
+
+#: ../functions/theme-functions.php:784
+msgid "Posted "
+msgstr "نشر شده."
+
+#: ../functions/theme-functions.php:1134
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+#: ../functions/theme-functions.php:1137
+msgid "Dashboard"
+msgstr ""
+
+#: ../functions/theme-functions.php:1138
+msgid "Your Profile"
+msgstr "پروفایل شما"
+
+#: ../functions/theme-functions.php:1139
+msgid "Logout"
+msgstr "بیرون شوید"
+
+#: ../functions/theme-functions.php:1173
+msgid "Username"
+msgstr "اسم کاربر"
+
+#: ../functions/theme-functions.php:1174
+msgid "Password"
+msgstr "گذر واژه"
+
+#: ../functions/theme-functions.php:1175
+msgid "Log in"
+msgstr "داخل شدن"
+
+#: ../functions/theme-functions.php:1176
+msgid "Remember Me"
+msgstr "مرا بخاطر بسپار"
+
+#: ../functions/theme-functions.php:1180
+msgid "Register"
+msgstr "ثبت نام"
+
+#: ../functions/theme-functions.php:1181
+msgid "Lost your password?"
+msgstr "گذر واژه را فراموش کرده اید؟"
+
+#: ../functions/theme-functions.php:1252
+msgid "Review Overview"
+msgstr ""
+
+#: ../functions/theme-functions.php:1304
+msgid "Summary :"
+msgstr ""
+
+#: ../functions/theme-functions.php:1362
+#: ../functions/theme-functions.php:1369
+#: ../functions/theme-functions.php:1375
+#: ../functions/theme-functions.php:1381
+msgid "ago"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:13
+msgid "Primary Widget Area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:15
+msgid "The Primary widget area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:44
+msgid "First Footer Widget Area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:46
+msgid "The first footer widget area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:52
+msgid "Second Footer Widget Area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:54
+msgid "The Second footer widget area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:61
+msgid "Third Footer Widget Area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:63
+msgid "The Third footer widget area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:70
+msgid "Fourth Footer Widget Area"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:72
+msgid "The Fourth footer widget area"
+msgstr ""
+
+#: ../includes/breadcrumbs.php:11
+msgid "You are here:"
+msgstr "شما اینجا هستید:"
+
+#: ../includes/breadcrumbs.php:15
+msgid "Home"
+msgstr "خانه"
+
+#: ../includes/breadcrumbs.php:105
+msgid "page "
+msgstr "برگ"
+
+#: ../includes/breaking-news.php:18
+msgid "Breaking News"
+msgstr "آخرین خبرها"
+
+#: ../includes/pagenavi.php:145
+msgid "Page %CURRENT_PAGE% of %TOTAL_PAGES%"
+msgstr "برگه %CURRENT_PAGE% از %TOTAL_PAGES%"
+
+#: ../includes/pagenavi.php:148
+msgid "&laquo; First"
+msgstr "&laquo; اولین"
+
+#: ../includes/pagenavi.php:149
+msgid "Last &raquo;"
+msgstr "آخرین &raquo;"
+
+#: ../includes/pagenavi.php:150
+msgid "&raquo;"
+msgstr "&raquo;"
+
+#: ../includes/pagenavi.php:151
+msgid "&laquo;"
+msgstr "&laquo;"
+
+#: ../includes/pagenavi.php:152
+#: ../includes/pagenavi.php:153
+msgid "..."
+msgstr "..."
+
+#: ../includes/post-meta.php:6
+msgid "Posted by: "
+msgstr "نشرشده توسط:"
+
+#: ../includes/post-meta.php:9
+msgid "on "
+msgstr "بالای"
+
+#: ../includes/post-meta.php:12
+msgid "in "
+msgstr "در"
+
+#: ../includes/post-related.php:29
+msgid "Related Articles"
+msgstr "نوشته های مشابه"
+
+#: ../includes/single-post-share.php:6
+msgid "Share !"
+msgstr "شریک بسازید!"
+
+#: ../includes/wp_list_comments.php:9
+#, php-format
+msgid "%s "
+msgstr "%s "
+
+#: ../includes/wp_list_comments.php:10
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s در %2$s"
+
+#: ../includes/wp_list_comments.php:10
+#: ../includes/wp_list_comments.php:30
+msgid "(Edit)"
+msgstr "ویرایش"
+
+#: ../includes/wp_list_comments.php:15
+msgid "Your comment is awaiting moderation."
+msgstr "نظر شما در انتظار بررسی مدیر است."
+
+#: ../includes/wp_list_comments.php:30
+msgid "Pingback:"
+msgstr "تعقيب:"
+
+#: ../includes/widgets/widget-ads.php:72
+#: ../includes/widgets/widget-ads.php:183
+#: ../includes/widgets/widget-ads.php:294
+#: ../includes/widgets/widget-ads.php:404
+#: ../includes/widgets/widget-ads.php:514
+#: ../includes/widgets/widget-ads.php:621
+#: ../includes/widgets/widget-ads.php:721
+#: ../includes/widgets/widget-ads.php:822
+#: ../includes/widgets/widget-ads.php:926
+#: ../includes/widgets/widget-ads.php:1029
+msgid " Advertisement"
+msgstr "اعلان"
+
+#: ../includes/widgets/widget-author.php:21
+#, php-format
+msgid "About %s"
+msgstr "درباره‌ی %s "
+
+#: ../includes/widgets/widget-author.php:87
+#, php-format
+msgid "By %s"
+msgstr "توسط %s"
+
+#: ../includes/widgets/widget-author.php:95
+msgid "All"
+msgstr "همه"
+
+#: ../includes/widgets/widget-authors-posts.php:46
+msgid "Authors Posts"
+msgstr ""
+
+#: ../includes/widgets/widget-category.php:46
+msgid "Category Posts"
+msgstr "نوشته های هر دسته "
+
+#: ../includes/widgets/widget-comments-avatar.php:42
+msgid "Recent Comments"
+msgstr "نظرهای تازه"
+
+#: ../includes/widgets/widget-counter.php:43
+#: ../includes/widgets/widget-feedburner.php:31
+msgid "Subscribe"
+msgstr "مشترک شوید"
+
+#: ../includes/widgets/widget-counter.php:43
+#: ../includes/widgets/widget-counter.php:74
+#: ../includes/widgets/widget-counter.php:84
+msgid "Subscribers"
+msgstr "مشترک ها"
+
+#: ../includes/widgets/widget-counter.php:44
+msgid "To RSS Feed"
+msgstr ""
+
+#: ../includes/widgets/widget-counter.php:54
+#: ../includes/widgets/widget-counter.php:94
+msgid "Followers"
+msgstr "دنباله‌گرها"
+
+#: ../includes/widgets/widget-counter.php:64
+msgid "Fans"
+msgstr "هواخواهان ما"
+
+#: ../includes/widgets/widget-custom-author.php:49
+msgid "About Author"
+msgstr "درباره‌ی نویسنده"
+
+#: ../includes/widgets/widget-facebook.php:41
+msgid "Find us on Facebook"
+msgstr "در فیس بک به ما بپیوندید"
+
+#: ../includes/widgets/widget-feedburner.php:28
+msgid "Enter your e-mail address"
+msgstr "ایمیل آدرس خود را داخل کنید"
+
+#: ../includes/widgets/widget-feedburner.php:47
+msgid "FeedBurner Widget"
+msgstr "ابزارک فیدبرنر"
+
+#: ../includes/widgets/widget-feedburner.php:47
+msgid "Subscribe to our email newsletter."
+msgstr "مشترک خبرنامه‌ی ما شوید."
+
+#: ../includes/widgets/widget-flickr.php:44
+msgid "Flickr"
+msgstr "تصاویر فلیکر"
+
+#: ../includes/widgets/widget-google.php:53
+msgid "Follow us on Google+"
+msgstr "مارا در Google+ تعقیب کنید"
+
+#: ../includes/widgets/widget-login.php:49
+msgid "Login"
+msgstr "ورود"
+
+#: ../includes/widgets/widget-news-pic.php:44
+msgid "News in Pictures"
+msgstr "نوشته های تصویری/ویدیویی"
+
+#: ../includes/widgets/widget-posts.php:52
+msgid "Recent Posts"
+msgstr "نوشته های تازه"
+
+#: ../includes/widgets/widget-search.php:19
+msgid "to search type and hit enter"
+msgstr "برای جستجو چیزی نوشته و اینتر را فشار دهید"
+
+#: ../includes/widgets/widget-social.php:48
+msgid "Social"
+msgstr "شبکه های اجتماعی"
+
+#: ../includes/widgets/widget-tabbed.php:18
+msgid "Popular"
+msgstr "پرخواننده"
+
+#: ../includes/widgets/widget-tabbed.php:19
+msgid "Recent"
+msgstr "تازه"
+
+#: ../includes/widgets/widget-tabbed.php:20
+msgid "Comments"
+msgstr "نظرها"
+
+#: ../includes/widgets/widget-text-html.php:56
+msgid "Text"
+msgstr "متن"
+
+#: ../includes/widgets/widget-twitter.php:58
+msgid "@Follow Me"
+msgstr "@مرا دنبال کنید"
+
+#: ../includes/widgets/widget-video.php:63
+msgid " Featured Video"
+msgstr "ویدیو"
+
+#: ../includes/widgets/widget-youtube.php:40
+msgid "Subscribe to our Channel"
+msgstr ""
+
+#: ../panel/mpanel-functions.php:78
+msgid "Use this image"
+msgstr "از این تصویر استفاده کنید"
+
+#: ../panel/shortcodes/shortcode.php:396
+msgid "About The Author"
+msgstr "درباره‌ی نویسنده"
+
+#~ msgid "One Response to %2$s"
+
+#~ msgid_plural "%1$s Responses to %2$s"
+#~ msgstr[0] "تعليق واحد على %2$s"
+#~ msgstr[1] "%1$s تعليقات على %2$s"

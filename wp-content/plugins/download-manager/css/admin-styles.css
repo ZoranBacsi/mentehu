@@ -1,0 +1,167 @@
+
+#wpdm-attached-files .w3eden .panel-heading .btn{
+    font-size: 9px;
+}
+
+#wpdm-attached-files .w3eden .panel.panel-default{
+    border-radius: 3px;
+    border-color: #eeeeee;
+    box-shadow: none;
+    margin-bottom: 10px !important;
+}
+
+#wpdm-attached-files #accordion{margin-top: 10px !important;}
+
+#wpdm-attached-files .w3eden .panel-heading{
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 10px;
+
+}
+
+#wpdm-attached-files .w3eden .panel.panel-default > .panel-heading{
+    border-color: #eee !important;
+}
+
+#wpdm-attached-files .w3eden .panel-heading a{
+    box-shadow:  none !important;
+    outline: none !important;
+    text-decoration: none !important;
+}
+
+#wpdm-attached-files .w3eden .file-ico{
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#download_count,
+#wpdmsaleamt,
+#wpdmsaleqty{
+    width: 60px;
+}
+#wpdmuprice{
+    width: 90px;
+}
+.panel-heading a{ text-decoration: none !important; }
+
+.table-v td{ vertical-align: middle !important; }
+a:focus, a:active{ box-shadow: none !important; }
+.chzn-drop { width: 100% !important; }
+.form-control, .btn{ border-radius: 3px; }
+
+.wpdm-settings-fields {
+    padding: 20px 0;
+
+}
+
+.wpdm-settings-fields > h3{
+    font-size: 12pt;
+    font-weight: 800;
+    background: #eeeeee;
+    padding: 8px 20px;
+}
+
+.wpdm-settings-fields .form-group{
+    padding: 5px 20px;
+}
+
+.wpdm-settings-fields .form-group label{
+    display: block;
+    clear:both;
+    font-weight: 800 !important;
+}
+
+.w3eden .modal.fade.in{
+    z-index: 9999 !important;
+    background: rgba(0,0,0,0.6) !important;
+    overflow: hidden;
+}
+.w3eden .modal-backdrop{
+    position: absolute;
+    z-index: -9999999 !important;
+
+}
+
+.w3eden .alert{
+    box-shadow: none;
+}
+.w3eden .alert.alert-info:before {
+    background: #5bc0de none repeat scroll 0 0;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #fff;
+    content: "\f05a";
+    font-family: FontAwesome;
+    font-size: 16pt;
+    height: 100%;
+    margin: -15px 0 0 -60px;
+    padding-top: 15px;
+    position: absolute;
+    text-align: center;
+    width: 45px;
+}
+.w3eden .alert.alert-info{
+    background: #f5f5f5 !important;
+    position: relative;
+    padding-left: 60px !important;
+    border: 0 !important;
+}
+.w3eden .alert.alert-info, .alert.alert-info *{
+    color: #5bc0de !important;
+}
+
+.w3eden .alert.alert-success:before {
+    background: #63B76C none repeat scroll 0 0;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    color: #fff;
+    content: "\f058";
+    font-family: FontAwesome;
+    font-size: 16pt;
+    height: 100%;
+    margin: -15px 0 0 -60px;
+    padding-top: 15px;
+    position: absolute;
+    text-align: center;
+    width: 45px;
+}
+.w3eden .alert.alert-success{
+    background: #f5f5f5 !important;
+    position: relative;
+    padding-left: 60px !important;
+    border: 0 !important;
+}
+.w3eden .alert.alert-success, .alert.alert-success *{
+    color: #63B76C !important;
+}
+
+.w3eden.wpdm-accordion .panel-heading{
+    background-image: linear-gradient(to bottom, #fafafa 0px, #f1f1f1 100%) !important;
+}
+.w3eden.wpdm-accordion .panel-default:last-child{
+    border-bottom: 0;
+}
+.w3eden.wpdm-accordion .panel-default:last-child .panel-body{
+    border-bottom: 1px solid #ddd;
+}
+
+.wpdm-th-icon{
+    font-size: 0.8em;border: 1px solid;border-radius: 500px;height: 18px;width: 18px;display: inline-block;text-align: center;vertical-align:middle;line-height: 17px;
+}
+
+.w3eden .panel fieldset label{
+    font-weight: normal;
+}
+.w3eden .panel fieldset{
+    border: 1px solid #eeeeee;
+    padding: 10px 15px 15px;
+}
+.w3eden .panel fieldset legend{
+    font-size: 10pt;
+    font-weight: 900;
+    float: left;
+    padding-bottom: 10px;
+}

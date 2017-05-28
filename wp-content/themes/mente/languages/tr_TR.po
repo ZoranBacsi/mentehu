@@ -1,0 +1,649 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sahifa 1.3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-10 23:04+0200\n"
+"PO-Revision-Date: 2013-02-10 23:04+0200\n"
+"Last-Translator: Fouad Badawy <fouad@mo3aser.com>\n"
+"Language-Team: Tielabs <info@tielabs.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: gettext;gettext_noop;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Language: en_EG\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../404.php:6
+#: ../loop.php:3
+#: ../page.php:7
+msgid "Not Found"
+msgstr "Bulunamadı"
+
+#: ../404.php:9
+msgid "Apologies, but the page you requested could not be found. Perhaps searching will help."
+msgstr "Özür dileriz, ama istediğiniz sayfa bulunamadı. Arama yapmanız size yardımcı olabilir."
+
+#: ../404.php:13
+msgid "Pages"
+msgstr "Sayfalar"
+
+#: ../404.php:18
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: ../404.php:23
+msgid "Tags"
+msgstr "Etiketler"
+
+#: ../404.php:35
+msgid "Authors"
+msgstr "Yazarlar"
+
+#: ../archive.php:9
+#, php-format
+msgid "Daily Archives: <span>%s</span>"
+msgstr "Günlük Arşiv: <span>%s</span>"
+
+#: ../archive.php:11
+#, php-format
+msgid "Monthly Archives: <span>%s</span>"
+msgstr "Aylık Arşiv: <span>%s</span>"
+
+#: ../archive.php:13
+#, php-format
+msgid "Yearly Archives: <span>%s</span>"
+msgstr "Yıllık Arşiv: <span>%s</span>"
+
+#: ../archive.php:15
+msgid "Blog Archives"
+msgstr "Blog Arşivi"
+
+#: ../author.php:9
+#, php-format
+msgid "Author Archives: %s"
+msgstr "Yazar Arşivi: %s"
+
+#: ../author.php:12
+#: ../category.php:10
+msgid "Feed Subscription"
+msgstr "Haber Aboneliği"
+
+#: ../author.php:27
+msgid " 's site"
+msgstr "sitesi"
+
+#: ../author.php:30
+msgid "  on Twitter"
+msgstr "Twitter"
+
+#: ../author.php:33
+msgid "  on Facebook"
+msgstr "Facebook"
+
+#: ../author.php:36
+msgid "  on Google+"
+msgstr "Google+"
+
+#: ../author.php:39
+msgid "  on Linkedin"
+msgstr "Linkedin"
+
+#: ../author.php:42
+msgid "  on Flickr"
+msgstr "Flickr"
+
+#: ../author.php:45
+msgid "  on YouTube"
+msgstr "Youtube"
+
+#: ../author.php:48
+msgid "  on Pinterest"
+msgstr "Pinterest"
+
+#: ../category.php:7
+#, php-format
+msgid "Category Archives: %s"
+msgstr "Kategori Arşivi: %s "
+
+#: ../comments.php:3
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Bu içerik şifre ile korunmaktadır. Görmek için şifre giriniz."
+
+#: ../comments.php:12
+msgid "No comments"
+msgstr "Yorum yok"
+
+#: ../comments.php:12
+msgid "One comment"
+msgstr "Bir yorum"
+
+#: ../comments.php:12
+msgid "comments"
+msgstr "yorum"
+
+#: ../comments.php:17
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr "<span class=\"meta-nav\">&larr;</span> Eski Yorumlar"
+
+#: ../comments.php:18
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Yeni Yorumlar <span class=\"meta-nav\">&rarr;</span>"
+
+#: ../comments.php:34
+msgid "Comments are closed."
+msgstr "Yoruma kapalı."
+
+#: ../comments.php:46
+msgid "Name"
+msgstr "İsim"
+
+#: ../comments.php:48
+msgid "Email"
+msgstr "E-posta"
+
+#: ../comments.php:50
+msgid "Website"
+msgstr "Siteniz"
+
+#: ../comments.php:53
+msgid " Required fields are marked"
+msgstr ""
+
+#: ../comments.php:57
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr "Yorum yazabilmek için <a href=\"%s\">giriş</a> yapmalısınız."
+
+#: ../comments.php:58
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
+msgstr "Giriş yapılan kullanıcı <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Bu hesaptan çıkış yap\">Çıkış?</a>"
+
+#: ../comments.php:59
+msgid "Your email address will not be published."
+msgstr "E-posta adresiniz yayınlanmayacak."
+
+#: ../comments.php:60
+msgid "Leave a Reply"
+msgstr "Cevapla"
+
+#: ../comments.php:61
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "%s için cevap yaz."
+
+#: ../comments.php:62
+msgid "Cancel reply"
+msgstr "Çık"
+
+#: ../comments.php:63
+msgid "Post Comment"
+msgstr "Yorumu gönder"
+
+#: ../footer.php:23
+msgid "Scroll To Top"
+msgstr ""
+
+#: ../header.php:13
+#, php-format
+msgid "Page %s"
+msgstr "Sayfa %s"
+
+#: ../header.php:41
+msgid "Search"
+msgstr "Arama"
+
+#: ../header.php:42
+msgid "Search..."
+msgstr "Arama..."
+
+#: ../header.php:77
+msgid "Random Article"
+msgstr "Rasgele Yazı"
+
+#: ../index.php:23
+msgid "You can use Homepage builder to build your homepage"
+msgstr "Anasayfanı özelleştirmek için Anasayfa Yapılandırıcıyı kullanabilirsin."
+
+#: ../loop.php:5
+#: ../page.php:9
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Özür dilerim, ama  istenen arşiv için hiçbir sonuç bulunamadı. Belki arama bölümü ilişkili bir yazı bulmanıza yardımcı olacaktır."
+
+#: ../loop.php:19
+#: ../loop.php:53
+msgid "Leave a comment"
+msgstr "Yorum yap"
+
+#: ../loop.php:19
+#: ../loop.php:53
+msgid "1 Comment"
+msgstr "1 Yorum"
+
+#: ../loop.php:19
+#: ../loop.php:53
+msgid "% Comments"
+msgstr "% Yorum"
+
+#: ../loop.php:24
+#: ../loop.php:36
+#: ../loop.php:57
+msgid "Read More &raquo;"
+msgstr "Devamını Oku &raquo;"
+
+#: ../page.php:32
+msgid "Pages:"
+msgstr "Sayfalar:"
+
+#: ../page.php:34
+msgid "Edit"
+msgstr "Düzenle"
+
+#: ../search.php:8
+#, php-format
+msgid "Search Results for: %s"
+msgstr "%s için arama sonuçları:"
+
+#: ../search.php:10
+msgid "Nothing Found"
+msgstr "Hiçbirşey Bulunamadı"
+
+#: ../search.php:22
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Üzgünüz, arama kriterlerinize uygun içerik bulunamadı. Lütfen farklı kelimeler ile tekrar deneyiniz."
+
+#: ../single.php:55
+msgid "Tagged with: "
+msgstr "Etiketler:"
+
+#: ../single.php:68
+msgid "About"
+msgstr "Hakkında"
+
+#: ../single.php:79
+msgid "Previous:"
+msgstr "Önceki:"
+
+#: ../single.php:80
+msgid "Next:"
+msgstr "Sonraki:"
+
+#: ../tag.php:7
+#, php-format
+msgid "Tag Archives: %s"
+msgstr "Etiket Arşivi: %s"
+
+#: ../template-restrict.php:43
+msgid "You must be "
+msgstr "Sayfayı görüntülemek için"
+
+#: ../template-restrict.php:43
+msgid "logged in"
+msgstr "giriş"
+
+#: ../template-restrict.php:43
+msgid " to view this page."
+msgstr "yapmalısınız."
+
+#: ../template-timeline.php:60
+#, php-format
+msgid "Permalink to %s"
+msgstr "Direk link: %s"
+
+#: ../functions/theme-functions.php:26
+msgid "Top Menu Navigation"
+msgstr "Üst Menü"
+
+#: ../functions/theme-functions.php:27
+msgid "Primary Navigation"
+msgstr "Birinci Gezinme Çubuğu"
+
+#: ../functions/theme-functions.php:52
+msgid "You can use WP menu builder to build menus"
+msgstr "Menüleri özelleştirmek için WP menü yapılandırıcıyı kullanabilirsin"
+
+#: ../functions/theme-functions.php:68
+msgid "Go to..."
+msgstr "Git..."
+
+#: ../functions/theme-functions.php:694
+msgid "Social Networking"
+msgstr "Sosyal Ağlar"
+
+#: ../functions/theme-functions.php:779
+msgid "No items."
+msgstr "Öğe yok."
+
+#: ../functions/theme-functions.php:784
+msgid "Posted "
+msgstr "Yayınlandı"
+
+#: ../functions/theme-functions.php:1134
+msgid "Welcome"
+msgstr "Hoşgeldiniz"
+
+#: ../functions/theme-functions.php:1137
+msgid "Dashboard"
+msgstr "Panel"
+
+#: ../functions/theme-functions.php:1138
+msgid "Your Profile"
+msgstr "Profiliniz"
+
+#: ../functions/theme-functions.php:1139
+msgid "Logout"
+msgstr "Çıkış"
+
+#: ../functions/theme-functions.php:1173
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: ../functions/theme-functions.php:1174
+msgid "Password"
+msgstr "Şifre"
+
+#: ../functions/theme-functions.php:1175
+msgid "Log in"
+msgstr "Giriş"
+
+#: ../functions/theme-functions.php:1176
+msgid "Remember Me"
+msgstr "Beni Hatırla"
+
+#: ../functions/theme-functions.php:1180
+msgid "Register"
+msgstr "Kayıt Ol"
+
+#: ../functions/theme-functions.php:1181
+msgid "Lost your password?"
+msgstr "Şifremi unuttum?"
+
+#: ../functions/theme-functions.php:1252
+msgid "Review Overview"
+msgstr ""
+
+#: ../functions/theme-functions.php:1304
+msgid "Summary :"
+msgstr ""
+
+#: ../functions/theme-functions.php:1362
+#: ../functions/theme-functions.php:1369
+#: ../functions/theme-functions.php:1375
+#: ../functions/theme-functions.php:1381
+msgid "ago"
+msgstr ""
+
+#: ../functions/widgetize-theme.php:13
+msgid "Primary Widget Area"
+msgstr "Birinci Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:15
+msgid "The Primary widget area"
+msgstr "Birinci Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:44
+msgid "First Footer Widget Area"
+msgstr "Birinci Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:46
+msgid "The first footer widget area"
+msgstr "Birinci Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:52
+msgid "Second Footer Widget Area"
+msgstr "İkinci Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:54
+msgid "The Second footer widget area"
+msgstr "Birinci Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:61
+msgid "Third Footer Widget Area"
+msgstr "Üçüncü Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:63
+msgid "The Third footer widget area"
+msgstr "Üçüncü Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:70
+msgid "Fourth Footer Widget Area"
+msgstr "Dördüncü Footer Bileşen Alanı"
+
+#: ../functions/widgetize-theme.php:72
+msgid "The Fourth footer widget area"
+msgstr "Dördüncü Footer Bileşen Alanı"
+
+#: ../includes/breadcrumbs.php:11
+msgid "You are here:"
+msgstr "Buradasınız:"
+
+#: ../includes/breadcrumbs.php:15
+msgid "Home"
+msgstr "Anasayfa"
+
+#: ../includes/breadcrumbs.php:105
+msgid "page "
+msgstr "sayfa"
+
+#: ../includes/breaking-news.php:18
+msgid "Breaking News"
+msgstr "Son Haberler"
+
+#: ../includes/pagenavi.php:145
+msgid "Page %CURRENT_PAGE% of %TOTAL_PAGES%"
+msgstr "%TOTAL_PAGES% / %CURRENT_PAGE%  sayfa"
+
+#: ../includes/pagenavi.php:148
+msgid "&laquo; First"
+msgstr "&laquo; İlk"
+
+#: ../includes/pagenavi.php:149
+msgid "Last &raquo;"
+msgstr "Son &raquo;"
+
+#: ../includes/pagenavi.php:150
+msgid "&raquo;"
+msgstr "&raquo;"
+
+#: ../includes/pagenavi.php:151
+msgid "&laquo;"
+msgstr "&laquo;"
+
+#: ../includes/pagenavi.php:152
+#: ../includes/pagenavi.php:153
+msgid "..."
+msgstr "..."
+
+#: ../includes/post-meta.php:6
+msgid "Posted by: "
+msgstr "Yazar: "
+
+#: ../includes/post-meta.php:9
+msgid "on "
+msgstr "Tarih: "
+
+#: ../includes/post-meta.php:12
+msgid "in "
+msgstr "Kategori:"
+
+#: ../includes/post-related.php:29
+msgid "Related Articles"
+msgstr "İlgili Yazılar"
+
+#: ../includes/single-post-share.php:6
+msgid "Share !"
+msgstr "Paylaş !"
+
+#: ../includes/wp_list_comments.php:9
+#, php-format
+msgid "%s "
+msgstr "%s"
+
+#: ../includes/wp_list_comments.php:10
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%2$s / %1$s  "
+
+#: ../includes/wp_list_comments.php:10
+#: ../includes/wp_list_comments.php:30
+msgid "(Edit)"
+msgstr "(Düzenle)"
+
+#: ../includes/wp_list_comments.php:15
+msgid "Your comment is awaiting moderation."
+msgstr "Yorumunuz moderatör onayı beklemektedir."
+
+#: ../includes/wp_list_comments.php:30
+msgid "Pingback:"
+msgstr "Geribildirim:"
+
+#: ../includes/widgets/widget-ads.php:72
+#: ../includes/widgets/widget-ads.php:183
+#: ../includes/widgets/widget-ads.php:294
+#: ../includes/widgets/widget-ads.php:404
+#: ../includes/widgets/widget-ads.php:514
+#: ../includes/widgets/widget-ads.php:621
+#: ../includes/widgets/widget-ads.php:721
+#: ../includes/widgets/widget-ads.php:822
+#: ../includes/widgets/widget-ads.php:926
+#: ../includes/widgets/widget-ads.php:1029
+msgid " Advertisement"
+msgstr "Reklam"
+
+#: ../includes/widgets/widget-author.php:21
+#, php-format
+msgid "About %s"
+msgstr "%s hakkında"
+
+#: ../includes/widgets/widget-author.php:87
+#, php-format
+msgid "By %s"
+msgstr "%s tarafından"
+
+#: ../includes/widgets/widget-author.php:95
+msgid "All"
+msgstr "Hepsi"
+
+#: ../includes/widgets/widget-authors-posts.php:46
+msgid "Authors Posts"
+msgstr ""
+
+#: ../includes/widgets/widget-category.php:46
+msgid "Category Posts"
+msgstr "Kategori Yazıları"
+
+#: ../includes/widgets/widget-comments-avatar.php:42
+msgid "Recent Comments"
+msgstr "Son Yorumlar"
+
+#: ../includes/widgets/widget-counter.php:43
+#: ../includes/widgets/widget-feedburner.php:31
+msgid "Subscribe"
+msgstr "Abone"
+
+#: ../includes/widgets/widget-counter.php:43
+#: ../includes/widgets/widget-counter.php:74
+#: ../includes/widgets/widget-counter.php:84
+msgid "Subscribers"
+msgstr "Aboneler"
+
+#: ../includes/widgets/widget-counter.php:44
+msgid "To RSS Feed"
+msgstr ""
+
+#: ../includes/widgets/widget-counter.php:54
+#: ../includes/widgets/widget-counter.php:94
+msgid "Followers"
+msgstr "Takipciler"
+
+#: ../includes/widgets/widget-counter.php:64
+msgid "Fans"
+msgstr "Fanlar"
+
+#: ../includes/widgets/widget-custom-author.php:49
+msgid "About Author"
+msgstr "Yazar Hakkında"
+
+#: ../includes/widgets/widget-facebook.php:41
+msgid "Find us on Facebook"
+msgstr "Facebook'ta bizi bul"
+
+#: ../includes/widgets/widget-feedburner.php:28
+msgid "Enter your e-mail address"
+msgstr "E-postanızı giriniz"
+
+#: ../includes/widgets/widget-feedburner.php:47
+msgid "FeedBurner Widget"
+msgstr "FeedBurner Bileşeni"
+
+#: ../includes/widgets/widget-feedburner.php:47
+msgid "Subscribe to our email newsletter."
+msgstr "E-posta bültenimize abone olun."
+
+#: ../includes/widgets/widget-flickr.php:44
+msgid "Flickr"
+msgstr "Flickr"
+
+#: ../includes/widgets/widget-google.php:53
+msgid "Follow us on Google+"
+msgstr "Google+'da bizi takip edin"
+
+#: ../includes/widgets/widget-login.php:49
+msgid "Login"
+msgstr "Giriş"
+
+#: ../includes/widgets/widget-news-pic.php:44
+msgid "News in Pictures"
+msgstr "Haber Görselleri"
+
+#: ../includes/widgets/widget-posts.php:52
+msgid "Recent Posts"
+msgstr "Son Yazılar"
+
+#: ../includes/widgets/widget-search.php:19
+msgid "to search type and hit enter"
+msgstr "Arama için entera basın"
+
+#: ../includes/widgets/widget-social.php:48
+msgid "Social"
+msgstr "Sosyal"
+
+#: ../includes/widgets/widget-tabbed.php:18
+msgid "Popular"
+msgstr "Popüler"
+
+#: ../includes/widgets/widget-tabbed.php:19
+msgid "Recent"
+msgstr "Son"
+
+#: ../includes/widgets/widget-tabbed.php:20
+msgid "Comments"
+msgstr "Yorumlar"
+
+#: ../includes/widgets/widget-text-html.php:56
+msgid "Text"
+msgstr "Yazı"
+
+#: ../includes/widgets/widget-twitter.php:58
+msgid "@Follow Me"
+msgstr "@Takip Et"
+
+#: ../includes/widgets/widget-video.php:63
+msgid " Featured Video"
+msgstr "Önerilen Video"
+
+#: ../includes/widgets/widget-youtube.php:40
+msgid "Subscribe to our Channel"
+msgstr ""
+
+#: ../panel/mpanel-functions.php:78
+msgid "Use this image"
+msgstr "Bu görseli kullan"
+
+#: ../panel/shortcodes/shortcode.php:396
+msgid "About The Author"
+msgstr "Yazar Hakkında"
+

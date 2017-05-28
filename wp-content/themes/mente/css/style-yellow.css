@@ -1,0 +1,21 @@
+﻿#main-nav,
+.cat-box-content,
+#sidebar .widget-container,
+.post-listing {	border-bottom-color: #ffbb01;}
+.search-block .search-button,
+#topcontrol,
+#main-nav ul li.current-menu-item a,
+#main-nav ul li.current-menu-item a:hover,
+#main-nav ul li.current-menu-parent a,
+#main-nav ul li.current-menu-parent a:hover,
+#main-nav ul li.current-page-ancestor a,
+#main-nav ul li.current-page-ancestor a:hover,
+.pagination span.current,
+.share-post span.share-text,
+.flex-control-paging li a.flex-active,
+.ei-slider-thumbs li.ei-slider-element,
+.review-percentage .review-item span span,.review-final-score  {background-color:#ffbb01 !important;}
+::-webkit-scrollbar-thumb{background-color:#ffbb01 !important;}
+#topcontrol:hover {background-color:#fcc82b !important;}
+footer, .top-nav, .top-nav ul li.current-menu-item:after  {border-top-color: #ffbb01;	}
+.search-block::after {border-right-color:#ffbb01;}

@@ -1,0 +1,30 @@
+/* Default Theme */
+
+.ajde_evcal_calendar .calendar_header .evcal_arrows{float:left;height:25px; width:15px;display:block; background:url(arrows.png) top left no-repeat;}
+.ajde_evcal_calendar #evcal_prev{background-position:0 0; margin:6px 15px 0 0}
+.ajde_evcal_calendar #evcal_next{background-position:-15px 0; margin:6px 0 0 15px}
+.ajde_evcal_calendar a#evcal_prev:hover{background-position:0 -25px}
+.ajde_evcal_calendar a#evcal_next:hover{background-position:-15px -25px}
+.ajde_evcal_calendar .evcal_head_shadow{background:url(drop_shadow.png) top center no-repeat; height:9px; margin-bottom:10px}
+
+#evcal_sort_bar{background:url(sort_bar_bg.png) top left repeat-x; height:34px;border-bottom: 1px solid #cfcfcf}
+#evcal_sort_bar ul {height:34px; padding-left:35px}
+#evcal_sort_bar ul p{font-size:16px; text-transform:uppercase;}
+#evcal_sort_bar ul .sort_title{padding:9px 10px 0 0;line-height:16px;color:#adadad}
+#evcal_sort_bar ul a.cur_sort{background-color:#dcdbdb;color:#535353}
+#evcal_sort_bar ul a{ height:16px;  line-height:16px;padding:9px;color:#8d8d8d}
+#evcal_sort_bar ul a:hover{background-color:#e2e2e2}
+
+.ajde_evcal_calendar strong{font-weight:normal!important}
+.ajde_evcal_calendar .calendar_header{border-top: 1px solid #cfcfcf; border-bottom: 1px solid #cfcfcf}
+.ajde_evcal_calendar .calendar_header p{float:left; color:#3b3b3b; }
+
+#evcal_list li a.desc_trig:hover{background-color:#f4f4f4}
+#evcal_list li a.evcal_list_a{ height:54px; overflow:hidden}
+#evcal_list li .event_description .evcal_eventbrite{background-color:#cfcfcf}
+#evcal_list li .event_description .evcal_desc_top{background-color:#e4e4e4;}
+
+#evcal_sort_bar ul p{font-family:'arial narrow', 'arial';}
+
+#evcal_list li a.evcal_list_a{border:none!important} 
+

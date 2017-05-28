@@ -1,0 +1,52 @@
+/* Slick Theme */
+
+
+.ajde_evcal_calendar .calendar_header .evcal_arrows{float:left;height:25px; width:15px;display:block; background:url(arrows.png) top left no-repeat;}
+.ajde_evcal_calendar #evcal_prev{background-position:0 0; margin:6px 15px 0 0}
+.ajde_evcal_calendar #evcal_next{background-position:-15px 0; margin:6px 0 0 15px}
+.ajde_evcal_calendar a#evcal_prev:hover{background-position:0 -25px}
+.ajde_evcal_calendar a#evcal_next:hover{background-position:-15px -25px}
+.ajde_evcal_calendar .evcal_head_shadow{height:0px; margin-bottom:0px !important}
+
+
+#evcal_sort_bar{background:url(slick_sort_bar_bg.png) top left repeat-x; height:34px;overflow:hidden; 
+	border-bottom:1px solid #b2b2b2;}
+#evcal_sort_bar ul {height:34px; padding-left:35px}
+#evcal_sort_bar ul p{margin-bottom:0!important;font-size:16px; font-family:georgia, 'times new roman'; font-style:italic; 
+	text-shadow:0px 1px #f0f0f0}
+
+#evcal_sort_bar ul .sort_title{padding:9px 10px 0 0;line-height:16px;color:#313131}
+#evcal_sort_bar ul a.cur_sort{color:#535353; border-bottom:3px solid #4f4f4f}
+#evcal_sort_bar ul a{ height:16px;  line-height:16px;padding:9px 9px 6px;color:#5c5c5c}
+#evcal_sort_bar ul a:hover{border-bottom:3px solid #949494}
+
+.ajde_evcal_calendar strong{font-weight:normal!important}
+.ajde_evcal_calendar .calendar_header{border-top: 1px solid #cfcfcf; border-bottom: 1px solid #b2b2b2}
+.ajde_evcal_calendar .calendar_header p{float:left; color:#c6c6c6;font-size:24px; 
+	font-weight:bold;text-transform:uppercase; font-family:arial; padding-top:1px	
+}
+
+
+#evcal_list li .event_description p{font-size:13px; color:#656565}
+#evcal_list li{padding-bottom:0; overflow:hidden}
+#evcal_list li .evcal_cblock{background-color:transparent !important; color:#313131;
+	font-size:36px;padding:0px 8px 10px 13px; 
+}
+
+#evcal_list li .evcal_desc span.evcal_desc2{color:#313131; font-family:georgia, 'times new roman'; font-style:italic}
+#evcal_list{border-left:1px solid #c6c6c6; border-right:1px solid #c6c6c6;border-bottom:1px solid #c6c6c6}
+#evcal_list li a{border-bottom:1px solid #c6c6c6; padding:10px 0; }
+#evcal_list li a.desc_trig:hover{background-color:#f4f4f4}
+#evcal_list li a.evcal_list_a{ height:54px; overflow:hidden}
+#evcal_list li .event_description .evcal_eventbrite{background-color:#cfcfcf}
+#evcal_list li .event_description .evcal_desc_top{background-color:#e4e4e4;}
+
+#evcal_list li .event_description, #evcal_list li .event_description .evcal_desc_top{border-bottom:1px solid #c6c6c6}
+#evcal_list li .event_description .evcal_eventbrite, #evcal_list li .event_description .evcal_desc_top, 
+#evcal_list li .event_description .evcal_gmaps {
+margin-top: 0px;
+}
+
+#evcal_list li p.no_events{padding:2px 8px;font-style:italic;}
+#evcal_list li .event_description .evcal_desc_buy_tix a{color:#fff; background:#949494; padding:3px 10px; border:none; display:inline-block}
+#evcal_list li .event_description .evcal_desc_buy_tix a:hover{background:#4F4F4F}

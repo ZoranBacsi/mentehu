@@ -1,8 +1,8 @@
 <?php global $current_user; ?>
-<link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <style type="text/css">
     .w3eden.user-dashboard{
-        font-family: 'Varela', sans-serif;
+        font-family: 'Varela Round', sans-serif;
         font-size: 13px;
     }
     .w3eden.user-dashboard .panel{
@@ -86,6 +86,7 @@
     }
     .card img{
         border-radius: 0;
+        width: 100%;
     }
     .card .card-body{
         display: table;
@@ -143,17 +144,28 @@
         max-width: 800px !important;
         width: 320px;
     }
+    .w3eden #wpdm-dashboard-sidebar .list-group-item{
+        color: #555555;
+    }
+    .w3eden #wpdm-dashboard-sidebar .list-group-item.selected{
+        background: transparent !important;
+        color: #19ad8e;
+    }
 
 </style>
 <div class="w3eden user-dashboard">
     <div class="row">
-        <div class="col-md-4" id="wpdm-dashboard-sidebar">
+        <div class="col-md-3" id="wpdm-dashboard-sidebar">
             <div class="list-group">
                 <div class="list-group-item">
                     <?php echo get_avatar( $current_user->user_email, 512 ); ?>
                 </div>
-                <?php foreach($this->dashboard_menu as $page_id => $menu_item){ ?>
-                    <a class="list-group-item" href="<?php echo get_permalink(get_the_ID()).$page_id.($page_id!=''?'/':''); ?>"><?php echo $menu_item['name']; ?></a>
+                <?php foreach($this->dashboard_menu as $page_id => $menu_item){
+                    $menu_url = get_permalink(get_the_ID()).$page_id.($page_id!=''?'/':'');
+                    if(isset($params['flaturl']) && $params['flaturl'] == 0 && $page_id != '')
+                        $menu_url = get_permalink(get_the_ID()).'?udb_page='.$page_id;
+                    ?>
+                    <a class="list-group-item <?php echo $udb_page == $page_id?'selected':'';?>" href="<?php echo $menu_url; ?>"><?php echo $menu_item['name']; ?></a>
                 <?php } ?>
 
             </div>
@@ -161,7 +173,7 @@
             <?php do_action("wpdm_user_dashboard_sidebar") ?>
 
         </div>
-        <div class="col-md-8" id="wpdm-dashboard-contents">
+        <div class="col-md-9" id="wpdm-dashboard-contents">
 
 
             <?php echo $dashboard_contents; ?>

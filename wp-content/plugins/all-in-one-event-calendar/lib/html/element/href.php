@@ -26,7 +26,10 @@ class Ai1ec_Html_Element_Href {
 		'auth_ids',
 		'post_ids',
 		'tag_ids',
+		'instance_ids',
 		'events_limit',
+		'request_format',
+		'no_navigation'
 	);
 
 	/**
@@ -43,6 +46,11 @@ class Ai1ec_Html_Element_Href {
 	 * @var boolean
 	 */
 	private $is_author;
+
+	/**
+	 * @var boolean
+	 */
+	private $is_custom_filter;
 
 	/**
 	 * @var array the arguments to parse
@@ -65,6 +73,11 @@ class Ai1ec_Html_Element_Href {
 	private $pretty_permalinks_enabled;
 
 	/**
+	 * @var string
+	 */
+	private $uri_particle = null;
+
+	/**
 	 * @param boolean $pretty_permalinks_enabled
 	 */
 	public function set_pretty_permalinks_enabled( $pretty_permalinks_enabled ) {
@@ -85,6 +98,19 @@ class Ai1ec_Html_Element_Href {
 	public function __construct( array $args, $calendar ) {
 		$this->args = $args;
 		$this->calendar_page = $calendar;
+		if ( isset( $args['_extra_used_parameters'] ) ) {
+			$this->used_paramaters = array_merge(
+				$this->used_paramaters,
+				$args['_extra_used_parameters']
+			);
+		}
+		$this->used_paramaters = array_merge(
+			$this->used_paramaters,
+			apply_filters(
+				'ai1ec_view_args_for_view',
+				array()
+			)
+		);
 	}
 
 	/**
@@ -127,7 +153,12 @@ class Ai1ec_Html_Element_Href {
 					$value;
 			}
 		}
-		if ( $this->is_category || $this->is_tag || $this->is_author ) {
+		if (
+			$this->is_category ||
+			$this->is_tag ||
+			$this->is_author ||
+			$this->is_custom_filter
+		) {
 			$to_implode = $this->add_or_remove_category_from_href(
 				$to_implode
 			);
@@ -144,9 +175,22 @@ class Ai1ec_Html_Element_Href {
 		$full_url = $this->calendar_page . $href;
 		// persist the `lang` parameter if present
 		if ( isset( $_REQUEST['lang'] ) ) {
-			$full_url = add_query_arg( 'lang', $_REQUEST['lang'], $full_url );
+			$full_url = esc_url_raw( add_query_arg( 'lang', $_REQUEST['lang'], $full_url ) );
 		}
 		return $full_url;
+	}
+
+	/**
+	 * Sets that class is used for custom filter.
+	 *
+	 * @param bool   $value        Expected true or false.
+	 * @param string $uri_particle URI particle identifier.
+	 *
+	 * @return void Method does not return.
+	 */
+	public function set_custom_filter( $value, $uri_particle = null ) {
+		$this->is_custom_filter = $value;
+		$this->uri_particle     = $uri_particle;
 	}
 
 	/**
@@ -159,7 +203,10 @@ class Ai1ec_Html_Element_Href {
 	 * @return array
 	 */
 	private function add_or_remove_category_from_href( array $to_implode ) {
-		$array_key = $this->_current_array_key();
+		$array_key = $this->uri_particle;
+		if ( null === $this->uri_particle ) {
+			$array_key = $this->_current_array_key();
+		}
 		// Let's copy the origina cat_ids or tag_ids so we do not affect it
 		$copy      = array();
 		if ( isset( $this->args[$array_key] ) ) {

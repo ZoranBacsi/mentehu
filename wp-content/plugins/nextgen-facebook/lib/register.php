@@ -1,12 +1,13 @@
 <?php
 /*
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2014 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
+ */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
 if ( ! class_exists( 'NgfbRegister' ) ) {
 
@@ -16,12 +17,14 @@ if ( ! class_exists( 'NgfbRegister' ) ) {
 
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
+
 			register_activation_hook( NGFB_FILEPATH, array( &$this, 'network_activate' ) );
 			register_deactivation_hook( NGFB_FILEPATH, array( &$this, 'network_deactivate' ) );
-			register_uninstall_hook( NGFB_FILEPATH, array( __CLASS__, 'network_uninstall' ) );
 
-			add_action( 'wpmu_new_blog', array( &$this, 'wpmu_new_blog' ), 10, 6 );
-			add_action( 'wpmu_activate_blog', array( &$this, 'wpmu_activate_blog' ), 10, 5 );
+			if ( is_multisite() ) {
+				add_action( 'wpmu_new_blog', array( &$this, 'wpmu_new_blog' ), 10, 6 );
+				add_action( 'wpmu_activate_blog', array( &$this, 'wpmu_activate_blog' ), 10, 5 );
+			}
 		}
 
 		// fires immediately after a new site is created
@@ -47,11 +50,18 @@ if ( ! class_exists( 'NgfbRegister' ) ) {
 			self::do_multisite( $sitewide, array( &$this, 'deactivate_plugin' ) );
 		}
 
+		// uninstall.php defines constants before calling network_uninstall()
 		public static function network_uninstall() {
 			$sitewide = true;
-			$lca = NgfbConfig::get_config( 'lca' );
-			delete_site_option( $lca.'_site_options' );
+
+			// uninstall from the individual blogs first
 			self::do_multisite( $sitewide, array( __CLASS__, 'uninstall_plugin' ) );
+
+			$opts = get_site_option( NGFB_SITE_OPTIONS_NAME, array() );
+
+			if ( empty( $opts['plugin_preserve'] ) ) {
+				delete_site_option( NGFB_SITE_OPTIONS_NAME );
+			}
 		}
 
 		private static function do_multisite( $sitewide, $method, $args = array() ) {
@@ -64,62 +74,134 @@ if ( ! class_exists( 'NgfbRegister' ) ) {
 					call_user_func_array( $method, array( $args ) );
 				}
 				restore_current_blog();
-			} else call_user_func_array( $method, array( $args ) );
+			} else {
+				call_user_func_array( $method, array( $args ) );
+			}
 		}
 
 		private function activate_plugin() {
-			global $wp_version;
-			$lca = $this->p->cf['lca'];
-			$short = $this->p->cf['plugin'][$lca]['short'];
-			if ( version_compare( $wp_version, $this->p->cf['wp']['min_version'], '<' ) ) {
-				require_once( ABSPATH.'wp-admin/includes/plugin.php' );
-				deactivate_plugins( NGFB_PLUGINBASE );
-				error_log( NGFB_PLUGINBASE.' requires WordPress '.$this->p->cf['wp']['min_version'].' or higher ('.$wp_version.' reported).' );
-				wp_die( '<p>'. sprintf( __( 'Sorry, the %1$s plugin cannot be activated &mdash; it requires WordPress version %2$s or newer.', NGFB_TEXTDOM ), 
-					$short, $this->p->cf['wp']['min_version'] ).'</p>' );
-			}
-			set_transient( $lca.'_activation_redirect', true, 60 * 60 );
-			$this->p->set_config();
-			$this->p->set_objects( true );
+
+			$this->check_required( NgfbConfig::$cf );
+
+			$this->p->set_config( true );			// apply filters and define $cf['*'] array ( $activate = true )
+			$this->p->set_options( true );			// read / create options and site_options ( $activate = true )
+			$this->p->set_objects( true );			// load all the class objects ( $activate = true )
+			$this->p->util->clear_all_cache( true );	// clear existing cache entries ( $clear_ext = true )
+
+			$plugin_version = NgfbConfig::$cf['plugin']['ngfb']['version'];
+			NgfbUtil::save_all_times( 'ngfb', $plugin_version );
 		}
 
 		private function deactivate_plugin() {
-			$slug = $this->p->cf['plugin'][$this->p->cf['lca']]['slug'];
-			wp_clear_scheduled_hook( 'plugin_updates-'.$slug );
+
+			// clear all cached objects and transients
+			$this->p->util->clear_all_cache( false );	// $clear_ext = false
+
+			// trunc all stored notices for all users
+			$this->p->notice->trunc_all();
+
+			if ( is_object( $this->p->admin ) ) {		// just in case
+				$this->p->admin->reset_check_head_count();
+			}
 		}
 
+		// uninstall.php defines constants before calling network_uninstall()
 		private static function uninstall_plugin() {
+
+			$opts = get_option( NGFB_OPTIONS_NAME, array() );
+
+			delete_option( NGFB_TS_NAME );
+			delete_option( NGFB_NOTICE_NAME );
+
+			if ( empty( $opts['plugin_preserve'] ) ) {
+
+				delete_option( NGFB_OPTIONS_NAME );
+				delete_post_meta_by_key( NGFB_META_NAME );	// since wp v2.3
+
+				foreach ( get_users() as $user ) {
+					if ( empty( $user-> ID ) ) {	// just in case
+						// site specific user options
+						delete_user_option( $user->ID, NGFB_NOTICE_NAME );
+						delete_user_option( $user->ID, NGFB_DISMISS_NAME );
+	
+						// global / network user options
+						delete_user_meta( $user->ID, NGFB_META_NAME );
+						delete_user_meta( $user->ID, NGFB_PREF_NAME );
+	
+						NgfbUser::delete_metabox_prefs( $user->ID );
+					}
+				}
+
+				foreach ( NgfbTerm::get_public_terms() as $term_id ) {
+					if ( ! empty( $term_id ) ) {	// just in case
+						NgfbTerm::delete_term_meta( $term_id, NGFB_META_NAME );
+					}
+				}
+			}
+
+			/*
+			 * Delete All Transients
+			 */
 			global $wpdb;
-			$cf = NgfbConfig::get_config();
-			$slug = $cf['plugin'][$cf['lca']]['slug'];
-			$options = get_option( $cf['lca'].'_options' );
-
-			if ( empty( $options['plugin_preserve'] ) ) {
-				delete_option( $cf['lca'].'_options' );
-				delete_post_meta_by_key( '_'.$cf['lca'].'_meta' );
-				NgfbUser::delete_metabox_prefs();
-			}
-
-			// delete update related options
-			delete_option( 'external_updates-'.$slug );
-			delete_option( $cf['lca'].'_umsg' );
-			delete_option( $cf['lca'].'_utime' );
-
-			// delete stored admin notices
-			foreach ( array( 'nag', 'err', 'inf' ) as $type ) {
-				$msg_opt = $cf['lca'].'_notices_'.$type;
-				delete_option( $msg_opt );
-				foreach ( get_users( array( 'meta_key' => $msg_opt ) ) as $user )
-					delete_user_option( $user->ID, $msg_opt );
-			}
-
-			// delete transients
-			$dbquery = 'SELECT option_name FROM '.$wpdb->options.' WHERE option_name LIKE \'_transient_timeout_'.$cf['lca'].'_%\';';
+			$prefix = '_transient_';	// clear all transients, even if no timeout value
+			$dbquery = 'SELECT option_name FROM '.$wpdb->options.
+				' WHERE option_name LIKE \''.$prefix.'ngfb_%\';';
 			$expired = $wpdb->get_col( $dbquery ); 
-			foreach( $expired as $transient ) { 
-				$key = str_replace('_transient_timeout_', '', $transient);
-				if ( ! empty( $key ) )
-					delete_transient( $key );
+
+			foreach( $expired as $option_name ) { 
+				$transient_name = str_replace( $prefix, '', $option_name );
+				if ( ! empty( $transient_name ) ) {
+					delete_transient( $transient_name );
+				}
+			}
+		}
+
+		private static function check_required( $cf ) {
+
+			$plugin_name = $cf['plugin']['ngfb']['name'];
+			$plugin_version = $cf['plugin']['ngfb']['version'];
+
+			foreach ( array( 'wp', 'php' ) as $key ) {
+				if ( empty( $cf[$key]['min_version'] ) ) {
+					return;
+				}
+				switch ( $key ) {
+					case 'wp':
+						global $wp_version;
+						$app_version = $wp_version;
+						break;
+					case 'php':
+						$app_version = phpversion();
+						break;
+				}
+
+				$app_label = $cf[$key]['label'];
+				$min_version = $cf[$key]['min_version'];
+				$version_url = $cf[$key]['version_url'];
+
+				if ( version_compare( $app_version, $min_version, '>=' ) ) {
+					continue;
+				}
+
+				load_plugin_textdomain( 'nextgen-facebook', false, 'nextgen-facebook/languages/' );
+
+				if ( ! function_exists( 'deactivate_plugins' ) ) {
+					require_once trailingslashit( ABSPATH ).'wp-admin/includes/plugin.php';
+				}
+
+				error_log( sprintf( __( '%1$s requires %2$s version %3$s or higher and has been deactivated.',
+					'nextgen-facebook' ), $plugin_name, $app_label, $min_version ) );
+
+				deactivate_plugins( NGFB_PLUGINBASE, true );	// $silent = true
+
+				wp_die( 
+					'<p>'.sprintf( __( 'You are using %1$s version %2$s &mdash; <a href="%3$s">this %1$s version is outdated, unsupported, possibly insecure</a>, and may lack important updates and features.',
+						'nextgen-facebook' ), $app_label, $app_version, $version_url ).'</p>'.
+					'<p>'.sprintf( __( '%1$s requires %2$s version %3$s or higher and has been deactivated.',
+						'nextgen-facebook' ), $plugin_name, $app_label, $min_version ).'</p>'.
+					'<p>'.sprintf( __( 'Please upgrade %1$s before trying to re-activate the %2$s plugin.',
+						'nextgen-facebook' ), $app_label, $plugin_name ).'</p>'
+				);
 			}
 		}
 	}

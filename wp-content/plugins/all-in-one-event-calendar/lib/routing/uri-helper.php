@@ -32,7 +32,7 @@ class Ai1ec_Wp_Uri_Helper {
 		array $extra = array(),
 		$status      = 302
 	) {
-		$target_uri = add_query_arg( $extra, $target_uri );
+		$target_uri = esc_url_raw( add_query_arg( $extra, $target_uri ) );
 		wp_safe_redirect( $target_uri, $status );
 		exit( 0 );
 	}
@@ -94,11 +94,13 @@ class Ai1ec_Wp_Uri_Helper {
 			$page_url .= 's';
 		}
 		$page_url .= '://';
-		if ( $_SERVER['SERVER_PORT'] !== '80' && true !== $skip_port ) {
-			$page_url .= $_SERVER['SERVER_NAME'] . ':' .
-			$_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
-		} else {
-			$page_url .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+		if ( isset( $_SERVER['SERVER_NAME'] ) && isset( $_SERVER['SERVER_PORT'] ) && isset( $_SERVER['REQUEST_URI'] ) ) {
+			if ( $_SERVER['SERVER_PORT'] !== '80' && true !== $skip_port ) {
+				$page_url .= $_SERVER['SERVER_NAME'] . ':' .
+				$_SERVER['SERVER_PORT'] . $_SERVER['REQUEST_URI'];
+			} else {
+				$page_url .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+			}
 		}
 		return $page_url;
 	}

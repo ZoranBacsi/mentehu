@@ -31,7 +31,7 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	public function do_execute() {
 		$id = 0;
 		foreach ( $this->_posts as $post ) {
-			$id = $this->duplicate_post_create_duplicate(
+			$id = $this->ai1ec_duplicate_post_create_duplicate(
 				$post['post'],
 				$post['status']
 			);
@@ -39,12 +39,16 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 		if ( true === $this->_redirect ) {
 			if ( '' === $post['status'] ) {
 				return array(
-					'url' => admin_url( 'edit.php?post_type=' . AI1EC_POST_TYPE ),
+					'url'        => ai1ec_admin_url(
+						'edit.php?post_type=' . AI1EC_POST_TYPE
+					),
 					'query_args' => array()
 				);
 			} else {
 				return array(
-					'url' => admin_url( 'post.php?action=edit&post=' . $id ),
+					'url'        => ai1ec_admin_url(
+						'post.php?action=edit&post=' . $id
+					),
 					'query_args' => array()
 				);
 			}
@@ -64,31 +68,21 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	 * @return boolean
 	 */
 	public function is_this_to_execute() {
-		// duplicate all selected post by top dropdown
+		$current_action = $this->_registry->get(
+			'http.request'
+		)->get_current_action();
+
 		if (
-			isset( $_REQUEST['action'] ) &&
-			$_REQUEST['action'] === 'clone' &&
-			! empty( $_REQUEST['post'] )
+			current_user_can( 'edit_ai1ec_events' ) &&
+			'clone' === $current_action &&
+			! empty( $_REQUEST['post'] ) &&
+			! empty( $_REQUEST['_wpnonce'] ) &&
+			wp_verify_nonce( $_REQUEST['_wpnonce'], 'bulk-posts' )
 		) {
 			foreach ( $_REQUEST['post'] as $post_id ) {
 				$this->_posts[] = array(
-					'status' => 'new',
-					'post'   => get_post( $post_id )
-				);
-			}
-			return true;
-		}
-
-		// duplicate all selected post by bottom dropdown
-		if (
-			isset( $_REQUEST['action2'] ) &&
-			$_REQUEST['action2'] === 'clone' &&
-			! empty( $_REQUEST['post'] )
-		) {
-			foreach ( $_REQUEST['post'] as $post ) {
-				$this->_posts[] = array(
 					'status' => '',
-					'post'   => $post
+					'post'   => get_post( $post_id )
 				);
 			}
 			return true;
@@ -98,8 +92,7 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 
 		// duplicate single post
 		if (
-			isset( $_REQUEST['action'] ) &&
-			$_REQUEST['action'] === 'duplicate_post_save_as_new_post' &&
+			$current_action === 'ai1ec_duplicate_post_save_as_new_post' &&
 			! empty( $_REQUEST['post'] )
 		) {
 			check_admin_referer( 'ai1ec_clone_'. $_REQUEST['post'] );
@@ -113,8 +106,7 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 		}
 		// duplicate single post as draft
 		if (
-			isset( $_REQUEST['action'] ) &&
-			$_REQUEST['action'] === 'duplicate_post_save_as_new_post_draft' &&
+			$current_action === 'ai1ec_duplicate_post_save_as_new_post_draft' &&
 			! empty( $_REQUEST['post'] )
 		) {
 			check_admin_referer( 'ai1ec_clone_'. $_REQUEST['post'] );
@@ -146,9 +138,9 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	/**
 	 * Create a duplicate from a posts' instance
 	 */
-	public function duplicate_post_create_duplicate( $post, $status = '' ) {
+	public function ai1ec_duplicate_post_create_duplicate( $post, $status = '' ) {
 		$post            = get_post( $post );
-		$new_post_author = $this->_duplicate_post_get_current_user();
+		$new_post_author = $this->_ai1ec_duplicate_post_get_current_user();
 		$new_post_status = $status;
 		if ( empty( $new_post_status ) ) {
 			$new_post_status = $post->post_status;
@@ -175,7 +167,7 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 
 		$new_post_id    = wp_insert_post( $new_post );
 		$edit_event_url = esc_attr(
-			admin_url( "post.php?post={$new_post_id}&action=edit" )
+			ai1ec_admin_url( "post.php?post={$new_post_id}&action=edit" )
 		);
 		$message = sprintf(
 			__( '<p>The event <strong>%s</strong> was cloned succesfully. <a href="%s">Edit cloned event</a></p>', AI1EC_PLUGIN_NAME ),
@@ -184,9 +176,12 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 		);
 		$notification   = $this->_registry->get( 'notification.admin' );
 		$notification->store( $message );
-		$this->_duplicate_post_copy_post_taxonomies( $new_post_id, $post );
-		$this->_duplicate_post_copy_attachments(     $new_post_id, $post );
-		$this->_duplicate_post_copy_post_meta_info(  $new_post_id, $post );
+		$this->_ai1ec_duplicate_post_copy_post_taxonomies( $new_post_id, $post );
+		$this->_ai1ec_duplicate_post_copy_attachments(     $new_post_id, $post );
+		$this->_ai1ec_duplicate_post_copy_post_meta_info(  $new_post_id, $post );
+
+		$api = $this->_registry->get( 'model.api.api-ticketing' );		
+		$api->clear_event_metadata( $new_post_id );
 
 		if ( $this->_registry->get( 'acl.aco' )->is_our_post_type( $post ) ) {
 			try {
@@ -235,19 +230,26 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	/**
 	 * Copy the meta information of a post to another post
 	 */
-	protected function _duplicate_post_copy_post_meta_info( $new_id, $post ) {
+	protected function _ai1ec_duplicate_post_copy_post_meta_info( $new_id, $post ) {
 		$post_meta_keys = get_post_custom_keys( $post->ID );
-		if ( empty( $post_meta_keys ) ) return;
-		//$meta_blacklist = explode(",",get_option('duplicate_post_blacklist'));
-		//if ( $meta_blacklist == "" )
-		$meta_blacklist = array();
-		$meta_keys = array_diff( $post_meta_keys, $meta_blacklist );
+		if ( empty( $post_meta_keys ) ) {
+			return;
+		}
 
-		foreach ( $meta_keys as $meta_key ) {
+		foreach ( $post_meta_keys as $meta_key ) {
 			$meta_values = get_post_custom_values( $meta_key, $post->ID );
 			foreach ( $meta_values as $meta_value ) {
 				$meta_value = maybe_unserialize( $meta_value );
-				add_post_meta( $new_id , $meta_key , $meta_value );
+				$meta_value = apply_filters(
+					'ai1ec_duplicate_post_meta_value',
+					$meta_value,
+					$meta_key,
+					$post,
+					$new_id
+				);
+				if ( null !== $meta_value ) {
+					add_post_meta( $new_id, $meta_key, $meta_value );
+				}
 			}
 		}
 	}
@@ -256,8 +258,8 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	 * Copy the attachments
 	 * It simply copies the table entries, actual file won't be duplicated
 	 */
-	protected function _duplicate_post_copy_attachments( $new_id, $post ) {
-		//if (get_option('duplicate_post_copyattachments') == 0) return;
+	protected function _ai1ec_duplicate_post_copy_attachments( $new_id, $post ) {
+		//if (get_option('ai1ec_duplicate_post_copyattachments') == 0) return;
 
 		// get old attachments
 		$attachments = get_posts(
@@ -270,7 +272,7 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 		);
 		// clone old attachments
 		foreach ( $attachments as $att ) {
-			$new_att_author = $this->_duplicate_post_get_current_user();
+			$new_att_author = $this->_ai1ec_duplicate_post_get_current_user();
 
 			$new_att = array(
 				'menu_order'     => $att->menu_order,
@@ -317,27 +319,27 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	/**
 	 * Copy the taxonomies of a post to another post
 	 */
-	protected function _duplicate_post_copy_post_taxonomies( $new_id, $post ) {
+	protected function _ai1ec_duplicate_post_copy_post_taxonomies( $new_id, $post ) {
 		$db = $this->_registry->get( 'dbi.dbi' );
 		if ( $db->are_terms_set() ) {
 			// Clear default category (added by wp_insert_post)
-			wp_set_object_terms( $new_id , NULL, 'category' );
+			wp_set_object_terms( $new_id, NULL, 'category' );
 
 			$post_taxonomies = get_object_taxonomies( $post->post_type );
 
 			$taxonomies_blacklist = array();
-			$taxonomies = array_diff( $post_taxonomies , $taxonomies_blacklist );
+			$taxonomies = array_diff( $post_taxonomies, $taxonomies_blacklist );
 			foreach ( $taxonomies as $taxonomy ) {
 				$post_terms = wp_get_object_terms(
-					$post->ID ,
-					$taxonomy ,
+					$post->ID,
+					$taxonomy,
 					array( 'orderby' => 'term_order' )
 				);
 				$terms = array();
 				for ( $i = 0; $i < count( $post_terms ); $i++ ) {
 					$terms[] = $post_terms[ $i ]->slug;
 				}
-				wp_set_object_terms( $new_id , $terms , $taxonomy );
+				wp_set_object_terms( $new_id, $terms, $taxonomy );
 			}
 		}
 	}
@@ -345,7 +347,7 @@ class Ai1ec_Command_Clone extends Ai1ec_Command {
 	/**
 	 * Get the currently registered user
 	 */
-	protected function _duplicate_post_get_current_user() {
+	protected function _ai1ec_duplicate_post_get_current_user() {
 		if ( function_exists( 'wp_get_current_user' ) ) {
 			return wp_get_current_user();
 		} else {

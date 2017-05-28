@@ -10,6 +10,7 @@
  * @package      Ai1EC
  * @subpackage   Ai1EC.Date
  */
+
 class Ai1ec_Date_System extends Ai1ec_Base {
 
 	/**
@@ -34,8 +35,9 @@ class Ai1ec_Date_System extends Ai1ec_Base {
 		$gmt_time = ( version_compare( PHP_VERSION, '5.1.0' ) >= 0 )
 			? time()
 			: gmmktime();
+		$requestTime = isset( $_SERVER['REQUEST_TIME'] ) ? (int)$_SERVER['REQUEST_TIME'] : time();
 		$this->_current_time     = array(
-			(int)$_SERVER['REQUEST_TIME'],
+			$requestTime,
 			$gmt_time,
 		);
 		$this->_gmtdates = $registry->get( 'cache.memory' );
@@ -134,7 +136,31 @@ class Ai1ec_Date_System extends Ai1ec_Base {
 	) {
 		$date = $datetime->format( $this->get_date_format_patter( $pattern ) );
 		return str_replace( '/', '-', $date );
-		return $date;
+	}
+
+	/**
+	 * Returns the date formatted with new pattern from a given date and old pattern.
+	 *
+	 * @see  self::get_date_patterns() for supported date formats.
+	 *
+	 * @param  string $date          Formatted date string
+	 * @param  string $old_pattern   Key of old date pattern (@see
+	 *                               self::get_date_format_patter())
+	 * @param  string $new_pattern   Key of new date pattern (@see
+	 *                               self::get_date_format_patter())
+	 * @return string                Formatted date string with new pattern
+	 */
+	public function convert_date_format( $date, $old_pattern, $new_pattern ) {
+		// Convert old date to timestamp
+		$timeArray = date_parse_from_format( $this->get_date_format_patter( $old_pattern ), $date );
+
+		$timestamp = mktime(
+			$timeArray['hour'], $timeArray['minute'], $timeArray['second'],
+			$timeArray['month'], $timeArray['day'], $timeArray['year']
+		);
+
+		// Convert to new date pattern
+		return $this->format_date( $timestamp, $new_pattern );
 	}
 
 	/**
@@ -212,7 +238,7 @@ class Ai1ec_Date_System extends Ai1ec_Base {
 	 */
 	public function gmgetdate( $timestamp = NULL ) {
 		if ( NULL === $timestamp ) {
-			$timestamp = (int)$_SERVER['REQUEST_TIME'];
+			$timestamp = isset( $_SERVER['REQUEST_TIME'] ) ? (int)$_SERVER['REQUEST_TIME'] : time();
 		}
 		if ( NULL === ( $date = $this->_gmtdates->get( $timestamp ) ) ) {
 			$particles = explode(
@@ -238,5 +264,16 @@ class Ai1ec_Date_System extends Ai1ec_Base {
 			$this->_gmtdates->set( $timestamp, $date );
 		}
 		return $date;
+	}
+
+	/**
+	 * Returns current rounded time as unix integer.
+	 *
+	 * @param int $shift Shift value.
+	 *
+	 * @return int Unix timestamp.
+	 */
+	public function get_current_rounded_time( $shift = 11 ) {
+		return $this->current_time() >> $shift << $shift;
 	}
 }

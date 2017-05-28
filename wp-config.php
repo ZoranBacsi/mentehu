@@ -86,6 +86,7 @@ define ('WPLANG', 'hu_HU');
  */
 define('WP_DEBUG', false);
 define('RELOCATE',true);
+define('FS_METHOD','direct');
 /* Ennyi volt, kellemes blogolást! */
 
 /** A WordPress könyvtár abszolút elérési útja. */

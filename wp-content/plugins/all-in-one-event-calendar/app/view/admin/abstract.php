@@ -22,28 +22,34 @@ abstract class Ai1ec_View_Admin_Abstract extends Ai1ec_Base {
 	protected $_page_suffix;
 
 	/**
+	 * @var string
+	 */
+	protected $_api_registration;
+
+	/**
 	 * Standard constructor
-	 * 
+	 *
 	 * @param Ai1ec_Registry_Object $registry
 	 */
 	public function __construct( Ai1ec_Registry_Object $registry ) {
 		parent::__construct( $registry );
-		$exploded_class     = explode( '_', get_class( $this ) );
-		$this->_page_suffix = strtolower( end( $exploded_class ) );
+		$exploded_class          = explode( '_', get_class( $this ) );
+		$this->_page_suffix      = strtolower( end( $exploded_class ) );
+		$this->_api_registration = $this->_registry->get( 'model.api.api-registration' );
 	}
 
 	/**
 	 * Get the url of the page
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_url() {
-		return add_query_arg(
+		return  add_query_arg(
 			array(
 				'post_type' => AI1EC_POST_TYPE,
 				'page'      => AI1EC_PLUGIN_NAME . '-' . $this->_page_suffix,
 			),
-			get_admin_url() . 'edit.php'
+			ai1ec_admin_url( 'edit.php' )
 		);
 	}
 
@@ -56,7 +62,7 @@ abstract class Ai1ec_View_Admin_Abstract extends Ai1ec_Base {
 	 * Adds the page to the correct menu.
 	 */
 	abstract public function add_meta_box();
-	
+
 	/**
 	 * Display the page html
 	 */

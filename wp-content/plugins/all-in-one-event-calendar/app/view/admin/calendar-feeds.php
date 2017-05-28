@@ -24,8 +24,8 @@ class Ai1ec_View_Calendar_Feeds extends Ai1ec_View_Admin_Abstract {
 		// =======================
 		$calendar_feeds = add_submenu_page(
 			AI1EC_ADMIN_BASE_URL,
-			Ai1ec_I18n::__( 'Calendar Feeds' ),
-			Ai1ec_I18n::__( 'Calendar Feeds' ),
+			Ai1ec_I18n::__( 'Import Feeds' ),
+			Ai1ec_I18n::__( 'Import Feeds' ),
 			'manage_ai1ec_feeds',
 			AI1EC_PLUGIN_NAME . '-feeds',
 			array( $this, 'display_page' )
@@ -63,13 +63,13 @@ class Ai1ec_View_Calendar_Feeds extends Ai1ec_View_Admin_Abstract {
 		$loader   = $this->_registry->get( 'theme.loader' );
 		$args     = array(
 			'title'             => __(
-				'All-in-One Event Calendar: Calendar Feeds',
+				'All-in-One Event Calendar: Import Feeds',
 				AI1EC_PLUGIN_NAME
 			),
 			'settings_page'     => $settings->get( 'feeds_page' ),
 			'calendar_settings' => false,
 		);
-		$file     = $loader->get_file( 'settings.php', $args, true );
+		$file     = $loader->get_file( 'feeds_settings.php', $args, true );
 		$file->render();
 	}
 
@@ -81,7 +81,17 @@ class Ai1ec_View_Calendar_Feeds extends Ai1ec_View_Admin_Abstract {
 	public function display_meta_box( $object, $box ) {
 		// register the calendar feeds page.
 		$calendar_feeds = $this->_registry->get( 'controller.calendar-feeds' );
-		$feeds          = array( $this->_registry->get( 'calendar-feed.ics' ) );
+		$feeds          = array();
+
+		array_push( $feeds, $this->_registry->get( 'calendar-feed.import' ) );
+		// Check for user subscription - Discover events
+		if ($this->_api_registration->has_subscription_active( 'discover-events' ) ) {
+		    array_push( $feeds, $this->_registry->get( 'calendar-feed.suggested' ) );
+		}
+
+		// Add ICS
+		array_push( $feeds, $this->_registry->get( 'calendar-feed.ics' ) );
+
 		$feeds          = apply_filters( 'ai1ec_calendar_feeds', $feeds );
 		foreach ( $feeds as $feed ) {
 			$calendar_feeds->add_plugin( $feed );

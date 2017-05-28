@@ -29,6 +29,27 @@
 	width:24px;
 }
 
+#ngg-gallery-wizard {
+	min-height: auto;
+}
+
+#ngg-gallery-wizard a {
+	font-weight: bold;
+}
+
+#gallerydiv h3 {
+	margin-left: 10px;
+}
+
+#gallerydiv span.toggle-indicator {
+	font-size: 2em;
+	line-height: 2em;
+}
+
+#gallerydiv span.toggle-indicator:hover {
+	cursor: pointer;
+}
+
 .warning {
     color: #9F6000;
     background-color: #FEEFB3;
@@ -525,4 +546,19 @@ DIV that shows the image as you drag it
 	margin-left:15px;
 	list-style-position:inside;
 	list-style-type:disc;
+}
+
+#ngg-manage-images-items-per-page-label {
+	float: right;
+	line-height: 30px;
+	margin-right: 5px;
+}
+
+#ngg-manage-images-items-per-page {
+	float: right;
+	margin-right: 5px;
+}
+
+#adminmenu .wp-submenu a[href*=ngg_pro_upgrade] {
+	color: #76a934;
 }

@@ -140,9 +140,41 @@
 		.ai1ec-fa-fw {
 			width: 20px;
 		}
-		.ai1ec-btn-dropdown {
-			overflow: hidden;
+	}
+	.timely-tickets-row {
+		td {
+			vertical-align: top;
+			padding-bottom: 10px;
 		}
+		td.ai1ec-tickets-info {
+			padding-left: 12px;
+			.ai1ec-tickets-description {
+				color: #666;
+				line-height: 1.1;
+				font-size: 12px;
+			}
+		}
+		.ai1ec-tickets-info-inactive {
+			.ai1ec-tickets-title {
+				text-decoration: line-through;
+				color: #666;
+			}
+		}
+		.ai1ec-tickets-availability {
+			font-size: 12px;
+			white-space: nowrap;
+		}
+		.ai1ec-tickets-amount {
+			text-align: right;
+			width: 1px;
+			select {
+				min-width: 48px !important;
+			}
+		}
+	}
+	.ai1ec-table {
+		border: none;
+		table-layout: inherit;
 	}
 }
 
@@ -170,9 +202,5 @@
 .ai1ec-event-footer {
 	color: @text-muted;
 	clear: both;
-	font-size: 0.9em;
-}
-.ai1ec-ics-icon {
-	background: url('@{imgdir_default}/ics-icon.png') no-repeat right;
-	padding-right: 15px;
+	margin: @line-height-computed / 2 0;
 }

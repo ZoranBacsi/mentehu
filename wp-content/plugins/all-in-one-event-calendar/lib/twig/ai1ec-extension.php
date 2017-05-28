@@ -30,9 +30,11 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 	 */
 	public function getFunctions() {
 		return array(
-			'screen_icon'    => new Twig_Function_Method( $this, 'screen_icon' ),
-			'wp_nonce_field' => new Twig_Function_Method( $this, 'wp_nonce_field' ),
-			'do_meta_boxes'  => new Twig_Function_Method( $this, 'do_meta_boxes' ),
+			'screen_icon'                  => new Twig_Function_Method( $this, 'screen_icon' ),
+			'wp_nonce_field'               => new Twig_Function_Method( $this, 'wp_nonce_field' ),
+			'do_meta_boxes'                => new Twig_Function_Method( $this, 'do_meta_boxes' ),
+			'fb'                           => new Twig_Function_Method( $this, 'fb' ),
+			'ai1ec_disable_content_output' => new Twig_Function_Method( $this, 'ai1ec_disable_content_output' )
 		);
 	}
 
@@ -47,6 +49,8 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 			new Twig_SimpleFilter( 'timespan',          array( $this, 'timespan' ) ),
 			new Twig_SimpleFilter( 'avatar',            array( $this, 'avatar' ) ),
 			new Twig_SimpleFilter( 'avatar_url',        array( $this, 'avatar_url' ) ),
+			new Twig_SimpleFilter( 'remove_avatar_url', array( $this, 'remove_avatar_url' ) ),		
+			new Twig_SimpleFilter( 'remove_paragraph',  array( $this, 'remove_paragraph' ) ),		
 			new Twig_SimpleFilter( 'hour_to_datetime',  array( $this, 'hour_to_datetime' ) ),
 			new Twig_SimpleFilter( 'weekday',           array( $this, 'weekday' ) ),
 			new Twig_SimpleFilter( 'day',               array( $this, 'day' ) ),
@@ -54,6 +58,9 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 			new Twig_SimpleFilter( 'year',              array( $this, 'year' ) ),
 			new Twig_SimpleFilter( 'theme_img_url',     array( $this, 'theme_img_url' ) ),
 			new Twig_SimpleFilter( 'date_i18n',         array( $this, 'date_i18n' ) ),
+			new Twig_SimpleFilter( 'dropdown_filter',   array( $this, 'dropdown_filter' ),
+				array( 'is_safe' => array( 'html' ) )
+			),
 			new Twig_SimpleFilter( '__',                'Ai1ec_I18n::__' ),
 		);
 	}
@@ -101,6 +108,16 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 	}
 
 	/**
+	 * Debug function to be used in twig templates with Firebug/FirePHP
+	 * 
+	 * @param mixed $object
+	 */
+	public function fb( $object ) {
+		if ( function_exists( 'fb' ) ) {
+			fb( $object );
+		}
+	}
+	/**
 	 * Get URL for avatar.
 	 *
 	 * Accepts an ordered array of named avatar $fallbacks.
@@ -119,6 +136,38 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 				$event,
 				$fallback_order
 			);
+	}
+
+	/**
+	 * Remove the avatar url from the content
+	 *
+	 * Accepts an ordered array of named avatar $fallbacks.
+	 * @param   Ai1ec_Event $event          The event to get the avatar for.
+	 * @param   array|null  $fallback_order Order of fallback in searching for
+	 *                                      images, or null to use default.
+	 *
+	 * @return  string                   URL if image is found.
+	 */
+	public function remove_avatar_url(
+		$content
+	) {
+		return $this->_registry->get( 'view.event.avatar' )
+			->remove_avatar_url( $content );
+	}
+
+	/**
+	 * Remove the First paragraph (<p>....</p>) from the content
+	 * @return 
+	 * <p>This is a text</p> returns This is a text
+	 * <p><p>This is a text</p></p> returns <p>This is a text</p>
+	 */
+	public function remove_paragraph( $content ) {
+		if ( preg_match( '/^<p>(.+)<\\/p>$/is', $content, $matches ) ) {
+			return $matches[1];
+		} else {
+			return $content;			
+		}
+
 	}
 
 	/**
@@ -264,6 +313,21 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 	}
 
 	/**
+	 * Filter string allowing ampersand symbols to be displayed.
+	 * at end of truncation.
+	 *
+	 * @param string $string        String to process.
+	 * @return string
+	 */
+	public function dropdown_filter(
+		$string
+	) {
+		$string = htmlspecialchars( $string );
+		$string = preg_replace( '/&amp;/', '&', $string );
+		return $string;
+	}
+
+	/**
 	 * Displays a screen icon.
 	 *
 	 * @uses get_screen_icon()
@@ -345,4 +409,12 @@ class Ai1ec_Twig_Ai1ec_Extension extends Twig_Extension {
 		return 'ai1ec';
 	}
 
+	/**
+	 * Hooks into the_content filter to disable its output.
+	 *
+	 * @return void Method does not return.
+	 */
+	public function ai1ec_disable_content_output() {
+		$this->_registry->get( 'calendar.state' )->set_append_content( false );
+	}
 }

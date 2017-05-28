@@ -11,32 +11,42 @@ define('NGG_BASIC_SINGLEPIC', 'photocrati-nextgen_basic_singlepic');
 
 class M_NextGen_Basic_Singlepic extends C_Base_Module
 {
-    function define()
+    function define($id = 'pope-module',
+                    $name = 'Pope Module',
+                    $description = '',
+                    $version = '',
+                    $uri = '',
+                    $author = '',
+                    $author_uri = '',
+                    $context = FALSE)
     {
         parent::define(
             NGG_BASIC_SINGLEPIC,
             'NextGen Basic Singlepic',
             'Provides a singlepic gallery for NextGEN Gallery',
-            '0.9',
-            'http://www.photocrati.com',
-            'Photocrati Media',
-            'http://www.photocrati.com'
+            '0.14',
+            'https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/',
+            'Imagely',
+            'https://www.imagely.com'
         );
 
-		include_once('class.nextgen_basic_singlepic_installer.php');
 		C_Photocrati_Installer::add_handler($this->module_id, 'C_NextGen_Basic_SinglePic_Installer');
+    }
+
+    function initialize()
+    {
+        parent::initialize();
+        if (is_admin()) {
+            $forms = C_Form_Manager::get_instance();
+            $forms->add_form(
+                NGG_DISPLAY_SETTINGS_SLUG, NGG_BASIC_SINGLEPIC
+            );
+        }
     }
 
 
     function _register_adapters()
     {
-        // Provides settings fields and frontend rendering
-        $this->get_registry()->add_adapter(
-            'I_Display_Type_Controller',
-            'A_NextGen_Basic_Singlepic_Controller',
-            $this->module_id
-        );
-
 		// Provides default values for the display type
 		$this->get_registry()->add_adapter(
 			'I_Display_Type_Mapper',
@@ -51,24 +61,30 @@ class M_NextGen_Basic_Singlepic extends C_Base_Module
                 'A_NextGen_Basic_SinglePic_Form',
                 $this->module_id
             );
-            // Adds the setting forms
+        }
+
+        if (apply_filters('ngg_load_frontend_logic', TRUE, $this->module_id))
+        {
+            // Provides settings fields and frontend rendering
             $this->get_registry()->add_adapter(
-                'I_Form_Manager',
-                'A_NextGen_Basic_SinglePic_Forms'
+                'I_Display_Type_Controller',
+                'A_NextGen_Basic_Singlepic_Controller',
+                $this->module_id
             );
         }
     }
 
 	function _register_hooks()
 	{
-        if (!defined('NGG_DISABLE_LEGACY_SHORTCODES') || !NGG_DISABLE_LEGACY_SHORTCODES)
+        if (apply_filters('ngg_load_frontend_logic', TRUE, $this->module_id)
+        && (!defined('NGG_DISABLE_LEGACY_SHORTCODES') || !NGG_DISABLE_LEGACY_SHORTCODES))
         {
             C_NextGen_Shortcode_Manager::add('singlepic', array(&$this, 'render_singlepic'));
-        }
-        C_NextGen_Shortcode_Manager::add('nggsinglepic', array(&$this, 'render_singlepic'));
+            C_NextGen_Shortcode_Manager::add('nggsinglepic', array(&$this, 'render_singlepic'));
 
-        // enqueue the singlepic CSS if an inline image has the ngg-singlepic class
-        add_filter('the_content', array(&$this, 'enqueue_singlepic_css'), PHP_INT_MAX, 1);
+            // enqueue the singlepic CSS if an inline image has the ngg-singlepic class
+            add_filter('the_content', array(&$this, 'enqueue_singlepic_css'), PHP_INT_MAX, 1);
+        }
 	}
 
     /**
@@ -80,10 +96,12 @@ class M_NextGen_Basic_Singlepic extends C_Base_Module
     function enqueue_singlepic_css($content)
     {
         if (preg_match("#<img.*ngg-singlepic.*>#", $content, $matches)) {
-            $router = $this->get_registry()->get_utility('I_Router');
+            $router = C_Router::get_instance();
             wp_enqueue_style(
                 'nextgen_basic_singlepic_style',
-                $router->get_static_url(NGG_BASIC_SINGLEPIC . '#nextgen_basic_singlepic.css')
+                $router->get_static_url(NGG_BASIC_SINGLEPIC . '#nextgen_basic_singlepic.css'),
+                FALSE,
+                NGG_SCRIPT_VERSION
             );
         }
 
@@ -109,7 +127,7 @@ class M_NextGen_Basic_Singlepic extends C_Base_Module
         $params['image_ids'] = $this->_get_param('id', NULL, $params);
         unset($params['id']);
 
-		$renderer = $this->get_registry()->get_utility('I_Displayed_Gallery_Renderer');
+		$renderer = C_Displayed_Gallery_Renderer::get_instance();
         return $renderer->display_images($params, $inner_content);
 	}
 
@@ -119,11 +137,32 @@ class M_NextGen_Basic_Singlepic extends C_Base_Module
             'A_Nextgen_Basic_Singlepic' => 'adapter.nextgen_basic_singlepic.php',
             'A_Nextgen_Basic_Singlepic_Controller' => 'adapter.nextgen_basic_singlepic_controller.php',
             'A_Nextgen_Basic_Singlepic_Form' => 'adapter.nextgen_basic_singlepic_form.php',
-            'A_Nextgen_Basic_Singlepic_Forms' => 'adapter.nextgen_basic_singlepic_forms.php',
             'C_NextGen_Basic_SinglePic_Installer' => 'class.nextgen_basic_singlepic_installer.php',
             'A_Nextgen_Basic_Singlepic_Mapper' => 'adapter.nextgen_basic_singlepic_mapper.php'
         );
     }
+}
+
+class C_NextGen_Basic_SinglePic_Installer extends C_Gallery_Display_Installer
+{
+	function install($reset = FALSE)
+	{
+		$this->install_display_type(
+			NGG_BASIC_SINGLEPIC, array(
+				'title'					=>	__('NextGEN Basic SinglePic', 'nggallery'),
+				'entity_types'			=>	array('image'),
+				'preview_image_relpath'	=>	'photocrati-nextgen_basic_singlepic#preview.gif',
+				'default_source'		=>	'galleries',
+				'view_order'            => NGG_DISPLAY_PRIORITY_BASE + 60,
+				'hidden_from_ui'        =>  TRUE, // todo remove this, use hidden_from_igw instead
+                'hidden_from_igw'       =>  TRUE,
+                'aliases'               =>  array(
+                    'basic_singlepic',
+                    'singlepic',
+                    'nextgen_basic_singlepic'
+                )
+			));
+	}
 }
 
 new M_NextGen_Basic_Singlepic();

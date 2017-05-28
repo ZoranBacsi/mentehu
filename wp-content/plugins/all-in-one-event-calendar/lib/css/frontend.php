@@ -13,8 +13,8 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 
 	const QUERY_STRING_PARAM                = 'ai1ec_render_css';
 
-	// This is for testing purpose, set it to AI1EC_DEBUG value.
-	const PARSE_LESS_FILES_AT_EVERY_REQUEST = AI1EC_DEBUG;
+	// This is for testing purpose, set it to AI1EC_PARSE_LESS_FILES_AT_EVERY_REQUEST value.
+	const PARSE_LESS_FILES_AT_EVERY_REQUEST = AI1EC_PARSE_LESS_FILES_AT_EVERY_REQUEST;
 
 	const KEY_FOR_PERSISTANCE               = 'ai1ec_parsed_css';
 	/**
@@ -36,10 +36,10 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 	 * @var Ai1ec_Template_Adapter
 	 */
 	private $template_adapter;
-	
+
 	/**
 	 * Possible paths/url for file cache
-	 * 
+	 *
 	 * @var array
 	 */
 	protected $_cache_paths = array();
@@ -53,17 +53,19 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 		Ai1ec_Registry_Object $registry
 	) {
 		parent::__construct( $registry );
-		$this->_cache_paths[] = array( 
+		$this->_cache_paths[] = array(
 			'path' => AI1EC_CACHE_PATH,
 			'url'  => AI1EC_CACHE_URL
 		);
-		$filesystem = $this->_registry->get( 'filesystem.checker' );
-		$wp_static_folder = $filesystem->get_ai1ec_static_dir_if_available();
-		if ( '' !== $wp_static_folder ) {
-			$this->_cache_paths[] = array(
-				'path' => $wp_static_folder,
-				'url'  => content_url() . '/ai1ec_static/'
-			);
+		if ( apply_filters( 'ai1ec_check_static_dir', true ) ) {
+			$filesystem = $this->_registry->get( 'filesystem.checker' );
+			$wp_static_folder = $filesystem->get_ai1ec_static_dir_if_available();
+			if ( '' !== $wp_static_folder ) {
+				$this->_cache_paths[] = array(
+					'path' => $wp_static_folder,
+					'url'  => content_url() . '/uploads/ai1ec_static/'
+				);
+			}
 		}
 		$this->persistance_context = $this->_registry->get(
 			'cache.strategy.persistence-context',
@@ -79,7 +81,7 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 	}
 
 	/**
-	 * 
+	 *
 	 * Get if file cache is enabled
 	 * @return boolean
 	 */
@@ -89,7 +91,7 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 
 	/**
 	 * Get folders which are not writable
-	 * 
+	 *
 	 * @return array
 	 */
 	public function get_folders_not_writable() {
@@ -139,6 +141,11 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 	 */
 	public function update_persistence_layer( $css ) {
 		$filename = $this->persistance_context->write_data_to_persistence( $css );
+		$this->db_adapter->set(
+			'ai1ec_filename_css',
+			isset( $filename['file'] ) ? $filename['file'] : false,
+			true
+		);
 		$this->save_less_parse_time( $filename['url'] );
 	}
 
@@ -155,15 +162,25 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 		// if it's empty it's a new install probably. Return static css.
 		// if it's numeric, just consider it a new install
 		if ( empty( $saved_par ) ) {
-			return AI1EC_URL . '/public/themes-ai1ec/vortex/css/ai1ec_parsed_css.css';
+			$theme = $this->_registry->get(
+				'model.option'
+			)->get( 'ai1ec_current_theme' );
+			return Ai1ec_Http_Response_Helper::remove_protocols(
+				apply_filters(
+					'ai1ec_frontend_standard_css_url',
+					$theme['theme_url'] . '/css/ai1ec_parsed_css.css'
+				)
+			);
 		}
 		if ( is_numeric( $saved_par ) ) {
 			if ( $this->_registry->get( 'model.settings' )->get( 'render_css_as_link' ) ) {
 				$time = (int) $saved_par;
 				$template_helper = $this->_registry->get( 'template.link.helper' );
-				return add_query_arg(
-					array( self::QUERY_STRING_PARAM => $time, ),
-					trailingslashit( $template_helper->get_site_url() )
+				return Ai1ec_Http_Response_Helper::remove_protocols(
+					add_query_arg(
+						array( self::QUERY_STRING_PARAM => $time, ),
+						trailingslashit( ai1ec_get_site_url() )
+					)
 				);
 			} else {
 				add_action( 'wp_head', array( $this, 'echo_css' ) );
@@ -172,7 +189,9 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 
 		}
 		// otherwise return the string
-		return $saved_par;
+		return Ai1ec_Http_Response_Helper::remove_protocols(
+			$saved_par
+		);
 	}
 
 	/**
@@ -180,7 +199,7 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 	 */
 	public function add_link_to_html_for_frontend() {
 		$url = $this->get_css_url();
-		if ( '' !== $url ) {
+		if ( '' !== $url && ! is_admin() ) {
 			wp_enqueue_style( 'ai1ec_style', $url, array(), AI1EC_VERSION );
 		}
 	}
@@ -204,7 +223,33 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 		array $variables    = null,
 		$update_persistence = false
 	) {
+		if ( ! $this->lessphp_controller->is_compilation_needed( $variables ) ) {
+			$this->_registry->get(
+				'model.option'
+			)->delete( 'ai1ec_render_css' );
+			return true;
+		}
 		$notification = $this->_registry->get( 'notification.admin' );
+		if (
+			! $this->_registry->get(
+				'compatibility.memory'
+			)->check_available_memory( AI1EC_LESS_MIN_AVAIL_MEMORY )
+		) {
+			$message = sprintf(
+				Ai1ec_I18n::__(
+					'CSS compilation failed because you don\'t have enough free memory (a minimum of %s is needed). Your calendar will not render or function properly without CSS. Please read <a href="http://time.ly/document/user-guide/getting-started/pre-sale-questions/">this article</a> to learn how to increase your PHP memory limit.'
+				),
+				AI1EC_LESS_MIN_AVAIL_MEMORY
+			);
+			$notification->store(
+				$message,
+				'error',
+				1,
+				array( Ai1ec_Notification_Admin::RCPT_ADMIN ),
+				true
+			);
+			return;
+		}
 		try {
 			// Try to parse the css
 			$css = $this->lessphp_controller->parse_less_files( $variables );
@@ -255,14 +300,14 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 					'<p>' . Ai1ec_I18n::__(
 						"Theme options were successfully reset to their default values. <a href='%s'>Visit site</a>"
 					) . '</p>',
-					get_site_url()
+					ai1ec_get_site_url()
 				);
 			} else {
 				$message = sprintf(
 					'<p>' .Ai1ec_I18n::__(
 						"Theme options were updated successfully. <a href='%s'>Visit site</a>"
 					) . '</p>',
-					get_site_url()
+					ai1ec_get_site_url()
 				);
 			}
 
@@ -294,7 +339,7 @@ class Ai1ec_Css_Frontend extends Ai1ec_Base {
 				if ( ! self::PARSE_LESS_FILES_AT_EVERY_REQUEST ) {
 					$this->_registry->get( 'notification.admin' )
 						->store(
-							sprintf( 
+							sprintf(
 								__(
 									'Your CSS is being compiled on every request, which causes your calendar to perform slowly. The following error occurred: %s',
 									AI1EC_PLUGIN_NAME

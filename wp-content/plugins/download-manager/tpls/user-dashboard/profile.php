@@ -3,18 +3,19 @@ global $current_user, $wpdb;
 ?><div class="row">
     <div class="col-md-4">
         <div class="panel panel-default dashboard-panel">
-            <div class="panel-heading"><?php _e('User Level','wpdmpro'); ?></div>
+            <div class="panel-heading"><?php _e('User Level','download-manager'); ?></div>
             <div class="panel-body">
                 <h3><?php
                     $val = get_option( 'wp_user_roles' );
                     $level = $val[$current_user->roles[0]]['name'];
+                    $level = $level==''?ucfirst($current_user->roles[0]):$level;
                     echo apply_filters("wpdm_udb_user_level",$level); ?></h3>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="panel panel-default dashboard-panel">
-            <div class="panel-heading"><?php _e('Total Downloads','wpdmpro'); ?></div>
+            <div class="panel-heading"><?php _e('Total Downloads','download-manager'); ?></div>
             <div class="panel-body">
                 <h3><?php echo number_format($wpdb->get_var("select count(*) from {$wpdb->prefix}ahm_download_stats where uid = '{$current_user->ID}'"),0,'.',','); ?></h3>
             </div>
@@ -22,7 +23,7 @@ global $current_user, $wpdb;
     </div>
     <div class="col-md-4">
         <div class="panel panel-default dashboard-panel">
-            <div class="panel-heading"><?php _e("Today's Download",'wpdmpro'); ?></div>
+            <div class="panel-heading"><?php _e("Today's Download",'download-manager'); ?></div>
             <div class="panel-body">
                 <h3><?php echo number_format($wpdb->get_var("select count(*) from {$wpdb->prefix}ahm_download_stats where uid = '{$current_user->ID}' and `year` = YEAR(CURDATE()) and `month` = MONTH(CURDATE()) and `day` = DAY(CURDATE())"),0,'.',','); ?></h3>
             </div>
@@ -30,28 +31,39 @@ global $current_user, $wpdb;
     </div>
 </div>
 <div class="panel panel-default dashboard-panel">
-    <div class="panel-heading"><?php _e('Recommended Downloads','wpdmpro'); ?></div>
+    <div class="panel-heading"><?php _e('Recommended Downloads','download-manager'); ?></div>
     <div class="panel-body">
         <div class="panel-row">
             <?php
-            $q = new WP_Query(array(
+            $rc = 0;
+            $qparams = array(
                 'post_type' => 'wpdmpro',
-                'posts_per_page' => 3
-            ));
+                'posts_per_page' => 20,
+                'orderby' => 'rand'
+            );
+            if(isset($params['recommended']) && term_exists($params['recommended'], 'wpdmcategory')){
+                $qparams['tax_query'] = array(array('taxonomy' => 'wpdmcategory', 'field'    => 'slug', 'terms' => $params['recommended']));
+            }
+
+            $q = new WP_Query($qparams);
             while($q->have_posts()){ $q->the_post();
-                ?>
-                <div class="col-md-4">
-                    <div class="card">
+                if(\WPDM\Package::userCanAccess(get_the_ID())) {
+                    ?>
+                    <div class="col-md-4">
+                        <div class="card">
 
 
-                        <?php wpdm_post_thumb(array(400, 300)); ?>
-                        <a href="<?php the_permalink(); ?>" class="card-footer">
-                            <?php the_title(); ?>
-                        </a>
+                            <?php wpdm_post_thumb(array(400, 300)); ?>
+                            <a href="<?php the_permalink(); ?>" class="card-footer">
+                                <?php the_title(); ?>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <?php
+                    <?php
+                    $rc++;
+                    if ($rc >= 3) break;
+                }
             }
             wp_reset_postdata();
             ?>
@@ -59,13 +71,13 @@ global $current_user, $wpdb;
     </div>
 </div>
 <div class="panel panel-default dashboard-panel">
-    <div class="panel-heading"><?php _e('Last 5 Downloads','wpdmpro'); ?></div>
+    <div class="panel-heading"><?php _e('Last 5 Downloads','download-manager'); ?></div>
     <table class="table">
         <thead>
         <tr>
-            <th><?php _e('Package Name','wpdmpro'); ?></th>
-            <th><?php _e('Download Time','wpdmpro'); ?></th>
-            <th><?php _e('IP','wpdmpro'); ?></th>
+            <th><?php _e('Package Name','download-manager'); ?></th>
+            <th><?php _e('Download Time','download-manager'); ?></th>
+            <th><?php _e('IP','download-manager'); ?></th>
         </tr>
         </thead>
         <tbody>

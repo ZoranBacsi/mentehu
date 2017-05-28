@@ -24,12 +24,12 @@ class Ai1ec_Event extends Ai1ec_Base {
 	 *            [-1] - only `get` (for storage) operations require care.
 	 */
 	protected $_swizzable = array(
-		'contact_url'   => 0,
-		'cost'          => 0,
-		'ticket_url'    => 0,
-		'start'         => -1,
-		'end'           => -1,
-		'timezone_name' => -1,
+		'cost'             => 0,
+		'start'            => -1,
+		'end'              => -1,
+		'timezone_name'    => -1,
+		'recurrence_dates' => 1,
+		'exception_dates'  => 1,
 	);
 
 	/**
@@ -125,7 +125,7 @@ class Ai1ec_Event extends Ai1ec_Base {
 		$end   = $this->_registry->get( 'date.time', $start );
 		$end->set_time(
 			$start->format( 'H' ),
-			$start->format( 'i' ) + 30,
+			$start->format( 'i' ) + 15,
 			$start->format( 's' )
 		);
 		$this->set( 'end', $end );
@@ -158,6 +158,15 @@ class Ai1ec_Event extends Ai1ec_Base {
 			$this->set( 'post', (object)$data );
 		}
 		return $this;
+	}
+
+	/**
+	 * Delete the events from all tables
+	 */
+	public function delete() {
+		// delete post (this will trigger deletion of cached events, and
+		// remove the event from events table)
+		wp_delete_post( $this->get( 'post_id' ), true );
 	}
 
 	/**
@@ -219,7 +228,11 @@ class Ai1ec_Event extends Ai1ec_Base {
 			GROUP_CONCAT( ttt.term_id ) AS tags
 		';
 
-		if ( false !== $instance && is_numeric( $instance ) ) {
+		if (
+			false !== $instance &&
+			is_numeric( $instance ) &&
+			$instance > 0
+		) {
 			$select_sql .= ', IF( aei.start IS NOT NULL, aei.start, e.start ) as start,' .
 						   '  IF( aei.start IS NOT NULL, aei.end,   e.end )   as end ';
 
@@ -229,6 +242,13 @@ class Ai1ec_Event extends Ai1ec_Base {
 				' aei ON aei.id = ' . $instance . ' AND e.post_id = aei.post_id ';
 		} else {
 			$select_sql .= ', e.start as start, e.end as end, e.allday ';
+			if ( -1 === (int)$instance ) {
+				$select_sql .= ', aei.id as instance_id ';
+				$left_join   = 'LEFT JOIN ' .
+					$dbi->get_table_name( 'ai1ec_event_instances' ) .
+					' aei ON e.post_id = aei.post_id ' .
+					'AND e.start = aei.start AND e.end = aei.end ';
+			}
 		}
 
 		// =============================
@@ -265,6 +285,32 @@ class Ai1ec_Event extends Ai1ec_Base {
 		return $this->initialize_from_array( $event );
 	}
 
+	public function getenddate() {
+		$end = $this->get( 'end' );
+		if ( $this->is_allday() ) {
+			$end->set_time(
+				$end->format( 'H' ),
+				$end->format( 'i' ),
+				$end->format( 's' ) - 1
+			);
+		}
+		return $end;
+	}
+	/**
+	 * Returns enddate specific info.
+	 *
+	 * @return array Date info structure.
+	 */
+	public function getenddate_info() {
+		$end = $this->getenddate();
+		return array(
+			'month'   => $this->get( 'end' )->format_i18n( 'M' ),
+			'day'     => $this->get( 'end' )->format_i18n( 'j' ),
+			'weekday' => $this->get( 'end' )->format_i18n( 'D' ),
+			'year'    => $this->get( 'end' )->format_i18n( 'Y' ),
+		);
+	}
+
 	/**
 	 * Create new event object, using provided data for initialization.
 	 *
@@ -273,14 +319,15 @@ class Ai1ec_Event extends Ai1ec_Base {
 	 *                                         initialize fields with associative
 	 *                                         array $data containing both post
 	 *                                         and event fields.
-	 * @param bool                  $instance  Optionally instance ID.
+	 * @param int|bool              $instance  Optionally instance ID. When ID
+	 *                                         value is -1 then it is
+	 *                                         retrieved from db.
 	 *
 	 * @throws Ai1ec_Invalid_Argument_Exception When $data is not one
 	 *                                          of int|array|null.
 	 * @throws Ai1ec_Event_Not_Found_Exception  When $data relates to
 	 *                                          non-existent ID.
 	 *
-	 * @return void
 	 */
 	function __construct(
 		Ai1ec_Registry_Object $registry,
@@ -314,87 +361,54 @@ class Ai1ec_Event extends Ai1ec_Base {
 	}
 
 	/**
-	 * Restore original URL from loggable event URL
+	 * Twig method for retrieving avatar.
 	 *
-	 * @param string $value URL as seen by visitor
+	 * @param  bool   $wrap_permalink Whether to wrap avatar in <a> element or not
 	 *
-	 * @return string Original URL
+	 * @return string Avatar markup
 	 */
-	public function get_nonloggable_url( $value ) {
-		if (
-			empty( $value ) ||
-			false === strpos( $value, AI1EC_REDIRECTION_SERVICE )
-		) {
-			return $value;
-		}
-		$decoded = json_decode(
-			base64_decode(
-				trim(
-					substr( $value, strlen( AI1EC_REDIRECTION_SERVICE ) ),
-					'/'
-				)
-			),
-			true
-		);
-		if ( ! isset( $decoded['l'] ) ) {
-			return '';
-		}
-		return $decoded['l'];
-	}
-
-	/**
-	 * Convert URL to a loggable form
-	 *
-	 * @param string $url    URL to which access must be counted
-	 * @param string $intent Char definition: 'b' - buy, 'd' - details
-	 *
-	 * @return string Loggable URL form
-	 *
-	 * @staticvar array $options Defaut options to persist between instances.
-	 */
-	protected function _make_url_loggable( $url, $intent ) {
-		static $options = NULL;
-		$url = trim( $url );
-		if ( ! $url || ! filter_var( $url, FILTER_VALIDATE_URL ) ) {
-			return $url;
-		}
-		if ( ! isset( $options ) ) {
-			$options = array(
-				'l' => NULL,
-				'e' => ( false !== strpos( AI1EC_VERSION, 'pro' ) ) ? 'p' : 's',
-				'v' => (string)AI1EC_VERSION,
-				'i' => NULL,
-				'c' => NULL,
-				'o' => (string)get_site_url(),
+	public function getavatar( $wrap_permalink = true ) {
+		return $this->_registry->
+			get( 'view.event.avatar' )->get_event_avatar(
+				$this,
+				$this->_registry->get( 'view.calendar.fallbacks' )->get_all(),
+				'',
+				$wrap_permalink
 			);
+	}
+
+	/**
+	 * Returns whether Event has geo information.
+	 *
+	 * @return bool True or false.
+	 */
+	public function has_geoinformation() {
+		$latitude  = floatval( $this->get( 'latitude') );
+		$longitude = floatval( $this->get( 'longitude' ) );
+		return (
+			(
+				$latitude >= 0.000000000000001 ||
+				$latitude <= -0.000000000000001
+			) &&
+			(
+				$longitude >= 0.000000000000001 ||
+				$longitude <= -0.000000000000001
+			)
+		);
+	}
+
+	protected function _handle_property_construct_recurrence_dates( $value ) {
+		if ( $value ) {
+			$this->_entity->set( 'recurrence_rules', 'RDATE=' . $value );
 		}
-		$options['l'] = (string)$url;
-		$options['i'] = (string)$intent;
-		$options['c'] = (string)$this->get( 'cost' );
-		return AI1EC_REDIRECTION_SERVICE .
-			base64_encode( json_encode( $options ) );
+		return $value;
 	}
 
-	/**
-	 * Make `Ticket URL` loggable
-	 *
-	 * @param string $value Ticket URL stored in database
-	 *
-	 * @return bool Success
-	 */
-	public function _handle_property_construct_ticket_url( $value ) {
-		return $this->_make_url_loggable( $value, 'b' );
-	}
-
-	/**
-	 * Make `Contact URL` loggable
-	 *
-	 * @param string $value Contact URL stored in database
-	 *
-	 * @return bool Success
-	 */
-	public function _handle_property_construct_contact_url( $value ) {
-		return $this->_make_url_loggable( $value, 'd' );
+	protected function _handle_property_construct_exception_dates( $value ) {
+		if ( $value ) {
+			$this->_entity->set( 'exception_rules', 'EXDATE=' . $value );
+		}
+		return $value;
 	}
 
 	/**
@@ -424,6 +438,18 @@ class Ai1ec_Event extends Ai1ec_Base {
 		return (string)$cost;
 	}
 
+	public function get_uid_pattern() {
+		static $format = null;
+		if ( null === $format ) {			
+			$site_url = parse_url( ai1ec_get_site_url() );
+			$format   = 'ai1ec-%d@' . $site_url['host'];
+			if ( isset( $site_url['path'] ) ) {
+				$format .= $site_url['path'];
+			}
+		}
+		return $format;
+	}
+
 	/**
 	 * Get UID to be used for current event.
 	 *
@@ -435,15 +461,11 @@ class Ai1ec_Event extends Ai1ec_Base {
 	 * @staticvar string $format Cached format.
 	 */
 	public function get_uid() {
-		static $format = null;
-		if ( null === $format ) {
-			$site_url = parse_url( get_site_url() );
-			$format   = 'ai1ec-%d@' . $site_url['host'];
-			if ( isset( $site_url['path'] ) ) {
-				$format .= $site_url['path'];
-			}
+		$ical_uid = $this->get( 'ical_uid' );
+		if ( ! empty( $ical_uid ) ) {
+			return $ical_uid;
 		}
-		return sprintf( $format, $this->get( 'post_id' ) );
+		return sprintf( $this->get_uid_pattern(), $this->get( 'post_id' ) );
 	}
 
 	/**
@@ -518,9 +540,13 @@ class Ai1ec_Event extends Ai1ec_Base {
 	 *
 	 * @param  bool  $update  Whether to update an existing event or create a
 	 *                        new one
+	 * @param  bool  $backward_compatibility The (wpdb) ofr the new wordpress 4.4 
+	 * now inserts NULL as null values. The previous version, if you insert a NULL
+	 * value in an int value, the values saved would be 0 instead of null.
 	 * @return int            The post_id of the new or existing event.
 	 */
-	function save( $update = false ) {
+	function save( $update = false, $backward_compatibility = true ) {
+		do_action( 'ai1ec_pre_save_event', $this, $update );
 		if ( ! $update ) {
 			$response = apply_filters( 'ai1ec_event_save_new', $this );
 			if ( is_wp_error( $response ) ) {
@@ -532,7 +558,7 @@ class Ai1ec_Event extends Ai1ec_Base {
 
 		$dbi        = $this->_registry->get( 'dbi.dbi' );
 		$columns    = $this->prepare_store_entity();
-		$format     = $this->prepare_store_format( $columns );
+		$format     = $this->prepare_store_format( $columns, $backward_compatibility );
 		$table_name = $dbi->get_table_name( 'ai1ec_events' );
 		$post_id    = $columns['post_id'];
 
@@ -540,7 +566,6 @@ class Ai1ec_Event extends Ai1ec_Base {
 			$this->set_no_end_time();
 		}
 		if ( $post_id ) {
-
 			$success = false;
 			if ( ! $update ) {
 				$success = $dbi->insert(
@@ -572,26 +597,38 @@ class Ai1ec_Event extends Ai1ec_Base {
 			$this->set( 'post_id', $post_id );
 			$columns['post_id'] = $post_id;
 
-			$taxonomy = $this->_registry->get(
-				'model.event.taxonomy',
-				$post_id
-			);
-			$taxonomy->set_categories( $this->get( 'categories' ) );
-			$taxonomy->set_tags(       $this->get( 'tags' ) );
-
-			if (
-				$feed = $this->get( 'feed' ) &&
-				isset( $feed->feed_id )
-			) {
-				$taxonomy->set_feed( $feed );
-			}
-
 			// =========================
 			// = Insert new event data =
 			// =========================
 			if ( false === $dbi->insert( $table_name, $columns, $format ) ) {
 				return false;
 			}
+		}
+
+		$taxonomy = $this->_registry->get(
+			'model.event.taxonomy',
+			$post_id
+		);
+		$cats = $this->get( 'categories' );
+		if (
+			is_array( $cats ) &&
+			! empty( $cats )
+		) {
+			$taxonomy->set_categories( $cats );
+		}
+		$tags = $this->get( 'tags' );
+		if (
+			is_array( $tags ) &&
+			! empty( $tags )
+		) {
+			$taxonomy->set_tags( $tags );
+		}
+
+		if (
+			$feed = $this->get( 'feed' ) &&
+			isset( $feed->feed_id )
+		) {
+			$taxonomy->set_feed( $feed );
 		}
 
 		// give other plugins / extensions the ability to do things
@@ -608,25 +645,11 @@ class Ai1ec_Event extends Ai1ec_Base {
 	/**
 	 * Prepare fields format flags to use in database operations.
 	 *
-	 * NOTICE: parameter $entity is ignored as of now.
-	 *
-	 * @param array $entity Serialized entity to prepare flags for.
+	 * @param array $columns Array of columns with data to insert.
 	 *
 	 * @return array List of format flags to use in integrations with DBI.
 	 */
-	public function prepare_store_format( array $entity ) {
-		// ===============================================================
-		// ====== Sample implementation to follow method signature: ======
-		// ===============================================================
-		// static $format = array(
-		// 	'post_id'       => '%d',
-		// 	'start'         => '%d',
-		// 	'end'           => '%d',
-		// 	'timezone_name' => '%s',
-		// 	// other keys to follow...
-		// );
-		// return array_values( array_intersect_key( $format, $entity ) );
-		// ===============================================================
+	public function prepare_store_format( array &$columns, $backward_compatibility = true ) {
 		$format = array(
 			'%d',  // post_id
 			'%d',  // start
@@ -658,6 +681,25 @@ class Ai1ec_Event extends Ai1ec_Base {
 			'%f',  // latitude
 			'%f',  // longitude
 		);
+
+		if ( $backward_compatibility ) {
+			$columns_count = count( $columns );
+			if ( count( $format ) !== $columns_count ) {
+				throw new Ai1ec_Event_Not_Found_Exception(
+					'Data columns count differs from format columns count'
+				);
+			}
+			$index = 0;
+			foreach ( $columns as $key => $value ) {
+				if ( '%d' === $format[ $index ] ) {
+					if ( is_null( $value ) ) {
+						$columns[ $key ] = 0;
+					}
+				}
+				$index++;
+			}
+		}
+		
 		return $format;
 	}
 
@@ -716,7 +758,7 @@ class Ai1ec_Event extends Ai1ec_Base {
 		if (
 			isset( $this->_swizzable[$field] ) &&
 			$this->_swizzable[$field] <= 0
-		) {
+		) {		
 			$value = $this->{ '_handle_property_destruct_' . $field }( $value );
 		}
 		return $value;
@@ -757,17 +799,6 @@ class Ai1ec_Event extends Ai1ec_Base {
 	}
 
 	/**
-	 * Store `Ticket URL` in non-loggable form
-	 *
-	 * @param string $ticket_url URL for buying tickets.
-	 *
-	 * @return string Non loggable URL
-	 */
-	protected function _handle_property_destruct_ticket_url( $ticket_url ) {
-		return $this->get_nonloggable_url( $ticket_url );
-	}
-
-	/**
 	 * Format datetime to UNIX timestamp for storage.
 	 *
 	 * @param Ai1ec_Date_Time $start Datetime object to compact.
@@ -790,17 +821,6 @@ class Ai1ec_Event extends Ai1ec_Base {
 	}
 
 	/**
-	 * Store `Contact URL` in non-loggable form.
-	 *
-	 * @param string $contact_url URL for contact details.
-	 *
-	 * @return string Non loggable URL.
-	 */
-	protected function _handle_property_destruct_contact_url( $contact_url ) {
-		return $this->get_nonloggable_url( $contact_url );
-	}
-
-	/**
 	 * Handle `cost` writing to permanent storage.
 	 *
 	 * @param string $cost Value of cost.
@@ -816,6 +836,60 @@ class Ai1ec_Event extends Ai1ec_Base {
 			$cost['is_free'] = true;
 		}
 		return serialize( $cost );
+	}
+
+	/**
+	 * Get the submitter information array
+	 * @return array (
+	 *    is_organizer => 1 if the organizer is the submitter,
+	 *    email => if is_organizer is 0, them this property has the email of the submitter,
+	 *    name => if is_organizer is 0, them this property has the name of the submitter
+	 * )
+	 */
+	public function get_submitter_info() {
+		$post_id        = $this->get( 'post_id' );		 
+		if ( empty( $post_id ) ) {
+			return null;
+		}
+		$submitter_info = get_post_meta(
+			$post_id,
+			'_submitter_info',
+			true
+		);			
+		if ( false == ai1ec_is_blank( $submitter_info ) ) {
+			$submitter_info = json_decode( $submitter_info, true );					
+			if ( is_array( $submitter_info ) ) {
+				return $submitter_info;
+			}
+		} 
+		return null;
+	}
+
+	/**
+	 * Save the submitter information into post metadata
+	 */
+	public function save_submitter_info( $is_submitter, $submitter_email, $submitter_name ) {
+		$post_id        = $this->get( 'post_id' );		 
+		if ( empty( $post_id ) ) {
+			throw new Exception( 'Post id empty' );
+		}
+		$save = false;
+		if ( 1 === intval( $is_submitter ) ) {
+			$submitter_info['is_organizer'] = 1;
+			if ( false === ai1ec_is_blank( $this->get( 'contact_email' ) ) ) {
+				$save = true;
+			}
+		} else {
+			$submitter_info['is_organizer'] = 0;
+			if ( false === ai1ec_is_blank( $submitter_email ) ) {
+				$submitter_info['email'] = trim( $submitter_email );
+				$submitter_info['name']  = trim( $submitter_name );
+				$save                    = true;
+			}
+		}
+		if ( $save ) {
+			update_post_meta( $post_id, '_submitter_info', json_encode( $submitter_info ) );
+		}		
 	}
 
 }

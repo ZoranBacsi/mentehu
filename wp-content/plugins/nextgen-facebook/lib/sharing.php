@@ -1,12 +1,13 @@
 <?php
 /*
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2014 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
+ */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
 if ( ! class_exists( 'NgfbSharing' ) ) {
 
@@ -14,37 +15,57 @@ if ( ! class_exists( 'NgfbSharing' ) ) {
 
 		protected $p;
 		protected $website = array();
-		protected $plugin_filepath;
+		protected $plugin_filepath = '';
+		protected $buttons_for_type = array();		// cache for have_buttons_for_type()
+		protected $post_buttons_disabled = array();	// cache for is_post_buttons_disabled()
 
-		public $sharing_css_file = '';
-		public $sharing_css_url = '';
+		public static $sharing_css_name = '';
+		public static $sharing_css_file = '';
+		public static $sharing_css_url = '';
 
 		public static $cf = array(
 			'opt' => array(				// options
 				'defaults' => array(
-					'plugin_min_shorten' => 22,
-					'plugin_bitly_login' => '',
-					'plugin_bitly_api_key' => '',
-					'plugin_google_api_key' => '',
-					'plugin_google_shorten' => 0,
+					/*
+					 * Advanced Settings
+					 */
+					// Cache Settings Tab
+					'plugin_sharing_buttons_cache_exp' => WEEK_IN_SECONDS,	// Sharing Buttons Cache Expiry (7 days)
+					'plugin_social_file_cache_exp' => 0,		// Social File Cache Expiry
+					/*
+					 * Sharing Buttons
+					 */
+					// Include Buttons Tab
 					'buttons_on_index' => 0,
 					'buttons_on_front' => 0,
 					'buttons_add_to_post' => 1,
 					'buttons_add_to_page' => 1,
 					'buttons_add_to_attachment' => 1,
+					// Buttons Position Tab
 					'buttons_pos_content' => 'bottom',
 					'buttons_pos_excerpt' => 'bottom',
-					'buttons_use_social_css' => 1,
-					'buttons_enqueue_social_css' => 0,
+					// Buttons Presets Tab
+					'buttons_preset_content' => '',
+					'buttons_preset_excerpt' => '',
+					'buttons_preset_admin_edit' => 'small_share_count',
+					'buttons_preset_sidebar' => 'large_share_vertical',
+					'buttons_preset_shortcode' => '',
+					'buttons_preset_widget' => '',
+					// Advanced Tab
+					'buttons_force_prot' => '',
+					/*
+					 * Sharing Styles
+					 */
+					'buttons_use_social_style' => 1,
+					'buttons_enqueue_social_style' => 1,
+					'buttons_css_sharing' => '',		// all buttons
+					'buttons_css_content' => '',		// post/page content
+					'buttons_css_excerpt' => '',		// post/page excerpt
 					'buttons_css_admin_edit' => '',
-					'buttons_css_sharing' => '',
-					'buttons_css_content' => '',
-					'buttons_css_excerpt' => '',
 					'buttons_css_sidebar' => '',
 					'buttons_css_shortcode' => '',
 					'buttons_css_widget' => '',
 					'buttons_js_sidebar' => '/* Save an empty style text box to reload the default javascript */
-
 jQuery("#ngfb-sidebar").mouseenter( function(){ 
 	jQuery("#ngfb-sidebar-buttons").css({
 		display:"block",
@@ -53,197 +74,192 @@ jQuery("#ngfb-sidebar").mouseenter( function(){
 		overflow:"visible",
 		"border-style":"solid",
 	}); } );
-jQuery("#ngfb-sidebar").click( function(){ 
+jQuery("#ngfb-sidebar-header").click( function(){ 
 	jQuery("#ngfb-sidebar-buttons").toggle(); } );',
-					'buttons_preset_content' => '',
-					'buttons_preset_excerpt' => '',
-					'buttons_preset_widget' => '',
-					'buttons_preset_sidebar' => 'large_share_vertical',
-					'buttons_preset_admin_edit' => 'small_share_count',
-					'buttons_preset_shortcode' => '',
-				),
-				'preset' => array(
-					'small_share_count' => array(
-						'fb_button' => 'share',
-						'fb_send' => 0,
-						'fb_show_faces' => 0,
-						'fb_action' => 'like',
-						'fb_type' => 'button_count',
-						'gp_action' => 'share',
-						'gp_size' => 'medium',
-						'gp_annotation' => 'bubble',
-						'gp_expandto' => '',
-						'twitter_size' => 'medium',
-						'twitter_count' => 'horizontal',
-						'linkedin_counter' => 'right',
-						'linkedin_showzero' => 1,
-						'pin_button_shape' => 'rect',
-						'pin_button_height' => 'small',
-						'pin_count_layout' => 'beside',
-						'buffer_count' => 'horizontal',
-						'reddit_type' => 'static-wide',
-						'managewp_type' => 'small',
-						'tumblr_button_style' => 'share_1',
-						'stumble_badge' => 1,
-					),
-					'large_share_vertical' => array(
-						'fb_button' => 'share',
-						'fb_send' => 0,
-						'fb_show_faces' => 0,
-						'fb_action' => 'like',
-						'fb_type' => 'box_count',
-						'fb_layout' => 'box_count',
-						'gp_action' => 'share',
-						'gp_size' => 'tall',
-						'gp_annotation' => 'vertical-bubble',
-						'gp_expandto' => '',
-						'twitter_size' => 'medium',
-						'twitter_count' => 'vertical',
-						'linkedin_counter' => 'top',
-						'linkedin_showzero' => '1',
-						'pin_button_shape' => 'rect',
-						'pin_button_height' => 'large',
-						'pin_count_layout' => 'above',
-						'buffer_count' => 'vertical',
-						'reddit_type' => 'static-tall-text',
-						'managewp_type' => 'big',
-						'tumblr_button_style' => 'share_2',
-						'stumble_badge' => 5,
-					),
-				),
-			),
-			'sharing' => array(
-				'show_on' => array( 
-					'content' => 'Content', 
-					'excerpt' => 'Excerpt', 
-					'sidebar' => 'CSS Sidebar', 
-					'admin_edit' => 'Admin Edit',
-				),
-				'style' => array(
-					'sharing' => 'All Buttons',
-					'content' => 'Content',
-					'excerpt' => 'Excerpt',
-					'sidebar' => 'CSS Sidebar',
-					'shortcode' => 'Shortcode',
-					'widget' => 'Widget',
-					'admin_edit' => 'Admin Edit',
-				),
+				),	// end of defaults
+				'site_defaults' => array(
+					'plugin_sharing_buttons_cache_exp' => WEEK_IN_SECONDS,	// Sharing Buttons Cache Expiry (7 days)
+					'plugin_sharing_buttons_cache_exp:use' => 'default',
+					'plugin_social_file_cache_exp' => 0,		// Social File Cache Expiry
+					'plugin_social_file_cache_exp:use' => 'default',
+				),	// end of site defaults
 			),
 		);
 
 		public function __construct( &$plugin, $plugin_filepath = NGFB_FILEPATH ) {
 			$this->p =& $plugin;
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark( 'sharing action / filter setup' );	// begin timer
+			}
+
 			$this->plugin_filepath = $plugin_filepath;
 
-			$sharing_css_name = 'sharing-styles-'.get_current_blog_id().'.min.css';
-			$this->sharing_css_file = NGFB_CACHEDIR.$sharing_css_name;
-			$this->sharing_css_url = NGFB_CACHEURL.$sharing_css_name;
+			self::$sharing_css_name = 'sharing-styles-id-'.get_current_blog_id().'.min.css';
+			self::$sharing_css_file = NGFB_CACHEDIR.self::$sharing_css_name;
+			self::$sharing_css_url = NGFB_CACHEURL.self::$sharing_css_name;
 
 			$this->set_objects();
 
 			add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_styles' ) );
-			add_action( 'wp_head', array( &$this, 'show_header' ), NGFB_HEAD_PRIORITY );
+			add_action( 'wp_head', array( &$this, 'show_head' ), NGFB_HEAD_PRIORITY );
 			add_action( 'wp_footer', array( &$this, 'show_footer' ), NGFB_FOOTER_PRIORITY );
 
-			$this->add_buttons_filter( 'get_the_excerpt' );
-			$this->add_buttons_filter( 'the_excerpt' );
-			$this->add_buttons_filter( 'the_content' );
+			if ( $this->have_buttons_for_type( 'content' ) ) {
+				$this->add_buttons_filter( 'the_content' );
+			}
+
+			if ( $this->have_buttons_for_type( 'excerpt' ) ) {
+				$this->add_buttons_filter( 'get_the_excerpt' );
+				$this->add_buttons_filter( 'the_excerpt' );
+			}
 
 			$this->p->util->add_plugin_filters( $this, array( 
-				'get_defaults' => 1,	// add sharing options and css file contents to defaults
+				'get_defaults' => 1,
+				'get_site_defaults' => 1,
+				'get_md_defaults' => 1,
+				'text_filter_begin' => 2,
+				'text_filter_end' => 2,
 			) );
 
 			if ( is_admin() ) {
-				add_action( 'add_meta_boxes', array( &$this, 'add_post_metaboxes' ) );
+				if ( $this->have_buttons_for_type( 'admin_edit' ) ) {
+					add_action( 'add_meta_boxes', array( &$this, 'add_post_buttons_metabox' ) );
+				}
+
 				$this->p->util->add_plugin_filters( $this, array( 
-					'save_options' => 2,		// update the sharing css file
-					'option_type' => 2,		// identify option type for sanitation
-					'post_cache_transients' => 4,	// flush transients on post save
-					'tooltip_side' => 2,		// tooltip messages for side boxes
-					'tooltip_plugin' => 2,		// tooltip messages for advanced settings
-					'tooltip_postmeta' => 3,	// tooltip messages for post social settings
+					'save_options' => 3,			// update the sharing css file
+					'option_type' => 2,			// identify option type for sanitation
+					'post_social_settings_tabs' => 2,	// $tabs, $mod
+					'post_cache_transients' => 3,		// clear transients on post save
+					'messages_info' => 2,
+					'messages_tooltip' => 2,
+					'messages_tooltip_plugin' => 2,
+					'settings_page_custom_style_css' => 1,
 				) );
+
 				$this->p->util->add_plugin_filters( $this, array( 
-					'status_gpl_features' => 3,	// include sharing, shortcode, and widget status
-					'status_pro_features' => 3,	// include social file cache status
-				), 10, 'ngfb' );			// hook into the extension name instead
+					'status_gpl_features' => 4,		// include sharing, shortcode, and widget status
+					'status_pro_features' => 4,		// include social file cache status
+				), 10, 'ngfb' );				// hook into the extension name instead
+
+				$this->p->util->add_plugin_actions( $this, array( 
+					'load_setting_page_reload_default_sharing_styles' => 4,
+				) );
+			}
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark( 'sharing action / filter setup' );	// end timer
 			}
 		}
 
 		private function set_objects() {
 			foreach ( $this->p->cf['plugin']['ngfb']['lib']['website'] as $id => $name ) {
-				$classname = NgfbConfig::load_lib( false, 'website/'.$id, 'ngfbsharing'.$id );
-				if ( $classname !== false && class_exists( $classname ) )
+				$classname = NgfbConfig::load_lib( false, 'website/'.$id, 'ngfbwebsite'.$id );
+				if ( $classname !== false && class_exists( $classname ) ) {
 					$this->website[$id] = new $classname( $this->p );
-			}
-		}
-
-		public function filter_get_defaults( $opts_def ) {
-			$opts_def = array_merge( $opts_def, self::$cf['opt']['defaults'] );
-			$opts_def = $this->p->util->push_add_to_options( $opts_def, array( 'buttons' => 'frontend' ) );
-			$plugin_dir = trailingslashit( plugin_dir_path( $this->plugin_filepath ) );
-			$url_path = parse_url( trailingslashit( plugins_url( '', $this->plugin_filepath ) ), PHP_URL_PATH );	// relative URL
-
-			foreach ( self::$cf['sharing']['style'] as $id => $name ) {
-				$css_file = $plugin_dir.'css/'.$id.'-buttons.css';
-
-				// css files are only loaded once (when variable is empty) into defaults to minimize disk i/o
-				if ( empty( $opts_def['buttons_css_'.$id] ) ) {
-					if ( ! $fh = @fopen( $css_file, 'rb' ) )
-						$this->p->notice->err( 'Failed to open '.$css_file.' for reading.' );
-					else {
-						$css_data = fread( $fh, filesize( $css_file ) );
-						fclose( $fh );
-						$this->p->debug->log( 'read css from file '.$css_file );
-						foreach ( array( 'URLPATH' => $url_path ) as $macro => $value )
-							$css_data = preg_replace( '/{{'.$macro.'}}/', $value, $css_data );
-						$opts_def['buttons_css_'.$id] = $css_data;
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $classname.' class loaded' );
 					}
 				}
 			}
-			return $opts_def;
 		}
 
-		public function filter_save_options( $opts, $options_name ) {
-			if ( $options_name === NGFB_OPTIONS_NAME ) {
-				// update the combined and minimized social stylesheet
+		public function filter_get_defaults( $def_opts ) {
+
+			$def_opts = array_merge( $def_opts, self::$cf['opt']['defaults'] );
+			$def_opts = $this->p->util->add_ptns_to_opts( $def_opts, 'buttons_add_to', 1 );
+			$plugin_dir = trailingslashit( realpath( dirname( $this->plugin_filepath ) ) );
+			$url_path = parse_url( trailingslashit( plugins_url( '', $this->plugin_filepath ) ), PHP_URL_PATH );	// relative URL
+			$tabs = apply_filters( $this->p->cf['lca'].'_sharing_styles_tabs', $this->p->cf['sharing']['styles'] );
+
+			foreach ( $tabs as $id => $name ) {
+				$buttons_css_file = $plugin_dir.'css/'.$id.'-buttons.css';
+
+				// css files are only loaded once (when variable is empty) into defaults to minimize disk i/o
+				if ( empty( $def_opts['buttons_css_'.$id] ) ) {
+					if ( ! file_exists( $buttons_css_file ) ) {
+						continue;
+					} elseif ( ! $fh = @fopen( $buttons_css_file, 'rb' ) ) {
+						$this->p->notice->err( sprintf( __( 'Failed to open the %s file for reading.',
+							'nextgen-facebook' ), $buttons_css_file ) );
+					} else {
+						$buttons_css_data = fread( $fh, filesize( $buttons_css_file ) );
+						fclose( $fh );
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( 'read css from file '.$buttons_css_file );
+						}
+						foreach ( array( 'plugin_url_path' => $url_path ) as $macro => $value ) {
+							$buttons_css_data = preg_replace( '/%%'.$macro.'%%/', $value, $buttons_css_data );
+						}
+						$def_opts['buttons_css_'.$id] = $buttons_css_data;
+					}
+				}
+			}
+			return $def_opts;
+		}
+
+		public function filter_get_site_defaults( $site_def_opts ) {
+			return array_merge( $site_def_opts, self::$cf['opt']['site_defaults'] );
+		}
+
+		public function filter_get_md_defaults( $md_defs ) {
+			return array_merge( $md_defs, array(
+				'email_title' => '',		// Email Subject
+				'email_desc' => '',		// Email Message
+				'twitter_desc' => '',		// Tweet Text
+				'pin_desc' => '',		// Pinterest Caption Text
+				'tumblr_img_desc' => '',	// Tumblr Image Caption
+				'tumblr_vid_desc' => '',	// Tumblr Video Caption
+				'buttons_disabled' => 0,	// Disable Sharing Buttons
+			) );
+		}
+
+		public function filter_save_options( $opts, $options_name, $network ) {
+			// update the combined and minimized social stylesheet
+			if ( $network === false ) {
 				$this->update_sharing_css( $opts );
 			}
 			return $opts;
 		}
 
 		public function filter_option_type( $type, $key ) {
-			if ( ! empty( $type ) )
+			if ( ! empty( $type ) ) {
 				return $type;
-
-			// remove localization for more generic match
-			if ( strpos( $key, '#' ) !== false )
-				$key = preg_replace( '/#.*$/', '', $key );
-
+			}
 			switch ( $key ) {
 				// integer options that must be 1 or more (not zero)
 				case 'stumble_badge':
-				case 'plugin_min_shorten':
 				case ( preg_match( '/_order$/', $key ) ? true : false ):
-					return 'posnum';
+					return 'pos_int';
 					break;
 				// text strings that can be blank
+				case 'buttons_force_prot':
 				case 'gp_expandto':
 				case 'pin_desc':
 				case 'tumblr_img_desc':
 				case 'tumblr_vid_desc':
 				case 'twitter_desc':
-				case 'plugin_bitly_login':
-				case 'plugin_bitly_api_key':
-				case 'plugin_google_api_key':
-					return 'okblank';
+					return 'ok_blank';
 					break;
 				// options that cannot be blank
+				case 'fb_platform': 
+				case 'fb_script_loc': 
+				case 'fb_lang': 
+				case 'fb_button': 
 				case 'fb_markup': 
+				case 'fb_layout': 
+				case 'fb_font': 
+				case 'fb_colorscheme': 
+				case 'fb_action': 
+				case 'fb_share_markup': 
+				case 'fb_share_layout': 
+				case 'fb_share_size': 
 				case 'gp_lang': 
 				case 'gp_action': 
 				case 'gp_size': 
 				case 'gp_annotation': 
+				case 'gp_expandto': 
 				case 'twitter_count': 
 				case 'twitter_size': 
 				case 'linkedin_counter':
@@ -257,601 +273,769 @@ jQuery("#ngfb-sidebar").click( function(){
 				case 'tumblr_button_style':
 				case 'tumblr_caption':
 				case ( strpos( $key, 'buttons_pos_' ) === 0 ? true : false ):
-				case ( preg_match( '/^[a-z]+_js_loc$/', $key ) ? true : false ):
-					return 'notblank';
+				case ( preg_match( '/^[a-z]+_script_loc$/', $key ) ? true : false ):
+					return 'not_blank';
 					break;
 			}
 			return $type;
 		}
 
-		public function filter_post_cache_transients( $transients, $post_id, $lang = 'en_US', $sharing_url ) {
-			if ( ! empty( self::$cf['sharing']['show_on'] ) &&
-				is_array( self::$cf['sharing']['show_on'] ) ) {
+		public function filter_post_social_settings_tabs( $tabs, $mod ) {
+			return SucomUtil::get_after_key( $tabs, 'media', 'buttons',
+				_x( 'Sharing Buttons', 'metabox tab', 'nextgen-facebook' ) );
+		}
 
-				$transients['NgfbSharing::get_buttons'] = array();
-				foreach( self::$cf['sharing']['show_on'] as $type_id => $type_name )
-					$transients['NgfbSharing::get_buttons'][$type_id] = 'lang:'.$lang.'_type:'.$type_id.'_post:'.$post_id;
-			}
+		public function filter_post_cache_transients( $transients, $mod, $sharing_url ) {
+			$cache_salt = SucomUtil::get_mod_salt( $mod, $sharing_url );
+			$transients['NgfbSharing::get_buttons'][] = $cache_salt;
+			$transients['NgfbShortcodeSharing::shortcode'][] = $cache_salt;
+			$transients['NgfbWidgetSharing::widget'][] = $cache_salt;
 			return $transients;
 		}
 
-		public function filter_status_gpl_features( $features, $lca, $info ) {
-			if ( ! empty( $info['lib']['submenu']['sharing'] ) )
-				$features['Sharing Buttons'] = array( 'classname' => $lca.'Sharing' );
-
+		// hooked to 'ngfb_status_gpl_features'
+		public function filter_status_gpl_features( $features, $ext, $info, $pkg ) {
+			if ( ! empty( $info['lib']['submenu']['buttons'] ) )
+				$features['(sharing) Sharing Buttons'] = array(
+					'classname' => $ext.'Sharing',
+				);
+			if ( ! empty( $info['lib']['submenu']['styles'] ) )
+				$features['(sharing) Sharing Stylesheet'] = array(
+					'status' => empty( $this->p->options['buttons_use_social_style'] ) ? 'off' : 'on',
+				);
 			if ( ! empty( $info['lib']['shortcode']['sharing'] ) )
-				$features['Sharing Shortcode'] = array( 'classname' => $lca.'ShortcodeSharing' );
-
-			if ( ! empty( $info['lib']['submenu']['style'] ) )
-				$features['Sharing Stylesheet'] = array( 'status' => $this->p->options['buttons_use_social_css'] ? 'on' : 'off' );
-
+				$features['(sharing) Sharing Shortcode'] = array(
+					'classname' => $ext.'ShortcodeSharing',
+				);
 			if ( ! empty( $info['lib']['widget']['sharing'] ) )
-				$features['Sharing Widget'] = array( 'classname' => $lca.'WidgetSharing' );
-
+				$features['(sharing) Sharing Widget'] = array(
+					'classname' => $ext.'WidgetSharing'
+				);
 			return $features;
 		}
 
-		public function filter_status_pro_features( $features = array(), $lca = '', $info = array() ) {
-			if ( ! empty( $lca ) && ! empty( $info['lib']['submenu']['sharing'] ) ) {
-				$aop = $this->p->check->aop( $lca );
-				$features['Social File Cache'] = array( 
-					'status' => $this->p->is_avail['cache']['file'] ? ( $aop ? 'on' : 'rec' ) : 'off',
-					'td_class' => $aop ? '' : 'blank',
-				);
-				$features['Sharing Styles Editor'] = array( 
-					'status' => $this->p->options['plugin_display'] === 'all' ? ( $aop ? 'on' : 'rec' ) : 'off',
-					'td_class' => $aop ? '' : 'blank',
+		public function filter_status_pro_features( $features, $ext, $info, $pkg ) {
+			if ( ! empty( $info['lib']['submenu']['buttons'] ) ) {
+				$features['(tool) Sharing Styles Editor'] = array( 
+					'td_class' => $pkg['aop'] ? '' : 'blank',
+					'purchase' => $pkg['purchase'],
+					'status' => $pkg['aop'] ? 'on' : 'rec',
 				);
 			}
 			return $features;
 		}
 
-		public function filter_tooltip_side( $text, $idx ) {
-			$lca = $this->p->cf['lca'];
-			$short = $this->p->cf['plugin'][$lca]['short'];
-			$short_pro = $short.' Pro';
-			switch ( $idx ) {
-				case 'tooltip-side-sharing-styles-editor':
-					$text = 'When showing <em>All Plugin Options</em>, the Sharing Styles settings page includes an editor for the various social sharing buttons.';
-					break;
-				case 'tooltip-side-sharing-buttons':
-					$text = 'Social sharing features include the '.$this->p->cf['menu'].' '.$this->p->util->get_admin_url( 'sharing', 'Buttons' ).
-					' and '.$this->p->util->get_admin_url( 'style', 'Styles' ).' settings pages, the Social Settings -&gt; Sharing Buttons tab on Post 
-					or Page editing pages, along with the social sharing shortcode and widget. All social sharing features can be disabled using one of 
-					the available PHP <a href="http://surniaulula.com/codex/plugins/nextgen-facebook/notes/constants/" target="_blank">constants</a>.';
-					break;
-				case 'tooltip-side-sharing-shortcode':
-					$text = 'Support for shortcode(s) can be enabled / disabled on the '.
-					$this->p->util->get_admin_url( 'advanced', 'Advanced' ).' settings page. Shortcodes are disabled by default
-					to optimize WordPress performance and content processing.';
-					break;
-				case 'tooltip-side-sharing-stylesheet':
-					$text = 'A stylesheet can be included on all webpages for the social sharing buttons. Enable or disable the
-					addition of the stylesheet from the '.$this->p->util->get_admin_url( 'style', 'Styles' ).' settings page.';
-					break;
-				case 'tooltip-side-sharing-widget':
-					$text = 'The social sharing widget feature adds a \'Sharing Buttons\' widget in the WordPress Appearance - Widgets page.
-					The widget can be used in any number of widget areas, to share the current webpage. The widget, along with all social
-					sharing featured, can be disabled using an available 
-					<a href="http://surniaulula.com/codex/plugins/nextgen-facebook/notes/constants/" target="_blank">constant</a>.';
-					break;
-				case 'tooltip-side-social-file-cache':
-					$text = $short_pro.' can save social sharing images and JavaScript to a cache folder, 
-					and provide URLs to these cached files instead of the originals. The current \'Social File Cache Expiry\'
-					value, as defined on the '.$this->p->util->get_admin_url( 'advanced#sucom-tab_plugin_cache', 'Advanced' ).' settings page, is '.
-					$this->p->options['plugin_file_cache_hrs'].' hours (the default value of 0 hours disables the 
-					file caching feature).';
-					break;
-				case 'tooltip-side-url-shortener':
-					$text = '<strong>When using the Twitter social sharing button provided by this plugin</strong>, 
-					the webpage URL (aka the <em>canonical</em> or <em>permalink</em> URL) within the Tweet, 
-					can be shortened by one of the available URL shortening services. 
-					Enable URL shortening for Twitter from the '.$this->p->util->get_admin_url( 'sharing', 'Buttons' ).' settings page.';
-					break;
-			}
-			return $text;
-		}
+		public function action_load_setting_page_reload_default_sharing_styles( $pagehook, $menu_id, $menu_name, $menu_lib ) {
 
-		public function filter_tooltip_plugin( $text, $idx ) {
-			switch ( $idx ) {
-				/*
-				 * 'API Keys' (URL Shortening) settings
-				 */
-				case 'tooltip-plugin_min_shorten':
-					$text = 'URLs shorter than this length will not be shortened (the default is '.
-					$this->p->opt->get_defaults( 'plugin_min_shorten' ).' characters).';
-					break;
-				case 'tooltip-plugin_bitly_login':
-					$text = 'The Bit.ly username for your API key. If you don\'t already have one, see 
-					<a href="https://bitly.com/a/your_api_key" target="_blank">Your Bit.ly API Key</a>.
-					After setting your username and API key, you may select the Bit.ly shortener in the '.
-					$this->p->util->get_admin_url( 'sharing', 'Twitter settings' ).'.';
-					break;
-				case 'tooltip-plugin_bitly_api_key':
-					$text = 'The Bit.ly API key for this website. If you don\'t already have one, see 
-					<a href="https://bitly.com/a/your_api_key" target="_blank">Your Bit.ly API Key</a>.
-					After setting your username and API key, you may select the Bit.ly shortener in the '.
-					$this->p->util->get_admin_url( 'sharing', 'Twitter settings' ).'.';
-					break;
-				case 'tooltip-plugin_google_api_key':
-					$text = 'The Google BrowserKey for this website / project. If you don\'t already have one, visit
-					<a href="https://cloud.google.com/console#/project" target="_blank">Google\'s Cloud Console</a>,
-					create a new project for your website, and under the API &amp; auth - Registered apps, 
-					register a new \'Web Application\' (name it \'NGFB\' for example), and enter it\'s BrowserKey here.';
-					break;
-				case 'tooltip-plugin_google_shorten':
-					$text = 'In order to use Google\'s URL Shortener for URLs in Tweets, you must turn on the 
-					URL Shortener API from <a href="https://cloud.google.com/console#/project" 
-					target="_blank">Google\'s Cloud Console</a>, under the API &amp; auth - APIs 
-					menu options. Confirm that you have enabled Google\'s URL Shortener by checking 
-					the \'Yes\' option here. You can then select the Goo.gl shortener in the '.
-					$this->p->util->get_admin_url( 'sharing', 'Twitter settings' ).'.';
-					break;
-			}
-			return $text;
-		}
+			$opts =& $this->p->options;	// update the existing options array
+			$def_opts = $this->p->opt->get_defaults();
+			$tabs = apply_filters( $this->p->cf['lca'].'_sharing_styles_tabs', 
+				$this->p->cf['sharing']['styles'] );
 
-		public function filter_tooltip_postmeta( $text, $idx, $atts ) {
-			$ptn = empty( $atts['ptn'] ) ? 'Post' : $atts['ptn'];
-			switch ( $idx ) {
-				 case 'tooltip-postmeta-pin_desc':
-					$text = 'A custom caption text, used by the Pinterest social sharing button, 
-					for the custom Image ID, attached or featured image.';
-				 	break;
-				 case 'tooltip-postmeta-tumblr_img_desc':
-				 	$text = 'A custom caption, used by the Tumblr social sharing button, 
-					for the custom Image ID, attached or featured image.';
-				 	break;
-				 case 'tooltip-postmeta-tumblr_vid_desc':
-					$text = 'A custom caption, used by the Tumblr social sharing button, 
-					for the custom Video URL or embedded video.';
-				 	break;
-				 case 'tooltip-postmeta-twitter_desc':
-				 	$text = 'A custom Tweet text for the Twitter social sharing button. 
-					This text is in addition to any Twitter Card description.';
-				 	break;
-				 case 'tooltip-postmeta-buttons_disabled':
-					$text = 'Disable all social sharing buttons (content, excerpt, widget, shortcode) for this '.$ptn.'.';
-				 	break;
+			foreach ( $tabs as $id => $name ) {
+				if ( isset( $opts['buttons_css_'.$id] ) && isset( $def_opts['buttons_css_'.$id] ) ) {
+					$opts['buttons_css_'.$id] = $def_opts['buttons_css_'.$id];
+				}
 			}
-			return $text;
+
+			$this->update_sharing_css( $opts );
+			$this->p->opt->save_options( NGFB_OPTIONS_NAME, $opts, false );
+			$this->p->notice->upd( __( 'All sharing styles have been reloaded with their default value and saved.',
+				'nextgen-facebook' ) );
 		}
 
 		public function wp_enqueue_styles() {
-			// only include sharing styles if option is checked
-			if ( ! empty( $this->p->options['buttons_use_social_css'] ) ) {
-
-				// create the css file if it does not exist
-				if ( ! file_exists( $this->sharing_css_file ) ) {
-					$this->p->debug->log( 'updating '.$this->sharing_css_file );
+			if ( ! empty( $this->p->options['buttons_use_social_style'] ) ) {
+				if ( ! file_exists( self::$sharing_css_file ) ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( 'updating '.self::$sharing_css_file );
+					}
 					$this->update_sharing_css( $this->p->options );
 				}
-
-				if ( ! empty( $this->p->options['buttons_enqueue_social_css'] ) ) {
-					$this->p->debug->log( 'wp_enqueue_style = '.$this->p->cf['lca'].'_sharing_buttons' );
-					wp_register_style( 
-						$this->p->cf['lca'].'_sharing_buttons', 
-						$this->sharing_css_url, 
-						false, 
-						$this->p->cf['plugin'][$this->p->cf['lca']]['version']
-					);
-					wp_enqueue_style( $this->p->cf['lca'].'_sharing_buttons' );
+				if ( ! empty( $this->p->options['buttons_enqueue_social_style'] ) ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( 'wp_enqueue_style = '.$this->p->cf['lca'].'_sharing_css' );
+					}
+					wp_enqueue_style( $this->p->cf['lca'].'_sharing_css', self::$sharing_css_url, 
+						false, $this->p->cf['plugin'][$this->p->cf['lca']]['version'] );
 				} else {
-					if ( ! is_readable( $this->sharing_css_file ) ) {
-						if ( is_admin() )
-							$this->p->notice->err( $this->sharing_css_file.' is not readable.', true );
-						$this->p->debug->log( $this->sharing_css_file.' is not readable' );
-					} else {
-						echo '<style type="text/css">';
-						if ( ( $fsize = @filesize( $this->sharing_css_file ) ) > 0 &&
-							$fh = @fopen( $this->sharing_css_file, 'rb' ) ) {
-							echo fread( $fh, $fsize );
-							fclose( $fh );
+					if ( ! is_readable( self::$sharing_css_file ) ) {
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( self::$sharing_css_file.' is not readable' );
 						}
+						if ( is_admin() ) {
+							$this->p->notice->err( sprintf( __( 'The %s file is not readable.',
+								'nextgen-facebook' ), self::$sharing_css_file ) );
+						}
+					} elseif ( ( $fsize = @filesize( self::$sharing_css_file ) ) > 0 &&
+						$fh = @fopen( self::$sharing_css_file, 'rb' ) ) {
+						echo '<style type="text/css">';
+						echo fread( $fh, $fsize );
 						echo '</style>',"\n";
+						fclose( $fh );
 					}
 				}
-			} else $this->p->debug->log( 'social css option is disabled' );
+			} elseif ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'buttons_use_social_style option is disabled' );
+			}
 		}
 
 		public function update_sharing_css( &$opts ) {
-			if ( ! empty( $opts['buttons_use_social_css'] ) ) {
-				if ( ! $fh = @fopen( $this->sharing_css_file, 'wb' ) ) {
-					if ( ! is_writable( NGFB_CACHEDIR ) ) {
-						if ( is_admin() )
-							$this->p->notice->err( NGFB_CACHEDIR.' is not writable.', true );
+
+			if ( empty( $opts['buttons_use_social_style'] ) ) {
+				$this->unlink_sharing_css();
+				return;
+			}
+
+			$lca = $this->p->cf['lca'];
+			$tabs = apply_filters( $lca.'_sharing_styles_tabs', $this->p->cf['sharing']['styles'] );
+			$sharing_css_data = '';
+
+			foreach ( $tabs as $id => $name ) {
+				if ( isset( $opts['buttons_css_'.$id] ) ) {
+					$sharing_css_data .= $opts['buttons_css_'.$id];
+				}
+			}
+
+			$sharing_css_data = SucomUtil::minify_css( $sharing_css_data, $lca );
+
+			if ( $fh = @fopen( self::$sharing_css_file, 'wb' ) ) {
+				if ( ( $written = fwrite( $fh, $sharing_css_data ) ) === false ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( 'failed writing to '.self::$sharing_css_file );
+					}
+					if ( is_admin() ) {
+						$this->p->notice->err( sprintf( __( 'Failed writing to the % file.',
+							'nextgen-facebook' ), self::$sharing_css_file ) );
+					}
+				} elseif ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'updated css file '.self::$sharing_css_file.' ('.$written.' bytes written)' );
+					if ( is_admin() ) {
+						$this->p->notice->upd( sprintf( __( 'Updated the <a href="%1$s">%2$s</a> stylesheet (%3$d bytes written).',
+							'nextgen-facebook' ), self::$sharing_css_url, self::$sharing_css_file, $written ), 
+								true, 'updated_'.self::$sharing_css_file, true );	// allow dismiss
+					}
+				}
+				fclose( $fh );
+			} else {
+				if ( ! is_writable( NGFB_CACHEDIR ) ) {
+					if ( $this->p->debug->enabled ) {
 						$this->p->debug->log( NGFB_CACHEDIR.' is not writable', true );
 					}
-					if ( is_admin() )
-						$this->p->notice->err( 'Failed to open file '.$this->sharing_css_file.' for writing.', true );
-					$this->p->debug->log( 'failed opening '.$this->sharing_css_file.' for writing' );
-				} else {
-					$css_data = '';
-					$style_tabs = apply_filters( $this->p->cf['lca'].'_style_tabs', self::$cf['sharing']['style'] );
-					foreach ( $style_tabs as $id => $name )
-						if ( array_key_exists( 'buttons_css_'.$id, $opts ) )
-							$css_data .= $opts['buttons_css_'.$id];
-					$classname = apply_filters( $this->p->cf['lca'].'_load_lib', false, 'ext/compressor', 'SuextMinifyCssCompressor' );
-					if ( $classname !== false && class_exists( $classname ) )
-						$css_data = call_user_func( array( $classname, 'process' ), $css_data );
-					else {
-						if ( is_admin() )
-							$this->p->notice->err( 'Failed to load minify class SuextMinifyCssCompressor.', true );
-						$this->p->debug->log( 'failed to load minify class SuextMinifyCssCompressor' );
+					if ( is_admin() ) {
+						$this->p->notice->err( sprintf( __( 'The %s folder is not writable.',
+							'nextgen-facebook' ), NGFB_CACHEDIR ) );
 					}
-					if ( fwrite( $fh, $css_data ) === false ) {
-						if ( is_admin() )
-							$this->p->notice->err( 'Failed writing to file '.$this->sharing_css_file.'.', true );
-						$this->p->debug->log( 'failed writing to '.$this->sharing_css_file );
-					} else $this->p->debug->log( 'updated css file '.$this->sharing_css_file );
-					fclose( $fh );
 				}
-			} else $this->unlink_sharing_css();
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'failed opening '.self::$sharing_css_file.' for writing' );
+				}
+				if ( is_admin() ) {
+					$this->p->notice->err( sprintf( __( 'Failed to open file %s for writing.',
+						'nextgen-facebook' ), self::$sharing_css_file ) );
+				}
+			}
 		}
 
 		public function unlink_sharing_css() {
-			if ( file_exists( $this->sharing_css_file ) ) {
-				if ( ! @unlink( $this->sharing_css_file ) && is_admin() )
-					$this->p->notice->err( 'Error removing minimized stylesheet file. Does the web server have sufficient privileges?', true );
+			if ( file_exists( self::$sharing_css_file ) ) {
+				if ( ! @unlink( self::$sharing_css_file ) ) {
+					if ( is_admin() ) {
+						$this->p->notice->err( __( 'Error removing the minimized stylesheet &mdash; does the web server have sufficient privileges?',
+							'nextgen-facebook' ) );
+					}
+				}
 			}
 		}
 
-		public function add_post_metaboxes() {
-			if ( ! is_admin() )
+		public function add_post_buttons_metabox() {
+			if ( ! is_admin() ) {	// just in case
 				return;
-
-			if ( ! $this->have_buttons( 'admin_edit' ) )
-				return;
+			}
 
 			// get the current object / post type
-			if ( ( $obj = $this->p->util->get_post_object() ) === false ) {
-				$this->p->debug->log( 'exiting early: invalid object type' );
+			if ( ( $post_obj = SucomUtil::get_post_object() ) === false ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'exiting early: invalid post object' );
+				}
 				return;
 			}
-			$post_type = get_post_type_object( $obj->post_type );
 
-			if ( ! empty( $this->p->options[ 'buttons_add_to_'.$post_type->name ] ) ) {
+			if ( ! empty( $this->p->options['buttons_add_to_'.$post_obj->post_type] ) ) {
 				// add_meta_box( $id, $title, $callback, $post_type, $context, $priority, $callback_args );
-				add_meta_box( '_'.$this->p->cf['lca'].'_share', 'Sharing Buttons', 
-					array( &$this, 'show_admin_sharing' ), $post_type->name, 'side', 'high' );
+				add_meta_box( '_'.$this->p->cf['lca'].'_share',
+					_x( 'Sharing Buttons', 'metabox title', 'nextgen-facebook' ),
+						array( &$this, 'show_admin_sharing' ), $post_obj->post_type, 'side', 'high' );
 			}
 		}
 
-		public function add_buttons_filter( $type = 'the_content' ) {
-			add_filter( $type, array( &$this, 'get_buttons_'.$type ), NGFB_SOCIAL_PRIORITY );
-			$this->p->debug->log( 'buttons filter for '.$type.' added' );
+		public function filter_text_filter_begin( $bool, $filter_name ) {
+			return $this->remove_buttons_filter( $filter_name ) ? true : $bool;
 		}
 
-		public function remove_buttons_filter( $type = 'the_content' ) {
-			$rc = remove_filter( $type, array( &$this, 'get_buttons_'.$type ), NGFB_SOCIAL_PRIORITY );
-			$this->p->debug->log( 'buttons filter for '.$type.' removed ('.( $rc  ? 'true' : 'false' ).')' );
-			return $rc;
+		public function filter_text_filter_end( $bool, $filter_name ) {
+			return $this->add_buttons_filter( $filter_name ) ? true : $bool;
 		}
 
-		public function show_header() {
-			echo $this->get_js_loader();
-			echo $this->get_js( 'header' );
-			$this->p->debug->show_html( null, 'Debug Log' );
+		public function show_head() {
+			echo $this->get_script_loader();
+			echo $this->get_script( 'header' );
 		}
 
 		public function show_footer() {
-			echo $this->show_sidebar();
-			echo $this->get_js( 'footer' );
-			$this->p->debug->show_html( null, 'Debug Log' );
+			if ( $this->have_buttons_for_type( 'sidebar' ) )
+				echo $this->show_sidebar();
+			elseif ( $this->p->debug->enabled )
+				$this->p->debug->log( 'no buttons enabled for sidebar' );
+			echo $this->get_script( 'footer' );
 		}
 
 		public function show_sidebar() {
-			if ( ! $this->have_buttons( 'sidebar' ) ) {
-				$this->p->debug->log( 'exiting early: no buttons enabled for sidebar' );
-				return;
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
 			}
+
+			$lca = $this->p->cf['lca'];
 			$js = trim( preg_replace( '/\/\*.*\*\//', '', $this->p->options['buttons_js_sidebar'] ) );
-			$text = '';	// varabled passed by reference
-			$text = $this->get_buttons( $text, 'sidebar', false );	// use_post = false
+			$text = $this->get_buttons( '', 'sidebar', false );	// $use_post = false
+
 			if ( ! empty( $text ) ) {
-				echo '<div id="'.$this->p->cf['lca'].'-sidebar">';
-				echo '<div id="'.$this->p->cf['lca'].'-sidebar-header"></div>';
+				echo '<div id="'.$lca.'-sidebar">';
+				echo '<div id="'.$lca.'-sidebar-header"></div>';
 				echo $text;
 				echo '</div>', "\n";
 				echo '<script type="text/javascript">'.$js.'</script>', "\n";
 			}
-			$this->p->debug->show_html( null, 'Debug Log' );
 		}
 
-		public function show_admin_sharing( $post ) {
-			$post_type = get_post_type_object( $post->post_type );	// since 3.0
-			$post_type_name = ucfirst( $post_type->name );
-			$css_data = $this->p->options['buttons_css_admin_edit'];
-			$classname = apply_filters( $this->p->cf['lca'].'_load_lib', false, 'ext/compressor', 'SuextMinifyCssCompressor' );
-			if ( $classname !== false && class_exists( $classname ) )
-				$css_data = call_user_func( array( $classname, 'process' ), $css_data );
+		public function show_admin_sharing( $post_obj ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			$lca = $this->p->cf['lca'];
+			$sharing_css_data = $this->p->options['buttons_css_admin_edit'];
+			$sharing_css_data = SucomUtil::minify_css( $sharing_css_data, $lca );
 
-			echo '<style type="text/css">'.$css_data.'</style>', "\n";
-			echo '<table class="sucom-setting side"><tr><td>';
-			if ( get_post_status( $post->ID ) == 'publish' ) {
-				$content = '';
-				echo $this->get_js_loader();
-				echo $this->get_js( 'header' );
-				echo $this->get_buttons( $content, 'admin_edit' );
-				echo $this->get_js( 'footer' );
-				$this->p->debug->show_html( null, 'Debug Log' );
-			} else echo '<p class="centered">The '.$post_type_name.' must be published<br/>before it can be shared.</p>';
+			echo '<style type="text/css">'.$sharing_css_data.'</style>', "\n";
+			echo '<table class="sucom-settings '.$lca.' post-side-metabox"><tr><td>';
+
+			if ( get_post_status( $post_obj->ID ) === 'publish' || $post_obj->post_type === 'attachment' ) {
+				echo $this->get_script_loader();
+				echo $this->get_script( 'header' );
+				echo $this->get_buttons( '', 'admin_edit' );
+				echo $this->get_script( 'footer' );
+			} else {
+				echo '<p class="centered">'.sprintf( __( '%s must be published<br/>before it can be shared.',
+					'nextgen-facebook' ), SucomUtil::titleize( $post_obj->post_type ) ).'</p>';
+			}
+
 			echo '</td></tr></table>';
 		}
 
+		public function add_buttons_filter( $filter_name = 'the_content' ) {
+			$added = false;
+			if ( method_exists( $this, 'get_buttons_'.$filter_name ) ) {
+				$added = add_filter( $filter_name, array( &$this, 'get_buttons_'.$filter_name ), NGFB_SOCIAL_PRIORITY );
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'buttons filter '.$filter_name.
+						' added ('.( $added  ? 'true' : 'false' ).')' );
+				}
+			} elseif ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'get_buttons_'.$filter_name.' method is missing' );
+			}
+			return $added;
+		}
+
+		public function remove_buttons_filter( $filter_name = 'the_content' ) {
+			$removed = false;
+			if ( method_exists( $this, 'get_buttons_'.$filter_name ) ) {
+				$removed = remove_filter( $filter_name, array( &$this, 'get_buttons_'.$filter_name ), NGFB_SOCIAL_PRIORITY );
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'buttons filter '.$filter_name.
+						' removed ('.( $removed  ? 'true' : 'false' ).')' );
+			}
+			return $removed;
+		}
+
 		public function get_buttons_the_excerpt( $text ) {
-			$id = $this->p->cf['lca'].' excerpt-buttons';
-			$text = preg_replace_callback( '/(<!-- '.$id.' begin -->.*<!-- '.$id.' end -->)(<\/p>)?/Usi', 
-				array( __CLASS__, 'remove_paragraph_tags' ), $text );
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			$lca = $this->p->cf['lca'];
+			$css_type_name = 'excerpt-buttons';
+			$text = preg_replace_callback( '/(<!-- '.$lca.' '.$css_type_name.' begin -->'.
+				'.*<!-- '.$lca.' '.$css_type_name.' end -->)(<\/p>)?/Usi', 
+					array( __CLASS__, 'remove_paragraph_tags' ), $text );
 			return $text;
 		}
 
 		public function get_buttons_get_the_excerpt( $text ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 			return $this->get_buttons( $text, 'excerpt' );
 		}
 
 		public function get_buttons_the_content( $text ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 			return $this->get_buttons( $text, 'content' );
 		}
 
-		public function get_buttons( &$text, $type = 'content', $use_post = true ) {
+		// $mod = true | false | post_id | $mod array
+		public function get_buttons( $text, $type = 'content', $mod = true, $location = '', $atts = array() ) {
 
-			// should we skip the sharing buttons for this content type or webpage?
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			$error_msg = false;
+
 			if ( is_admin() ) {
 				if ( strpos( $type, 'admin_' ) !== 0 ) {
-					$this->p->debug->log( $type.' filter skipped: '.$type.' ignored with is_admin()'  );
-					return $text;
+					$error_msg = $type.' ignored in back-end';
 				}
-			} else {
-				if ( ! is_singular() && empty( $this->p->options['buttons_on_index'] ) ) {
-					$this->p->debug->log( $type.' filter skipped: index page without buttons_on_index enabled' );
-					return $text;
-				} elseif ( is_front_page() && empty( $this->p->options['buttons_on_front'] ) ) {
-					$this->p->debug->log( $type.' filter skipped: front page without buttons_on_front enabled' );
-					return $text;
+			} elseif ( SucomUtil::is_amp() ) {
+				$error_msg = 'buttons not allowed in amp endpoint';
+			} elseif ( is_feed() ) {
+				$error_msg = 'buttons not allowed in rss feeds';
+			} elseif ( ! is_singular() ) {
+				if ( empty( $this->p->options['buttons_on_index'] ) ) {
+					$error_msg = 'buttons_on_index not enabled';
 				}
+			} elseif ( is_front_page() ) {
+				if ( empty( $this->p->options['buttons_on_front'] ) ) {
+					$error_msg = 'buttons_on_front not enabled';
+				}
+			} elseif ( is_singular() ) {
 				if ( $this->is_post_buttons_disabled() ) {
-					$this->p->debug->log( $type.' filter skipped: sharing buttons disabled' );
-					return $text;
+					$error_msg = 'post buttons are disabled';
 				}
 			}
 
-			if ( ! $this->have_buttons( $type ) ) {
-				$this->p->debug->log( $type.' filter exiting early: no sharing buttons enabled' );
-				return $text;
+			if ( ! $this->have_buttons_for_type( $type ) ) {
+				$error_msg = 'no sharing buttons enabled';
+			}
+
+			if ( $error_msg !== false ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $type.' filter skipped: '.$error_msg );
+				}
+				return $text."\n".'<!-- '.__METHOD__.' '.$type.' filter skipped: '.$error_msg.' -->'."\n";
 			}
 
 			$lca = $this->p->cf['lca'];
-			$obj = $this->p->util->get_post_object( $use_post );
-			$post_id = empty( $obj->ID ) || empty( $obj->post_type ) || 
-				( ! is_singular() && $use_post === false ) ? 0 : $obj->ID;
-			$sharing_url = $this->p->util->get_sharing_url( $use_post );
-			$html = false;
 
-			if ( $this->p->is_avail['cache']['transient'] ) {
-				$cache_salt = __METHOD__.'('.apply_filters( $lca.'_buttons_cache_salt', 
-					'lang:'.SucomUtil::get_locale().'_type:'.$type.'_post:'.$post_id.
-					( empty( $post_id ) ? '_url:'.$sharing_url : '' ), $type, $use_post ).')';
-				$cache_id = $lca.'_'.md5( $cache_salt );
-				$cache_type = 'object cache';
-				$this->p->debug->log( $cache_type.': transient salt '.$cache_salt );
-				$html = get_transient( $cache_id );
+			// $mod is preferred but not required
+			// $mod = true | false | post_id | $mod array
+			if ( ! is_array( $mod ) ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'optional call to get_page_mod()' );
+				}
+				$mod = $this->p->util->get_page_mod( $mod );
 			}
 
-			if ( $html !== false ) {
-				$this->p->debug->log( $cache_type.': '.$type.' html retrieved from transient '.$cache_id );
-			} else {
+			$sharing_url = $this->p->util->get_sharing_url( $mod );
+			$buttons_array = array();
+			$buttons_index = $this->get_buttons_cache_index( $type );
+			$cache_salt = __METHOD__.'('.SucomUtil::get_mod_salt( $mod, $sharing_url ).')';
+			$cache_id = $lca.'_'.md5( $cache_salt );
+			$cache_exp = (int) apply_filters( $lca.'_cache_expire_sharing_buttons', 
+				$this->p->options['plugin_sharing_buttons_cache_exp'] );
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'sharing url = '.$sharing_url );
+				$this->p->debug->log( 'buttons index = '.$buttons_index );
+				$this->p->debug->log( 'transient expire = '.$cache_exp );
+				$this->p->debug->log( 'transient salt = '.$cache_salt );
+			}
+
+			if ( $cache_exp > 0 ) {
+				$buttons_array = get_transient( $cache_id );
+				if ( isset( $buttons_array[$buttons_index] ) ) {
+					if ( $this->p->debug->enabled ) {
+						$this->p->debug->log( $type.' buttons index found in array from transient '.$cache_id );
+					}
+				} elseif ( $this->p->debug->enabled ) {
+					$this->p->debug->log( $type.' buttons index not in array from transient '.$cache_id );
+				}
+			} elseif ( $this->p->debug->enabled ) {
+				$this->p->debug->log( $type.' buttons array transient is disabled' );
+			}
+
+			if ( empty( $location ) ) {
+				$location = empty( $this->p->options['buttons_pos_'.$type] ) ? 
+					'bottom' : $this->p->options['buttons_pos_'.$type];
+			}
+
+			if ( ! isset( $buttons_array[$buttons_index] ) ) {
+
 				// sort enabled sharing buttons by their preferred order
 				$sorted_ids = array();
-				foreach ( $this->p->cf['opt']['pre'] as $id => $pre )
-					if ( ! empty( $this->p->options[$pre.'_on_'.$type] ) )
-						$sorted_ids[ zeroise( $this->p->options[$pre.'_order'], 3 ).'-'.$id ] = $id;
+				foreach ( $this->p->cf['opt']['cm_prefix'] as $id => $opt_pre ) {
+					if ( ! empty( $this->p->options[$opt_pre.'_on_'.$type] ) ) {
+						$sorted_ids[ zeroise( $this->p->options[$opt_pre.'_order'], 3 ).'-'.$id ] = $id;
+					}
+				}
 				ksort( $sorted_ids );
 
-				$atts['use_post'] = $use_post;
-				$css_type = $atts['css_id'] = $type.'-buttons';
-				if ( ! empty( $this->p->options['buttons_preset_'.$type] ) )
+				$atts['use_post'] = $mod['use_post'];
+				$atts['css_id'] = $css_type_name = $type.'-buttons';
+
+				if ( ! empty( $this->p->options['buttons_preset_'.$type] ) ) {
 					$atts['preset_id'] = $this->p->options['buttons_preset_'.$type];
+				}
 
-				$buttons_html = $this->get_html( $sorted_ids, $atts, $this->p->options );
-				if ( ! empty( $buttons_html ) ) {
-					$html = '<!-- '.$lca.' '.$css_type.' begin --><div '.
-						( $use_post ? 'class' : 'id' ).'="'.$lca.'-'.$css_type.'">'.
-						$buttons_html.'</div><!-- '.$lca.' '.$css_type.' end -->';
+				// returns html or an empty string
+				$buttons_array[$buttons_index] = $this->get_html( $sorted_ids, $atts, $mod );
 
-					if ( $this->p->is_avail['cache']['transient'] ) {
-						set_transient( $cache_id, $html, $this->p->cache->object_expire );
-						$this->p->debug->log( $cache_type.': '.$type.' html saved to transient '.
-							$cache_id.' ('.$this->p->cache->object_expire.' seconds)' );
+				if ( ! empty( $buttons_array[$buttons_index] ) ) {
+					$buttons_array[$buttons_index] = apply_filters( $lca.'_sharing_buttons_html', '
+<!-- '.$lca.' '.$css_type_name.' begin -->
+<!-- generated on '.date( 'c' ).' -->
+<div '.( $mod['use_post'] ? 'class="'.$lca.'-'.$css_type_name.'"' : 'id="'.$lca.'-'.$css_type_name.'"' ).'>'."\n".
+$buttons_array[$buttons_index].
+'</div><!-- '.( $mod['use_post'] ? '.' : '#' ).$lca.'-'.$css_type_name.' -->
+<!-- '.$lca.' '.$css_type_name.' end -->'."\n\n", $type, $mod, $location, $atts );
+
+					if ( $cache_exp > 0 ) {
+						// update the transient array and keep the original expiration time
+						$cache_exp = SucomUtil::update_transient_array( $cache_id, $buttons_array, $cache_exp );
+						if ( $this->p->debug->enabled ) {
+							$this->p->debug->log( $type.' buttons html saved to transient '.
+								$cache_id.' ('.$cache_exp.' seconds)' );
+						}
 					}
 				}
 			}
 
-			// just in case
-			$buttons_pos = empty( $this->p->options['buttons_pos_'.$type] ) ? 
-				'bottom' : $this->p->options['buttons_pos_'.$type];
-
-			switch ( $buttons_pos ) {
+			switch ( $location ) {
 				case 'top': 
-					$text = $html.$text; 
+					$text = $buttons_array[$buttons_index].$text; 
 					break;
 				case 'bottom': 
-					$text = $text.$html; 
+					$text = $text.$buttons_array[$buttons_index]; 
 					break;
 				case 'both': 
-					$text = $html.$text.$html; 
+					$text = $buttons_array[$buttons_index].$text.$buttons_array[$buttons_index]; 
 					break;
 			}
-			return $text.$this->p->debug->get_html();
+
+			return $text;
+		}
+
+		public function get_buttons_cache_index( $type, $atts = false, $ids = false ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			return 'locale:'.SucomUtil::get_locale( 'current' ).
+				'_type:'.( empty( $type ) ? 'none' : $type ).
+				'_https:'.( SucomUtil::is_https() ? 'true' : 'false' ).
+				( $this->p->avail['*']['vary_ua'] ? '_mobile:'.( SucomUtil::is_mobile() ? 'true' : 'false' ) : '' ).
+				( $atts !== false ? '_atts:'.http_build_query( $atts, '', '_' ) : '' ).
+				( $ids !== false ? '_ids:'.http_build_query( $ids, '', '_' ) : '' );
 		}
 
 		// get_html() is called by the widget, shortcode, function, and perhaps some filter hooks
-		public function get_html( &$ids = array(), &$atts = array() ) {
+		public function get_html( array $ids, array $atts, $mod = false ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
-			$preset_id = empty( $atts['preset_id'] ) ? '' : 
-				preg_replace( '/[^a-z0-9\-_]/', '', $atts['preset_id'] );
+			$lca = $this->p->cf['lca'];
+			$atts['use_post'] = isset( $atts['use_post'] ) ? $atts['use_post'] : true;	// maintain backwards compat
+			$atts['add_page'] = isset( $atts['add_page'] ) ? $atts['add_page'] : true;	// used by get_sharing_url()
+			$atts['preset_id'] = isset( $atts['preset_id'] ) ? SucomUtil::sanitize_key( $atts['preset_id'] ) : '';
+			$atts['filter_id'] = isset( $atts['filter_id'] ) ? SucomUtil::sanitize_key( $atts['filter_id'] ) : '';
 
-			$filter_id = empty( $atts['filter_id'] ) ? '' : 
-				preg_replace( '/[^a-z0-9\-_]/', '', $atts['filter_id'] );
+			// $mod is preferred but not required
+			// $mod = true | false | post_id | $mod array
+			if ( ! is_array( $mod ) ) {
+				if ( $this->p->debug->enabled ) {
+					$this->p->debug->log( 'optional call to get_page_mod()' );
+				}
+				$mod = $this->p->util->get_page_mod( $atts['use_post'] );
+			}
 
-			// important: possibly dereference the opts variable to prevent passing on changes
-			if ( empty( $preset_id ) && empty( $filter_id ) )
+			$buttons_html = '';
+			$buttons_begin = ( empty( $atts['preset_id'] ) ? '' : '<div class="ngfb-preset-'.$atts['preset_id'].'">'."\n" ).
+				'<div class="ngfb-buttons '.SucomUtil::get_locale( $mod ).'">'."\n";
+			$buttons_end = '</div><!-- .ngfb-buttons.'.SucomUtil::get_locale( $mod ).' -->'."\n".
+				( empty( $atts['preset_id'] ) ? '' : '</div><!-- .ngfb-preset-'.$atts['preset_id'].' -->'."\n" );
+
+			// possibly dereference the opts variable to prevent passing on changes
+			if ( empty( $atts['preset_id'] ) && empty( $atts['filter_id'] ) )
 				$custom_opts =& $this->p->options;
 			else $custom_opts = $this->p->options;
 
 			// apply the presets to $custom_opts
-			if ( ! empty( $preset_id ) && ! empty( self::$cf['opt']['preset'] ) ) {
-				if ( array_key_exists( $preset_id, self::$cf['opt']['preset'] ) &&
-					is_array( self::$cf['opt']['preset'][$preset_id] ) )
-						$custom_opts = array_merge( $custom_opts, self::$cf['opt']['preset'][$preset_id] );
-				else $this->p->debug->log( $preset_id.' preset missing or not array'  );
+			if ( ! empty( $atts['preset_id'] ) && ! empty( $this->p->cf['opt']['preset'] ) ) {
+				if ( isset( $this->p->cf['opt']['preset'][$atts['preset_id']] ) &&
+					is_array( $this->p->cf['opt']['preset'][$atts['preset_id']] ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'applying preset_id '.$atts['preset_id'].' to options' );
+					$custom_opts = array_merge( $custom_opts, $this->p->cf['opt']['preset'][$atts['preset_id']] );
+				} elseif ( $this->p->debug->enabled )
+					$this->p->debug->log( $atts['preset_id'].' preset_id missing or not array'  );
 			} 
 
-			$filter_name = $this->p->cf['lca'].'_sharing_html_'.$filter_id.'_options';
-			if ( ! empty( $filter_id ) && has_filter( $filter_name ) )
-				$custom_opts = apply_filters( $filter_name, $custom_opts );
-
-			$html = '';
-			foreach ( $ids as $id ) {
-				$id = preg_replace( '/[^a-z]/', '', $id );	// sanitize the website object name
-				if ( method_exists( $this->website[$id], 'get_html' ) )
-					$html .= $this->website[$id]->get_html( $atts, $custom_opts );
+			// apply the filter_id if the filter name has hooks
+			if ( ! empty( $atts['filter_id'] ) ) {
+				$filter_name = $lca.'_sharing_html_'.$atts['filter_id'].'_options';
+				if ( has_filter( $filter_name ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'applying filter_id '.$atts['filter_id'].' to options ('.$filter_name.')' );
+					$custom_opts = apply_filters( $filter_name, $custom_opts );
+				} elseif ( $this->p->debug->enabled )
+					$this->p->debug->log( 'no filter(s) found for '.$filter_name );
 			}
-			if ( ! empty( $html ) ) 
-				$html = '<div class="'.$this->p->cf['lca'].'-buttons">'."\n".$html.'</div>';
-			return $html;
+
+			$saved_atts = $atts;
+			foreach ( $ids as $id ) {
+				if ( isset( $this->website[$id] ) ) {
+					if ( method_exists( $this->website[$id], 'get_html' ) ) {
+						if ( $this->allow_for_platform( $id ) ) {
+
+							$atts['src_id'] = SucomUtil::get_atts_src_id( $atts, $id );	// uses 'css_id' and 'use_post'
+
+							$atts['url'] = empty( $atts['url'] ) ? 				// used by get_inline_vals()
+								$this->p->util->get_sharing_url( $mod,
+									$atts['add_page'], $atts['src_id'] ) : 
+								apply_filters( $lca.'_sharing_url', $atts['url'],
+									$mod, $atts['add_page'], $atts['src_id'] );
+
+							$force_prot = apply_filters( $lca.'_sharing_buttons_force_prot',
+								$this->p->options['buttons_force_prot'], $mod, $atts['url'] );
+
+							if ( ! empty( $force_prot ) && $force_prot !== 'none' ) {
+								$atts['url'] = preg_replace( '/^.*:\/\//', $force_prot.'://', $atts['url'] );
+							}
+
+							$buttons_html .= $this->website[$id]->get_html( $atts, $custom_opts, $mod )."\n";
+
+							$atts = $saved_atts;	// restore the common $atts array
+
+						} elseif ( $this->p->debug->enabled )
+							$this->p->debug->log( $id.' not allowed for platform' );
+					} elseif ( $this->p->debug->enabled )
+						$this->p->debug->log( 'get_html method missing for '.$id );
+				} elseif ( $this->p->debug->enabled )
+					$this->p->debug->log( 'website object missing for '.$id );
+			}
+
+			$buttons_html = trim( $buttons_html );
+			return empty( $buttons_html ) ? '' :
+				$buttons_begin.$buttons_html.$buttons_end;
 		}
 
 		// add javascript for enabled buttons in content, widget, shortcode, etc.
-		public function get_js( $pos = 'header', $ids = array() ) {
+		public function get_script( $pos = 'header', $request_ids = array() ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
-			// determine which (if any) sharing buttons are enabled
-			// loop through the sharing button option prefixes (fb, gp, etc.)
-			if ( empty( $ids ) ) {
-				if ( is_admin() ) {
-					if ( ( $obj = $this->p->util->get_post_object() ) === false  ||
-						 empty( $obj->filter ) || $obj->filter !== 'edit' )
-							return;
-				} elseif ( is_singular() && $this->is_post_buttons_disabled() ) {
-					$this->p->debug->log( 'exiting early: buttons disabled' );
-					return;
-				}
+			$enabled_ids = array();
 
+			// there are no widgets on the admin back-end, so don't bother checking
+			if ( ! is_admin() ) {
 				if ( class_exists( 'NgfbWidgetSharing' ) ) {
 					$widget = new NgfbWidgetSharing();
-		 			$widget_settings = $widget->get_settings();
+			 		$widget_settings = $widget->get_settings();
 				} else $widget_settings = array();
 
-				if ( is_admin() ) {
-					foreach ( $this->p->cf['opt']['pre'] as $id => $pre ) {
-						foreach ( SucomUtil::preg_grep_keys( '/^'.$pre.'_on_admin_/', $this->p->options ) as $key => $val )
-							if ( ! empty( $val ) )
-								$ids[] = $id;
-					}
-				} else {
-					if ( is_singular() || 
-						( ! is_singular() && ! empty( $this->p->options['buttons_on_index'] ) ) || 
-						( is_front_page() && ! empty( $this->p->options['buttons_on_front'] ) ) ) {
-	
-						// exclude buttons enabled for admin editing pages
-						foreach ( $this->p->cf['opt']['pre'] as $id => $pre ) {
-							foreach ( SucomUtil::preg_grep_keys( '/^'.$pre.'_on_/', $this->p->options ) as $key => $val )
-								if ( strpos( $key, $pre.'_on_admin_' ) === false && ! empty( $val ) )
-									$ids[] = $id;
-						}
-					}
-					// check for enabled buttons in ACTIVE widget(s)
-					foreach ( $widget_settings as $num => $instance ) {
-						if ( is_object( $widget ) && is_active_widget( false, $widget->id_base.'-'.$num, $widget->id_base ) ) {
-							foreach ( $this->p->cf['opt']['pre'] as $id => $pre ) {
-								if ( array_key_exists( $id, $instance ) && 
-									! empty( $instance[$id] ) )
-										$ids[] = $id;
-							}
+				// check for enabled buttons in ACTIVE widget(s)
+				foreach ( $widget_settings as $num => $instance ) {
+					if ( is_object( $widget ) && is_active_widget( false,
+						$widget->id_base.'-'.$num, $widget->id_base ) ) {
+
+						foreach ( $this->p->cf['opt']['cm_prefix'] as $id => $opt_pre ) {
+							if ( array_key_exists( $id, $instance ) && 
+								! empty( $instance[$id] ) )
+									$enabled_ids[] = $id;
 						}
 					}
 				}
-				if ( empty( $ids ) ) {
-					$this->p->debug->log( 'exiting early: no buttons enabled' );
-					return;
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'enabled widget ids: '.
+						SucomDebug::pretty_array( $enabled_ids, true ) );
+			}
+
+			$exit_message = false;
+			if ( is_admin() ) {
+				if ( ( $post_obj = SucomUtil::get_post_object() ) === false ||
+					( get_post_status( $post_obj->ID ) !== 'publish' && $post_obj->post_type !== 'attachment' ) )
+						$exit_message = 'must be published or attachment for admin buttons';
+			} elseif ( ! is_singular() ) {
+				if ( empty( $this->p->options['buttons_on_index'] ) )
+					$exit_message = 'buttons_on_index not enabled';
+			} elseif ( is_front_page() ) {
+				if ( empty( $this->p->options['buttons_on_front'] ) )
+					$exit_message = 'buttons_on_front not enabled';
+			} elseif ( is_singular() ) {
+				if ( $this->is_post_buttons_disabled() )
+					$exit_message = 'post buttons are disabled';
+			}
+
+			if ( $exit_message ) {
+				if ( empty( $request_ids ) && empty( $enabled_ids ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'exiting early: '.$exit_message  );
+					return '<!-- '.$this->p->cf['lca'].' '.$pos.': '.$exit_message.' -->'."\n";
+				} elseif ( $this->p->debug->enabled )
+					$this->p->debug->log( 'ignoring exit message: have requested or enabled ids' );
+			} elseif ( is_admin() ) {
+				foreach ( $this->p->cf['opt']['cm_prefix'] as $id => $opt_pre ) {
+					foreach ( SucomUtil::preg_grep_keys( '/^'.$opt_pre.'_on_admin_/', $this->p->options ) as $key => $val ) {
+						if ( ! empty( $val ) )
+							$enabled_ids[] = $id;
+					}
+				}
+			} else {
+				foreach ( $this->p->cf['opt']['cm_prefix'] as $id => $opt_pre ) {
+					foreach ( SucomUtil::preg_grep_keys( '/^'.$opt_pre.'_on_/', $this->p->options ) as $key => $val ) {
+						// exclude buttons enabled for admin editing pages
+						if ( strpos( $key, $opt_pre.'_on_admin_' ) === false && ! empty( $val ) )
+							$enabled_ids[] = $id;
+					}
 				}
 			}
 
-			natsort( $ids );
-			$ids = array_unique( $ids );
-			$js = '<!-- '.$this->p->cf['lca'].' '.$pos.' javascript begin -->'."\n";
+			if ( empty( $request_ids ) ) {
+				if ( empty( $enabled_ids ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'exiting early: no buttons enabled or requested' );
+					return '<!-- ngfb '.$pos.': no buttons enabled or requested -->'."\n";
+				} else $include_ids = $enabled_ids;
+			} else {
+				$include_ids = array_diff( $request_ids, $enabled_ids );
+				if ( empty( $include_ids ) ) {
+					if ( $this->p->debug->enabled )
+						$this->p->debug->log( 'exiting early: no scripts after removing enabled buttons' );
+					return '<!-- ngfb '.$pos.': no scripts after removing enabled buttons -->'."\n";
+				}
+			}
+
+			natsort( $include_ids );
+			$include_ids = array_unique( $include_ids );
+			$script_html = '<!-- ngfb '.$pos.' javascript begin -->'."\n".
+				'<!-- generated on '.date( 'c' ).' -->'."\n";
 
 			if ( strpos( $pos, '-header' ) ) 
-				$js_loc = 'header';
+				$script_loc = 'header';
 			elseif ( strpos( $pos, '-footer' ) ) 
-				$js_loc = 'footer';
-			else $js_loc = $pos;
+				$script_loc = 'footer';
+			else $script_loc = $pos;
 
-			if ( ! empty( $ids ) ) {
-				foreach ( $ids as $id ) {
+			if ( ! empty( $include_ids ) ) {
+				foreach ( $include_ids as $id ) {
 					$id = preg_replace( '/[^a-z]/', '', $id );
-					$opt_name = $this->p->cf['opt']['pre'][$id].'_js_loc';
-					if ( method_exists( $this->website[$id], 'get_js' ) && 
-						! empty( $this->p->options[$opt_name] ) && 
-						$this->p->options[$opt_name] == $js_loc )
-							$js .= $this->website[$id]->get_js( $pos );
+					$opt_name = $this->p->cf['opt']['cm_prefix'][$id].'_script_loc';
+
+					if ( isset( $this->website[$id] ) &&
+						method_exists( $this->website[$id], 'get_script' ) ) {
+
+						if ( isset( $this->p->options[$opt_name] ) && 
+							$this->p->options[$opt_name] === $script_loc )
+								$script_html .= $this->website[$id]->get_script( $pos )."\n";
+						else $script_html .= '<!-- ngfb '.$pos.': '.$id.' script location is '.$this->p->options[$opt_name].' -->'."\n";
+					}
 				}
 			}
-			$js .= '<!-- '.$this->p->cf['lca'].' '.$pos.' javascript end -->'."\n";
-			return $js;
+
+			$script_html .= '<!-- ngfb '.$pos.' javascript end -->'."\n";
+
+			return $script_html;
 		}
 
-		public function get_js_loader( $pos = 'id' ) {
+		public function get_script_loader( $pos = 'id' ) {
+
 			$lang = empty( $this->p->options['gp_lang'] ) ? 'en-US' : $this->p->options['gp_lang'];
-			$lang = apply_filters( $this->p->cf['lca'].'_lang', $lang, SucomUtil::get_pub_lang( 'gplus' ) );
+			$lang = apply_filters( $this->p->cf['lca'].'_pub_lang', $lang, 'google', 'current' );
+
 			return '<script type="text/javascript" id="ngfb-header-script">
-				window.___gcfg = { lang: "'.$lang.'" };
-				function '.$this->p->cf['lca'].'_insert_js( script_id, url, async ) {
-					if ( document.getElementById( script_id + "-js" ) ) return;
-					var async = typeof async !== "undefined" ? async : true;
-					var script_pos = document.getElementById( script_id );
-					var js = document.createElement( "script" );
-					js.id = script_id + "-js";
-					js.async = async;
-					js.type = "text/javascript";
-					js.language = "JavaScript";
-					js.src = url;
-					script_pos.parentNode.insertBefore( js, script_pos );
-				};</script>'."\n";
+	window.___gcfg = { lang: "'.$lang.'" };
+	function '.$this->p->cf['lca'].'_insert_js( script_id, url, async ) {
+		if ( document.getElementById( script_id + "-js" ) ) return;
+		var async = typeof async !== "undefined" ? async : true;
+		var script_pos = document.getElementById( script_id );
+		var js = document.createElement( "script" );
+		js.id = script_id + "-js";
+		js.async = async;
+		js.type = "text/javascript";
+		js.language = "JavaScript";
+		js.src = url;
+		script_pos.parentNode.insertBefore( js, script_pos );
+	};
+</script>'."\n";
 		}
 
-		public function get_css( $css_name, &$atts = array(), $css_class_extra = '' ) {
-			global $post;
+		public function have_buttons_for_type( $type ) {
+			if ( isset( $this->buttons_for_type[$type] ) ) {
+				return $this->buttons_for_type[$type];
+			}
 
-			$css_class = $css_name.'-'.( empty( $atts['css_class'] ) ? 
-				'button' : $atts['css_class'] );
+			foreach ( $this->p->cf['opt']['cm_prefix'] as $id => $opt_pre ) {
+				if ( ! empty( $this->p->options[$opt_pre.'_on_'.$type] ) &&	// check if button is enabled
+					$this->allow_for_platform( $id ) )			// check if allowed on platform
+						return $this->buttons_for_type[$type] = true;
+			}
 
-			$css_id = $css_name.'-'.( empty( $atts['css_id'] ) ? 
-				'button' : $atts['css_id'] );
+			return $this->buttons_for_type[$type] = false;
+		}
 
-			if ( is_singular() && ! empty( $post->ID ) ) 
-				$css_id .= '-post-'.$post->ID;
+		public function allow_for_platform( $id ) {
 
-			if ( ! empty( $css_class_extra ) ) 
-				$css_class = $css_class_extra.' '.$css_class;
+			// always allow if the content does not vary by user agent
+			if ( ! $this->p->avail['*']['vary_ua'] ) {
+				return true;
+			}
 
-			return 'class="'.$css_class.'" id="'.$css_id.'"';
+			$opt_pre = isset( $this->p->cf['opt']['cm_prefix'][$id] ) ?
+				$this->p->cf['opt']['cm_prefix'][$id] : $id;
+
+			if ( isset( $this->p->options[$opt_pre.'_platform'] ) ) {
+				switch( $this->p->options[$opt_pre.'_platform'] ) {
+					case 'any':
+						return true;
+					case 'desktop':
+						return SucomUtil::is_desktop();
+					case 'mobile':
+						return SucomUtil::is_mobile();
+					default:
+						return true;
+				}
+			}
+
+			return true;
 		}
 
 		public function is_post_buttons_disabled() {
-			global $post;
 			$ret = false;
-			if ( ! empty( $post ) ) {
-				$post_type = $post->post_type;
-				if ( $this->p->addons['util']['postmeta']->get_options( $post->ID, 'buttons_disabled' ) ) {
-					$this->p->debug->log( 'post '.$post->ID.': sharing buttons disabled by custom meta option' );
-					$ret = true;
-				} elseif ( ! empty( $post_type ) && empty( $this->p->options['buttons_add_to_'.$post_type] ) ) {
-					$this->p->debug->log( 'post '.$post->ID.': sharing buttons not enabled for post type '.$post_type );
-					$ret = true;
-				}
+
+			if ( ( $post_obj = SucomUtil::get_post_object() ) === false ) {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'exiting early: invalid post object' );
+				return $ret;
+			} else $post_id = empty( $post_obj->ID ) ? 0 : $post_obj->ID;
+
+			if ( empty( $post_id ) )
+				return $ret;
+
+			if ( isset( $this->post_buttons_disabled[$post_id] ) )
+				return $this->post_buttons_disabled[$post_id];
+
+			// get_options() returns null if an index key is not found
+			if ( $this->p->m['util']['post']->get_options( $post_id, 'buttons_disabled' ) ) {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'post '.$post_id.': sharing buttons disabled by meta data option' );
+				$ret = true;
+			} elseif ( ! empty( $post_obj->post_type ) && 
+				empty( $this->p->options['buttons_add_to_'.$post_obj->post_type] ) ) {
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'post '.$post_id.': sharing buttons not enabled for post type '.$post_obj->post_type );
+				$ret = true;
 			}
-			return apply_filters( $this->p->cf['lca'].'_post_buttons_disabled', $ret );
+
+			return $this->post_buttons_disabled[$post_id] = apply_filters( $this->p->cf['lca'].'_post_buttons_disabled', $ret, $post_id );
 		}
 
 		public function remove_paragraph_tags( $match = array() ) {
@@ -862,18 +1046,252 @@ jQuery("#ngfb-sidebar").click( function(){
 			return $suff.$ret; 
 		}
 
-		public function have_buttons( $type ) {
-			foreach ( $this->p->cf['opt']['pre'] as $id => $pre )
-				if ( ! empty( $this->p->options[$pre.'_on_'.$type] ) )
-					return true;
-			return false;
+		public function get_website_object_ids( $website = array() ) {
+			$website_ids = array();
+
+			if ( empty( $website ) ) {
+				$keys = array_keys( $this->website );
+			} else {
+				$keys = array_keys( $website );
+			}
+
+			$website_lib = $this->p->cf['plugin']['ngfb']['lib']['website'];
+
+			foreach ( $keys as $id ) {
+				$website_ids[$id] = isset( $website_lib[$id] ) ?
+					$website_lib[$id] : ucfirst( $id );
+			}
+
+			return $website_ids;
 		}
 
-		public function get_website_ids() {
-			$ids = array();
-			foreach ( array_keys( $this->website ) as $id )
-				$ids[$id] = $this->p->cf['plugin']['ngfb']['lib']['website'][$id];
-			return $ids;
+		public function get_tweet_text( array $mod, $atts = array(), $opt_pre = 'twitter', $md_pre = 'twitter' ) {
+			if ( ! isset( $atts['tweet'] ) ) {	// just in case
+				$atts['use_post'] = isset( $atts['use_post'] ) ? $atts['use_post'] : true;
+				$atts['add_page'] = isset( $atts['add_page'] ) ? $atts['add_page'] : true;	// used by get_sharing_url()
+				$atts['add_hashtags'] = isset( $atts['add_hashtags'] ) ? $atts['add_hashtags'] : true;
+				return $this->p->page->get_caption( ( empty( $this->p->options[$opt_pre.'_caption'] ) ?
+					'title' : $this->p->options[$opt_pre.'_caption'] ), $this->get_tweet_max_len( $opt_pre ),
+						$mod, true, $atts['add_hashtags'], false, $md_pre.'_desc' );
+			} else return $atts['tweet'];
+		}
+
+		// $opt_pre can be twitter, buffer, etc.
+		public function get_tweet_max_len( $opt_pre = 'twitter' ) {
+
+			$short_len = 23;	// twitter counts 23 characters for any url
+
+			if ( isset( $this->p->options['tc_site'] ) && ! empty( $this->p->options[$opt_pre.'_via'] ) ) {
+				$tc_site = preg_replace( '/^@/', '', $this->p->options['tc_site'] );
+				$site_len = empty( $tc_site ) ? 0 : strlen( $tc_site ) + 6;
+			} else {
+				$site_len = 0;
+			}
+
+			$max_len = $this->p->options[$opt_pre.'_cap_len'] - $site_len - $short_len;
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->log( 'max tweet length is '.$max_len.' chars ('.$this->p->options[$opt_pre.'_cap_len'].
+					' less '.$site_len.' for site name and '.$short_len.' for url)' );
+			}
+
+			return $max_len;
+		}
+
+		public function get_social_file_cache_url( $url, $url_ext = '' ) {
+
+			$lca = $this->p->cf['lca'];
+			$cache_exp = (int) apply_filters( $lca.'_cache_expire_social_file', 
+				$this->p->options['plugin_social_file_cache_exp'] );
+
+			if ( $cache_exp > 0 && isset( $this->p->cache->base_dir ) ) {
+				$url = $this->p->cache->get( $url, 'url', 'file', $cache_exp, false, $url_ext );
+			}
+
+			return apply_filters( $lca.'_rewrite_cache_url', $url );	// social file cache url
+		}
+
+		public function filter_messages_tooltip( $text, $idx ) {
+			if ( strpos( $idx, 'tooltip-buttons_' ) !== 0 ) {
+				return $text;
+			}
+			switch ( $idx ) {
+				case ( strpos( $idx, 'tooltip-buttons_pos_' ) === false ? false : true ):
+					$text = sprintf( __( 'Social sharing buttons can be added to the top, bottom, or both. Each sharing button must also be enabled below (see the <em>%s</em> options).', 'nextgen-facebook' ), _x( 'Show Button in', 'option label', 'nextgen-facebook' ) );
+					break;
+				case 'tooltip-buttons_on_index':
+					$text = __( 'Add the social sharing buttons to each entry of an index webpage (blog front page, category, archive, etc.). Social sharing buttons are not included on index webpages by default.', 'nextgen-facebook' );
+					break;
+				case 'tooltip-buttons_on_front':
+					$text = __( 'If a static Post or Page has been selected for the front page, you can add the social sharing buttons to that static front page as well (default is unchecked).', 'nextgen-facebook' );
+					break;
+				case 'tooltip-buttons_add_to':
+					$text = __( 'Enabled social sharing buttons are added to the Post, Page, Media, and Product webpages by default. If your theme (or another plugin) supports additional custom post types, and you would like to include social sharing buttons on these webpages, check the appropriate option(s) here.', 'nextgen-facebook' );
+					break;
+				case 'tooltip-buttons_preset':
+					$text = __( 'Select a pre-defined set of option values for sharing buttons in this location.', 'nextgen-facebook' );
+					break;
+				case 'tooltip-buttons_force_prot':
+					$text = __( 'Modify URLs shared by the sharing buttons to use a specific protocol. This option can be useful to retain the share count of HTTP URLs after moving your site to HTTPS.', 'nextgen-facebook' );
+					break;
+				case 'tooltip-buttons_use_social_style':
+					$text = sprintf( __( 'Add the CSS of all <em>%1$s</em> to webpages (default is checked). The CSS will be <strong>minimized</strong>, and saved to a single stylesheet with a URL of <a href="%2$s">%3$s</a>. The minimized stylesheet can be enqueued or added directly to the webpage HTML.', 'nextgen-facebook' ), _x( 'Sharing Styles', 'lib file description', 'nextgen-facebook' ), NgfbSharing::$sharing_css_url, NgfbSharing::$sharing_css_url );
+					break;
+				case 'tooltip-buttons_enqueue_social_style':
+					$text = __( 'Have WordPress enqueue the social stylesheet instead of adding the CSS to in the webpage HTML (default is unchecked). Enqueueing the stylesheet may be desirable if you use a plugin to concatenate all enqueued styles into a single stylesheet URL.', 'nextgen-facebook' );
+					break;
+				case 'tooltip-buttons_js_sidebar':
+					$text = __( 'JavaScript added to webpages for the social sharing sidebar.' );
+					break;
+				case 'tooltip-buttons_add_via':
+					$text = sprintf( __( 'Append the %1$s to the tweet (see <a href="%2$s">the Twitter options tab</a> in the %3$s settings page). The %1$s will be displayed and recommended after the webpage is shared.', 'nextgen-facebook' ), _x( 'Twitter Business @username', 'option label', 'nextgen-facebook' ), $this->p->util->get_admin_url( 'general#sucom-tabset_pub-tab_twitter' ), _x( 'General', 'lib file description', 'nextgen-facebook' ) );
+					break;
+				case 'tooltip-buttons_rec_author':
+					$text = sprintf( __( 'Recommend following the author\'s Twitter @username after sharing a webpage. If the %1$s option (above) is also checked, the %2$s is suggested first.', 'nextgen-facebook' ), _x( 'Add via @username', 'option label (short)', 'nextgen-facebook' ), _x( 'Twitter Business @username', 'option label', 'nextgen-facebook' ) );
+					break;
+			}
+			return $text;
+		}
+
+		public function filter_messages_tooltip_plugin( $text, $idx ) {
+			switch ( $idx ) {
+				case 'tooltip-plugin_sharing_buttons_cache_exp':
+					$cache_exp = NgfbSharing::$cf['opt']['defaults']['plugin_sharing_buttons_cache_exp'];	// use original un-filtered value
+					$cache_diff = $cache_exp ? human_time_diff( 0, $cache_exp ) : _x( 'disabled', 'option comment', 'nextgen-facebook' );
+					$text = __( 'The rendered HTML for social sharing buttons is saved to the WordPress transient cache to optimize performance.',
+						'nextgen-facebook' ).' '.sprintf( __( 'The suggested cache expiration value is %1$s seconds (%2$s).',
+							'nextgen-facebook' ), $cache_exp, $cache_diff );
+					break;
+				case 'tooltip-plugin_social_file_cache_exp':
+					$cache_exp = NgfbSharing::$cf['opt']['defaults']['plugin_social_file_cache_exp'];	// use original un-filtered value
+					$cache_diff = $cache_exp ? human_time_diff( 0, $cache_exp ) : _x( 'disabled', 'option comment', 'nextgen-facebook' );
+					$text = __( 'The JavaScript of most social sharing buttons can be saved locally to cache folder in order to provide cached URLs instead of the originals.', 'nextgen-facebook' ).' '.__( 'If your hosting infrastructure performs reasonably well, this option can improve page load times significantly.', 'nextgen-facebook' ).' '.sprintf( __( 'The suggested cache expiration value is %1$s seconds (%2$s).', 'nextgen-facebook' ), $cache_exp, $cache_diff );
+					break;
+			}
+			return $text;
+		}
+
+		public function filter_messages_info( $text, $idx ) {
+			if ( strpos( $idx, 'info-styles-' ) !== 0 )
+				return $text;
+			$lca =  $this->p->cf['lca'];
+			$short = $this->p->cf['plugin'][$lca]['short'];
+			switch ( $idx ) {
+				case 'info-styles-sharing':
+					$notes_url = $this->p->cf['plugin'][$lca]['url']['notes'];
+					$text = '<p>'.$short.' uses the \''.$lca.'-buttons\' class to wrap all its sharing buttons, and each button has it\'s own individual class name as well. Refer to the <a href="'.$notes_url.'" target="_blank">Notes</a> webpage for additional stylesheet information, including how to hide the sharing buttons for specific Posts, Pages, categories, tags, etc.</p>';
+					break;
+				case 'info-styles-content':
+					$text = '<p>Social sharing buttons, enabled / added to the content text from the '.$this->p->util->get_admin_url( 'buttons', 'Sharing Buttons' ).' settings page, are assigned the \''.$lca.'-content-buttons\' class, which itself contains the \''.$lca.'-buttons\' class -- a common class for all buttons (see the All Buttons tab).</p> 
+					<p>Example:</p><pre>
+.'.$lca.'-content-buttons 
+    .'.$lca.'-buttons
+        .facebook-button { }</pre>';
+					break;
+				case 'info-styles-excerpt':
+					$text = '<p>Social sharing buttons, enabled / added to the excerpt text from the '.$this->p->util->get_admin_url( 'buttons', 'Sharing Buttons' ).' settings page, are assigned the \''.$lca.'-excerpt-buttons\' class, which itself contains the \''.$lca.'-buttons\' class -- a common class for all buttons (see the All Buttons tab).</p> 
+					<p>Example:</p><pre>
+.'.$lca.'-excerpt-buttons 
+    .'.$lca.'-buttons
+        .facebook-button { }</pre>';
+					break;
+				case 'info-styles-sidebar':
+					$text = '<p>Social sharing buttons added to the sidebar are assigned the \'#'.$lca.'-sidebar\' CSS id, which itself contains \'#'.$lca.'-sidebar-header\', \'#'.$lca.'-sidebar-buttons\' and the \''.$lca.'-buttons\' class -- a common class for all buttons (see the All Buttons tab).</p>
+					<p>Example:</p><pre>
+#'.$lca.'-sidebar
+    #'.$lca.'-sidebar-header { }
+
+#'.$lca.'-sidebar
+    #'.$lca.'-sidebar-buttons
+        .'.$lca.'-buttons
+	    .facebook-button { }</pre>';
+					break;
+				case 'info-styles-shortcode':
+					$text = '<p>Social sharing buttons added from a shortcode are assigned the \''.$lca.'-shortcode-buttons\' class, which itself contains the \''.$lca.'-buttons\' class -- a common class for all buttons (see the All Buttons tab).</p> 
+
+					<p>Example:</p><pre>
+.'.$lca.'-shortcode-buttons 
+    .'.$lca.'-buttons
+        .facebook-button { }</pre>';
+					break;
+				case 'info-styles-widget':
+					$text = '<p>Social sharing buttons within the social sharing buttons widget are assigned the \''.$lca.'-widget-buttons\' class, which itself contains the \''.$lca.'-buttons\' class -- a common class for all buttons (see the All Buttons tab).</p> 
+					<p>Example:</p><pre>
+.'.$lca.'-widget-buttons 
+    .'.$lca.'-buttons
+        .facebook-button { }</pre>
+					<p>The social sharing buttons widget also has an id of \''.$lca.'-widget-buttons-<em>#</em>\', and the buttons have an id of \'<em>name</em>-'.$lca.'-widget-buttons-<em>#</em>\'.</p>
+					<p>Example:</p><pre>
+#'.$lca.'-widget-buttons-2
+    .'.$lca.'-buttons
+        #facebook-'.$lca.'-widget-buttons-2 { }</pre>';
+					break;
+				case 'info-styles-admin_edit':
+					$text = '<p>Social sharing buttons within the Admin Post / Page Edit metabox are assigned the \''.$lca.'-admin_edit-buttons\' class, which itself contains the \''.$lca.'-buttons\' class -- a common class for all buttons (see the All Buttons tab).</p> 
+					<p>Example:</p><pre>
+.'.$lca.'-admin_edit-buttons 
+    .'.$lca.'-buttons
+        .facebook-button { }</pre>';
+					break;
+			}
+			return $text;
+		}
+
+		public function filter_settings_page_custom_style_css( $custom_style_css ) {
+			$custom_style_css .= '
+				.website_col {
+					float:left;
+					min-height:50px;
+				}
+				.max_cols_1.website_col {
+					width:100%;
+					min-width:100%;
+					max-width:100%;
+				}
+				.max_cols_2.website_col {
+					width:50%;
+					min-width:50%;
+					max-width:50%;
+				}
+				.max_cols_3.website_col {
+					width:33.3333%;
+					min-width:33.3333%;
+					max-width:33.3333%;
+				}
+				.max_cols_4.website_col {
+					width:25%;
+					min-width:25%;
+					max-width:25%;
+				}
+				.website_col .postbox {
+					overflow-x:hidden;
+				}
+				.postbox-website {
+					min-width:452px;
+					overflow-y:auto;
+				}
+				.postbox-website .metabox-website {
+					min-height:565px;
+					overflow-y:auto;
+				}
+				.postbox-website.postbox-show_basic .metabox-website {
+					min-height:435px;
+				}
+				.postbox-website div.sucom-metabox-tabs div.sucom-tabset.active {
+					min-height:519px;
+				}
+				.postbox-website.postbox-show_basic div.sucom-metabox-tabs div.sucom-tabset.active {
+					min-height:389px;
+				}
+				.postbox-website.closed,
+				.postbox-website.closed .metabox-website,
+				.postbox-website.postbox-show_basic.closed .metabox-website {
+					height:auto;
+					min-height:0;
+					overflow:hidden;
+				}
+			';
+			return $custom_style_css;
 		}
 	}
 }

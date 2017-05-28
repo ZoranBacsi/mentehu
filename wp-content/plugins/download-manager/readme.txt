@@ -1,34 +1,45 @@
 ﻿=== WordPress Download Manager ===
-Contributors: codename065, shahriar0822, tauhidul-alam
+Contributors: w3eden, codename065, shahriar0822, shimo16ab, shafayat-alam, tauhidul-alam
 Donate link: 
 Tags: digital store, eshop, ecommerce, e-commerce, file management,  document management plugin, download manager, file manager, download monitor, download counter, password protection, download protection
 Requires at least: 3.4
-Tested up to: 4.3
+Tested up to: 4.7
 License: GPLv2 or later
  
   
  
-This File Management & Digital Store plugin which will help you to control file downloads & sell digital products from your WP site.
+This File Management & Digital Store plugin will help you to control file downloads & sell digital products from your WP site.
    
 
 == Description ==
-WordPress Download Manager is a Files / Documents Management Plugin and Complete e-Commerce Solution for selling digital products. WordPress Download Manager plugin will help you to manage, track, control file downloads & sell digital products easily from your WordPress site. Use Password Protection, User Roles Protection to control access to your files. And simply setup prices when you need to sell the digital item. User can directly download free items and when item has a price user will have to go through cart & checkout.
-It has easiest checkout option to give the user better experience in purchasing an item and which always increase the probability of successful completion of an order. As rather than trying to convince customer to buy something, it would be more helpful to think of a cart optimization as an action to remove barrier to that goal.
+WordPress Download Manager is a Files / Documents Management Plugin to manage, track and control file downloads from your WordPress Site.  Use Passwords, User Roles to control access to your files, control downloads by speed or by putting a limit on download count per user, block bots or unwanted users or spammers using Captcha Lock or IP Block feature, you may also ask users to agree with your terms and conditions before they download.
+
+Also, you may use WordPress Download Manager as a complete e-Commerce Solution for selling digital products. Simply put a price when you need to sell a digital item. You also may use license  ( ex: Simple, Extended, Unlimited ) based prices for a product. Users can directly download free items and when an item has a price user will have to go through cart & checkout. WordPress Download Manager has the easiest checkout option to give the user better experience in purchasing an item and which always increase the probability of successful completion of an order.
 
 = Features =
-*	Custom post type and taxonomy
-*       Drag and Drop File Upload
-*   Google Drive support to store your files in Google drive
-*   DropBox support to store your files in DropBox
-*   Box.com support to store your files in Box.com
+*	Custom post type and taxonomy, adding a download is just like creating a post
+*   Drag and Drop File Upload
+*   Attach file directly from your server using server file browser
+*   Quick add panel with tinymce editor button to create and insert a download easily when you are editing a post or page
+*   Google Drive support to store your files in Google drive ( 15 GB of space for free)
+*   DropBox support to store your files in DropBox ( 2 GB of space for free )
+*   Box.com support to store your files in Box.com ( 10 GB of space for free )
+*   OneDrive support to store your files in onedrive.live.com ( 15 GB of space for free )
 *   Option to "Open in Browser" or "Download" files ( PDFs or images )
 *	Control who can access to download
-*       Download Speed Control
+*   Category level access control
+*   Download Speed Control
 *	Password protection
-*	Download Counter
+*	CAPTCHA protection
+*   IP block option to prevent bot downloads or downloads from unwanted IP addresses
+*   Download logs to check who is downloading which file from where and when
+*   Terms protection - Agree with Terms & Conditions before download
+*	Download Counter to see total download count for each file
 *	Custom download link icon
 *	File type icon support
 *   Full Featured User Dashboard ( use short-code [wpdm_user_dashboard] )
+*   Custom Front-end Login / Signup form short-code
+*   Custom oEmbed template
 *	DataTable support ( use short-code [wpdm-all-packages jstable=1 items_per_page=20] )
 *	Searching and Sorting Option
 *	Custom link label
@@ -42,13 +53,13 @@ It has easiest checkout option to give the user better experience in purchasing 
 *	Category embed short-code
 *	Advanced server file browser
 *	Complete category and file tree using a simple short-code [wpdm_tree]
-*       Translation Ready
+*   Translation Ready
 
 = Complete Digital Store Solution: =
-Use [Premium Package – Complete Digital Store Solution](http://www.wpdownloadmanager.com/download/premium-package-complete-digital-store-solution/) Add-on (free) if you need to sell your digital items. The add-on has all features you will ever need to build a perfect online shop for your digital downloads:
+Use [Premium Package – Complete Digital Store Solution](https://www.wpdownloadmanager.com/download/premium-package-wordpress-digital-store-solution/) Add-on (free) if you need to sell your digital items. The add-on has all features you will ever need to build a perfect online shop for your digital downloads:
 
 *   Single Click Activation ( Auto-install & Activate )
-*   Sale Digital Products Securely
+*   Sell Digital Products Securely
 *   Easy Administration
 *   PayPal Integrated
 *   User-role Based Discount Management
@@ -56,54 +67,62 @@ Use [Premium Package – Complete Digital Store Solution](http://www.wpdownloadm
 *   Sales Tax
 *   Save Cart and Checkout Later
 *   Email Saved Cart
-*   Product & Price variation ( This Feature Requires WPDM v4+ )
+*   Product & Price variations
 *   Promotional Pricing for Your Digital Products
 *   Invoice Generation
 *   Easiest Checkout System
-*   Guest Checkout ( This Feature Requires WPDM v4+ )
+*   Guest Checkout and Guest Download
+*   Order expiration option ( Like 1 year support & update access, then expire )
+*   Auto-renew order option ( Accept Recurring Payment for Orders )
 *   Easy Order Management
 *   Sales Notifications via Email
 *   Sales Notification Directly in Your Mobile with Push Message
 *   Very Detailed Sales Reports
-*   Order Notes & Messaging System ( This Feature Requires WPDM v4+ )
+*   Order Notes & Messaging System
 *   Full-featured Digital Products Marketplace with Front-end product submission & payout management ( This Feature Requires WPDM v4+ )
-*   Product Licensing System ( This Feature Requires WPDM v4+ )
-*   and [many more...](http://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
+*   Sell individual files ( like single song from an album )  ( This Feature Requires WPDM v4+ )
+*   Extended Product Licensing System
+*   License Level Pricing
+*   Easy to implement license API for license system integration
+*   and [much more...](https://www.wpdownloadmanager.com/downloads/ecommerce-add-ons/)
 
 
 = Google Drive =
-Use [Google Drive Explorer](http://www.wpdownloadmanager.com/download/google-drive-explorer/) add-on ( free ) to store your files in google drive and link with download manager, get 15 GB free storage space and save your server bandwidth
+Use [Google Drive Explorer](https://www.wpdownloadmanager.com/download/google-drive-explorer/) add-on ( free ) to store your files in google drive and link with download manager, get 15 GB free storage space and save your server bandwidth
+
+= OneDrive =
+Use [OneDrive Explorer](https://www.wpdownloadmanager.com/download/wpdm-onedrive/) add-on ( free ) to store your files in Microsoft OneDrive and link with download manager, get 15 GB free storage space and save your server bandwidth
 
 = DropBox =
-Use [DropBox Explorer](http://www.wpdownloadmanager.com/download/dropbox-explorer/) add-on ( free ) to store your files in dropbox and link with download manager, get 2 GB free storage space and save your server bandwidth
+Use [DropBox Explorer](https://www.wpdownloadmanager.com/download/dropbox-explorer/) add-on ( free ) to store your files in dropbox and link with download manager, get 2 GB free storage space and save your server bandwidth
 
 = Box.com =
-Use [Box.com Explorer](http://www.wpdownloadmanager.com/download/box-com-explorer/) add-on ( free ) to store your files in Box.com and link with download manager, get 10 GB free storage space and save your server bandwidth
+Use [Box.com Explorer](https://www.wpdownloadmanager.com/download/box-com-explorer/) add-on ( free ) to store your files in Box.com and link with download manager, get 10 GB free storage space and save your server bandwidth
 
 
 = Add-ons =
 Download and Install following free add-on to add additional features as per your need
 
-* [Advanced Tiny-Mce Button](http://www.wpdownloadmanager.com/download/advanced-tinymce-button/) for editor button to generate short-codes
-* [Extended Short-codes](http://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
-* [WPDM Button Templates](http://www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
-* [WPDM Image Button](http://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
+* [Advanced Tiny-Mce Button](https://www.wpdownloadmanager.com/download/advanced-tinymce-button/) for editor button to generate short-codes
+* [Extended Short-codes](https://www.wpdownloadmanager.com/download/wpdm-extended-short-codes/) for tree view ( [wpdm_tree] ), slider ( [wpdm_slider] ) & carousel ( [wpdm_carousel] )
+* [WPDM Button Templates](https://www.wpdownloadmanager.com/download/wpdm-button-templates/) for pre-designed colorful button styles
+* [WPDM Image Button](https://www.wpdownloadmanager.com/download/wpdm-image-button/) to replace download link label with a custom designed image
 
 = Mobile Apps =
-Check download stats and get push notification when someone downloads, install:
+Check download stats and get a push notification when someone downloads, install:
 
-* [WPDM API](http://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on in your site and configure api key
-* [WPDM for Abdroid](http://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app in your android phone
-* [WPDM for iOS](http://www.wpdownloadmanager.com/download/wpdm-ios/) - Check download and sales stats directly from your iPhone or iPad
+* [WPDM API](https://www.wpdownloadmanager.com/download/wpdm-api/) - install this add-on on your site and configure API key
+* [WPDM for Abdroid](https://www.wpdownloadmanager.com/download/wpdm-android/) - Install the app on your android phone
+* [WPDM for iOS](https://www.wpdownloadmanager.com/download/wpdm-ios/) - Check download and sales stats directly from your iPhone or iPad
 
 = Free Themes =
-* [Verse - Theme For Digital Shop](http://www.wpdownloadmanager.com/download/verse-wordpress-theme-for-digital-shop/)
-* [Expo - Specially Optimized for WordPress Download Manager](http://www.wpdownloadmanager.com/download/expo/)
-* [WPDM 2015](http://www.wpdownloadmanager.com/download/wpdm-twenty-fifteen/)  - Twenty Fifteen Child Theme for WordPress Download Manager
+* [Verse - Theme For Digital Shop](https://www.wpdownloadmanager.com/download/verse-wordpress-theme-for-digital-shop/)
+* [Expo - Specially Optimized for WordPress Download Manager](https://www.wpdownloadmanager.com/download/expo/)
+* [WPDM 2015](https://www.wpdownloadmanager.com/download/wpdm-twenty-fifteen/)  - Twenty Fifteen Child Theme for WordPress Download Manager
 
 = More Themes & Add-ons =
-* [Add-ons](http://www.wpdownloadmanager.com/downloads/add-ons/) - 50+ add-ons
-* [Themes](http://www.wpdownloadmanager.com/downloads/themes-2/) - Themes Specially Optimized for Download Manager
+* [Add-ons](https://www.wpdownloadmanager.com/downloads/add-ons/) - 100+ add-ons
+* [Themes](https://www.wpdownloadmanager.com/downloads/themes/) - Themes Specially Optimized for Download Manager
 
 
 == Installation ==
@@ -129,6 +148,154 @@ Check download stats and get push notification when someone downloads, install:
 12. Invoice
 
 == Changelog ==
+
+= 2.9.51 =
+* Added IP block option to prevent bot downloads or downloads from unwanted IP addresses
+* Fixed issue with redirection after login
+* Fixed issued with master key reset on product update
+
+= 2.9.50 =
+* Added new page template to show terms and conditions in a modal popup
+* Added new link template to show terms and conditions in a modal popup
+* Fixed issue with signup page
+* Fixed issue with page template dropdown
+
+= 2.9.49 =
+* Fixed a compatibility issue with PHP7
+
+= 2.9.48 =
+* Fixed issue with direct download link
+
+= 2.9.47 =
+* Added new toolbar style for category short-code ( toolbar="skinny" )
+* Added target=_blank option with direct link short-code
+* Added users' name with download hostory
+
+= 2.9.46 =
+* Fixed CSS conflict ( at  front.css )
+* Added nonce check with settings form
+* Blocked unwanted file type upload
+* Added new action `wpdm_before_upload_file`
+* Added new filter `wpdm_after_upload_file`
+
+= 2.9.45 =
+* Fixed issue with textdoamin
+* Fixed issue with category access settings
+
+= 2.9.44 =
+* Fixed the issue with add-on update notice
+
+= 2.9.43 =
+* Fixed issued with add-on update
+* Fixed issue with add-on page
+* Added missing email templates
+
+= 2.9.42 =
+* Add new short-code template ( link-template-bsthumnail )
+* Improved category short-code
+* Fixed issue with password lock option
+
+= 2.9.41 =
+* Added page template selection option
+* Added Terms and Conditions option
+* Improved admin UI
+
+= 2.9.4 =
+* Fixed issue with empty download
+* Added option to clear all download history
+
+= 2.9.3 =
+* Compatibility release for WordPress 4.7
+* Fixed sort by date issue with all downloads table
+* Fixed several issues with translation strings
+* Improved admin UI
+
+= 2.9.2 =
+* Added new field in package setting to add file size manually for remote files
+* Fixed 3 warnings at class.Apply.php
+
+= 2.9.1 =
+* Added Download History Page
+* Improved Admin UI
+
+= 2.9.0 =
+* Compatibility release for WordPress 4.6
+* Fixed a notice in reg form template
+
+= 2.8.99 =
+* Added CAPTCHA with signup form
+* Fixed issue with redirection after user registration
+* Added option to enable/disable auto login after user registration
+* Show/Hide Password field in user registration form
+
+= 2.8.98 =
+* Fixed issues with icon path
+* Updated short-code [wpdm_login_form], use [wpdm_ligin_form signup=1] to show login + signup form
+
+= 2.8.97 =
+* Fixed issue with attached file delete
+* Fixed issue with reg form
+* Fixed issue with login form
+
+= 2.8.96 =
+* Added new option for login form
+* Improved signup form
+* Improved dashboard short-code, added parameter to control login/signup form and recommended downloads
+* Added option to control dashboard url structure
+
+= 2.8.95 =
+* Removed function `get_currentuserinfo`
+
+= 2.8.94 =
+* Compatibility release for WordPress v4.5
+
+= 2.8.93 =
+* Fixed issue with unexpected char before filename ( "File Missing Error!" )
+* Fixed issue file deletion.
+* Fixed a notice with password lock option
+* Adjusted add to cart link in all downloads page
+
+= 2.8.92 =
+* Fixed issue file browser (was showing "Not Allowed!" message)
+
+= 2.8.91 =
+* Added support for OneDrive
+* Improved Download Info widget
+* Improved all downloads short-code for premium files
+* Fixed issue with user signup in class.Apply.php
+* Fixed issue with widgets
+
+= 2.8.9 =
+* Removed jquery.cookie.js file
+* Fixed issue with add-on update from Settings >> Updates tab
+
+= 2.8.8 =
+* Fixed SECURITY issue with update profile function ( Special Thanks to James Golovich )
+* Fixed "array-intersect" warning with server file browser option
+
+= 2.8.7 =
+* Fixed SECURITY issue with update file function
+* Fixed notice in class.Package.php
+* Fixed notices in Settings >> Updates tab
+* Fixed notices with dashboard widget
+
+= 2.8.6 =
+* Fixed issue with invalid functions ( license check )
+
+= 2.8.5 =
+* Fixed the "missing function" warning on plugin activation
+
+= 2.8.4 =
+* Added CAPTCHA lock
+* Improved UI
+* Added new link template
+* Improved Codebase
+
+= 2.8.3 =
+* Fixed issue with tree view, added missing functions
+* Compatibility released for WordPress v4.4
+* Enabled category page
+* Activated all features for Premium Package ( Guest Order, Guest Download, Order Notes, Save & Email Cart )
 
 = 2.8.2 =
 * Added category widget
@@ -175,7 +342,7 @@ Check download stats and get push notification when someone downloads, install:
 
 * Added "Open in Browser" option
 * Removed apache_setenv function
-* Fixed with issue with CURLOPT_FOLLOWLOCATION
+* Fixed issue with CURLOPT_FOLLOWLOCATION
 * Added one click digital store activation option
 
 = 2.7.90 =
@@ -198,7 +365,7 @@ Check download stats and get push notification when someone downloads, install:
 * Fixed issue with Google Drive file download
 
 = 2.7.86 =
-* Fixed issue with password locked files for double link in same page
+* Fixed issue with password locked files for double link in the same page
 * Added new option for disabling output buffering, no more broken downloads
 * Google Drive support to store your files in Google drive
 
@@ -307,7 +474,7 @@ Check download stats and get push notification when someone downloads, install:
 * Fixed an output buffering issue
 
 = 2.6.6 =
-* Adjusted some minor issues from previous version
+* Adjusted some minor issues from the previous version
 
 = 2.6.5 =
 * Added new option to control tinymce button visibility

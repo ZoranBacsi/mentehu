@@ -1,59 +1,68 @@
 <?php
 /*
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2014 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
+ */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
-if ( ! class_exists( 'NgfbSubmenuSharingReddit' ) && class_exists( 'NgfbSubmenuSharing' ) ) {
+if ( ! class_exists( 'NgfbSubmenuWebsiteReddit' ) ) {
 
-	class NgfbSubmenuSharingReddit extends NgfbSubmenuSharing {
+	class NgfbSubmenuWebsiteReddit {
 
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->p->debug->mark();
+			$this->p->util->add_plugin_filters( $this, array(
+				'website_reddit_rows' => 3,		// $table_rows, $form, $submenu
+			) );
 		}
 
-		protected function get_rows( $metabox, $key ) {
-			$rows = array();
+		public function filter_website_reddit_rows( $table_rows, $form, $submenu ) {
 
-			$rows[] = $this->p->util->th( 'Show Button in', 'short' ).'<td>'.
-			( $this->show_on_checkboxes( 'reddit' ) ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Show Button in',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.( $submenu->show_on_checkboxes( 'reddit' ) ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Preferred Order', 'short' ).'<td>'.
-			$this->form->get_select( 'reddit_order', 
-				range( 1, count( $this->p->admin->submenu['sharing']->website ) ), 
-					'short' ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Preferred Order',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'reddit_order', range( 1, count( $submenu->website ) ) ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Button Type', 'short' ).'<td>'.
-			$this->form->get_select( 'reddit_type', 
-				array( 
-					'static-wide' => 'Interactive Wide',
-					'static-tall-text' => 'Interactive Tall Text',
-					'static-tall-logo' => 'Interactive Tall Logo',
-				)
-			).'</td>';
+			if ( $this->p->avail['*']['vary_ua'] ) {
+				$table_rows[] = '<tr class="hide_in_basic">'.
+				$form->get_th_html( _x( 'Allow for Platform',
+					'option label (short)', 'nextgen-facebook' ), 'short' ).
+				'<td>'.$form->get_select( 'reddit_platform', $this->p->cf['sharing']['platform'] ).'</td>';
+			}
 
-			return $rows;
+			$table_rows[] = $form->get_th_html( _x( 'Button Type',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'. $form->get_select( 'reddit_type', array(
+				'static-wide' => 'Interactive Wide',
+				'static-tall-text' => 'Interactive Tall Text',
+				'static-tall-logo' => 'Interactive Tall Logo',
+			) ).'</td>';
+
+			return $table_rows;
 		}
 	}
 }
 
-if ( ! class_exists( 'NgfbSharingReddit' ) ) {
+if ( ! class_exists( 'NgfbWebsiteReddit' ) ) {
 
-	class NgfbSharingReddit {
+	class NgfbWebsiteReddit {
 
 		private static $cf = array(
 			'opt' => array(				// options
 				'defaults' => array(
+					'reddit_order' => 9,
 					'reddit_on_content' => 0,
 					'reddit_on_excerpt' => 0,
-					'reddit_on_admin_edit' => 1,
 					'reddit_on_sidebar' => 0,
-					'reddit_order' => 7,
+					'reddit_on_admin_edit' => 1,
+					'reddit_platform' => 'any',
 					'reddit_type' => 'static-wide',
 				),
 			),
@@ -66,46 +75,40 @@ if ( ! class_exists( 'NgfbSharingReddit' ) ) {
 			$this->p->util->add_plugin_filters( $this, array( 'get_defaults' => 1 ) );
 		}
 
-		public function filter_get_defaults( $opts_def ) {
-			return array_merge( $opts_def, self::$cf['opt']['defaults'] );
+		public function filter_get_defaults( $def_opts ) {
+			return array_merge( $def_opts, self::$cf['opt']['defaults'] );
 		}
 
-		public function get_html( $atts = array(), &$opts = array() ) {
-			if ( empty( $opts ) ) 
-				$opts =& $this->p->options;
-			$prot = empty( $_SERVER['HTTPS'] ) ? 'http:' : 'https:';
-			$use_post = array_key_exists( 'use_post', $atts ) ? $atts['use_post'] : true;
-			$source_id = $this->p->util->get_source_id( 'reddit', $atts );
-			$atts['add_page'] = array_key_exists( 'add_page', $atts ) ? $atts['add_page'] : true;	// get_sharing_url argument
+		public function get_html( array $atts, array $opts, array $mod ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
-			$atts['url'] = empty( $atts['url'] ) ? 
-				$this->p->util->get_sharing_url( $use_post, $atts['add_page'], $source_id ) : 
-				apply_filters( $this->p->cf['lca'].'_sharing_url', $atts['url'], 
-					$use_post, $atts['add_page'], $source_id );
-
-			if ( empty( $atts['title'] ) ) 
-				$atts['title'] = $this->p->webpage->get_title( null, null, $use_post);
+			if ( empty( $atts['title'] ) )
+				$atts['title'] = $this->p->page->get_title( 0, '', $mod, true, false, false, null );	// $encode = false
 
 			switch ( $opts['reddit_type'] ) {
-				case 'static-wide':
-					$script_src = $prot.'//www.reddit.com/static/button/button1.js';
-					break;
 				case 'static-tall-text':
-					$script_src = $prot.'//www.reddit.com/static/button/button2.js';
+					$js_url = SucomUtil::get_prot().'://www.reddit.com/static/button/button2.js';
 					break;
 				case 'static-tall-logo':
-					$script_src = $prot.'//www.reddit.com/static/button/button3.js';
+					$js_url = SucomUtil::get_prot().'://www.reddit.com/static/button/button3.js';
+					break;
+				case 'static-wide':
+				default:	// just in case
+					$js_url = SucomUtil::get_prot().'://www.reddit.com/static/button/button1.js';
 					break;
 			}
-			$script_src = $this->p->util->get_cache_url( $script_src );
+			$js_url = $this->p->sharing->get_social_file_cache_url( apply_filters( $this->p->cf['lca'].'_js_url_reddit', $js_url, '' ) );
 
-			$html = '<!-- Reddit Button -->';
-			$html .= '<script type="text/javascript">reddit_url=\''.$atts['url'].'\'; reddit_title=\''.$atts['title'].'\';</script>';
-			$html .= '<div '.$this->p->sharing->get_css( 'reddit', $atts ).'>';
-			$html .= '<script type="text/javascript" src="'.$script_src.'"></script></div>';
+			$html = '<!-- Reddit Button -->'.
+			'<script type="text/javascript">reddit_url="'.esc_url( $atts['url'] ).'"; reddit_title="'.esc_attr( $atts['title'] ).'";</script>'.
+			'<div '.SucomUtil::get_atts_css_attr( $atts, 'reddit' ).'>'.
+			'<script type="text/javascript" src="'.$js_url.'"></script></div>';
 
-			$this->p->debug->log( 'returning html ('.strlen( $html ).' chars)' );
-			return $html."\n";
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( 'returning html ('.strlen( $html ).' chars)' );
+
+			return $html;
 		}
 	}
 }

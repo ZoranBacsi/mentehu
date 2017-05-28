@@ -46,12 +46,17 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 				'object' => null
 			),
 			'action' =>
-				admin_url( '?controller=front&action=ai1ec_save_settings&plugin=' . AI1EC_PLUGIN_NAME ),
+				ai1ec_admin_url(
+					'?controller=front&action=ai1ec_save_settings&plugin=' .
+					AI1EC_PLUGIN_NAME
+				),
 		);
 		$loader = $this->_registry->get( 'theme.loader' );
 		$file   = $loader->get_file( 'setting/page.twig', $args, true );
 		$file->render();
-		$this->_registry->get( 'robots.helper' )->install();
+		if ( apply_filters( 'ai1ec_robots_install', true ) ) {
+			$this->_registry->get( 'robots.helper' )->install();
+		}
 	}
 
 	/* (non-PHPdoc)
@@ -105,11 +110,7 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 	 * @param mixed $box
 	 */
 	public function support_meta_box( $object, $box ) {
-		include_once( ABSPATH . WPINC . '/feed.php' );
-		// Initialize new feed
-		$newsItems = array();
-		$feed      = fetch_feed( AI1EC_RSS_FEED );
-		$newsItems = is_wp_error( $feed ) ? array() : $feed->get_items( 0, 5 );
+		$newsItems = $this->_registry->get( 'news.feed' )->import_feed();
 		$loader    = $this->_registry->get( 'theme.loader' );
 		$file      = $loader->get_file(
 			'box_support.php',
@@ -157,9 +158,70 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 		$tabs             = apply_filters( 'ai1ec_add_setting_tabs', $tabs );
 		$settings         = $this->_registry->get( 'model.settings' );
 		$plugin_settings  = $settings->get_options();
-
 		$tabs             = $this->_get_tabs_to_show( $plugin_settings, $tabs );
 		$loader           = $this->_registry->get( 'theme.loader' );
+		
+		$api               = $this->_registry->get( 'model.api.api-registration' );
+		$signup_available  = $api->is_api_sign_up_available();		
+		$signed_to_api     = $api->is_signed();
+		$ticketing_message = $api->get_sign_message();
+		$loader            = $this->_registry->get( 'theme.loader' );
+		$account           = $api->get_current_account();
+		$signup_args       = array(
+			'api_signed'            => $signed_to_api,
+			'signup_available'      => $signup_available,
+			'title'                 => Ai1ec_I18n::__(
+				'Please, Sign In to Timely Network.'
+			),
+			'nonce'                 => array(
+				'action'   => 'ai1ec_api_ticketing_signup',
+				'name'     => 'ai1ec_api_ticketing_nonce',
+				'referrer' => false,
+			),
+			'api_action'            =>
+				'?controller=front&action=ai1ec_api_ticketing_signup&plugin=' .
+				AI1EC_PLUGIN_NAME,
+			'required_text'         => Ai1ec_I18n::__( 'This field is required.' ),
+			'register_text'         => Ai1ec_I18n::__( 'Register' ),
+			'sign_in_text'          => Ai1ec_I18n::__( 'Sign in' ),
+			'signed_in_text'        => Ai1ec_I18n::__(
+				'You are signed in to <b>Timely Network</b> as ' . $account
+			),
+			'sign_out_text'         => Ai1ec_I18n::__( 'Sign out' ),
+			'can_sign_out'          => apply_filters( 'ai1ec_api_can_sign_out', true ),
+			'full_name_text'        => Ai1ec_I18n::__( 'Full Name:' ),
+			'hide_form_text'        => Ai1ec_I18n::__( 'Hide form' ),
+			'show_form_text'        => Ai1ec_I18n::__( 'Show form' ),
+			'email_text'            => Ai1ec_I18n::__( 'Email:' ),
+			'password_text'         => Ai1ec_I18n::__( 'Password:' ),
+			'confirm_password_text' => Ai1ec_I18n::__( 'Confirm Password:' ),
+			'phone_number_text'     => Ai1ec_I18n::__( 'Phone Number:' ),
+			'terms_text'            => Ai1ec_I18n::__(
+				'I confirm that I have read, understand and agree with the <a href="https://time.ly/tos">terms of service</a>.'
+			),
+			'sign_out_warning'      => Ai1ec_I18n::__(
+				'<h4>Attention Required:</h4>If you choose to sign-out of the API Timely Network this will close all the created tickets and remove user access to them. In this case, on the event page, users will see the status “Event closed”.'
+			),
+			'sign_out_cancel'       => Ai1ec_I18n::__( 'Cancel' ),
+			'sign_out_confirm'      => Ai1ec_I18n::__( 'Sign Out' ),
+			'sign_up_button_text'   => Ai1ec_I18n::__( 'Sign Up' ),
+			'sign_in_button_text'   => Ai1ec_I18n::__( 'Sign In' ),
+			'calendar_type_text'    => Ai1ec_I18n::__( 'Calendar Type:' ),
+			'calendar_types'        => array(
+					'tourism'           => Ai1ec_I18n::__( 'Tourism' ),
+					'media'             => Ai1ec_I18n::__( 'Media' ),
+					'community_hubs'    => Ai1ec_I18n::__( 'Community Hubs' ),
+					'education'         => Ai1ec_I18n::__( 'Education' ),
+					'venue_business'    => Ai1ec_I18n::__( 'Venue/Business' ),
+					'artist_performer'  => Ai1ec_I18n::__( 'Artist/Performer' ),
+					'church_spiritual'  => Ai1ec_I18n::__( 'Church/Spiritual' ),
+					'association_group' => Ai1ec_I18n::__( 'Association/Group' ),
+					'other'             => Ai1ec_I18n::__( 'Other' )
+			),
+		);
+		$loader->get_file( 'setting/api-signup.twig', $signup_args, true )->render();
+		
+		
 		$args             = array(
 			'tabs'          => $tabs,
 			'content_class' => 'ai1ec-form-horizontal',
@@ -177,8 +239,8 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 					'If the form below is not working please follow <a href="%s">this link</a>.'
 				) .
 				'</div>',
-				wp_nonce_url( 
-					add_query_arg( 'ai1ec_disable_gzip_compression', '1' ), 
+				wp_nonce_url(
+					add_query_arg( 'ai1ec_disable_gzip_compression', '1' ),
 					'ai1ec_disable_gzip_compression'
 				)
 			)
@@ -186,6 +248,7 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 
 		$file = $loader->get_file( 'setting/bootstrap_tabs.twig', $args, true );
 		$file->render();
+		
 	}
 
 	/**
@@ -200,6 +263,7 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 	 */
 	protected function _get_tabs_to_show( array $plugin_settings, array $tabs ) {
 		$index = 0;
+		$renderer = $this->_registry->get( 'html.element.setting-renderer' );
 		foreach ( $plugin_settings as $id => $setting ) {
 			// if the setting is shown
 			if ( isset ( $setting['renderer'] ) ) {
@@ -212,21 +276,7 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 				) {
 					$tabs[$tab_to_use]['elements'] = array();
 				}
-				// get the renderer
-				$renderer_name = $setting['renderer']['class'];
 				$setting['id'] = $id;
-				$renderer      = null;
-				try {
-					$renderer = $this->_registry->get(
-						'html.element.setting.' . $renderer_name,
-						$setting
-					);
-				} catch ( Ai1ec_Bootstrap_Exception $exception ) {
-					$renderer = $this->_registry->get(
-						'html.element.setting.input',
-						$setting
-					);
-				}
 				// render the settings
 				$weight = 10;
 				if ( isset( $setting['renderer']['weight'] ) ) {
@@ -237,7 +287,7 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 				$tabs[$tab_to_use]['elements'][] = array(
 					'weight' => $weight,
 					'index'  => ++$index,
-					'html'   => $renderer->render(),
+					'html'   => $renderer->render( $setting ),
 				);
 				// if the settings has an item tab, set the item as active.
 				if ( isset( $setting['renderer']['item'] ) ) {
@@ -273,11 +323,22 @@ class Ai1ec_View_Admin_Settings extends Ai1ec_View_Admin_Abstract {
 						}
 					}
 				}
-				$tabs_to_display[$name] = $tab;
+				// lets make a check to avoid overriding tabs
+				if ( ! isset( $tabs_to_display[$name] ) ) {
+					$tabs_to_display[$name] = $tab;
+				} else {
+					$tabs_to_display[$name]['elements'] = $tab['elements'];
+				}
+
 			} else {
 				// no items, just check for any element to display.
 				if ( isset( $tab['elements'] ) ) {
-					$tabs_to_display[$name] = $tab;
+					// lets make a check to avoid overriding tabs
+					if ( ! isset( $tabs_to_display[$name] ) ) {
+						$tabs_to_display[$name] = $tab;
+					} else {
+						$tabs_to_display[$name]['elements'] = $tab['elements'];
+					}
 				}
 			}
 		}

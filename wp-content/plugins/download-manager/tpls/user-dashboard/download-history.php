@@ -1,11 +1,12 @@
-<div class="panel panel-default dashboard-panel">
+
+<div class="panel panel-default dashboard-panel" style="margin-top: 20px">
     <div class="panel-heading">Download History</div>
     <table class="table">
         <thead>
         <tr>
-            <th><?php _e('Package Name','wpdmpro'); ?></th>
-            <th><?php _e('Download Time','wpdmpro'); ?></th>
-            <th><?php _e('IP','wpdmpro'); ?></th>
+            <th><?php _e('Package Name','download-manager'); ?></th>
+            <th><?php _e('Download Time','download-manager'); ?></th>
+            <th><?php _e('IP','download-manager'); ?></th>
         </tr>
         </thead>
         <tbody>

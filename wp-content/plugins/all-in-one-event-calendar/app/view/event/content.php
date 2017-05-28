@@ -105,7 +105,7 @@ class Ai1ec_View_Event_Content extends Ai1ec_Base {
 	}
 
 	/**
-	 * Generate the html for the "Back to calendar" button for this event.
+	 * Generate the html for the "Calendar" button for this event.
 	 *
 	 * @return string
 	 */
@@ -122,7 +122,7 @@ class Ai1ec_View_Event_Content extends Ai1ec_Base {
 			$href = $this->_registry->get( 'html.element.href', array() );
 			$href = $href->generate_href();
 		}
-		$text    = esc_attr( Ai1ec_I18n::__( 'Back to Calendar' ) );
+		$text    = esc_attr( Ai1ec_I18n::__( 'Calendar' ) );
 		$tooltip = esc_attr( Ai1ec_I18n::__( 'View all events' ) );
 		$html    = <<<HTML
 <a class="ai1ec-calendar-link ai1ec-btn ai1ec-btn-default ai1ec-btn-sm
@@ -156,6 +156,13 @@ HTML;
 		if ( empty( $matches ) ) {
 			return null;
 		}
+
+		// Mark found image.
+		$event->get( 'post' )->post_content = str_replace(
+			'<img' . $matches[1],
+			'<img' . $matches[1] . ' data-ai1ec-hidden ',
+			$event->get( 'post' )->post_content
+		);
 
 		$url = $matches[2];
 		$size = array( 0, 0 );

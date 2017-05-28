@@ -20,11 +20,6 @@ Please note : A Image resize or watermarking operation will remove all meta info
 <?php if (!defined ('ABSPATH')) die ('No direct access allowed'); ?><?php if (!empty ($image)) : ?>
 <a href="<?php echo nextgen_esc_url($image->imageURL); ?>"
    title="<?php echo esc_attr($image->linktitle); ?>"
-   data-src="<?php echo nextgen_esc_url($image->imageURL); ?>"
-   data-thumbnail="<?php echo nextgen_esc_url($image->thumbnailURL); ?>"
-   data-image-id="<?php echo esc_attr($image->pid); ?>"
-   data-title="<?php echo esc_attr($image->alttext); ?>"
-   data-description="<?php echo esc_attr($image->description); ?>"
    <?php if(!empty($target)) { ?>target="<?php echo esc_attr($target); ?>"<?php } ?>
    <?php echo $image->thumbcode; ?>>
 	<img class="<?php echo $image->classname; ?>"
@@ -32,5 +27,5 @@ Please note : A Image resize or watermarking operation will remove all meta info
          alt="<?php echo esc_attr($image->alttext); ?>"
          title="<?php echo esc_attr($image->alttext); ?>"/>
 </a>
-<?php if (!empty ($image->caption)) : ?><span><?php echo $image->caption ?></span><?php endif; ?>
+<?php if (!empty ($image->description)) : ?><span><?php echo $image->description ?></span><?php endif; ?>
 <?php endif; ?>

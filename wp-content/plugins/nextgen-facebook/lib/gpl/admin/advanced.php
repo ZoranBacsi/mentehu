@@ -1,149 +1,569 @@
 <?php
 /*
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2014 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
+ */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
 if ( ! class_exists( 'NgfbGplAdminAdvanced' ) ) {
 
 	class NgfbGplAdminAdvanced {
 
+		private $taglist_opts = array();
+
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->p->util->add_plugin_filters( $this, array( 
-				'plugin_settings_rows' => 2,
-				'plugin_content_rows' => 2,
-				'plugin_social_rows' => 2,
-				'plugin_cache_rows' => 3,
-				'taglist_tags_rows' => 2,
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
+			$this->p->util->add_plugin_filters( $this, array(
+				'plugin_content_rows' => 2,	// $table_rows, $form
+				'plugin_integration_rows' => 2,	// $table_rows, $form
+				'plugin_social_rows' => 2,	// $table_rows, $form
+				'plugin_cache_rows' => 3,	// $table_rows, $form, $network
+				'plugin_apikeys_rows' => 2,	// $table_rows, $form
+				'cm_custom_rows' => 2,		// $table_rows, $form
+				'cm_builtin_rows' => 2,		// $table_rows, $form
+				'taglist_og_rows' => 3,		// $table_rows, $form, $network
+				'taglist_fb_rows' => 3,		// $table_rows, $form, $network
+				'taglist_twitter_rows' => 3,	// $table_rows, $form, $network
+				'taglist_schema_rows' => 3,	// $table_rows, $form, $network
+				'taglist_other_rows' => 3,	// $table_rows, $form, $network
 			), 20 );
 		}
 
-		public function filter_plugin_settings_rows( $rows, $form ) {
+		public function filter_plugin_content_rows( $table_rows, $form ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-
-				$rows[] = '<td colspan="2" align="center">'.$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
-
-				$rows[] = $this->p->util->th( 'Use WP Locale for Language', null, 'plugin_filter_lang' ).
-				'<td class="blank">'.$form->get_no_checkbox( 'plugin_filter_lang' ).'</td>';
-
-				$rows[] =  $this->p->util->th( 'Auto-Resize Media Images', null, 'plugin_auto_img_resize' ).
-				'<td class="blank">'.$form->get_no_checkbox( 'plugin_auto_img_resize' ).'</td>';
-
-				if ( ! empty( $this->p->cf['*']['lib']['shortcode'] ) ) {
-					$rows[] = $this->p->util->th( 'Enable Shortcode(s)', 'highlight', 'plugin_shortcodes' ).
-					'<td class="blank">'.$form->get_no_checkbox( 'plugin_shortcodes' ).'</td>';
-				}
-
-				if ( ! empty( $this->p->cf['*']['lib']['widget'] ) ) {
-					$rows[] = $this->p->util->th( 'Enable Widget(s)', 'highlight', 'plugin_widgets' ).
-					'<td class="blank">'.$form->get_no_checkbox( 'plugin_widgets' ).'</td>';
-				}
-			}	
-			return $rows;
-		}
-
-		public function filter_plugin_content_rows( $rows, $form ) {
-
-			$rows[] = '<td colspan="2" align="center">'.$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
-
-			$rows[] = $this->p->util->th( 'Apply Content Filters', null, 'plugin_filter_content' ).
-			'<td class="blank">'.$form->get_no_checkbox( 'plugin_filter_content' ).'</td>';
-
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'Apply Excerpt Filters', null, 'plugin_filter_excerpt' ).
-				'<td class="blank">'.$form->get_no_checkbox( 'plugin_filter_excerpt' ).'</td>';
-
-				$rows[] =  $this->p->util->th( 'Ignore Small Images in Content', null, 'plugin_ignore_small_img' ).
-				'<td class="blank">'.$form->get_no_checkbox( 'plugin_ignore_small_img' ).'</td>';
-			}
-
-			$rows[] = $this->p->util->th( 'Check for Embedded Media', null, 'plugin_embedded_media' ).
-			'<td class="blank">'.
-			'<p>'.$form->get_no_checkbox( 'plugin_slideshare_api' ).' Slideshare Presentations</p>'.
-			'<p>'.$form->get_no_checkbox( 'plugin_vimeo_api' ).' Vimeo Videos</p>'.
-			'<p>'.$form->get_no_checkbox( 'plugin_wistia_api' ).' Wistia Videos</p>'.
-			'<p>'.$form->get_no_checkbox( 'plugin_youtube_api' ).' YouTube Videos and Playlists</p>'.
-			'</td>';
-
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'Enable Excerpt for Pages', null, 'plugin_page_excerpt' ).
-				'<td>'.$form->get_no_checkbox( 'plugin_page_excerpt' ).'</td>';
-
-				$rows[] = $this->p->util->th( 'Enable Tags for Pages', null, 'plugin_page_tags' ).
-				'<td>'.$form->get_no_checkbox( 'plugin_page_tags' ).'</td>';
-			}
-
-			return $rows;
-		}
-
-		public function filter_plugin_social_rows( $rows, $form ) {
-
-			$rows[] = '<td colspan="2" align="center">'.$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
-
-			$checkboxes = '<p>'.$form->get_no_checkbox( 'plugin_add_to_user' ).' User Profile</p>';
-
-			foreach ( $this->p->util->get_post_types( 'backend' ) as $post_type )
-				$checkboxes .= '<p>'.$form->get_no_checkbox( 'plugin_add_to_'.$post_type->name ).' '.
-					$post_type->label.' '.( empty( $post_type->description ) ? '' : '('.$post_type->description.')' ).'</p>';
-
-			$rows[] = $this->p->util->th( 'Show Social Settings on', null, 'plugin_add_to' ).
-			'<td class="blank">'.$checkboxes.'</td>';
-			
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'Video URL Custom Field', null, 'plugin_cf_vid_url' ).
-				'<td class="blank">'.$form->get_hidden( 'plugin_cf_vid_url' ).
-					$this->p->options['plugin_cf_vid_url'].'</td>';
-			}
-			
-			return $rows;
-		}
-
-		public function filter_plugin_cache_rows( $rows, $form, $network = false ) {
-
-			$rows[] = '<td colspan="'.( $network === false ? 2 : 4 ).'" align="center">'.
+			$table_rows[] = '<td colspan="2" align="center">'.
 				$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Object Cache Expiry', null, 'plugin_object_cache_exp' ).
-			'<td nowrap class="blank">'.$form->get_no_input( 'plugin_object_cache_exp', 'short' ).' seconds</td>'.
-			( $network === false ? '' : $this->p->util->th( 'Site Use', 'site_use' ).
-				'<td class="site_use blank">'.$form->get_select( 'plugin_object_cache_exp:use', 
-					$this->p->cf['form']['site_option_use'], 'site_use', null, true, true ).'</td>' );
+			$table_rows[] = $form->get_th_html( _x( 'Use Filtered (SEO) Title',
+				'option label', 'nextgen-facebook' ), '', 'plugin_filter_title' ).
+			$this->get_nocb_td( $form, 'plugin_filter_title' );
 
-			return $rows;
+			$table_rows[] = $form->get_th_html( _x( 'Apply WordPress Content Filters',
+				'option label', 'nextgen-facebook' ), '', 'plugin_filter_content' ).
+			$this->get_nocb_td( $form, 'plugin_filter_content' );
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Apply WordPress Excerpt Filters',
+				'option label', 'nextgen-facebook' ), '', 'plugin_filter_excerpt' ).
+			$this->get_nocb_td( $form, 'plugin_filter_excerpt' );
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Content Starts at 1st Paragraph',
+				'option label', 'nextgen-facebook' ), '', 'plugin_p_strip' ).
+			$this->get_nocb_td( $form, 'plugin_p_strip' );
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Use Image Alt if No Content',
+				'option label', 'nextgen-facebook' ), '', 'plugin_use_img_alt' ).
+			$this->get_nocb_td( $form, 'plugin_use_img_alt' );
+
+			$table_rows['plugin_img_alt_prefix'] = $form->get_th_html( _x( 'Image Alt Text Prefix',
+				'option label', 'nextgen-facebook' ), '', 'plugin_img_alt_prefix', array( 'is_locale' => true ) ).
+			'<td class="blank">'.SucomUtil::get_locale_opt( 'plugin_img_alt_prefix', $this->p->options ).'</td>';
+
+			$table_rows['plugin_p_cap_prefix'] = $form->get_th_html( _x( 'WP Caption Prefix',
+				'option label', 'nextgen-facebook' ), '', 'plugin_p_cap_prefix', array( 'is_locale' => true ) ).
+			'<td class="blank">'.SucomUtil::get_locale_opt( 'plugin_p_cap_prefix', $this->p->options ).'</td>';
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Maximum Images from Content',
+				'option label', 'nextgen-facebook' ), '', 'plugin_content_img_max' ).
+			'<td class="blank">'.$this->p->options['plugin_content_img_max'].'</td>';
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Maximum Videos from Content',
+				'option label', 'nextgen-facebook' ), '', 'plugin_content_vid_max' ).
+			'<td class="blank">'.$this->p->options['plugin_content_vid_max'].'</td>';
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Check for Embedded Media',
+				'option label', 'nextgen-facebook' ), '', 'plugin_embedded_media' ).
+			'<td class="blank">'.
+			'<p>'.$this->get_nocb( $form, 'plugin_facebook_api' ).' Facebook Videos</p>'.
+			'<p>'.$this->get_nocb( $form, 'plugin_slideshare_api' ).' Slideshare Presentations</p>'.
+			'<p>'.$this->get_nocb( $form, 'plugin_vimeo_api' ).' Vimeo Videos</p>'.
+			'<p>'.$this->get_nocb( $form, 'plugin_wistia_api' ).' Wistia Videos</p>'.
+			'<p>'.$this->get_nocb( $form, 'plugin_youtube_api' ).' YouTube Videos and Playlists</p>'.
+			'</td>';
+
+			return $table_rows;
 		}
 
-		public function filter_taglist_tags_rows( $rows, $form, $tag = '[^_]+' ) {
+		public function filter_plugin_integration_rows( $table_rows, $form ) {
 
-			$og_cols = 2;
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
 
-			$cells = array();
-			foreach ( $this->p->opt->get_defaults() as $opt => $val ) {
-				if ( preg_match( '/^add_('.$tag.')_([^_]+)_(.+)$/', $opt, $match ) ) {
-					$highlight = $opt === 'add_meta_name_description' ? ' highlight' : '';
-					$cells[] = '<!-- '.( implode( ' ', $match ) ).' -->'.
-						'<td class="checkbox blank">'.$form->get_no_checkbox( $opt ).'</td>'.
-						'<td class="xshort'.$highlight.'">'.$match[1].'</td>'.
-						'<td class="taglist'.$highlight.'">'.$match[2].'</td>'.
-						'<th class="taglist'.$highlight.'">'.$match[3].'</th>'."\n";
+			$table_rows[] = '<td colspan="3" align="center">'.
+				$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
+
+			$table_rows['plugin_honor_force_ssl'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Honor the FORCE_SSL Constant',
+				'option label', 'nextgen-facebook' ), '', 'plugin_honor_force_ssl' ).
+			$this->get_nocb_td( $form, 'plugin_honor_force_ssl' );
+
+			$table_rows['plugin_html_attr_filter'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( '&lt;html&gt; Attributes Filter Hook',
+				'option label', 'nextgen-facebook' ), '', 'plugin_html_attr_filter' ).
+			'<td class="blank field_name">Name:&nbsp;'.$this->p->options['plugin_html_attr_filter_name'].'</td>'.
+			'<td class="blank">Priority:&nbsp;'.$this->p->options['plugin_html_attr_filter_prio'].'</td>';
+
+			$table_rows['plugin_head_attr_filter'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( '&lt;head&gt; Attributes Filter Hook',
+				'option label', 'nextgen-facebook' ), '', 'plugin_head_attr_filter' ).
+			'<td class="blank field_name">Name:&nbsp;'.$this->p->options['plugin_head_attr_filter_name'].'</td>'.
+			'<td class="blank">Priority:&nbsp;'.$this->p->options['plugin_head_attr_filter_prio'].'</td>';
+
+			$table_rows['plugin_check_head'] = $form->get_th_html( _x( 'Check for Duplicate Meta Tags',
+				'option label', 'nextgen-facebook' ), '', 'plugin_check_head' ).
+			$this->get_nocb_td( $form, 'plugin_check_head' );
+
+			$table_rows['plugin_filter_lang'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Use WP Locale for Language',
+				'option label', 'nextgen-facebook' ), '', 'plugin_filter_lang' ).
+			$this->get_nocb_td( $form, 'plugin_filter_lang' );
+
+			$table_rows['plugin_create_wp_sizes'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Create Missing WP Media Sizes',
+				'option label', 'nextgen-facebook' ), '', 'plugin_create_wp_sizes' ).
+			$this->get_nocb_td( $form, 'plugin_create_wp_sizes' );
+
+			$table_rows['plugin_check_img_dims'] = $form->get_th_html( _x( 'Enforce Image Dimensions Check',
+				'option label', 'nextgen-facebook' ), '', 'plugin_check_img_dims' ).
+			$this->get_nocb_td( $form, 'plugin_check_img_dims',
+				'<em>'._x( 'recommended', 'option comment', 'nextgen-facebook' ).'</em>' );
+
+			$table_rows['plugin_upscale_images'] = $form->get_th_html( _x( 'Allow Upscale of WP Media Images',
+				'option label', 'nextgen-facebook' ), '', 'plugin_upscale_images' ).
+			$this->get_nocb_td( $form, 'plugin_upscale_images' ).'</td>';
+
+			$table_rows['plugin_upscale_img_max'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Maximum Image Upscale Percent',
+				'option label', 'nextgen-facebook' ), '', 'plugin_upscale_img_max' ).
+			'<td class="blank">'.$this->p->options['plugin_upscale_img_max'].' %</td>';
+
+			$table_rows[] = $form->get_th_html( _x( 'Enable WP Excerpt for Pages',
+				'option label', 'nextgen-facebook' ), '', 'plugin_page_excerpt' ).
+			$this->get_nocb_td( $form, 'plugin_page_excerpt' );
+
+			$table_rows[] = $form->get_th_html( _x( 'Enable WP Tags for Pages',
+				'option label', 'nextgen-facebook' ), '', 'plugin_page_tags' ).
+			$this->get_nocb_td( $form, 'plugin_page_tags' );
+
+			return $table_rows;
+		}
+
+		public function filter_plugin_social_rows( $table_rows, $form, $network = false ) {
+
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+
+			$table_rows[] = '<td colspan="2" align="center">'.
+				$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
+
+			/*
+			 * Include Columns in Admin Lists
+			 */
+			$cols = '<table class="plugin-list-columns">'."\n".'<tr>';
+			foreach ( NgfbMeta::get_column_headers() as $col_idx => $col_header ) {
+				$cols .= '<th>'.$col_header.'</th>';
+			}
+			$cols .= '</tr>'."\n";
+			foreach ( array(
+				'post' => __( 'Posts, Pages, and Custom Post Types List', 'nextgen-facebook' ),
+				'media' => __( 'Media Library Item List', 'nextgen-facebook' ),
+				'term' => __( 'Terms (Categories and Tags) List', 'nextgen-facebook' ),
+				'user' => __( 'Users List' ),
+			) as $mod_name => $mod_label ) {
+				$cols .= '<tr>';
+				foreach ( NgfbMeta::get_column_headers() as $col_idx => $col_header ) {
+					$cols .= '<td class="checkbox blank">'.$this->get_nocb( $form,
+						'plugin_'.$col_idx.'_col_'.$mod_name ).'</td>';
+				}
+				$cols .= '<td><p>'.$mod_label.'</p></td></tr>'."\n";
+			}
+			$cols .= '</table>'."\n";
+
+			$table_rows['plugin_show_columns'] = $form->get_th_html( _x( 'Include Columns in Admin Lists',
+				'option label', 'nextgen-facebook' ), '', 'plugin_show_columns' ).
+					'<td>'.$cols.'</td>';
+
+			/*
+			 * Include Social Settings Metabox
+			 */
+			$add_to_checkboxes = $form->get_post_type_checkboxes( 'plugin_add_to', '', '', true );
+			$add_to_checkboxes .= '<p>'.$this->get_nocb( $form, 'plugin_add_to_term' ).	// add term checbox
+				' '.__( 'Terms (Categories and Tags)', 'nextgen-facebook' ).'</p>';
+			$add_to_checkboxes .= '<p>'.$this->get_nocb( $form, 'plugin_add_to_user' ).	// add user checkbox
+				' '.__( 'User Profile', 'nextgen-facebook' ).'</p>';
+
+			$table_rows['plugin_add_to'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Include Social Settings Metabox',
+				'option label', 'nextgen-facebook' ), '', 'plugin_add_to' ).
+			'<td class="blank">'.$add_to_checkboxes.'</td>';
+
+			$table_rows['plugin_wpseo_social_meta'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Read Yoast SEO Social Meta',
+				'option label', 'nextgen-facebook' ), '', 'plugin_wpseo_social_meta' ).
+			'<td class="blank">'.$this->get_nocb( $form, 'plugin_wpseo_social_meta' ).'</td>';
+
+			foreach ( (array) apply_filters( $this->p->cf['lca'].'_get_cf_md_idx',
+				$this->p->cf['opt']['cf_md_idx'] ) as $cf_idx => $md_idx ) {
+
+				if ( isset( $this->p->cf['form']['cf_labels'][$cf_idx] ) &&	// just in case
+					$label = $this->p->cf['form']['cf_labels'][$cf_idx] ) {
+
+					if ( empty( $md_idx ) )	// custom fields can be disabled by filters
+						$this->p->options[$cf_idx] = '';
+
+					$table_rows[$cf_idx] = '<tr class="hide_in_basic">'.
+					$form->get_th_html( _x( $label,
+						'option label', 'nextgen-facebook' ), '', $cf_idx ).
+					'<td class="blank">'.$form->get_no_input( $cf_idx ).'</td>';
 				}
 			}
 
-			sort( $cells );
-			$col_rows = array();
-			$per_col = ceil( count( $cells ) / $og_cols );
-			foreach ( $cells as $num => $cell ) {
-				if ( empty( $col_rows[ $num % $per_col ] ) )
-					$col_rows[ $num % $per_col ] = '';	// initialize the array
-				$col_rows[ $num % $per_col ] .= $cell;		// create the html for each row
+			return $table_rows;
+		}
+
+		public function filter_plugin_cache_rows( $table_rows, $form, $network = false ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
+			$table_rows[] = '<td colspan="'.( $network ? 4 : 2 ).'" align="center">'.
+				$this->p->msgs->get( 'pro-feature-msg', array( 'lca' => 'ngfb' ) ).'</td>';
+
+			$table_rows['plugin_head_cache_exp'] = $form->get_th_html( _x( 'Head Markup Array Cache Expiry',
+				'option label', 'nextgen-facebook' ), '', 'plugin_head_cache_exp' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_head_cache_exp'].' '.
+			_x( 'seconds (0 to disable)', 'option comment', 'nextgen-facebook' ).'</td>'.
+			NgfbAdmin::get_option_site_use( 'plugin_head_cache_exp', $form, $network );
+
+			$table_rows['plugin_shorten_cache_exp'] = $form->get_th_html( _x( 'Shortened URL Cache Expiry',
+				'option label', 'nextgen-facebook' ), '', 'plugin_shorten_cache_exp' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_shorten_cache_exp'].' '.
+			_x( 'seconds (0 to disable)', 'option comment', 'nextgen-facebook' ).'</td>'.
+			NgfbAdmin::get_option_site_use( 'plugin_shorten_cache_exp', $form, $network );
+
+			$table_rows['plugin_content_cache_exp'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Filtered Content Text Cache Expiry',
+				'option label', 'nextgen-facebook' ), '', 'plugin_content_cache_exp' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_content_cache_exp'].' '.
+			_x( 'seconds (0 to disable)', 'option comment', 'nextgen-facebook' ).'</td>'.
+			NgfbAdmin::get_option_site_use( 'plugin_content_cache_exp', $form, $network );
+
+			$table_rows['plugin_imgsize_cache_exp'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Get Image (URL) Size Cache Expiry',
+				'option label', 'nextgen-facebook' ), '', 'plugin_imgsize_cache_exp' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_imgsize_cache_exp'].' '.
+			_x( 'seconds (0 to disable)', 'option comment', 'nextgen-facebook' ).'</td>'.
+			NgfbAdmin::get_option_site_use( 'plugin_imgsize_cache_exp', $form, $network );
+
+			$table_rows['plugin_topics_cache_exp'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Article Topics Array Cache Expiry',
+				'option label', 'nextgen-facebook' ), '', 'plugin_topics_cache_exp' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_topics_cache_exp'].' '.
+			_x( 'seconds (0 to disable)', 'option comment', 'nextgen-facebook' ).'</td>'.
+			NgfbAdmin::get_option_site_use( 'plugin_topics_cache_exp', $form, $network );
+
+			$table_rows['plugin_types_cache_exp'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Schema Types Array Cache Expiry',
+				'option label', 'nextgen-facebook' ), '', 'plugin_types_cache_exp' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_types_cache_exp'].' '.
+			_x( 'seconds (0 to disable)', 'option comment', 'nextgen-facebook' ).'</td>'.
+			NgfbAdmin::get_option_site_use( 'plugin_types_cache_exp', $form, $network );
+
+			$table_rows['plugin_show_purge_count'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Show Cache Purge Count on Update',
+				'option label', 'nextgen-facebook' ), '', 'plugin_show_purge_count' ).
+			$this->get_nocb_td( $form, 'plugin_show_purge_count' ).
+			NgfbAdmin::get_option_site_use( 'plugin_show_purge_count', $form, $network );
+
+			$table_rows['plugin_clear_on_save'] = $form->get_th_html( _x( 'Clear All Cache on Save Settings',
+				'option label', 'nextgen-facebook' ), '', 'plugin_clear_on_save' ).
+			$this->get_nocb_td( $form, 'plugin_clear_on_save' ).
+			NgfbAdmin::get_option_site_use( 'plugin_clear_on_save', $form, $network );
+
+			$table_rows['plugin_clear_short_urls'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Clear Short URLs on Clear All Cache',
+				'option label', 'nextgen-facebook' ), '', 'plugin_clear_short_urls' ).
+			$this->get_nocb_td( $form, 'plugin_clear_short_urls' ).
+			NgfbAdmin::get_option_site_use( 'plugin_clear_short_urls', $form, $network );
+
+			$table_rows['plugin_clear_for_comment'] = $form->get_th_html( _x( 'Clear Post Cache for Comment',
+				'option label', 'nextgen-facebook' ), '', 'plugin_clear_for_comment' ).
+			$this->get_nocb_td( $form, 'plugin_clear_for_comment' ).
+			NgfbAdmin::get_option_site_use( 'plugin_clear_for_comment', $form, $network );
+
+			return $table_rows;
+		}
+
+		public function filter_plugin_apikeys_rows( $table_rows, $form ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
+			$table_rows[] = '<td colspan="2" align="center">'.
+				$this->p->msgs->get( 'pro-feature-msg', array( 'lca' => 'ngfb' ) ).'</td>';
+
+			$table_rows['plugin_shortener'] = $form->get_th_html( _x( 'Preferred URL Shortening Service',
+				'option label', 'nextgen-facebook' ), '', 'plugin_shortener' ).
+			'<td class="blank">[None]</td>';
+
+			$table_rows['plugin_min_shorten'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Minimum URL Length to Shorten',
+				'option label', 'nextgen-facebook' ), '', 'plugin_min_shorten' ).
+			'<td nowrap class="blank">'.$this->p->options['plugin_min_shorten'].' '.
+				_x( 'characters', 'option comment', 'nextgen-facebook' ).'</td>';
+
+			$table_rows['plugin_shortlink'] = $form->get_th_html( _x( 'Use Shortened URL for WP Shortlink',
+				'option label', 'nextgen-facebook' ), '', 'plugin_shortlink' ).
+			$this->get_nocb_td( $form, 'plugin_shortlink' );
+
+			$table_rows['subsection_plugin_bitly'] = '<tr class="hide_in_basic">'.
+				'<td></td><td class="subsection"><h4>'.
+				_x( 'Bitly URL Shortener', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+
+			$table_rows['plugin_bitly_login'] = $form->get_th_html( _x( 'Bitly Username',
+				'option label', 'nextgen-facebook' ), '', 'plugin_bitly_login' ).
+			'<td class="blank mono">'.$this->p->options['plugin_bitly_login'].'</td>';
+
+			$table_rows['plugin_bitly_token'] = $form->get_th_html( '<a href="https://bitly.com/a/oauth_apps" target="_blank">'.
+				_x( 'Bitly Generic Access Token', 'option label', 'nextgen-facebook' ).'</a>', '', 'plugin_bitly_token' ).
+			'<td class="blank mono">'.$this->p->options['plugin_bitly_token'].'</td>';
+
+			$table_rows['plugin_bitly_api_key'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( '<a href="http://bitly.com/a/your_api_key" target="_blank">'.
+				_x( 'or Bitly API Key (deprecated)', 'option label', 'nextgen-facebook' ).'</a>', '', 'plugin_bitly_api_key' ).
+			'<td class="blank mono">'.$this->p->options['plugin_bitly_api_key'].' <em>'.
+				_x( 'api key authentication is deprecated', 'option comment', 'nextgen-facebook' ).'</em></td>';
+
+			$table_rows['subsection_plugin_google'] = '<tr class="hide_in_basic">'.
+				'<td></td><td class="subsection"><h4>'.
+				_x( 'Google APIs', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+
+			$table_rows['plugin_google_api_key'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Google Project App BrowserKey',
+				'option label', 'nextgen-facebook' ), '', 'plugin_google_api_key' ).
+			'<td class="blank mono">'.$this->p->options['plugin_google_api_key'].'</td>';
+
+			$table_rows['plugin_google_shorten'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Google URL Shortener API is ON',
+				'option label', 'nextgen-facebook' ), '', 'plugin_google_shorten' ).
+			'<td class="blank">'._x( $this->p->cf['form']['yes_no'][$this->p->options['plugin_google_shorten']],
+				'option value', 'nextgen-facebook' ).'</td>';
+
+			$table_rows['subsection_plugin_owly'] = '<tr class="hide_in_basic">'.
+				'<td></td><td class="subsection"><h4>'.
+				_x( 'Ow.ly URL Shortener', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+
+			$table_rows['plugin_owly_api_key'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Ow.ly API Key',
+				'option label', 'nextgen-facebook' ), '', 'plugin_owly_api_key' ).
+			'<td class="blank mono">'.$this->p->options['plugin_owly_api_key'].'</td>';
+
+			$table_rows['subsection_plugin_yourls'] = '<tr class="hide_in_basic">'.
+				'<td></td><td class="subsection"><h4>'.
+				_x( 'Your Own URL Shortener (YOURLS)', 'metabox title', 'nextgen-facebook' ).'</h4></td>';
+
+			$table_rows['plugin_yourls_api_url'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'YOURLS API URL',
+				'option label', 'nextgen-facebook' ), '', 'plugin_yourls_api_url' ).
+			'<td class="blank mono">'.$this->p->options['plugin_yourls_api_url'].'</td>';
+
+			$table_rows['plugin_yourls_username'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'YOURLS Username',
+				'option label', 'nextgen-facebook' ), '', 'plugin_yourls_username' ).
+			'<td class="blank mono">'.$this->p->options['plugin_yourls_username'].'</td>';
+
+			$table_rows['plugin_yourls_password'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'YOURLS Password',
+				'option label', 'nextgen-facebook' ), '', 'plugin_yourls_password' ).
+			'<td class="blank mono">'.$this->p->options['plugin_yourls_password'].'</td>';
+
+			$table_rows['plugin_yourls_token'] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'YOURLS Token',
+				'option label', 'nextgen-facebook' ), '', 'plugin_yourls_token' ).
+			'<td class="blank mono">'.$this->p->options['plugin_yourls_token'].'</td>';
+
+			return $table_rows;
+		}
+
+		public function filter_cm_custom_rows( $table_rows, $form ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
 			}
 
-			return array_merge( $rows, $col_rows );
+			$table_rows[] = '<td colspan="4" align="center">'.
+				$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
+
+			$table_rows[] = '<td></td>'.
+			$form->get_th_html( _x( 'Show', 'column title', 'nextgen-facebook' ), 'checkbox left', 'custom-cm-show-checkbox' ).
+			$form->get_th_html( _x( 'Contact Field Name', 'column title', 'nextgen-facebook' ), 'medium left', 'custom-cm-field-name' ).
+			$form->get_th_html( _x( 'Profile Contact Label', 'column title', 'nextgen-facebook' ), 'wide left', 'custom-cm-contact-label' );
+
+			$sorted_opt_pre = $this->p->cf['opt']['cm_prefix'];
+			ksort( $sorted_opt_pre );
+
+			foreach ( $sorted_opt_pre as $id => $opt_pre ) {
+
+				$cm_cb = 'plugin_cm_'.$opt_pre.'_enabled';
+				$cm_name = 'plugin_cm_'.$opt_pre.'_name';
+				$cm_label = 'plugin_cm_'.$opt_pre.'_label';
+
+				// not all social websites have a contact method field
+				if ( isset( $this->p->options[$cm_cb] ) ) {
+
+					switch ( $id ) {
+						case 'facebook':
+						case 'gplus':
+						case 'twitter':
+							$tr = '';
+							break;
+						default:
+							$tr = '<tr class="hide_in_basic">';
+							break;
+					}
+
+					$label = empty( $this->p->cf['*']['lib']['website'][$id] ) ?
+						ucfirst( $id ) : $this->p->cf['*']['lib']['website'][$id];
+
+					if  ( $label === 'Googleplus' || $label === 'Gplus' ) {
+						$label = 'Google+';
+					}
+
+					$table_rows[] = $tr.$form->get_th_html( $label, 'medium' ).
+					'<td class="checkbox blank">'.$this->get_nocb( $form, $cm_cb ).'</td>'.
+					'<td class="blank">'.$form->get_no_input( $cm_name, 'medium' ).'</td>'.
+					'<td class="blank">'.$form->get_no_input( $cm_label ).'</td>';
+				}
+			}
+
+			return $table_rows;
+		}
+
+		public function filter_cm_builtin_rows( $table_rows, $form ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+
+			$table_rows[] = '<td colspan="4" align="center">'.
+				$this->p->msgs->get( 'pro-feature-msg' ).'</td>';
+
+			$table_rows[] = '<td></td>'.
+			$form->get_th_html( _x( 'Show', 'column title', 'nextgen-facebook' ), 'checkbox left', 'custom-cm-show-checkbox' ).
+			$form->get_th_html( _x( 'Contact Field Name', 'column title', 'nextgen-facebook' ), 'medium left', 'custom-cm-field-name' ).
+			$form->get_th_html( _x( 'Profile Contact Label', 'column title', 'nextgen-facebook' ), 'wide left', 'custom-cm-contact-label' );
+
+			$sorted_cm_names = $this->p->cf['wp']['cm_names'];
+			ksort( $sorted_cm_names );
+
+			foreach ( $sorted_cm_names as $id => $label ) {
+
+				$cm_cb = 'wp_cm_'.$id.'_enabled';
+				$cm_name = 'wp_cm_'.$id.'_name';
+				$cm_label = 'wp_cm_'.$id.'_label';
+
+				if ( isset( $this->p->options[$cm_cb] ) ) {
+					$table_rows[] = $form->get_th_html( $label, 'medium' ).
+					'<td class="checkbox blank">'.$this->get_nocb( $form, $cm_cb ).'</td>'.
+					'<td>'.$form->get_no_input( $cm_name, 'medium' ).'</td>'.
+					'<td class="blank">'.$form->get_no_input( $cm_label ).'</td>';
+				}
+			}
+
+			return $table_rows;
+		}
+
+		public function filter_taglist_og_rows( $table_rows, $form, $network = false ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			return $this->get_taglist_rows( $table_rows, $form, $network,
+				array( '/^add_(meta)_(property)_(.+)$/' ) );
+		}
+
+		public function filter_taglist_fb_rows( $table_rows, $form, $network = false ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			return $this->get_taglist_rows( $table_rows, $form, $network,
+				array( '/^add_(meta)_(property)_((fb|al):.+)$/' ) );
+		}
+
+		public function filter_taglist_twitter_rows( $table_rows, $form, $network = false ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			return $this->get_taglist_rows( $table_rows, $form, $network,
+				array( '/^add_(meta)_(name)_(twitter:.+)$/' ) );
+		}
+
+		public function filter_taglist_schema_rows( $table_rows, $form, $network = false ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			return $this->get_taglist_rows( $table_rows, $form, $network,
+				array( '/^add_(meta|link)_(itemprop)_(.+)$/' ) );
+		}
+
+		public function filter_taglist_other_rows( $table_rows, $form, $network = false ) {
+			if ( $this->p->debug->enabled ) {
+				$this->p->debug->mark();
+			}
+			return $this->get_taglist_rows( $table_rows, $form, $network,
+				array( '/^add_(link)_([^_]+)_(.+)$/', '/^add_(meta)_(name)_(.+)$/' ) );
+		}
+
+		private function get_taglist_rows( $table_rows, $form, $network, array $opt_preg_include ) {
+			$table_cells = array();
+			foreach ( $opt_preg_include as $preg ) {
+				foreach ( $form->defaults as $opt => $val ) {
+
+					if ( strpos( $opt, 'add_' ) !== 0 ) {	// optimize
+						continue;
+					} elseif ( isset( $this->taglist_opts[$opt] ) ) {	// check cache for tags already shown
+						continue;
+					} elseif ( ! preg_match( $preg, $opt, $match ) ) {	// check option name for a match
+						continue;
+					}
+
+					$highlight = '';
+					$this->taglist_opts[$opt] = $val;
+					switch ( $opt ) {
+						// disabled with a constant instead
+						case 'add_meta_name_generator':
+							continue 2;
+					}
+					$table_cells[] = '<!-- '.( implode( ' ', $match ) ).' -->'.	// required for sorting
+						'<td class="checkbox blank">'.$this->get_nocb( $form, $opt ).'</td>'.
+						'<td class="xshort'.$highlight.'">'.$match[1].'</td>'.
+						'<td class="taglist'.$highlight.'">'.$match[2].'</td>'.
+						'<th class="taglist'.$highlight.'">'.$match[3].'</th>';
+				}
+			}
+			return array_merge( $table_rows, SucomUtil::get_column_rows( $table_cells, 2 ) );
+		}
+
+		private function get_nocb_td( $form, $name, $comment = '' ) {
+			return '<td class="blank">'.$this->get_nocb( $form, $name, $comment ).'</td>';
+		}
+
+		private function get_nocb( $form, $name, $comment = '' ) {
+			$checked = empty( $form->options[$name] ) ? '' : ' checked="checked"';
+			$default = empty( $form->defaults[$name] ) ? 'unchecked' : 'checked';
+			return '<input type="checkbox" disabled="disabled"'.
+				$checked.' title="default is '.$default.'" />'.
+					( empty( $comment ) ? '' : ' '.$comment );
 		}
 	}
 }

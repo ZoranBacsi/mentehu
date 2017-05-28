@@ -125,7 +125,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 		'French_Guiana'                    => 'America/Cayenne',
 		'French_Southern'                  => 'Indian/Kerguelen',
 		'Frunze'                           => 'Asia/Bishkek',
-		'GMT'                              => 'Atlantic/Reykjavik',
+		'GMT'                              => 'UTC', // seems better than 'Atlantic/Reykjavik'
 		'GMT Standard Time'                => 'Europe/London',
 		'GTB Standard Time'                => 'Europe/Istanbul',
 		'Galapagos'                        => 'Pacific/Galapagos',
@@ -362,7 +362,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 						Ai1ec_I18n::__(
 							'Please select site timezone in %s <em>Timezone</em> dropdown menu.'
 						),
-						'<a href="' . admin_url( 'options-general.php' ) .
+						'<a href="' . ai1ec_admin_url( 'options-general.php' ) .
 						'">' . Ai1ec_I18n::__( 'Settings' ) . '</a>'
 					),
 					'error'
@@ -373,11 +373,11 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 	}
 
 	/**
-	 * Attempt to decode GMT offset to some Olsen timezone.
+	 * Attempt to decode GMT offset to some Olson timezone.
 	 *
 	 * @param float $zone GMT offset.
 	 *
-	 * @return string Valid Olsen timezone name (UTC is last resort).
+	 * @return string Valid Olson timezone name (UTC is last resort).
 	 */
 	public function decode_gmt_timezone( $zone ) {
 		$auto_zone = timezone_name_from_abbr( null, $zone * 3600, true );
@@ -398,7 +398,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 					'Timezone "UTC%+d" is not recognized. Please %suse valid%s timezone name, until then events will be created in UTC timezone.'
 				),
 				$zone,
-				'<a href="' . admin_url( 'options-general.php' ) . '">',
+				'<a href="' . ai1ec_admin_url( 'options-general.php' ) . '">',
 				'</a>'
 			),
 			'error'
@@ -433,6 +433,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 			return $zone; // anything should do, as zones are not supported
 		}
 		if ( ! isset( $this->_identifiers[$zone] ) ) {
+			$zone         = $this->_olson_lookup( $zone );
 			$valid_legacy = false;
 			try {
 				new DateTimeZone( $zone ); // throw away instantly
@@ -450,8 +451,22 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 	}
 
 	/**
+	 * Quick map look-up to discard zones that have limited recognition.
+	 *
+	 * @param string $zone Name of timezone to lookup.
+	 *
+	 * @return string Timezone name to use. Might be the same as $zone.
+	 */
+	protected function _olson_lookup( $zone ) {
+		if ( isset( $this->_zones[$zone] ) ) {
+			return $this->_zones[$zone];
+		}
+		return $zone;
+	}
+
+	/**
 	 * Check if timezone is set in wp_option
-	 * 
+	 *
 	 */
 	public function is_timezone_not_set() {
 		$timezone = $this->_registry->get( 'model.option' )
@@ -461,7 +476,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 
 	/**
 	 * Render options for select in settings
-	 * 
+	 *
 	 * @return array
 	 */
 	public function get_timezones( $only_zones = false ) {
@@ -495,7 +510,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 				'value' => $zone,
 			);
 		}
-		
+
 		return $options;
 	}
 
@@ -560,9 +575,7 @@ class Ai1ec_Date_Timezone extends Ai1ec_Base {
 		}
 		$name = $this->get_name( $timezone );
 		if ( ! $name ) {
-			throw new Ai1ec_Date_Timezone_Exception(
-				'Unrecognized timezone \'' . $timezone . '\''
-			);
+			$name = $this->get_name( $this->get_default_timezone() );
 		}
 		$zone = $this->_cache->get( $name, null );
 		if ( null === $zone ) {

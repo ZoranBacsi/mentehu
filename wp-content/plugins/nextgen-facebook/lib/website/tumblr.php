@@ -1,110 +1,133 @@
 <?php
 /*
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2014 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
+ */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
-if ( ! class_exists( 'NgfbSubmenuSharingTumblr' ) && class_exists( 'NgfbSubmenuSharing' ) ) {
+if ( ! class_exists( 'NgfbSubmenuWebsiteTumblr' ) ) {
 
-	class NgfbSubmenuSharingTumblr extends NgfbSubmenuSharing {
+	class NgfbSubmenuWebsiteTumblr {
 
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->p->debug->mark();
+			$this->p->util->add_plugin_filters( $this, array(
+				'image_dimensions_general_rows' => 2,	// $table_rows, $form
+				'website_tumblr_rows' => 3,		// $table_rows, $form, $submenu
+			) );
 		}
 
-		protected function get_rows( $metabox, $key ) {
-			$rows = array();
-			$buttons_html = '<div class="btn_wizard_row clearfix" id="button_styles">';
-			$buttons_style = empty( $this->p->options['tumblr_button_style'] ) ? 
-				'share_1' : $this->p->options['tumblr_button_style'];
-			foreach ( range( 1, 4 ) as $i ) {
-				$buttons_html .= '<div class="btn_wizard_column share_'.$i.'">';
-				foreach ( array( '', 'T' ) as $t ) {
-					$buttons_html .= '
-						<div class="btn_wizard_example clearfix">
-						<label for="share_'.$i.$t.'">
-						<input type="radio" id="share_'.$i.$t.'" 
-							name="'.$this->form->options_name.'[tumblr_button_style]" 
-							value="share_'.$i.$t.'" '.
-							checked( 'share_'.$i.$t, $buttons_style, false ).'/>
-						<img src="'.$this->p->util->get_cache_url( 'http://platform.tumblr.com/v1/share_'.$i.$t.'.png' ).'" 
-							height="20" class="share_button_image"/>
-						</label>
-						</div>
-					';
-				}
-				$buttons_html .= '</div>';
-			}
-			$buttons_html .= '</div>';
+		// add an option to the WordPress -> Settings -> Image Dimensions page
+		public function filter_image_dimensions_general_rows( $table_rows, $form ) {
 
-			$rows[] = $this->p->util->th( 'Show Button in', 'short highlight', null,
-			'The Tumblr button shares a <em>custom image ID</em>, a <em>featured</em> image, 
-			or an <em>attached</em> image that is equal to or larger than the \'Image Dimensions\' 
-			you have chosen (when the <em>Use Attached Image</em> option is checked), embedded video, 
-			the content of <em>quote</em> custom Posts, or (lastly) the webpage link.' ).'<td>'.
-			( $this->show_on_checkboxes( 'tumblr' ) ).'</td>';
+			$def_dimensions = $this->p->opt->get_defaults( 'tumblr_img_width' ).'x'.
+				$this->p->opt->get_defaults( 'tumblr_img_height' ).' '.
+				( $this->p->opt->get_defaults( 'tumblr_img_crop' ) == 0 ? 'uncropped' : 'cropped' );
 
-			$rows[] = $this->p->util->th( 'Preferred Order', 'short' ).'<td>'.
-			$this->form->get_select( 'tumblr_order', 
-				range( 1, count( $this->p->admin->submenu['sharing']->website ) ), 
-					'short' ).'</td>';
+			$table_rows['tumblr_img_dimensions'] = $form->get_th_html( _x( 'Tumblr <em>Sharing Button</em>', 'option label', 'nextgen-facebook' ), null, 'tumblr_img_dimensions', 'The image dimensions that the Tumblr button will share (defaults is '.$def_dimensions.').' ).
+			'<td>'.$form->get_image_dimensions_input( 'tumblr_img' ).'</td>';	// $use_opts = false
 
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'JavaScript in', 'short' ).'<td>'.
-				$this->form->get_select( 'tumblr_js_loc', $this->p->cf['form']['js_locations'] ).'</td>';
+			return $table_rows;
+		}
+
+		public function filter_website_tumblr_rows( $table_rows, $form, $submenu ) {
+
+			$table_rows[] = $form->get_th_html( _x( 'Show Button in',
+				'option label (short)', 'nextgen-facebook' ), 'short', null ).
+			'<td>'.$submenu->show_on_checkboxes( 'tumblr' ).'</td>';
+
+			$table_rows[] = $form->get_th_html( _x( 'Preferred Order',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'tumblr_order', range( 1, count( $submenu->website ) ) ).'</td>';
+
+			if ( $this->p->avail['*']['vary_ua'] ) {
+				$table_rows[] = '<tr class="hide_in_basic">'.
+				$form->get_th_html( _x( 'Allow for Platform',
+					'option label (short)', 'nextgen-facebook' ), 'short' ).
+				'<td>'.$form->get_select( 'tumblr_platform', $this->p->cf['sharing']['platform'] ).'</td>';
 			}
 
-			$rows[] = $this->p->util->th( 'Button Style', 'short' ).'<td>'.$buttons_html.'</td>';
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'JavaScript in',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'tumblr_script_loc', $this->p->cf['form']['script_locations'] ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Use Attached Image', 'short' ).'<td>'.
-			$this->form->get_checkbox( 'tumblr_photo' ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Button Language',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'tumblr_lang', SucomUtil::get_pub_lang( 'tumblr' ) ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Image Dimensions', 'short' ).
-			'<td>Width '.$this->form->get_input( 'tumblr_img_width', 'short' ).' x '.
-			'Height '.$this->form->get_input( 'tumblr_img_height', 'short' ).' &nbsp; '.
-			'Crop '.$this->form->get_checkbox( 'tumblr_img_crop' ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Button Color',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'tumblr_color', array( 'blue' => 'Blue', 'black' => 'Black', 'white' => 'White' ) ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Media Caption', 'short' ).'<td>'.
-			$this->form->get_select( 'tumblr_caption', $this->p->cf['form']['caption_types'] ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Show Counter',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'tumblr_counter', array(
+				'none' => 'Not Shown',
+				'top' => 'Above the Button',
+				'right' => 'Right of the Button',
+			) ).'</td>';
 
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'Caption Length', 'short' ).'<td>'.
-				$this->form->get_input( 'tumblr_cap_len', 'short' ).' characters or less</td>';
-	
-				$rows[] = $this->p->util->th( 'Link Description', 'short' ).'<td>'.
-				$this->form->get_input( 'tumblr_desc_len', 'short' ).' characters or less</td>';
-			}
-			return $rows;
+			$table_rows[] = $form->get_th_html( _x( 'Add Attribution',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_checkbox( 'tumblr_show_via' ).'</td>';
+
+			$table_rows[] = $form->get_th_html( _x( 'Image Dimensions',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_image_dimensions_input( 'tumblr_img', false, true ).'</td>';	// $use_opts = false, $narrow = true
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Media Caption',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'tumblr_caption', $this->p->cf['form']['caption_types'] ).'</td>';
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Caption Length',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_input( 'tumblr_cap_len', 'short' ).' '.
+				_x( 'characters or less', 'option comment', 'nextgen-facebook' ).'</td>';
+
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Link Description',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_input( 'tumblr_desc_len', 'short' ).' '.
+				_x( 'characters or less', 'option comment', 'nextgen-facebook' ).'</td>';
+
+			return $table_rows;
 		}
 	}
 }
 
-if ( ! class_exists( 'NgfbSharingTumblr' ) ) {
+if ( ! class_exists( 'NgfbWebsiteTumblr' ) ) {
 
-	class NgfbSharingTumblr {
+	class NgfbWebsiteTumblr {
 
 		private static $cf = array(
 			'opt' => array(				// options
 				'defaults' => array(
+					'tumblr_order' => 12,
 					'tumblr_on_content' => 0,
 					'tumblr_on_excerpt' => 0,
-					'tumblr_on_admin_edit' => 1,
 					'tumblr_on_sidebar' => 0,
-					'tumblr_order' => 10,
-					'tumblr_js_loc' => 'footer',
-					'tumblr_button_style' => 'share_1',
-					'tumblr_desc_len' => 300,
-					'tumblr_photo' => 1,
+					'tumblr_on_admin_edit' => 1,
+					'tumblr_platform' => 'any',
+					'tumblr_script_loc' => 'header',
+					'tumblr_lang' => 'en_US',
+					'tumblr_color' => 'blue',
+					'tumblr_counter' => 'right',
+					'tumblr_show_via' => 1,
 					'tumblr_img_width' => 800,
-					'tumblr_img_height' => 800,
+					'tumblr_img_height' => 1600,
 					'tumblr_img_crop' => 0,
-					'tumblr_caption' => 'both',
+					'tumblr_img_crop_x' => 'center',
+					'tumblr_img_crop_y' => 'center',
+					'tumblr_caption' => 'excerpt',
 					'tumblr_cap_len' => 400,
+					'tumblr_desc_len' => 300,
 				),
 			),
 		);
@@ -113,125 +136,147 @@ if ( ! class_exists( 'NgfbSharingTumblr' ) ) {
 
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->p->util->add_plugin_filters( $this, array( 'get_defaults' => 1 ) );
-			$this->p->util->add_img_sizes_from_opts( array( 'tumblr_img' => 'tumblr' ) );
+			$this->p->util->add_plugin_filters( $this, array(
+				'plugin_image_sizes' => 1,
+				'get_defaults' => 1,
+			) );
 		}
 
-		public function filter_get_defaults( $opts_def ) {
-			return array_merge( $opts_def, self::$cf['opt']['defaults'] );
+		public function filter_plugin_image_sizes( $sizes ) {
+			$sizes['tumblr_img'] = array(
+				'name' => 'tumblr-button',
+				'label' => _x( 'Tumblr Sharing Button', 'image size label', 'nextgen-facebook' ),
+			);
+			return $sizes;
 		}
 
-		public function get_html( $atts = array(), &$opts = array() ) {
-			if ( empty( $opts ) ) 
-				$opts =& $this->p->options;
-			$prot = empty( $_SERVER['HTTPS'] ) ? 'http:' : 'https:';
-			$use_post = array_key_exists( 'use_post', $atts ) ? $atts['use_post'] : true;
-			$source_id = $this->p->util->get_source_id( 'tumblr', $atts );
-			$atts['add_page'] = array_key_exists( 'add_page', $atts ) ? $atts['add_page'] : true;	// get_sharing_url argument
+		public function filter_get_defaults( $def_opts ) {
+			return array_merge( $def_opts, self::$cf['opt']['defaults'] );
+		}
 
-			$atts['url'] = empty( $atts['url'] ) ? 
-				$this->p->util->get_sharing_url( $use_post, $atts['add_page'], $source_id ) : 
-				apply_filters( $this->p->cf['lca'].'_sharing_url', $atts['url'], 
-					$use_post, $atts['add_page'], $source_id );
+		public function get_html( array $atts, array $opts, array $mod ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
-			$post_id = 0;
-			if ( is_singular() || $use_post !== false ) {
-				if ( ( $obj = $this->p->util->get_post_object( $use_post ) ) === false ) {
-					$this->p->debug->log( 'exiting early: invalid object type' );
-					return false;
-				}
-				$post_id = empty( $obj->ID ) || empty( $obj->post_type ) ? 0 : $obj->ID;
+			$lca = $this->p->cf['lca'];
+
+			if ( empty( $atts['size'] ) )
+				$atts['size'] = $this->p->cf['lca'].'-tumblr-button';
+
+			if ( ! array_key_exists( 'lang', $atts ) ) {
+				$atts['lang'] = empty( $opts['tumblr_lang'] ) ? 'en_US' : $opts['tumblr_lang'];
+				$atts['lang'] = apply_filters( $lca.'_pub_lang', $atts['lang'], 'tumblr', 'current' );
 			}
 
-			if ( empty( $atts['size'] ) ) 
-				$atts['size'] = $this->p->cf['lca'].'-tumblr';
+			if ( ! empty( $atts['pid'] ) ) {
+				$force_regen = $this->p->util->is_force_regen( $mod, 'og' );	// false by default
 
-			// only use an image if the 'tumblr_photo' option allows it
-			if ( empty( $atts['photo'] ) && $opts['tumblr_photo'] ) {
-				if ( empty( $atts['pid'] ) && $post_id > 0 ) {
-					// check for meta, featured, and attached images
-					$pid = $this->p->addons['util']['postmeta']->get_options( $post_id, 'og_img_id' );
-					$pre = $this->p->addons['util']['postmeta']->get_options( $post_id, 'og_img_id_pre' );
-					if ( ! empty( $pid ) )
-						$atts['pid'] = $pre == 'ngg' ? 'ngg-'.$pid : $pid;
-					elseif ( $this->p->is_avail['postthumb'] == true && has_post_thumbnail( $post_id ) )
-						$atts['pid'] = get_post_thumbnail_id( $post_id );
-					else $atts['pid'] = $this->p->media->get_first_attached_image_id( $post_id );
-				}
-				if ( ! empty( $atts['pid'] ) )
-					list( $atts['photo'], $atts['width'], $atts['height'],
-						$atts['cropped'] ) = $this->p->media->get_attachment_image_src( $atts['pid'], $atts['size'], false );
+				list(
+					$atts['photo'],
+					$atts['width'],
+					$atts['height'],
+					$atts['cropped'],
+					$atts['pid']
+				) = $this->p->media->get_attachment_image_src( $atts['pid'], $atts['size'], false, $force_regen );
+
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'returned image '.$atts['photo'].' ('.$atts['width'].'x'.$atts['height'].')' );
 			}
 
-			// check for custom or embedded videos
-			if ( empty( $atts['photo'] ) && empty( $atts['embed'] ) && $post_id > 0 ) {
-				$atts['embed'] = $this->p->addons['util']['postmeta']->get_options( $post_id, 'og_vid_url' );
-				if ( empty( $atts['embed'] ) ) {
-					$videos = array();
-					$videos = $this->p->media->get_content_videos( 1, $post_id, false );
-					if ( ! empty( $videos[0]['og:video'] ) ) 
-						$atts['embed'] = $videos[0]['og:video'];
-				}
+			if ( empty( $atts['photo'] ) && empty( $atts['embed'] ) ) {
+				$media_info = $this->p->og->get_media_info( $atts['size'], array( 'img_url', 'vid_url' ), $mod, 'og' );
+				if ( empty( $atts['photo'] ) )
+					$atts['photo'] = $media_info['img_url'];
+				if ( empty( $atts['embed'] ) )
+					$atts['embed'] = $media_info['vid_url'];
 			}
 
-			// if no image or video, then check for a 'quote'
-			if ( empty( $atts['photo'] ) && empty( $atts['embed'] ) && empty( $atts['quote'] ) && $post_id > 0 ) {
-				if ( get_post_format( $post_id ) == 'quote' ) 
-					$atts['quote'] = $this->p->webpage->get_quote();
+			if ( $mod['name'] === 'post' && $mod['id'] > 0 ) {
+				// if no image or video, then check for a 'quote'
+				if ( empty( $atts['photo'] ) && empty( $atts['embed'] ) && empty( $atts['quote'] ) )
+					if ( get_post_format( $mod['id'] ) === 'quote' )
+						$atts['quote'] = $this->p->page->get_quote( $mod );
+				$atts['tags'] = implode( ', ', $this->p->page->get_tags( $mod['id'] ) );
 			}
 
 			// we only need the caption, title, or description for some types of shares
 			if ( ! empty( $atts['photo'] ) || ! empty( $atts['embed'] ) ) {
-				// check for custom image or video caption
-				if ( empty( $atts['caption'] ) && ! empty( $post ) && $use_post == true ) 
-					$atts['caption'] = $this->p->addons['util']['postmeta']->get_options( $post_id, 
-						( ! empty( $atts['photo'] ) ? 'tumblr_img_desc' : 'tumblr_vid_desc' ) );
 				// html encode param is false to use url encoding instead
-				if ( empty( $atts['caption'] ) ) 
-					$atts['caption'] = $this->p->webpage->get_caption( $opts['tumblr_caption'], $opts['tumblr_cap_len'], $use_post, true, true, false );
+				if ( empty( $atts['caption'] ) )
+					$atts['caption'] = $this->p->page->get_caption( $opts['tumblr_caption'], $opts['tumblr_cap_len'],
+						$mod, true, false, true, ( ! empty( $atts['photo'] ) ? 'tumblr_img_desc' : 'tumblr_vid_desc' ) );
+
 			} else {
-				if ( empty( $atts['title'] ) ) 
-					$atts['title'] = $this->p->webpage->get_title( null, null, $use_post);
-				// html encode param is false to use url encoding instead
-				if ( empty( $atts['description'] ) ) 
-					$atts['description'] = $this->p->webpage->get_description( $opts['tumblr_desc_len'], '...', $use_post, true, true, false );
+				if ( empty( $atts['title'] ) )
+					$atts['title'] = $this->p->page->get_title( null,
+						null, $mod, true, false );	// $add_hashtags = false
+
+				if ( empty( $atts['description'] ) )
+					$atts['description'] = $this->p->page->get_description( $opts['tumblr_desc_len'], '...',
+						$mod, true, false, false, null );
 			}
 
 			// define the button, based on what we have
-			$query = '';
 			if ( ! empty( $atts['photo'] ) ) {
-				$query .= 'photo?source='. urlencode( $atts['photo'] );
-				$query .= '&amp;clickthru='.urlencode( $atts['url'] );
-				$query .= '&amp;caption='.urlencode( $atts['caption'] );
+
+				$atts['posttype'] = 'photo';
+				$atts['content'] = $atts['photo'];
+				// uses $atts['caption']
+
 			} elseif ( ! empty( $atts['embed'] ) ) {
-				$query .= 'video?embed='.urlencode( $atts['embed'] );
-				$query .= '&amp;caption='.urlencode( $atts['caption'] );
+
+				$atts['posttype'] = 'video';
+				$atts['content'] = $atts['embed'];
+				// uses $atts['caption']
+
 			} elseif ( ! empty( $atts['quote'] ) ) {
-				$query .= 'quote?quote='.urlencode( $atts['quote'] );
-				$query .= '&amp;source='.urlencode( $atts['title'] );
+
+				$atts['posttype'] = 'quote';
+				$atts['content'] = $atts['quote'];
+				$atts['caption'] = $atts['title'];
+
+				unset( $atts['title'] );
+
 			} elseif ( ! empty( $atts['url'] ) ) {
-				$query .= 'link?url='.urlencode( $atts['url'] );
-				$query .= '&amp;name='.urlencode( $atts['title'] );
-				$query .= '&amp;description='.urlencode( $atts['description'] );
+
+				$atts['posttype'] = 'link';
+				$atts['content'] = $atts['url'];
+				$atts['caption'] = $atts['description'];
+
+			} else {
+
+				$atts['posttype'] = 'text';
+				$atts['content'] = $atts['description'];
+				// uses $atts['title']
 			}
-			if ( empty( $query ) ) return;
 
-			$html = '<!-- Tumblr Button --><div '.$this->p->sharing->get_css( 'tumblr', $atts ).'>';
-			$html .= '<a href="http://www.tumblr.com/share/'. $query.'" title="Share on Tumblr">';
-			$html .= '<img border="0" alt="Share on Tumblr" src="'.
-				$this->p->util->get_cache_url( $prot.'//platform.tumblr.com/v1/'.$opts['tumblr_button_style'].'.png' ).'" /></a></div>';
+			$html = '<!-- Tumblr Button -->'.
+			'<div '.SucomUtil::get_atts_css_attr( $atts, 'tumblr' ).'>'.
+			'<a href="'.SucomUtil::get_prot().'://www.tumblr.com/share" class="tumblr-share-button"'.
+			' data-posttype="'.$atts['posttype'].'"'.
+			' data-content="'.$atts['content'].'"'.
+			( isset( $atts['title'] ) ? ' data-title="'.$atts['title'].'"' : '' ).
+			( isset( $atts['caption'] ) ? ' data-caption="'.$atts['caption'].'"' : '' ).
+			( isset( $atts['tags'] ) ? ' data-tags="'.$atts['tags'].'"' : '' ).
+			' data-locale="'.$opts['tumblr_lang'].'"'.
+			' data-color="'.$opts['tumblr_color'].'"'.
+			' data-notes="'.$opts['tumblr_counter'].'"'.
+			' data-show-via="'.$opts['tumblr_show_via'].'"></a></div>';
 
-			$this->p->debug->log( 'returning html ('.strlen( $html ).' chars)' );
-			return $html."\n";
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( 'returning html ('.strlen( $html ).' chars)' );
+
+			return $html;
 		}
 
-		// the tumblr host does not have a valid SSL cert, and it's javascript does not work in async mode
-		public function get_js( $pos = 'id' ) {
-			$this->p->debug->mark();
-			$prot = empty( $_SERVER['HTTPS'] ) ? 'http:' : 'https:';
-			$js_url = $this->p->util->get_cache_url( $prot.'//platform.tumblr.com/v1/share.js' );
+		public function get_script( $pos = 'id' ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+			$js_url = $this->p->sharing->get_social_file_cache_url( apply_filters( $this->p->cf['lca'].'_js_url_tumblr',
+				SucomUtil::get_prot().'://assets.tumblr.com/share-button.js', $pos ) );
 
-			return '<script type="text/javascript" id="tumblr-script-'.$pos.'" src="'.$js_url.'"></script>'."\n";
+			return '<script type="text/javascript" id="tumblr-script-'.$pos.'">'.
+				$this->p->cf['lca'].'_insert_js( "tumblr-script-'.$pos.'", "'.$js_url.'" );</script>';
 		}
 	}
 }

@@ -1,85 +1,113 @@
 <?php
 /*
-License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl.txt
-Copyright 2012-2014 - Jean-Sebastien Morisset - http://surniaulula.com/
-*/
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl.txt
+ * Copyright 2012-2017 Jean-Sebastien Morisset (https://surniaulula.com/)
+ */
 
-if ( ! defined( 'ABSPATH' ) ) 
+if ( ! defined( 'ABSPATH' ) ) {
 	die( 'These aren\'t the droids you\'re looking for...' );
+}
 
-if ( ! class_exists( 'NgfbSubmenuSharingBuffer' ) && class_exists( 'NgfbSubmenuSharing' ) ) {
+if ( ! class_exists( 'NgfbSubmenuWebsiteBuffer' ) ) {
 
-	class NgfbSubmenuSharingBuffer extends NgfbSubmenuSharing {
+	class NgfbSubmenuWebsiteBuffer {
 
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->p->debug->mark();
+			$this->p->util->add_plugin_filters( $this, array(
+				'image_dimensions_general_rows' => 2,	// $table_rows, $form
+				'website_buffer_rows' => 3,		// $table_rows, $form, $submenu
+			) );
 		}
 
-		protected function get_rows( $metabox, $key ) {
-			$rows = array();
-			
-			$rows[] = $this->p->util->th( 'Show Button in', 'short' ).'<td>'.
-			( $this->show_on_checkboxes( 'buffer' ) ).'</td>';
+		// add an option to the WordPress -> Settings -> Image Dimensions page
+		public function filter_image_dimensions_general_rows( $table_rows, $form ) {
 
-			$rows[] = $this->p->util->th( 'Preferred Order', 'short' ).'<td>'.
-			$this->form->get_select( 'buffer_order', 
-				range( 1, count( $this->p->admin->submenu['sharing']->website ) ), 
-					'short' ).'</td>';
+			$def_dimensions = $this->p->opt->get_defaults( 'buffer_img_width' ).'x'.
+				$this->p->opt->get_defaults( 'buffer_img_height' ).' '.
+				( $this->p->opt->get_defaults( 'buffer_img_crop' ) == 0 ? 'uncropped' : 'cropped' );
 
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'JavaScript in', 'short' ).'<td>'.
-				$this->form->get_select( 'buffer_js_loc', $this->p->cf['form']['js_locations'] ).'</td>';
+			$table_rows['buffer_img_dimensions'] = $form->get_th_html( _x( 'Buffer <em>Sharing Button</em>', 'option label', 'nextgen-facebook' ), null, 'buffer_img_dimensions', 'The image dimensions that the Buffer button will share (defaults is '.$def_dimensions.'). Note that original images in the WordPress Media Library and/or NextGEN Gallery must be larger than your chosen image dimensions.' ).
+			'<td>'.$form->get_image_dimensions_input( 'buffer_img' ).'</td>';	// $use_opts = false
+
+			return $table_rows;
+		}
+
+		public function filter_website_buffer_rows( $table_rows, $form, $submenu ) {
+
+			$table_rows[] = $form->get_th_html( _x( 'Show Button in',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$submenu->show_on_checkboxes( 'buffer' ).'</td>';
+
+			$table_rows[] = $form->get_th_html( _x( 'Preferred Order',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'buffer_order', range( 1, count( $submenu->website ) ) ).'</td>';
+
+			if ( $this->p->avail['*']['vary_ua'] ) {
+				$table_rows[] = '<tr class="hide_in_basic">'.
+				$form->get_th_html( _x( 'Allow for Platform',
+					'option label (short)', 'nextgen-facebook' ), 'short' ).
+				'<td>'.$form->get_select( 'buffer_platform', $this->p->cf['sharing']['platform'] ).'</td>';
 			}
 
-			$rows[] = $this->p->util->th( 'Count Position', 'short' ).'<td>'.
-			$this->form->get_select( 'buffer_count', array( 'none' => '', 
-			'horizontal' => 'Horizontal', 'vertical' => 'Vertical' ) ).'</td>';
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'JavaScript in',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'buffer_script_loc', $this->p->cf['form']['script_locations'] ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Image Dimensions', 'short' ).
-			'<td>Width '.$this->form->get_input( 'buffer_img_width', 'short' ).' x '.
-			'Height '.$this->form->get_input( 'buffer_img_height', 'short' ).' &nbsp; '.
-			'Crop '.$this->form->get_checkbox( 'buffer_img_crop' ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Count Position',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'buffer_count', array(
+				'none' => 'none',
+				'horizontal' => 'Horizontal',
+				'vertical' => 'Vertical',
+			) ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Tweet Text Source', 'short' ).'<td>'.
-			$this->form->get_select( 'buffer_caption', $this->p->cf['form']['caption_types'] ).'</td>';
+			$table_rows[] = $form->get_th_html( _x( 'Image Dimensions',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_image_dimensions_input( 'buffer_img', false, true ).'</td>';	// $use_opts = false, $narrow = true
 
-			if ( $this->p->options['plugin_display'] == 'all' ) {
-				$rows[] = $this->p->util->th( 'Tweet Text Length', 'short' ).'<td>'.
-				$this->form->get_input( 'buffer_cap_len', 'short' ).' characters or less</td>';
-			}
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Tweet Text Source',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_select( 'buffer_caption', $this->p->cf['form']['caption_types'] ).'</td>';
 
-			$rows[] = $this->p->util->th( 'Add via @username', 'short', null,
-			'Append the website\'s @username to the tweet (see the '.
-			$this->p->util->get_admin_url( 'general#sucom-tab_pub_twitter', 'Twitter' ).
-			' options tab on the General settings page).' ).
-			( $this->p->check->aop() == true ? 
-				'<td>'.$this->form->get_checkbox( 'buffer_via' ).'</td>' :
-				'<td class="blank">'.$this->form->get_no_checkbox( 'buffer_via' ).'</td>' );
+			$table_rows[] = '<tr class="hide_in_basic">'.
+			$form->get_th_html( _x( 'Tweet Text Length',
+				'option label (short)', 'nextgen-facebook' ), 'short' ).
+			'<td>'.$form->get_input( 'buffer_cap_len', 'short' ).' '.
+				_x( 'characters or less', 'option comment', 'nextgen-facebook' ).'</td>';
 
-			return $rows;
+			$table_rows[] = $form->get_th_html( _x( 'Add via @username',
+				'option label (short)', 'nextgen-facebook' ), 'short', 'buttons_add_via'  ).
+			'<td>'.$form->get_checkbox( 'buffer_via' ).'</td>';
+
+			return $table_rows;
 		}
 	}
 }
 
-if ( ! class_exists( 'NgfbSharingBuffer' ) ) {
+if ( ! class_exists( 'NgfbWebsiteBuffer' ) ) {
 
-	class NgfbSharingBuffer {
+	class NgfbWebsiteBuffer {
 
 		private static $cf = array(
 			'opt' => array(				// options
 				'defaults' => array(
+					'buffer_order' => 8,
 					'buffer_on_content' => 0,
 					'buffer_on_excerpt' => 0,
-					'buffer_on_admin_edit' => 1,
 					'buffer_on_sidebar' => 0,
-					'buffer_order' => 6,
-					'buffer_js_loc' => 'footer',
+					'buffer_on_admin_edit' => 1,
+					'buffer_platform' => 'any',
+					'buffer_script_loc' => 'footer',
 					'buffer_count' => 'horizontal',
-					'buffer_img_width' => 800,
-					'buffer_img_height' => 800,
+					'buffer_img_width' => 600,
+					'buffer_img_height' => 600,
 					'buffer_img_crop' => 1,
+					'buffer_img_crop_x' => 'center',
+					'buffer_img_crop_y' => 'center',
 					'buffer_caption' => 'title',
 					'buffer_cap_len' => 140,
 					'buffer_via' => 1,
@@ -91,96 +119,98 @@ if ( ! class_exists( 'NgfbSharingBuffer' ) ) {
 
 		public function __construct( &$plugin ) {
 			$this->p =& $plugin;
-			$this->p->util->add_plugin_filters( $this, array( 'get_defaults' => 1 ) );
-			$this->p->util->add_img_sizes_from_opts( array( 'buffer_img' => 'buffer' ) );
+			$this->p->util->add_plugin_filters( $this, array(
+				'plugin_image_sizes' => 1,
+				'get_defaults' => 1,
+			) );
 		}
 
-		public function filter_get_defaults( $opts_def ) {
-			return array_merge( $opts_def, self::$cf['opt']['defaults'] );
+		public function filter_plugin_image_sizes( $sizes ) {
+			$sizes['buffer_img'] = array(
+				'name' => 'buffer-button',
+				'label' => _x( 'Buffer Sharing Button', 'image size label', 'nextgen-facebook' ),
+			);
+			return $sizes;
 		}
 
-		public function get_html( $atts = array(), &$opts = array() ) {
-			if ( empty( $opts ) ) 
-				$opts =& $this->p->options;
-			$prot = empty( $_SERVER['HTTPS'] ) ? 'http:' : 'https:';
-			$use_post = array_key_exists( 'use_post', $atts ) ? $atts['use_post'] : true;
-			$source_id = $this->p->util->get_source_id( 'twitter', $atts );
-			$atts['add_page'] = array_key_exists( 'add_page', $atts ) ? $atts['add_page'] : true;	// get_sharing_url argument
+		public function filter_get_defaults( $def_opts ) {
+			return array_merge( $def_opts, self::$cf['opt']['defaults'] );
+		}
 
-			$atts['url'] = empty( $atts['url'] ) ? 
-				$this->p->util->get_sharing_url( $use_post, $atts['add_page'], $source_id ) : 
-				apply_filters( $this->p->cf['lca'].'_sharing_url', $atts['url'], 
-					$use_post, $atts['add_page'], $source_id );
+		public function get_html( array $atts, array $opts, array $mod ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
 
-			$post_id = 0;
-			if ( is_singular() || $use_post !== false ) {
-				if ( ( $obj = $this->p->util->get_post_object( $use_post ) ) === false ) {
-					$this->p->debug->log( 'exiting early: invalid object type' );
-					return false;
-				}
-				$post_id = empty( $obj->ID ) || empty( $obj->post_type ) ? 0 : $obj->ID;
+			$lca = $this->p->cf['lca'];
+
+			$atts['size'] = isset( $atts['size'] ) ?
+				$atts['size'] : $lca.'-buffer-button';
+
+			if ( ! empty( $atts['pid'] ) ) {
+				$force_regen = $this->p->util->is_force_regen( $mod, 'og' );	// false by default
+
+				list(
+					$atts['photo'],
+					$atts['width'],
+					$atts['height'],
+					$atts['cropped'],
+					$atts['pid']
+				) = $this->p->media->get_attachment_image_src( $atts['pid'], $atts['size'], false, $force_regen );
+
+				if ( $this->p->debug->enabled )
+					$this->p->debug->log( 'returned image '.$atts['photo'].' ('.$atts['width'].'x'.$atts['height'].')' );
 			}
 
-			if ( empty( $atts['size'] ) ) 
-				$atts['size'] = $this->p->cf['lca'].'-buffer';
-
 			if ( empty( $atts['photo'] ) ) {
-				if ( empty( $atts['pid'] ) && $post_id > 0 ) {
-					// check for meta, featured, and attached images
-					$pid = $this->p->addons['util']['postmeta']->get_options( $post_id, 'og_img_id' );
-					$pre = $this->p->addons['util']['postmeta']->get_options( $post_id, 'og_img_id_pre' );
-					if ( ! empty( $pid ) )
-						$atts['pid'] = $pre == 'ngg' ? 'ngg-'.$pid : $pid;
-					elseif ( $this->p->is_avail['postthumb'] == true && has_post_thumbnail( $post_id ) )
-						$atts['pid'] = get_post_thumbnail_id( $post_id );
-					else $atts['pid'] = $this->p->media->get_first_attached_image_id( $post_id );
-				}
-				if ( ! empty( $atts['pid'] ) )
-					list( $atts['photo'], $atts['width'], $atts['height'],
-						$atts['cropped'] ) = $this->p->media->get_attachment_image_src( $atts['pid'], $atts['size'], false );
+				$media_info = $this->p->og->get_media_info( $atts['size'], array( 'img_url' ), $mod, 'og' );
+				$atts['photo'] = $media_info['img_url'];
 			}
 
 			if ( array_key_exists( 'tweet', $atts ) )
 				$atts['caption'] = $atts['tweet'];
 
 			if ( ! array_key_exists( 'caption', $atts ) ) {
-				if ( ! empty( $post_id ) && $use_post == true ) 
-					$atts['caption'] = $this->p->addons['util']['postmeta']->get_options( $post_id, 'twitter_desc' );
-
 				if ( empty( $atts['caption'] ) ) {
-					// get_tweet_max_len() needs the long URL as input
-					$cap_len = $this->p->util->get_tweet_max_len( $atts['url'], 'buffer' );	
-					$atts['caption'] = $this->p->webpage->get_caption( $opts['buffer_caption'], $cap_len, $use_post );
+					$caption_len = $this->p->sharing->get_tweet_max_len( 'buffer' );
+					$atts['caption'] = $this->p->page->get_caption( $opts['buffer_caption'], $caption_len,
+						$mod, true, true, true, 'twitter_desc' );
 				}
 			}
 
 			if ( ! array_key_exists( 'via', $atts ) ) {
-				if ( ! empty( $opts['buffer_via'] ) && $this->p->check->aop() )
-					$atts['via'] = preg_replace( '/^@/', '', $opts['tc_site'] );
-				else $atts['via'] = '';
+				if ( ! empty( $opts['buffer_via'] ) ) {
+					$atts['via'] = preg_replace( '/^@/', '',
+						SucomUtil::get_locale_opt( 'tc_site', $opts ) );
+				} else $atts['via'] = '';
 			}
 
 			// hashtags are included in the caption instead
 			if ( ! array_key_exists( 'hashtags', $atts ) )
 				$atts['hashtags'] = '';
 
-			$html = '<!-- Buffer Button --><div '.$this->p->sharing->get_css( 'buffer', $atts ).'>';
-			$html .= '<a href="'.$prot.'//bufferapp.com/add" class="buffer-add-button" ';
-			$html .= 'data-url="'.$atts['url'].'" ';
-			$html .= empty( $atts['photo'] ) ? '' : 'data-picture="'.$atts['photo'].'" ';
-			$html .= empty( $atts['caption'] ) ? '' : 'data-text="'.$atts['caption'].'" ';	// html encoded
-			$html .= empty( $atts['vis'] ) ? '' : 'data-via="'.$atts['via'].'" ';
-			$html .= 'data-count="'.$opts['buffer_count'].'"></a></div>';
+			$html = '<!-- Buffer Button -->'.
+			'<div '.SucomUtil::get_atts_css_attr( $atts, 'buffer' ).'>'.
+			'<a href="'.SucomUtil::get_prot().'://bufferapp.com/add" class="buffer-add-button"'.
+			' data-url="'.$atts['url'].'"'.
+			' data-count="'.$opts['buffer_count'].'"'.
+			( empty( $atts['photo'] ) ? '' : ' data-picture="'.$atts['photo'].'"' ).
+			( empty( $atts['caption'] ) ? '' : ' data-text="'.$atts['caption'].'"' ).
+			( empty( $atts['via'] ) ? '' : ' data-via="'.$atts['via'].'"' ).'></a></div>';
 
-			$this->p->debug->log( 'returning html ('.strlen( $html ).' chars)' );
-			return $html."\n";
+			if ( $this->p->debug->enabled )
+				$this->p->debug->log( 'returning html ('.strlen( $html ).' chars)' );
+
+			return $html;
 		}
-		
-		public function get_js( $pos = 'id' ) {
-			$this->p->debug->mark();
-			$prot = empty( $_SERVER['HTTPS'] ) ? 'http:' : 'https:';
-			$js_url = $this->p->util->get_cache_url( $prot.'//d389zggrogs7qo.cloudfront.net/js/button.js' );
-			return '<script type="text/javascript" id="buffer-script-'.$pos.'">'.$this->p->cf['lca'].'_insert_js( "buffer-script-'.$pos.'", "'.$js_url.'" );</script>'."\n";
+
+		public function get_script( $pos = 'id' ) {
+			if ( $this->p->debug->enabled )
+				$this->p->debug->mark();
+			$js_url = $this->p->sharing->get_social_file_cache_url( apply_filters( $this->p->cf['lca'].'_js_url_buffer',
+				SucomUtil::get_prot().'://d389zggrogs7qo.cloudfront.net/js/button.js', $pos ) );
+
+			return '<script type="text/javascript" id="buffer-script-'.$pos.'">'.
+				$this->p->cf['lca'].'_insert_js( "buffer-script-'.$pos.'", "'.$js_url.'" );</script>';
 		}
 	}
 }

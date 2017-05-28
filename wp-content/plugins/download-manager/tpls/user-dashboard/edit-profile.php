@@ -17,7 +17,7 @@ $user = get_userdata($current_user->ID);
 
         <form method="post" id="edit_profile" name="contact_form" action="" class="form">
             <div class="panel panel-default dashboard-panel">
-            <div class="panel-heading"><?php _e('Basic Profile','wpdmpro'); ?></div>
+            <div class="panel-heading"><?php _e('Basic Profile','download-manager'); ?></div>
                 <div class="panel-body">
             <div class="row">
                 <div class="col-md-6"><label for="name">Display name: </label><input type="text" class="required form-control" value="<?php echo $user->display_name;?>" name="wpdm_profile[display_name]" id="name"></div>

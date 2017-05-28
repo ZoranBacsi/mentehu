@@ -196,7 +196,6 @@ class nggAdminPanel{
 
     // show the network page
     function show_network_settings() {
-		include_once ( dirname (__FILE__) . '/style.php' );
 		include_once ( dirname (__FILE__) . '/wpmu.php' );
 		nggallery_wpmu_setup();
     }
@@ -232,17 +231,8 @@ class nggAdminPanel{
 				$ngg->manage_album = new nggManageAlbum ();
 				$ngg->manage_album->controller();
 				break;
-			case "nggallery-options" :
-				include_once ( dirname (__FILE__) . '/settings.php' );	// nggallery_admin_options
-				$ngg->option_page = new nggOptions ();
-				$ngg->option_page->controller();
-				break;
 			case "nggallery-tags" :
 				include_once ( dirname (__FILE__) . '/tags.php' );		// nggallery_admin_tags
-				break;
-			case "nggallery-style" :
-				include_once ( dirname (__FILE__) . '/style.php' );		// nggallery_admin_style
-				nggallery_admin_style();
 				break;
 			case "nggallery-roles" :
 				include_once ( dirname (__FILE__) . '/roles.php' );		// nggallery_admin_roles
@@ -272,26 +262,10 @@ class nggAdminPanel{
 		if( !isset($_GET['page']) )
 			return;
 
-		// If we're on a NextGen Page
-//		if (preg_match("/ngg|nextgen-gallery/", $_GET['page'])) {
-//			wp_register_script('ngg_social_media', path_join(
-//				NGGALLERY_URLPATH,
-//				'admin/js/ngg_social_media.js'
-//			), array('jquery'));
-//
-//			wp_register_style('ngg_social_media', path_join(
-//				NGGALLERY_URLPATH,
-//				'admin/css/ngg_social_media.css'
-//			));
-//
-//			wp_enqueue_style('ngg_social_media');
-//			wp_enqueue_script('ngg_social_media');
-//		}
-
         // used to retrieve the uri of some module resources
-        $router = C_Component_Registry::get_instance()->get_utility('I_Router');
+        $router = C_Router::get_instance();
 
-		wp_register_script('ngg-ajax', NGGALLERY_URLPATH . 'admin/js/ngg.ajax.js', array('jquery'), '1.4.1');
+		wp_register_script('ngg-ajax', NGGALLERY_URLPATH . 'admin/js/ngg.ajax.js', array('jquery'), NGG_SCRIPT_VERSION);
 		wp_localize_script('ngg-ajax', 'nggAjaxSetup', array(
 					'url' => admin_url('admin-ajax.php'),
 					'action' => 'ngg_ajax_operation',
@@ -302,31 +276,7 @@ class nggAdminPanel{
 					'error' => __('Unexpected Error', 'nggallery'),
 					'failure' => __('A failure occurred', 'nggallery')
 		) );
-        wp_register_script( 'ngg-plupload-handler', NGGALLERY_URLPATH .'admin/js/plupload.handler.js', array('plupload-all'), '0.0.1' );
-    	wp_localize_script( 'ngg-plupload-handler', 'pluploadL10n', array(
-    		'queue_limit_exceeded' => __('You have attempted to queue too many files.'),
-    		'file_exceeds_size_limit' => __('This file exceeds the maximum upload size for this site.'),
-    		'zero_byte_file' => __('This file is empty. Please try another.'),
-    		'invalid_filetype' => __('This file type is not allowed. Please try another.'),
-    		'not_an_image' => __('This file is not an image. Please try another.'),
-    		'image_memory_exceeded' => __('Memory exceeded. Please try another smaller file.'),
-    		'image_dimensions_exceeded' => __('This is larger than the maximum size. Please try another.'),
-    		'default_error' => __('An error occurred in the upload. Please try again later.'),
-    		'missing_upload_url' => __('There was a configuration error. Please contact the server administrator.'),
-    		'upload_limit_exceeded' => __('You may only upload 1 file.'),
-    		'http_error' => __('HTTP error.'),
-    		'upload_failed' => __('Upload failed.'),
-    		'io_error' => __('IO error.'),
-    		'security_error' => __('Security error.'),
-    		'file_cancelled' => __('File canceled.'),
-    		'upload_stopped' => __('Upload stopped.'),
-    		'dismiss' => __('Dismiss'),
-    		'crunching' => __('Crunching&hellip;'),
-    		'deleted' => __('moved to the trash.'),
-    		'error_uploading' => __('&#8220;%s&#8221; has failed to upload due to an error')
-    	) );
-		wp_register_script('ngg-progressbar', NGGALLERY_URLPATH .'admin/js/ngg.progressbar.js', array('jquery'), '2.0.1');
-        wp_register_script('jquery-ui-autocomplete', NGGALLERY_URLPATH .'admin/js/jquery.ui.autocomplete.min.js', array('jquery-ui-core', 'jquery-ui-widget'), '1.8.15');
+		wp_register_script('ngg-progressbar', NGGALLERY_URLPATH .'admin/js/ngg.progressbar.js', array('jquery'), NGG_SCRIPT_VERSION);
 
         // Enqueue the new Gritter-based progress bars
         wp_enqueue_style('ngg_progressbar');
@@ -334,8 +284,7 @@ class nggAdminPanel{
 
 		switch ($_GET['page']) {
 			case NGGFOLDER :
-				wp_enqueue_script( 'postbox' );
-				add_thickbox();
+				wp_enqueue_script( 'ngg_overview', $router->get_static_url('photocrati-nextgen-legacy#overview.js'), array('jquery'), NGG_SCRIPT_VERSION);
 			break;
 			case "nggallery-manage-gallery" :
 				wp_enqueue_script( 'postbox' );
@@ -343,7 +292,7 @@ class nggAdminPanel{
 				wp_enqueue_script( 'ngg-progressbar' );
 				wp_enqueue_script( 'jquery-ui-dialog' );
 				wp_enqueue_script( 'jquery-ui-sortable' );
-    			wp_register_script('shutter', $router->get_static_url('photocrati-lightbox#shutter/shutter.js'), false ,'1.3.2');
+    			wp_register_script('shutter', $router->get_static_url('photocrati-lightbox#shutter/shutter.js'), false, NGG_SCRIPT_VERSION);
     			wp_localize_script('shutter', 'shutterSettings', array(
     						'msgLoading' => __('L O A D I N G', 'nggallery'),
     						'msgClose' => __('Click to Close', 'nggallery'),
@@ -352,32 +301,14 @@ class nggAdminPanel{
     			wp_enqueue_script( 'shutter' );
 
                 // includes tooltip styling
-                wp_enqueue_style('nextgen_admin_page', $router->get_static_url('photocrati-nextgen_admin#nextgen_admin_page.css'));
+                wp_enqueue_style('nextgen_admin_page', $router->get_static_url('photocrati-nextgen_admin#nextgen_admin_page.css'), FALSE, NGG_SCRIPT_VERSION);
 			break;
 			case "nggallery-manage-album" :
-                wp_enqueue_script( 'jquery-ui-autocomplete' );
                 wp_enqueue_script( 'jquery-ui-dialog' );
                 wp_enqueue_script( 'jquery-ui-sortable' );
-                wp_enqueue_script( 'ngg-autocomplete', NGGALLERY_URLPATH .'admin/js/ngg.autocomplete.js', array('jquery-ui-autocomplete'), '1.0.1');
+                wp_enqueue_script( 'ngg_select2' );
+				wp_enqueue_style('ngg_select2');
 			break;
-			case "nggallery-options" :
-				wp_enqueue_script( 'jquery-ui-tabs' );
-				//wp_enqueue_script( 'ngg-colorpicker', NGGALLERY_URLPATH .'admin/js/colorpicker/js/colorpicker.js', array('jquery'), '1.0');
-			break;
-			case "nggallery-add-gallery" :
-				wp_enqueue_script( 'jquery-ui-accordion' );
-				wp_enqueue_script( 'multifile', NGGALLERY_URLPATH .'admin/js/jquery.MultiFile.js', array('jquery'), '1.4.4' );
-                wp_enqueue_script( 'ngg-plupload-handler' );
-				wp_enqueue_script( 'ngg-ajax' );
-				wp_enqueue_script( 'ngg-progressbar' );
-                wp_enqueue_script( 'jquery-ui-dialog' );
-				wp_enqueue_script( 'jqueryFileTree', NGGALLERY_URLPATH .'admin/js/jqueryFileTree/jqueryFileTree.js', array('jquery'), '1.0.1' );
-			break;
-			case "nggallery-style" :
-				wp_enqueue_script( 'codepress' );
-				wp_enqueue_script( 'ngg-colorpicker', NGGALLERY_URLPATH .'admin/js/colorpicker/js/colorpicker.js', array('jquery'), '1.0');
-			break;
-
 		}
 	}
 
@@ -397,49 +328,37 @@ class nggAdminPanel{
 		global $ngg;
 
         // load the icon for the navigation menu
-        wp_enqueue_style( 'nggmenu', NGGALLERY_URLPATH .'admin/css/menu.css', array() );
-		wp_register_style( 'nggadmin', NGGALLERY_URLPATH .'admin/css/nggadmin.css', false, '2.8.1', 'screen' );
-		wp_register_style( 'ngg-jqueryui', NGGALLERY_URLPATH .'admin/css/jquery.ui.css', false, '1.8.5', 'screen' );
+        wp_enqueue_style( 'nggmenu', NGGALLERY_URLPATH .'admin/css/menu.css', false, NGG_SCRIPT_VERSION );
+		wp_register_style( 'nggadmin', NGGALLERY_URLPATH .'admin/css/nggadmin.css', false, NGG_SCRIPT_VERSION, 'screen' );
+		wp_register_style( 'ngg-jqueryui', NGGALLERY_URLPATH .'admin/css/jquery.ui.css', false, NGG_SCRIPT_VERSION, 'screen' );
 
         // no need to go on if it's not a plugin page
 		if( !isset($_GET['page']) )
 			return;
 
         // used to retrieve the uri of some module resources
-        $router = C_Component_Registry::get_instance()->get_utility('I_Router');
+        $router = C_Router::get_instance();
 
 		switch ($_GET['page']) {
 			case NGGFOLDER :
-				wp_enqueue_style( 'thickbox' );
+				wp_add_inline_style( 'nggadmin', file_get_contents(C_Fs::get_instance()->find_static_abspath('photocrati-nextgen-legacy#overview.css') ) );			
 			case "nggallery-about" :
 				wp_enqueue_style( 'nggadmin' );
                 //TODO:Remove after WP 3.3 release
                 if ( !defined('IS_WP_3_3') )
                     wp_admin_css( 'css/dashboard' );
 			break;
-			case "nggallery-add-gallery":
-				$this->enqueue_jquery_ui_theme();
-				wp_enqueue_style( 'jqueryFileTree', NGGALLERY_URLPATH .'admin/js/jqueryFileTree/jqueryFileTree.css', false, '1.0.1', 'screen' );
-			case "nggallery-options" :
-				wp_enqueue_style( 'nggtabs', NGGALLERY_URLPATH .'admin/css/jquery.ui.tabs.css', false, '2.5.0', 'screen' );
-				wp_enqueue_style( 'nggadmin' );
-            break;
 			case "nggallery-manage-gallery" :
                 wp_enqueue_script('jquery-ui-tooltip');
-                wp_enqueue_style('shutter', $router->get_static_url('photocrati-lightbox#shutter/shutter.css'), false, '1.3.2', 'screen');
+                wp_enqueue_style('shutter', $router->get_static_url('photocrati-lightbox#shutter/shutter.css'), false, NGG_SCRIPT_VERSION, 'screen');
 			case "nggallery-roles" :
 			case "nggallery-manage-album" :
 				$this->enqueue_jquery_ui_theme();
 				wp_enqueue_style( 'nggadmin' );
 			break;
 			case "nggallery-tags" :
-				wp_enqueue_style( 'nggtags', NGGALLERY_URLPATH .'admin/css/tags-admin.css', false, '2.6.1', 'screen' );
+				wp_enqueue_style( 'nggtags', NGGALLERY_URLPATH .'admin/css/tags-admin.css', false, NGG_SCRIPT_VERSION, 'screen' );
 				break;
-			case "nggallery-style" :
-				wp_admin_css( 'css/theme-editor' );
-				wp_enqueue_style('nggcolorpicker', NGGALLERY_URLPATH.'admin/js/colorpicker/css/colorpicker.css', false, '1.0', 'screen');
-				wp_enqueue_style('nggadmincp', NGGALLERY_URLPATH.'admin/css/nggColorPicker.css', false, '1.0', 'screen');
-			break;
 		}
 	}
 
@@ -455,10 +374,10 @@ class nggAdminPanel{
 
 		switch ($screen) {
 			case 'toplevel_page_' . NGGFOLDER :
-				$link  = __('<a href="http://www.nextgen-gallery.com" target="_blank">Introduction</a>', 'nggallery');
+				$link  = __('<a href="https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/" target="_blank">Introduction</a>', 'nggallery');
 			break;
 			case "{$i18n}_page_nggallery-about" :
-				$link  = __('<a href="http://www.nextgen-gallery.com/languages" target="_blank">Languages</a>', 'nggallery');
+				$link  = __('<a href="https://www.imagely.com/languages/" target="_blank">Languages</a>', 'nggallery');
 			break;
 		}
 
@@ -472,7 +391,7 @@ class nggAdminPanel{
 			$help .= __('<a href="http://wordpress.org/tags/nextgen-gallery?forum_id=10" target="_blank">Support Forums</a>', 'nggallery');
 			$help .= ' | <a href="http://www.nextgen-gallery.com/faq/" target="_blank">' . __('FAQ', 'nggallery') . '</a>';
 			$help .= ' | <a href="https://bitbucket.org/photocrati/nextgen-gallery/issues" target="_blank">' . __('Feature request', 'nggallery') . '</a>';
-			$help .= ' | <a href="http://www.nextgen-gallery.com/languages" target="_blank">' . __('Get your language pack', 'nggallery') . '</a>';
+			$help .= ' | <a href="https://www.imagely.com/languages/" target="_blank">' . __('Get your language pack', 'nggallery') . '</a>';
 			$help .= ' | <a href="https://bitbucket.org/photocrati/nextgen-gallery" target="_blank">' . __('Contribute development', 'nggallery') . '</a>';
 			$help .= ' | <a href="http://wordpress.org/extend/plugins/nextgen-gallery" target="_blank">' . __('Download latest version', 'nggallery') . '</a>';
 			$help .= "</div>\n";

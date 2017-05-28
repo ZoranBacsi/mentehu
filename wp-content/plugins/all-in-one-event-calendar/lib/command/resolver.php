@@ -69,7 +69,7 @@ class Ai1ec_Command_Resolver {
 		);
 		$this->add_command(
 			$registry->get(
-				'command.save-settings', 
+				'command.save-settings',
 				$request,
 				array(
 					'action' => 'ai1ec_save_settings',
@@ -91,6 +91,17 @@ class Ai1ec_Command_Resolver {
 		);
 		$this->add_command(
 			$registry->get(
+				'command.api-ticketing-signup',
+				$request,
+				array(
+					'action'       => 'ai1ec_api_ticketing_signup',
+					'nonce_action' => Ai1ec_View_Tickets::NONCE_ACTION,
+					'nonce_name'   => Ai1ec_View_Tickets::NONCE_NAME,
+				)
+			)
+		);
+		$this->add_command(
+			$registry->get(
 				'command.clone', $request
 			)
 		);
@@ -99,6 +110,16 @@ class Ai1ec_Command_Resolver {
 				'command.compile-core-css', $request
 			)
 		);
+		if (
+			is_admin() &&
+			current_user_can( 'activate_plugins' )
+		) {
+			$this->add_command(
+				$registry->get(
+					'command.check-updates', $request
+				)
+			);
+		}
 		$request->parse();
 		$this->_registry = $registry;
 		$this->_request  = $request;
@@ -121,12 +142,13 @@ class Ai1ec_Command_Resolver {
 	 *
 	 * @return Ai1ec_Command|null
 	 */
-	public function get_command() {
+	public function get_commands() {
+		$commands = array();
 		foreach ( $this->_commands as $command ) {
 			if ( $command->is_this_to_execute() ) {
-				return $command;
+				$commands[] = $command;
 			}
 		}
-		return null;
+		return $commands;
 	}
 }

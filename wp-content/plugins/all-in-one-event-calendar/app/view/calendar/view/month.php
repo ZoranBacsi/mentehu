@@ -9,7 +9,7 @@
 * @package    AI1EC
 * @subpackage AI1EC.View
 */
-class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
+class Ai1ec_Calendar_View_Month extends Ai1ec_Calendar_View_Abstract {
 
 	/* (non-PHPdoc)
 	 * @see Ai1ec_Calendar_View_Abstract::get_name()
@@ -30,6 +30,7 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 			'auth_ids'      => array(),
 			'tag_ids'       => array(),
 			'post_ids'      => array(),
+			'instance_ids'  => array(),
 			'exact_date'    => $date_system->current_time(),
 		);
 		$args = wp_parse_args( $view_args, $defaults );
@@ -44,11 +45,20 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 
 		$days_events = $this->get_events_for_month(
 			$local_date,
-			array(
-				'cat_ids'  => $args['cat_ids'],
-				'tag_ids'  => $args['tag_ids'],
-				'post_ids' => $args['post_ids'],
-				'auth_ids' => $args['auth_ids'],
+			apply_filters(
+				'ai1ec_get_events_relative_to_filter',
+				array(
+					'cat_ids'      => $args['cat_ids'],
+					'tag_ids'      => $args['tag_ids'],
+					'post_ids'     => $args['post_ids'],
+					'auth_ids'     => $args['auth_ids'],
+					'instance_ids' => $args['instance_ids'],
+				),
+				$view_args,
+				apply_filters(
+					'ai1ec_show_unique_events',
+					false
+				)
 			)
 		);
 		$cell_array = $this->get_month_cell_array(
@@ -73,13 +83,10 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 			'month_word_wrap'          => $settings->get( 'month_word_wrap' ),
 			'post_ids'                 => join( ',', $args['post_ids'] ),
 			'data_type'                => $args['data_type'],
-			'data_type_events'         => '',
 			'is_ticket_button_enabled' => $is_ticket_button_enabled,
 			'text_venue_separator'     => __( '@ %s', AI1EC_PLUGIN_NAME ),
+			'pagination_links'         => $pagination_links,
 		);
-		if ( $settings->get( 'ajaxify_events_in_web_widget' ) ) {
-			$view_args['data_type_events'] = $args['data_type'];
-		}
 
 		// Add navigation if requested.
 		$view_args['navigation'] = $this->_get_navigation(
@@ -87,10 +94,23 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 				'no_navigation'    => $args['no_navigation'],
 				'pagination_links' => $pagination_links,
 				'views_dropdown'   => $args['views_dropdown'],
+				'below_toolbar'    => apply_filters(
+					'ai1ec_below_toolbar',
+					'',
+					$this->get_name(),
+					$args
+				),
 			)
 		);
 
-		return $this->_get_view( $view_args );
+		$view_args = $this->get_extra_template_arguments( $view_args );
+
+		return
+			$this->_registry->get( 'http.request' )->is_json_required(
+				$args['request_format'], 'month'
+			)
+			? $this->_apply_filters_to_args( $view_args )
+			: $this->_get_view( $view_args );
 	}
 
 	/**
@@ -111,12 +131,14 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 
 		$local_date = $this->_registry
 			->get( 'date.time', $args['exact_date'], 'sys.default' );
-		$orig_date = clone $local_date;
+		$orig_date  = $this->_registry->get( 'date.time',  $local_date );
+		$default_tz = $this->_registry->get( 'date.timezone' )->get_default_timezone();
 		// =================
 		// = Previous year =
 		// =================
 		// Align date to first of month, month offset applied, 1 year behind.
 		$local_date
+			->set_timezone( $default_tz )
 			->set_date(
 				$local_date->format( 'Y' ) -1,
 				$local_date->format( 'm' ) + $args['month_offset'],
@@ -129,8 +151,7 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 		$links[] = array(
 			'enabled' => true,
 			'class'=> 'ai1ec-prev-year',
-			'text' =>
-			'<i class="ai1ec-fa ai1ec-fa-angle-double-left"></i> ' .
+			'text' => '<i class="ai1ec-fa ai1ec-fa-angle-double-left"></i> ' .
 				$local_date->format_i18n( 'Y' ),
 			'href' => $href->generate_href(),
 		);
@@ -147,11 +168,13 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 			);
 		$args['exact_date'] = $local_date->format();
 		$href = $this->_registry->get( 'html.element.href', $args );
+		$months = apply_filters( 'ai1ec_i18n_months', array() );
+		$m = $local_date->format_i18n( 'M' );
+		$month_text = array_key_exists( $m, $months ) ? $months[$m] : $m;
 		$links[] = array(
 			'enabled' => true,
 			'class'=> 'ai1ec-prev-month',
-			'text' => '<i class="ai1ec-fa ai1ec-fa-angle-left"></i> ' .
-			$local_date->format_i18n( 'M' ),
+			'text' => '<i class="ai1ec-fa ai1ec-fa-angle-left"></i> ' . $month_text,
 			'href' => $href->generate_href(),
 		);
 
@@ -161,6 +184,7 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 		// Align date to first of month, month offset applied.
 
 		$orig_date
+			->set_timezone('UTC')
 			->set_date(
 				$orig_date->format( 'Y' ),
 				$orig_date->format( 'm' ) + $args['month_offset'],
@@ -179,18 +203,20 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 		// ==============
 		// Align date to first of month, month offset applied, 1 month ahead.
 		$orig_date
+			->set_timezone( $default_tz )
 			->set_date(
 				$orig_date->format( 'Y' ),
 				$orig_date->format( 'm' ) + 1,
 				1
-			);
+			)
+			->set_time( 0, 0, 0 );
 		$args['exact_date'] = $orig_date->format();
 		$href = $this->_registry->get( 'html.element.href', $args );
+		$m = $orig_date->format_i18n( 'M' );
 		$links[] = array(
 			'enabled' => true,
 			'class'=> 'ai1ec-next-month',
-			'text' =>
-			$orig_date->format_i18n( 'M' ) .
+			'text' => array_key_exists( $m, $months ) ? $months[$m] : $m .
 			' <i class="ai1ec-fa ai1ec-fa-angle-right"></i>',
 			'href' => $href->generate_href(),
 		);
@@ -210,8 +236,7 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 		$links[] = array(
 			'enabled' => true,
 			'class'=> 'ai1ec-next-year',
-			'text' =>
-			$orig_date->format_i18n( 'Y' ) .
+			'text' => $orig_date->format_i18n( 'Y' ) .
 			' <i class="ai1ec-fa ai1ec-fa-angle-double-right"></i>',
 			'href' => $href->generate_href(),
 		);
@@ -258,6 +283,10 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 			->adjust( -1, 'second' )
 			->format_i18n( 'd' );
 		$event->set_runtime( 'multiday_end_day', $end_day );
+		$event->set_runtime(
+			'start_day',
+			$event->get( 'start' )->format( 'j' )
+		);
 	}
 
 	/**
@@ -287,7 +316,7 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 
 		// Get the last day of the month
 		$last_day = $timestamp->format( 't' );
-		$last_timestamp = clone $timestamp;
+		$last_timestamp = $this->_registry->get( 'date.time', $timestamp );
 		$last_timestamp->set_date(
 			$timestamp->format( 'Y' ),
 			$timestamp->format( 'm' ),
@@ -325,6 +354,87 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 				$day,
 				$settings->get( 'input_date_format' )
 			);
+			$events = array();
+			foreach ( $days_events[$i] as $evt ){
+				$event_data = array(
+					'filtered_title'     => $evt->get_runtime( 'filtered_title' ),
+					'post_excerpt'       => $evt->get_runtime( 'post_excerpt' ),
+					'color_style'        => $evt->get_runtime( 'color_style' ),
+					'category_colors'    => $evt->get_runtime( 'category_colors' ),
+					'permalink'          => $evt->get_runtime( 'instance_permalink' ),
+					'ticket_url_label'   => $evt->get_runtime( 'ticket_url_label' ),
+					'edit_post_link'     => $evt->get_runtime( 'edit_post_link' ),
+					'short_start_time'   => $evt->get_runtime( 'short_start_time' ),
+					'multiday_end_day'   => $evt->get_runtime( 'multiday_end_day' ),
+					'start_day'          => $evt->get_runtime( 'start_day' ),
+					'short_start_time'   => $evt->get_runtime( 'short_start_time' ),
+					'instance_id'        => $evt->get( 'instance_id' ),
+					'post_id'            => $evt->get( 'post_id' ),
+					'is_allday'          => $evt->is_allday(),
+					'is_multiday'        => $evt->is_multiday(),
+					'venue'              => $evt->get( 'venue' ),
+					'ticket_url'         => $evt->get( 'ticket_url' ),
+					'start_truncated'    => $evt->get( 'start_truncated' ),
+					'end_truncated'      => $evt->get( 'end_truncated' ),
+					'popup_timespan'     => $this->_registry
+						->get( 'twig.ai1ec-extension')->timespan( $evt, 'short' ),
+					'avatar_not_wrapped' => $evt->getavatar( false ),
+					'avatar'             => $this->_registry
+						->get( 'twig.ai1ec-extension')->avatar(
+							$evt,
+							array(
+								'post_thumbnail',
+								'content_img',
+								'location_avatar',
+								'category_avatar',
+							),
+							'',
+							false ),
+				);
+				$meta = $this->_registry->get( 'model.meta-post' );
+				if ( ! $event_data['ticket_url'] ) {
+					$timely_tickets = $meta->get(
+						$evt->get( 'post_id' ),
+						'_ai1ec_timely_tickets_url',
+						null
+					);
+					if ( $timely_tickets ) {
+						$event_data['ticket_url'] = $timely_tickets;
+						$evt->set( 'ticket_url', $event_data['ticket_url'] );
+					}
+				}
+				if (
+					true === apply_filters(
+						'ai1ec_buy_button_product',
+						false
+					)
+				) {
+					$full_details = $meta->get(
+						$evt->get( 'post_id' ),
+						'_ai1ec_ep_product_details',
+						null
+					);
+					if (
+						is_array( $full_details ) &&
+						isset( $full_details['show_buy_button'] ) &&
+						true === $full_details['show_buy_button']
+						&& $event_data['ticket_url']
+					) {
+						// Tickets button is shown by default in this case.
+					} else {
+						// Otherwise not.
+						$event_data['ticket_url'] = false;
+					}
+					$evt->set( 'ticket_url', $event_data['ticket_url'] );
+				}
+
+				if (
+					$this->_compatibility->use_backward_compatibility()
+				) {
+					$event_data = $evt;
+				}
+				$events[] = $event_data;
+			}
 			$weeks[$week][] = array(
 				'date' => $i,
 				'date_link' => $this->_create_link_for_day_view( $exact_date ),
@@ -332,7 +442,8 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 					$timestamp->format( 'Y' ) == $today->format( 'Y' ) &&
 					$timestamp->format( 'm' ) == $today->format( 'm' ) &&
 					$i                        == $today->format( 'j' ),
-				'events' => $days_events[$i]
+				'events' => $events,
+
 			);
 			// If reached the end of the week, increment week
 			if( count( $weeks[$week] ) == 7 )
@@ -380,14 +491,16 @@ class Ai1ec_Calendar_View_Month  extends Ai1ec_Calendar_View_Abstract {
 			$day_entry
 		);
 		unset( $day_entry );
-		$start_time = clone $time;
+		$start_time = $this->_registry->get( 'date.time',  $time );
 		$start_time->set_date(
 			$time->format( 'Y' ),
 			$time->format( 'm' ),
 			1
 		)->set_time( 0, 0, 0 );
-		$end_time = clone $start_time;
+		$end_time = $this->_registry->get( 'date.time',  $start_time );
+
 		$end_time->adjust_month( 1 );
+
 		$search = $this->_registry->get( 'model.search' );
 		$month_events = $search->get_events_between(
 			$start_time,

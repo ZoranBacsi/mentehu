@@ -42,7 +42,18 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 				$this->_ending_sentence( $txt, $rc );
 				break;
 			default:
-				$txt = $rrule;
+				$processed = explode( '=', $rrule );
+				if (
+					isset( $processed[1] ) &&
+					in_array(
+						strtoupper( $processed[0] ),
+						array( 'RDATE', 'EXDATE' )
+					)
+				) {
+					$txt = $this->exdate_to_text( $processed[1] );
+				} else {
+					$txt = $rrule;
+				}
 		}
 		return $txt;
 	}
@@ -152,15 +163,42 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 	public function exdate_to_text( $exception_dates ) {
 		$dates_to_add = array();
 		foreach ( explode( ',', $exception_dates ) as $_exdate ) {
-			// convert to timestamp
-			$_exdate        = strtotime( $_exdate );
 			$date_format    = $this->_registry->get( 'model.option' )
 				->get( 'date_format', 'l, M j, Y' );
-			$dates_to_add[] = $this->_registry->get( 'date.time', $_exdate )
+			$dates_to_add[] = $this->_registry->get(
+				'date.time',
+				vsprintf(
+					'%04d-%02d-%02d',
+					sscanf(
+						$_exdate,
+						'%04d%02d%02dT%dZ'
+					)
+				),
+				'sys.default'
+				)
 				->format_i18n( $date_format );
 		}
+		$dates_to_add = str_replace( ' ', '&nbsp;', $dates_to_add );
 		// append dates to the string and return it;
-		return implode( ', ', $dates_to_add );
+		return implode( '; ', $dates_to_add );
+	}
+
+	/**
+	 * Filter recurrence / exclusion rule or dates. Avoid throwing exception for old, malformed values.
+	 *
+	 * @param string $rule Rule or dates value.
+	 *
+	 * @return string Fixed rule or dates value.
+	 */
+	public function filter_rule( $rule ) {
+		$matches = null;
+		if (
+			empty( $rule ) ||
+			! preg_match('/(T[0-9]+)(ZUNTIL=[0-9Z;T]+)/i', $rule, $matches)
+		) {
+			return $rule;
+		}
+		return preg_replace('/(T[0-9]+)(ZUNTIL=[0-9Z;T]+)/i', '$1', $rule);
 	}
 
 	/**
@@ -188,7 +226,7 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 	 **/
 	protected function _get_sentence_by( &$txt, $freq, $rc ) {
 		global $wp_locale;
-	
+
 		switch( $freq ) {
 			case 'weekly':
 				if( $rc->getByDay() ) {
@@ -250,6 +288,7 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 					}
 				} elseif( $rc->getByDay() ) {
 					$_days = '';
+					$dnum  = '';
 					foreach( $rc->getByDay() as $d ) {
 						if ( ! preg_match( '|^((-?)\d+)([A-Z]{2})$|', $d, $matches ) ) {
 							continue;
@@ -301,7 +340,7 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 				break;
 		}
 	}
-	
+
 	/**
 	 * _ordinal function
 	 *
@@ -311,17 +350,17 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 	 **/
 	protected function _ordinal( $cdnl ) {
 		$locale = explode( '_', get_locale() );
-	
+
 		if( isset( $locale[0] ) && $locale[0] != 'en' )
 			return $cdnl;
-	
+
 		$test_c = abs($cdnl) % 10;
 		$ext = ( ( abs( $cdnl ) % 100 < 21 && abs( $cdnl ) % 100 > 4 ) ? 'th'
 			: ( ( $test_c < 4 ) ? ( $test_c < 3 ) ? ( $test_c < 2 ) ? ( $test_c < 1 )
 				? 'th' : 'st' : 'nd' : 'rd' : 'th' ) );
 		return $cdnl.$ext;
 	}
-	
+
 	/**
 	 * Returns the textual representation of the given recurrence frequency and
 	 * interval, with result stored in $txt.
@@ -428,7 +467,7 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 				$this->_registry->get(
 					'date.time',
 					$until
-				)->format_i18n( 
+				)->format_i18n(
 					$this->_registry->get( 'model.option')->get( 'date_format' )
 				)
 			);
@@ -441,6 +480,6 @@ class Ai1ec_Recurrence_Rule extends Ai1ec_Base {
 			$txt .= ', ' . Ai1ec_I18n::__( 'forever' );
 		}
 	}
-	
+
 
 }

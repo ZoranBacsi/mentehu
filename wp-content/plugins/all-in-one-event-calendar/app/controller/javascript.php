@@ -58,6 +58,15 @@ class Ai1ec_Javascript_Controller {
 	// settings page
 	const SETTINGS_PAGE = 'admin_settings.js';
 
+	//widget creator page
+	const WIDGET_CREATOR = 'widget-creator.js';
+
+	//ticketing page
+	const TICKETING = 'ticketing.js';
+
+	//cache file
+	const CALENDAR_JS_CACHE_FILE = '/public/js_cache/calendar.js';
+
 	/**
 	 * @var Ai1ec_Registry_Object
 	 */
@@ -77,6 +86,8 @@ class Ai1ec_Javascript_Controller {
 		self::SETTINGS_PAGE       => true,
 		self::EVENT_PAGE_JS       => true,
 		self::CALENDAR_PAGE_JS    => true,
+		self::WIDGET_CREATOR      => true,
+		self::TICKETING           => true,
 	);
 
 	/**
@@ -161,12 +172,28 @@ class Ai1ec_Javascript_Controller {
 	 * @return void
 	 */
 	public function render_js() {
-		$js_path      = AI1EC_ADMIN_THEME_JS_PATH . DIRECTORY_SEPARATOR;
-		$common_js    = '';
+		$js_path   = AI1EC_ADMIN_THEME_JS_PATH . DIRECTORY_SEPARATOR;
+		$common_js = '';
+		$js_cache  = $this->_settings->get( 'cache_dynamic_js' );
+
 		if ( ! isset( $_GET[self::LOAD_JS_PARAMETER] ) ) {
 			return null;
 		}
 		$page_to_load = $_GET[self::LOAD_JS_PARAMETER];
+		$scripts_updated = $this->_registry->get( 'model.option' )->get( 'calendarjsupdated' );
+	
+		if (
+			$js_cache &&
+			$page_to_load === self::CALENDAR_PAGE_JS && 
+			'1' === $scripts_updated &&
+			$this->_registry->get( 'filesystem.checker' )->check_file_exists(
+				AI1EC_PATH . self::CALENDAR_JS_CACHE_FILE,
+				true
+			)
+		) {	
+			Ai1ec_Http_Response_Helper::stop( 0 );
+			return;	
+		}
 
 		if (
 			isset( $_GET[self::IS_BACKEND_PARAMETER] ) &&
@@ -200,7 +227,9 @@ class Ai1ec_Javascript_Controller {
 
 		// Load appropriate jQuery script based on browser.
 		$jquery = $this->get_jquery_version_based_on_browser(
-			$_SERVER['HTTP_USER_AGENT']
+			isset( $_SERVER['HTTP_USER_AGENT'] )
+				? $_SERVER['HTTP_USER_AGENT']
+				: ''
 		);
 
 		// Load the main script for the page.
@@ -210,10 +239,13 @@ class Ai1ec_Javascript_Controller {
 		}
 
 		// Load translation module.
-		$translation = $this->get_frontend_translation_data();
-		$permalink = $this->_template_link_helper
+		$translation    = $this->get_frontend_translation_data();
+		$permalink      = $this->_template_link_helper
 			->get_permalink( $this->_settings->get( 'calendar_page_id' ) );
-		$translation['calendar_url'] = $permalink;
+		$full_permalink = $this->_template_link_helper
+			->get_full_permalink( $this->_settings->get( 'calendar_page_id' ) );
+		$translation['calendar_url']      = preg_replace( '/^https?:/', '', $permalink );
+		$translation['full_calendar_url'] = preg_replace( '/^https?:/', '', $full_permalink );
 		$translation_module = $this->create_require_js_module(
 			self::FRONTEND_CONFIG_MODULE,
 			$translation
@@ -233,6 +265,7 @@ class Ai1ec_Javascript_Controller {
 			$page_to_load
 		);
 		$ext_js = '';
+
 		foreach ( $extension_files as $file ) {
 			$ext_js .= file_get_contents( $file );
 		}
@@ -244,10 +277,46 @@ class Ai1ec_Javascript_Controller {
 		);
 
 		$javascript = $require . $require_config . $translation_module .
-			$config . $jquery . $page_js . $common_js . $ext_js . $page_ready;
+			$config . $jquery . $common_js . $ext_js . $page_js . $page_ready;
+		// add to blank spaces to fix issues with js
+		// being truncated onn some installs
+		$javascript .= '  ';
+
+		if (
+			$js_cache &&
+			$page_to_load === self::CALENDAR_PAGE_JS &&
+			(
+				'0' === $scripts_updated ||
+				! $this->_registry->get( 'filesystem.checker' )->check_file_exists(
+					AI1EC_PATH . self::CALENDAR_JS_CACHE_FILE,
+					true
+				)
+			)
+		) {
+			$js_saved = false;
+			try {
+				$js_saved = file_put_contents(
+					$js_path . '../js_cache/' . self::CALENDAR_PAGE_JS,
+					$javascript
+				);
+				if ( $js_saved ) {
+					$this->_registry->get( 'model.option' )->set( 'calendarjsupdated', '1' );
+				}
+			} catch ( Exception $e ) {
+				$this->_settings->set( 'cache_dynamic_js', false );
+			}
+		}
+		
 		$this->_echo_javascript( $javascript );
 	}
 
+
+	/**
+	 * Sets the flag to revalidate cached js files on next render.
+	 */
+	public function revalidate_cache() {
+		$this->_registry->get( 'model.option' )->set( 'calendarjsupdated', '0' );
+	}
 
 	/**
 	 * Get a compiled javascript file ( used by extensions )
@@ -274,16 +343,16 @@ class Ai1ec_Javascript_Controller {
 		$script_to_load = FALSE;
 		if ( $this->are_we_on_calendar_feeds_page() === TRUE ) {
 			// Load script for the importer plugins
-			$script_to_load = self::CALENDAR_FEEDS_PAGE;
+			$script_to_load[] = self::CALENDAR_FEEDS_PAGE;
 		}
 		// Start the scripts for the event category page
 		if ( $this->_are_we_editing_event_categories() === TRUE ) {
 			// Load script required when editing categories
-			$script_to_load = self::EVENT_CATEGORY_PAGE;
+			$script_to_load[] = self::EVENT_CATEGORY_PAGE;
 		}
 		if ( $this->_are_we_editing_less_variables() === TRUE ) {
 			// Load script required when editing categories
-			$script_to_load = self::LESS_VARIBALES_PAGE;
+			$script_to_load[] = self::LESS_VARIBALES_PAGE;
 		}
 		// Load the js needed when you edit an event / add a new event
 		if (
@@ -291,30 +360,32 @@ class Ai1ec_Javascript_Controller {
 			true === $this->_are_we_editing_an_event()
 		) {
 			// Load script for adding / modifying events
-			$script_to_load = self::ADD_NEW_EVENT_PAGE;
+			$script_to_load[] = self::ADD_NEW_EVENT_PAGE;
 		}
-		if ( $this->_are_we_accessing_the_calendar_settings_page() === TRUE ) {
-			$script_to_load = self::SETTINGS_PAGE;
+		if ( true === $this->_are_we_accessing_the_calendar_settings_page() ) {
+			$script_to_load[] = self::SETTINGS_PAGE;
 		}
-
-		if ( false === $script_to_load ) {
-			$script_to_load = apply_filters( 'ai1ec_backend_js', self::LOAD_ONLY_BACKEND_SCRIPTS );
+		if ( true === $this->_are_we_creating_widgets() ) {
+			$script_to_load[] = self::WIDGET_CREATOR;
 		}
-		if ( current_user_can( 'manage_options' ) &&
-			$this->_registry->get( 'model.settings' )->get( 'show_tracking_popup' )
+		if (
+			true === $this->_are_we_managing_tickets() ||
+			true === $this->_are_we_managing_events_list()
 		) {
-			wp_enqueue_style( 'wp-pointer' );
-			wp_enqueue_script( 'jquery-ui' );
-			wp_enqueue_script( 'wp-pointer' );
-			wp_enqueue_script( 'utils' );
+			$script_to_load[] = self::TICKETING;
 		}
-
-		$this->add_link_to_render_js( $script_to_load, true );
-
+		if ( false === $script_to_load ) {
+			$script_to_load[] = apply_filters( 'ai1ec_backend_js', self::LOAD_ONLY_BACKEND_SCRIPTS );
+		}
+		foreach ($script_to_load as $value) {
+			$this->add_link_to_render_js( $value, true );
+		}		
 	}
 
 	/**
 	 * Loads version 1.9 or 2.0 of jQuery based on user agent.
+	 * If $user_agent is null (due to lack of HTTP header) we always serve
+	 * jQuery 2.0.
 	 *
 	 * @param string $user_agent
 	 *
@@ -322,7 +393,8 @@ class Ai1ec_Javascript_Controller {
 	 */
 	public function get_jquery_version_based_on_browser( $user_agent ) {
 		$js_path = AI1EC_ADMIN_THEME_JS_PATH . DIRECTORY_SEPARATOR;
-		$jquery = 'jquery_timely20.js';
+		$jquery  = 'jquery_timely20.js';
+
 		preg_match( '/MSIE (.*?);/', $user_agent, $matches );
 		if ( count( $matches ) > 1 ) {
 			//Then we're using IE
@@ -367,13 +439,13 @@ class Ai1ec_Javascript_Controller {
 		if ( $force_ssl_admin && ! is_ssl() ) {
 			force_ssl_admin( false );
 		}
-		$ajax_url        = admin_url( 'admin-ajax.php' );
+		$ajax_url        = preg_replace( '/^https?:/', '', ai1ec_admin_url( 'admin-ajax.php' ) );
 		force_ssl_admin( $force_ssl_admin );
 		$settings        = $this->_registry->get( 'model.settings' );
 		$locale          = $this->_registry->get( 'p28n.wpml' );
 		$blog_timezone   = $this->_registry->get( 'model.option' )
 			->get( 'gmt_offset' );
-
+		$application = $this->_registry->get( 'bootstrap.registry.application' );
 		$data            = array(
 			'calendar_feeds_nonce'           => wp_create_nonce( 'ai1ec_ics_feed_nonce'),
 			// ICS feed error messages
@@ -382,6 +454,9 @@ class Ai1ec_Javascript_Controller {
 			),
 			'invalid_url_message'            => esc_html(
 				Ai1ec_I18n::__( 'Please enter a valid iCalendar URL.' )
+			),
+			'invalid_website_message'      	 => esc_html(
+				Ai1ec_I18n::__( 'Please enter a valid Website URL.' )
 			),
 			'invalid_email_message'          => esc_html(
 				Ai1ec_I18n::__( 'Please enter a valid email address.' )
@@ -408,13 +483,33 @@ class Ai1ec_Javascript_Controller {
 				'When the "Input coordinates" checkbox is checked, "Longitude" is a required field.'
 			),
 			'ai1ec_contact_url_not_valid'         => Ai1ec_I18n::__(
-				'The URL you have entered in the <b>Organizer Contact Info</b> &gt; <b>External URL</b> seems to be invalid.'
+				'The URL you have entered in the <b>Organizer Contact Info</b> &gt; <b>Website URL</b> seems to be invalid.'
 			),
-			'ai1ec_ticket_url_not_valid'           => Ai1ec_I18n::__(
-				'The URL you have entered in the <b>Event Cost and Tickets</b> &gt; <b>Buy Tickets URL</b> seems to be invalid.'
+			'ai1ec_ticket_ext_url_not_valid'           => Ai1ec_I18n::__(
+				'The URL you have entered in the <b>Event Cost and Tickets</b> &gt; <b>Tickets or Registration URL</b> seems to be invalid.'
+			),
+			'ai1ec_contact_email_not_valid'         => Ai1ec_I18n::__(
+				'The Email you have entered in the <b>Organizer Contact Info</b> &gt; <b>E-mail</b> seems to be invalid.'
 			),
 			'general_url_not_valid'          => Ai1ec_I18n::__(
 				'Please remember that URLs must start with either "http://" or "https://".'
+			),
+			'calendar_loading'               => Ai1ec_I18n::__(
+				'Loading&hellip;'
+			),
+			'ticketing_required_fields'      => Ai1ec_I18n::__(
+				'<b>Required or incorrect fields for Ticketing are outlined red.</b>'
+			),
+			'ticketing_repeat_not_supported' => Ai1ec_I18n::__( '<b>The Repeat option was selected but recurrence is not supported by Event with Tickets.</b>'
+			),
+			'ticketing_no_tickets_included'  => Ai1ec_I18n::__( '<b>
+				The Event has the cost option Tickets selected but no ticket was included.</b>'
+			),
+			'discovery_event_success'         => Ai1ec_I18n::__(
+				'Event was imported successfully.'
+			),
+			'discovery_event_error'          => Ai1ec_I18n::__(
+				'An error occurred when importing event. Please, try later.'
 			),
 			'language'                       => $this->_registry->get( 'p28n.wpml' )->get_lang(),
 			'ajax_url'                       => $ajax_url,
@@ -430,15 +525,72 @@ class Ai1ec_Javascript_Controller {
 			'week_start_day'                 => $settings->get( 'week_start_day' ),
 			'week_view_starts_at'            => $settings->get( 'week_view_starts_at' ),
 			'week_view_ends_at'              => $settings->get( 'week_view_ends_at' ),
+			'google_maps_api_key'            => $settings->get( 'google_maps_api_key' ),
 			'blog_timezone'                  => $blog_timezone,
-			'show_tracking_popup'            =>
-				current_user_can( 'manage_options' ) && $settings->get( 'show_tracking_popup' ),
 			'affix_filter_menu'              => $settings->get( 'affix_filter_menu' ),
 			'affix_vertical_offset_md'       => $settings->get( 'affix_vertical_offset_md' ),
 			'affix_vertical_offset_lg'       => $settings->get( 'affix_vertical_offset_lg' ),
 			'affix_vertical_offset_sm'       => $settings->get( 'affix_vertical_offset_sm' ),
 			'affix_vertical_offset_xs'       => $settings->get( 'affix_vertical_offset_xs' ),
+			'calendar_page_id'               => $settings->get( 'calendar_page_id' ),
 			'region'                         => ( $settings->get( 'geo_region_biasing' ) ) ? $locale->get_region() : '',
+			'site_url'                       => trailingslashit(
+				preg_replace( '/^https?:/', '', ai1ec_get_site_url() )
+			),
+			'javascript_widgets'             => array(),
+			'widget_creator'                 => array(
+				'preview'         => Ai1ec_I18n::__( 'Preview:' ),
+				'preview_loading' => Ai1ec_I18n::__(
+					'Loading preview&nbsp;<i class="ai1ec-fa ai1ec-fa-spin ai1ec-fa-spinner"></i>'
+				)
+			),
+			'ticketing'                       => array(
+				'details'         => Ai1ec_I18n::__( 'Ticketing Details' ),
+				'hide_details'    => Ai1ec_I18n::__( 'Hide Ticketing Details' ),
+				'loading_details' => Ai1ec_I18n::__( 'Loading tickets details...' ),
+				'type_and_price'  => Ai1ec_I18n::__( 'Type and price' ),
+				'info'            => Ai1ec_I18n::__( 'Info' ),
+				'information'     => Ai1ec_I18n::__( 'Information' ),
+				'report'          => Ai1ec_I18n::__( 'Report' ),
+				'sale_dates'      => Ai1ec_I18n::__( 'Sale dates' ),
+				'limits'          => Ai1ec_I18n::__( 'Limits' ),
+				'actions'         => Ai1ec_I18n::__( 'Actions' ),
+				'sold'            => Ai1ec_I18n::__( 'Sold:' ),
+				'left'            => Ai1ec_I18n::__( 'Left:' ),
+				'start'           => Ai1ec_I18n::__( 'Start:' ),
+				'end'             => Ai1ec_I18n::__( 'End:' ),
+				'min'             => Ai1ec_I18n::__( 'Min:' ),
+				'max'             => Ai1ec_I18n::__( 'Max:' ),
+				'attendees'       => Ai1ec_I18n::__( 'Attendees' ),
+				'hide_attendees'  => Ai1ec_I18n::__( 'Hide Attendees' ),
+				'attendees_list'  => Ai1ec_I18n::__( 'Attendees List' ),
+				'guest_name'      => Ai1ec_I18n::__( 'Guest Name' ),
+				'status'          => Ai1ec_I18n::__( 'Status' ),
+				'email'           => Ai1ec_I18n::__( 'Email' ),
+				'no_attendees'    => Ai1ec_I18n::__( 'No attendees for this ticket type.' ),
+				'edit'            => Ai1ec_I18n::__( 'Edit' ),
+				'code'            => Ai1ec_I18n::__( 'Code' ),
+				'unlimited'       => Ai1ec_I18n::__( 'Unlimited' ),
+				'open_for_sale'   => Ai1ec_I18n::__( 'Open for sale' ),
+				'no_delete_text'  => Ai1ec_I18n::__( 'You have sold tickets for this ticket type. Please change it\'s status to "Canceled" and make refunds to all users that purchased tickets.' ),
+				'cancel_message'  => Ai1ec_I18n::__( 'You have sold tickets for this ticket type. Please make refunds to all users that purchased tickets' )
+			),
+			'review'                         => array(
+				'message_sent'  => Ai1ec_I18n::__( 'Your message has been sent. Thank you for your feedback.' ),
+				'message_error' => Ai1ec_I18n::__( 'Your message has not been sent. Please try again or contact us.' )
+			),
+			'load_views_error'                 => Ai1ec_I18n::__(
+				'Something went wrong while fetching events.<br>The request status is: %STATUS% <br>The error thrown was: %ERROR%'
+			),
+			'load_views_error_popup_title'   => Ai1ec_I18n::__( 'Response text received from server' ),
+			'load_views_error_link_popup'    => Ai1ec_I18n::__( 'Click here for technical details' ),
+			'cookie_path'                    => $this->_registry->get(
+				'cookie.utility'
+			)->get_path_for_cookie(),
+			'disable_autocompletion'         => $settings->get( 'disable_autocompletion' ),
+			'end_must_be_after_start'        => __( 'The end date can\'t be earlier than the start date.', AI1EC_PLUGIN_NAME ),
+			'show_at_least_six_hours'        => __( 'For week and day view, you must select an interval of at least 6 hours.', AI1EC_PLUGIN_NAME ),
+			'ai1ec_permalinks_enabled'       => $application->get( 'permalinks_enabled' ),
 		);
 		return apply_filters( 'ai1ec_js_translations', $data );
 	}
@@ -450,7 +602,7 @@ class Ai1ec_Javascript_Controller {
 	 */
 	public function get_frontend_translation_data() {
 		$data = array(
-			'export_url' => AI1EC_EXPORT_URL,
+			'export_url' => preg_replace( '/^https?:/', '', AI1EC_EXPORT_URL ),
 		);
 
 		// Replace desired CSS selector with calendar, if selector has been set
@@ -468,11 +620,11 @@ class Ai1ec_Javascript_Controller {
 		$fonts_dir = AI1EC_DEFAULT_THEME_URL . 'font_css/';
 		$data['fonts'][] = array(
 			'name' => 'League Gothic',
-			'url'  => $fonts_dir . 'font-league-gothic.css',
+			'url'  => preg_replace( '/^https?:/', '', $fonts_dir . 'font-league-gothic.css' ),
 		);
 		$data['fonts'][] = array(
 			'name' => 'fontawesome',
-			'url'  => $fonts_dir . 'font-awesome.css',
+			'url'  => preg_replace( '/^https?:/', '', $fonts_dir . 'font-awesome.css' ),
 		);
 		return $data;
 	}
@@ -494,10 +646,12 @@ class Ai1ec_Javascript_Controller {
 		);
 		$conditional_get->sendHeaders();
 		if ( ! $conditional_get->cacheIsValid ) {
-			$http_encoder = new HTTP_Encoder( array(
-				'content' => $javascript,
-				'type' => 'text/javascript'
-			)
+			$http_encoder = $this->_registry->get(
+				'http.encoder',
+				array(
+					'content' => $javascript,
+					'type' => 'text/javascript'
+				)
 			);
 			$compression_level = null;
 			if ( $this->_registry->get( 'model.settings' )->get( 'disable_gzip_compression' ) ) {
@@ -516,7 +670,7 @@ class Ai1ec_Javascript_Controller {
 	 * @return string
 	 */
 	public function create_require_js_config_object() {
-		$js_url    = AI1EC_ADMIN_THEME_JS_URL;
+		$js_url    = preg_replace( '/^https?:/', '', AI1EC_ADMIN_THEME_JS_URL );
 		$version   = AI1EC_VERSION;
 		$namespace = self::REQUIRE_NAMESPACE;
 		$config    = <<<JSC
@@ -535,7 +689,11 @@ JSC;
 	 * @return boolean TRUE if we are in the calendar feeds page FALSE otherwise
 	 */
 	public function are_we_on_calendar_feeds_page() {
-		$path_details = pathinfo( $_SERVER["SCRIPT_NAME"] );
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : FALSE;
 		$page = isset( $_GET['page'] ) ? $_GET['page'] : FALSE;
 		if( $post_type === FALSE || $page === FALSE ) {
@@ -561,9 +719,13 @@ JSC;
 			$load_backend_script = self::TRUE_PARAM;
 		}
 		$is_calendar_page = false;
-		if( true === is_page( $this->_settings->get( 'calendar_page_id' ) ) ) {
+		if(
+			true === is_page( $this->_settings->get( 'calendar_page_id' ) ) ||
+			self::CALENDAR_PAGE_JS === $page
+		) {
 			$is_calendar_page = self::TRUE_PARAM;
 		}
+
 		$url = add_query_arg(
 			array(
 				// Add the page to load
@@ -573,8 +735,20 @@ JSC;
 				// If we are on the calendar page we must load the correct option
 				self::IS_CALENDAR_PAGE     => $is_calendar_page,
 			),
-			trailingslashit( $this->_template_link_helper->get_site_url() )
+			trailingslashit( ai1ec_get_site_url() )
 		);
+		if (
+			$this->_settings->get( 'cache_dynamic_js' ) &&
+			$is_calendar_page &&
+			'1' === $this->_registry->get( 'model.option' )->get( 'calendarjsupdated' ) &&
+			$this->_registry->get( 'filesystem.checker' )->check_file_exists(
+				AI1EC_PATH . self::CALENDAR_JS_CACHE_FILE,
+				true
+			)
+		) {
+			$url = plugin_dir_url( 'all-in-one-event-calendar/public/js_cache/.' ) . $page;
+		}
+
 		if ( true === $backend ) {
 			$this->_scripts_helper->enqueue_script(
 					self::JS_HANDLE,
@@ -587,7 +761,7 @@ JSC;
 					self::JS_HANDLE,
 					$url,
 					array(),
-					true
+					false
 			);
 		}
 	}
@@ -598,7 +772,11 @@ JSC;
 	 * @return boolean TRUE if we are editing an event FALSE otherwise
 	 */
 	private function _are_we_editing_an_event() {
-		$path_details = pathinfo( $_SERVER["SCRIPT_NAME"] );
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$post_id = isset( $_GET['post'] ) ? $_GET['post'] : FALSE;
 		$action = isset( $_GET['action'] ) ? $_GET['action'] : FALSE;
 		if( $post_id === FALSE || $action === FALSE ) {
@@ -614,12 +792,40 @@ JSC;
 	}
 
 	/**
+	 * check if we are viewing events list
+	 *
+	 * @return boolean TRUE if we are on the events list FALSE otherwise
+	 */
+	private function _are_we_managing_events_list() {
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
+		$post_type    = isset( $_GET['post_type'] ) ? $_GET['post_type'] : FALSE;
+		if ( FALSE === $post_type ) {
+			return FALSE;
+		}
+		$page = isset( $_GET['page'] ) ? $_GET['page'] : '';
+		$events_list = (
+			'edit.php'    === $path_details['basename'] &&
+			'ai1ec_event' === $post_type &&
+			ai1ec_is_blank( $page )	
+		);
+		return $events_list;
+	}
+
+	/**
 	 * check if we are creating a new event
 	 *
 	 * @return boolean TRUE if we are creating a new event FALSE otherwise
 	 */
 	private function _are_we_creating_a_new_event() {
-		$path_details = pathinfo( $_SERVER["SCRIPT_NAME"] );
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : '';
 		return $path_details['basename'] === 'post-new.php' &&
 				$post_type === AI1EC_POST_TYPE;
@@ -631,10 +837,36 @@ JSC;
 	 * @return boolean TRUE if we are accessing the settings page FALSE otherwise
 	 */
 	private function _are_we_accessing_the_calendar_settings_page() {
-		$path_details = pathinfo( $_SERVER["SCRIPT_NAME"] );
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$page = isset( $_GET['page'] ) ? $_GET['page'] : '';
 		return $path_details['basename'] === 'edit.php' &&
 				$page === AI1EC_PLUGIN_NAME . '-settings';
+	}
+
+	protected function _are_we_creating_widgets() {
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
+		$page = isset( $_GET['page'] ) ? $_GET['page'] : '';
+		return $path_details['basename'] === 'edit.php' &&
+			$page === AI1EC_PLUGIN_NAME . '-widget-creator';
+	}
+
+	protected function _are_we_managing_tickets() {
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
+		$page = isset( $_GET['page'] ) ? $_GET['page'] : '';
+		return $path_details['basename'] === 'edit.php' &&
+			$page === AI1EC_PLUGIN_NAME . '-tickets';
 	}
 
 	/**
@@ -643,7 +875,11 @@ JSC;
 	 * @return boolean TRUE if we are accessing a single event page FALSE otherwise
 	 */
 	private function _are_we_editing_less_variables() {
-		$path_details = pathinfo( $_SERVER["SCRIPT_NAME"] );
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$page = isset( $_GET['page'] ) ? $_GET['page'] : '';
 		return $path_details['basename'] === 'edit.php' && $page === AI1EC_PLUGIN_NAME . '-edit-css';
 	}
@@ -654,9 +890,16 @@ JSC;
 	 * @return boolean TRUE if we are accessing the events category page FALSE otherwise
 	 */
 	private function _are_we_editing_event_categories() {
-		$path_details = pathinfo( $_SERVER["SCRIPT_NAME"] );
+		if ( !isset( $_SERVER['SCRIPT_NAME'] ) ) {
+			return FALSE;
+		}
+
+		$path_details = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$post_type = isset( $_GET['post_type'] ) ? $_GET['post_type'] : '';
-		return $path_details['basename'] === 'edit-tags.php' && $post_type === AI1EC_POST_TYPE;
+		return (
+			$path_details['basename'] === 'edit-tags.php' ||
+			$path_details['basename'] === 'term.php' 
+		)  && $post_type === AI1EC_POST_TYPE;
 	}
 
 	/**

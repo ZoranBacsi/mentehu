@@ -33,6 +33,17 @@ class Ai1ec_Html_Setting_Input extends Ai1ec_Html_Element_Settings {
 			case 'email':
 				$input_type = 'email';
 				break;
+
+			case 'url':
+				$input_type = 'url';
+				break;
+
+			case 'number':
+				$input_type = 'number';
+				break;
+			case 'checkbox':
+				$input_type = 'checkbox';
+				break;
 		}
 
 		$input_args = array(
@@ -70,9 +81,18 @@ class Ai1ec_Html_Setting_Input extends Ai1ec_Html_Element_Settings {
 		if ( isset( $this->_args['renderer']['group-class'] ) ) {
 			$args['group_class'] = $this->_args['renderer']['group-class'];
 		}
+
+		if ( isset( $this->_args['checked'] ) && true === $this->_args['checked'] )
+			$args['input_args']['checked'] = $this->_args['checked'];
+
 		$loader = $this->_registry->get( 'theme.loader' );
 		$file   = $loader->get_file( 'setting/input.twig', $args, true );
-		return parent::render( $file->get_content() );
+		if ( isset( $this->_args['type'] ) && 'hidden' === $this->_args['type'] ) {
+			$hidden = true;
+		} else {
+			$hidden = false;
+		}
+		return parent::render( $file->get_content(), true, $hidden );
 	}
 
 }

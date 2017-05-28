@@ -9,20 +9,26 @@
 
 class M_Frame_Communication extends C_Base_Module
 {
-	function define($context=FALSE)
+	function define($id = 'pope-module',
+                    $name = 'Pope Module',
+                    $description = '',
+                    $version = '',
+                    $uri = '',
+                    $author = '',
+                    $author_uri = '',
+                    $context = FALSE)
 	{
 		parent::define(
 			'photocrati-frame_communication',
 			'Frame/iFrame Inter-Communication',
 			'Provides a means for HTML frames to share server-side events with each other',
-			'0.4',
-			'http://www.nextgen-gallery.com',
-			'Photocrati Media',
-			'http://www.photocrati.com',
+			'0.5',
+            'https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/',
+            'Imagely',
+            'https://www.imagely.com',
 			$context
 		);
 
-        include_once('class.frame_communication_option_handler.php');
         C_NextGen_Settings::get_instance()->add_option_handler('C_Frame_Communication_Option_Handler', array(
            'frame_event_cookie_name',
         ));
@@ -46,26 +52,41 @@ class M_Frame_Communication extends C_Base_Module
 
 	function enqueue_admin_scripts()
 	{
-		$router = $this->get_registry()->get_utility('I_Router');
+		$router = C_Router::get_instance();
 
 		wp_register_script(
 			'frame_event_publisher',
 			$router->get_static_url('photocrati-frame_communication#frame_event_publisher.js'),
-			array('jquery')
+			array('jquery'),
+			NGG_SCRIPT_VERSION
 		);
-		
+
 		if (is_admin())
+		{
 			wp_enqueue_script('frame_event_publisher');
+			wp_localize_script(
+				'frame_event_publisher',
+				'frame_event_publisher_domain',
+				array(parse_url(site_url(), PHP_URL_HOST))
+			);
+		}
 	}
 
     function get_type_list()
     {
         return array(
             'C_Frame_Communication_Option_Handler'	=> 'class.frame_communication_option_handler.php',
-            'C_Frame_Event_Publisher' 			    => 'class.frame_event_publisher.php',
-            'I_Frame_Event_Publisher' 			    => 'interface.frame_event_publisher.php'
+            'C_Frame_Event_Publisher' 			    => 'class.frame_event_publisher.php'
         );
     }
+}
+
+class C_Frame_Communication_Option_Handler
+{
+	function get($key, $default='X-Frame-Events')
+	{
+		return 'X-Frame-Events';
+	}
 }
 
 new M_Frame_Communication();

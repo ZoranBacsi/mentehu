@@ -1,23 +1,25 @@
 <?php
-
-/***
-{
-    Module: photocrati-third_party_compat,
-    Depends: {}
-}
- ***/
 class M_Third_Party_Compat extends C_Base_Module
 {
-    function define()
+    protected $wpseo_images = array();
+
+    function define($id = 'pope-module',
+                    $name = 'Pope Module',
+                    $description = '',
+                    $version = '',
+                    $uri = '',
+                    $author = '',
+                    $author_uri = '',
+                    $context = FALSE)
     {
         parent::define(
             'photocrati-third_party_compat',
             'Third Party Compatibility',
             "Adds Third party compatibility hacks, adjustments, and modifications",
-            '0.3',
-            'http://www.nextgen-gallery.com',
-            'Photocrati Media',
-            'http://www.photocrati.com'
+            '0.6',
+            'https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/',
+            'Imagely',
+            'https://www.imagely.com'
         );
 
         // the following constants were renamed for 2.0.41; keep them declared for compatibility sake until
@@ -68,10 +70,34 @@ class M_Third_Party_Compat extends C_Base_Module
         if (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION == 4) {
             @ini_set('zlib.output_compression', 'Off');
         }
+
+        // Detect 'Adminer' and whether the user is viewing its loader.php
+        if (class_exists('AdminerForWP') && function_exists('adminer_object'))
+        {
+            if (!defined('NGG_DISABLE_RESOURCE_MANAGER'))
+                define('NGG_DISABLE_RESOURCE_MANAGER', TRUE);
+        }
+
+        // Cornerstone's page builder requires a 'clean slate' of css/js that our resource manager interefers with
+        if (class_exists('Cornerstone'))
+        {
+            if (!defined('NGG_DISABLE_FILTER_THE_CONTENT')) define('NGG_DISABLE_FILTER_THE_CONTENT', TRUE);
+            if (!defined('NGG_DISABLE_RESOURCE_MANAGER'))   define('NGG_DISABLE_RESOURCE_MANAGER', TRUE);
+        }
+
+        // Genesis Tabs creates a new query / do_shortcode loop which requires these be set
+        if (class_exists('Genesis_Tabs'))
+        {
+            if (!defined('NGG_DISABLE_FILTER_THE_CONTENT')) define('NGG_DISABLE_FILTER_THE_CONTENT', TRUE);
+            if (!defined('NGG_DISABLE_RESOURCE_MANAGER'))   define('NGG_DISABLE_RESOURCE_MANAGER', TRUE);
+        }
     }
 
     function _register_adapters()
     {
+        $this->get_registry()->add_adapter(
+            'I_Display_Type_Controller', 'A_Non_Cachable_Pro_Film_Controller', 'photocrati-nextgen_pro_film'
+        );
     }
 
     function _register_hooks()
@@ -80,14 +106,23 @@ class M_Third_Party_Compat extends C_Base_Module
         add_action('init', array(&$this, 'flattr'),     PHP_INT_MAX);
         add_action('wp',   array(&$this, 'bjlazyload'), PHP_INT_MAX);
 
+        add_action('admin_init', array($this, 'excellent_themes_admin'), -10);
+
         add_action('plugins_loaded', array(&$this, 'wpml'), PHP_INT_MAX);
         add_action('plugins_loaded', array(&$this, 'wpml_translation_management'), PHP_INT_MAX);
 
         add_filter('headway_gzip', array(&$this, 'headway_gzip'), (PHP_INT_MAX - 1));
         add_filter('ckeditor_external_plugins', array(&$this, 'ckeditor_plugins'), 11);
         add_filter('bp_do_redirect_canonical', array(&$this, 'fix_buddypress_routing'));
-        add_filter('the_content', array(&$this, 'check_weaverii'), -(PHP_INT_MAX-2));
-        add_action('wp', array(&$this, 'check_for_jquery_lightbox'));
+        add_filter('the_content', array($this, 'check_weaverii'), -(PHP_INT_MAX-2));
+        add_action('wp', array($this, 'check_for_jquery_lightbox'));
+        add_filter('get_the_excerpt', array($this, 'disable_galleries_in_excerpts'), 1);
+        add_filter('get_the_excerpt', array($this, 'enable_galleries_in_excerpts'), PHP_INT_MAX-1);
+	    add_action('debug_bar_enqueue_scripts', array($this, 'no_debug_bar'));
+        add_filter('ngg_non_minified_modules', array($this, 'dont_minify_nextgen_pro_cssjs'));
+        add_filter('ngg_atp_show_display_type', array($this, 'atp_check_pro_albums'), 10, 2);
+        add_filter('run_ngg_resource_manager', array($this, 'run_ngg_resource_manager'));
+        add_filter('wpseo_sitemap_urlimages', array($this, 'add_wpseo_xml_sitemap_images'), 10, 2);
 
         // WPML fix
         if (class_exists('SitePress')) {
@@ -98,6 +133,144 @@ class M_Third_Party_Compat extends C_Base_Module
 
         // TODO: Only needed for NGG Pro 1.0.10 and lower
         add_action('the_post', array(&$this, 'add_ngg_pro_page_parameter'));
+
+    }
+
+    /**
+     * Filter support for WordPress SEO
+     *
+     * @param array $images Provided by WPSEO Filter
+     * @param int $post ID Provided by WPSEO Filter
+     * @return array $image List of a displayed galleries entities
+     */
+    function add_wpseo_xml_sitemap_images($images, $post_id)
+    {
+        $this->wpseo_images = $images;
+
+        $post = get_post($post_id);
+
+        // Assign our own shortcode handler; ngglegacy and ATP do this same routine for their own
+        // legacy and preview image placeholders.
+        remove_all_shortcodes();
+        C_NextGen_Shortcode_Manager::add('ngg_images', array($this, 'wpseo_shortcode_handler'));
+        do_shortcode($post->post_content);
+
+        return $this->wpseo_images;
+    }
+
+    /**
+     * Processes ngg_images shortcode when WordPress SEO is building sitemaps. Adds images belonging to a
+     * displayed gallery to $this->wpseo_images for the assigned filter method to return.
+     *
+     * @param array $params Array of shortcode parameters
+     * @param null $inner_content
+     */
+    function wpseo_shortcode_handler($params, $inner_content = NULL)
+    {
+        $renderer = C_Displayed_Gallery_Renderer::get_instance();
+        $displayed_gallery = $renderer->params_to_displayed_gallery($params);
+
+        if ($displayed_gallery)
+        {
+            $gallery_storage = C_Gallery_Storage::get_instance();
+            $settings		 = C_NextGen_Settings::get_instance();
+            $source          = $displayed_gallery->get_source();
+            if (in_array('image', $source->returns))
+            {
+                foreach ($displayed_gallery->get_entities() as $image) {
+                    $named_image_size = $settings->imgAutoResize ? 'full' : 'thumb';
+                    $sitemap_image = array(
+                        'src'	=>	$gallery_storage->get_image_url($image, $named_image_size),
+                        'alt'	=>	$image->alttext,
+                        'title'	=>	$image->description ? $image->description: $image->alttext
+                    );
+                    $this->wpseo_images[] = $sitemap_image;
+                }
+            }
+        }
+    }
+
+    /**
+     * Some other plugins output content and die(); this causes problems with our resource manager which uses output buffering
+     *
+     * @param bool $valid_request
+     * @return bool
+     */
+    function run_ngg_resource_manager($valid_request = TRUE)
+    {
+        // WP-Post-To-PDF-Enhanced
+        if (class_exists('wpptopdfenh') && !empty($_GET['format']))
+            $valid_request = FALSE;
+
+        // WP-Photo-Seller download
+        if (class_exists('WPS') && isset($_REQUEST['wps_file_dl']) && $_REQUEST['wps_file_dl'] == '1')
+            $valid_request = FALSE;
+
+        // Multiverso Advanced File Sharing download
+        if (function_exists('mv_install') && isset($_GET['upf']) && isset($_GET['id']))
+            $valid_request = FALSE;
+
+        // WooCommerce downloads
+        if (class_exists('WC_Download_Handler') && isset($_GET['download_file']) && isset($_GET['order']) && isset($_GET['email']))
+            $valid_request = FALSE;
+
+        // WP-E-Commerce
+        if (isset($_GET['wpsc_download_id']) || (function_exists('wpsc_download_file') && isset($_GET['downloadid'])))
+            $valid_request = FALSE;
+
+        // Easy Digital Downloads
+        if (function_exists('edd_process_download') && (isset($_GET['download_id']) || isset($_GET['download'])))
+            $valid_request = FALSE;
+
+        return $valid_request;
+    }
+
+    /**
+     * This style causes problems with Excellent Themes admin settings
+     */
+    function excellent_themes_admin()
+    {
+        if (is_admin() && (!empty($_GET['page']) && strpos($_GET['page'], 'et_') == 0))
+            wp_deregister_style('ngg-jquery-ui');
+    }
+
+    function atp_check_pro_albums($available, $display_type)
+    {
+        if (!defined('NGG_PRO_ALBUMS'))
+            return $available;
+
+        if (in_array($display_type->name, array(NGG_PRO_LIST_ALBUM, NGG_PRO_GRID_ALBUM))
+        &&  $this->get_registry()->is_module_loaded(NGG_PRO_ALBUMS))
+            $available = TRUE;
+
+        return $available;
+    }
+
+    function no_debug_bar()
+	{
+		if (M_Attach_To_Post::is_atp_url()) {
+			wp_dequeue_script('debug-bar-console');
+		}
+	}
+
+    // A lot of routing issues start occuring with WordPress SEO when the routing system is
+    // initialized by the excerpt, and then again from the post content.
+    function disable_galleries_in_excerpts($excerpt)
+    {
+        if (class_exists('WPSEO_OpenGraph')) {
+            M_Attach_To_Post::$substitute_placeholders = FALSE;
+        }
+
+        return $excerpt;
+    }
+
+    function enable_galleries_in_excerpts($excerpt)
+    {
+        if (class_exists('WPSEO_OpenGraph')) {
+            M_Attach_To_Post::$substitute_placeholders = TRUE;
+        }
+
+        return $excerpt;
     }
 
     function fix_buddypress_routing()
@@ -176,12 +349,12 @@ class M_Third_Party_Compat extends C_Base_Module
         if (!class_exists('SitePress'))
             return;
 
-        if (FALSE === strpos(strtolower($_SERVER['REQUEST_URI']), '/nextgen-attach_to_post'))
+        if (!M_Attach_To_Post::is_atp_url())
             return;
 
         global $wp_filter;
 
-        if (empty($wp_filter['init'][2]))
+        if (empty($wp_filter['init'][2]) && empty($wp_filter['after_setup_theme'][1]))
             return;
 
         foreach ($wp_filter['init'][2] as $id => $filter) {
@@ -195,6 +368,13 @@ class M_Third_Party_Compat extends C_Base_Module
 
             remove_action('init', array($object, 'js_load'), 2);
         }
+
+        foreach ($wp_filter['after_setup_theme'][1] as $id => $filter) {
+            if ($id !== 'wpml_installer_instance_delegator')
+                continue;
+
+            remove_action('after_setup_theme', 'wpml_installer_instance_delegator', 1);
+        }
     }
 
     /**
@@ -205,7 +385,7 @@ class M_Third_Party_Compat extends C_Base_Module
         if (!class_exists('WPML_Translation_Management'))
             return;
 
-        if (FALSE === strpos(strtolower($_SERVER['REQUEST_URI']), '/nextgen-attach_to_post'))
+        if (!M_Attach_To_Post::is_atp_url())
             return;
 
         global $wp_filter;
@@ -236,7 +416,7 @@ class M_Third_Party_Compat extends C_Base_Module
     {
         global $post;
 
-        if ($post AND (strpos($post->content, "<!--nextpage-->") === FALSE) AND (strpos($_SERVER['REQUEST_URI'], '/page/') !== FALSE)) {
+        if ($post AND !is_array($post->content) AND (strpos($post->content, "<!--nextpage-->") === FALSE) AND (strpos($_SERVER['REQUEST_URI'], '/page/') !== FALSE)) {
             if (preg_match("#/page/(\\d+)#", $_SERVER['REQUEST_URI'], $match)) {
                 $_REQUEST['page'] = $match[1];
             }
@@ -363,12 +543,35 @@ class M_Third_Party_Compat extends C_Base_Module
      */
     function bjlazyload_filter($content)
     {
-        return trim(preg_replace("/\s\s+/", " ", $content));
+        return trim(preg_replace("/\\s\\s+/", " ", $content));
+    }
+
+    /**
+     * NextGen 2.0.67.20 introduced CSS/JS minification; do not apply this to NextGen Pro yet
+     *
+     * @param $modules_to_not_minify
+     * @return array
+     */
+    function dont_minify_nextgen_pro_cssjs($modules_to_not_minify)
+    {
+
+	    // TODO: once Pro 2.1.30 is widely circulated, we don't need to use
+	    // the installer. We can use the component registry to fetch the product
+	    // and call the product's get_modules_to_load() function
+	    $installer = new C_NextGen_Product_Installer;
+
+        if (defined('NGG_PRO_PLUGIN_VERSION') && class_exists('P_Photocrati_NextGen_Pro'))
+	        $modules_to_not_minify += $installer->get_modules_to_load_for('photocrati-nextgen-pro');
+        else if (defined('NGG_PLUS_PLUGIN_VERSION') && class_exists('P_Photocrati_NextGen_Plus'))
+	        $modules_to_not_minify += $installer->get_modules_to_load_for('photocrati-nextgen-plus');
+
+        return $modules_to_not_minify;
     }
 
     function get_type_list()
     {
         return array(
+            'A_Non_Cachable_Pro_Film_Controller'    => 'adapter.non_cachable_pro_film_controller.php'
         );
     }
 }

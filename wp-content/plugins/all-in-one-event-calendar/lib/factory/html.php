@@ -108,6 +108,11 @@ class Ai1ec_Factory_Html extends Ai1ec_Base {
 			'tag_ids'    => $args['tag_ids'],
 			'exact_date' => "__DATE__",
 		);
+		$href_args = apply_filters(
+			'ai1ec_date_picker_href_args',
+			$href_args,
+			$args
+		);
 		$data_href = $this->create_href_helper_instance( $href_args );
 
 		$attributes = array(
@@ -219,6 +224,9 @@ class Ai1ec_Factory_Html extends Ai1ec_Base {
 			'data-placeholder' => $args['placeholder'],
 			'class'            => 'ai1ec-select2-multiselect-selector span12'
 		);
+		if ( isset( $args['class'] ) ) {
+			$select2_args['class'] .= ' ' . $args['class'];
+		}
 		$container_class = false;
 		if ( isset( $args['type'] ) ) {
 			$container_class = 'ai1ec-' . $args['type'] . '-filter';

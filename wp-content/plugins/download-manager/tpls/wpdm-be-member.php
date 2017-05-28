@@ -1,13 +1,11 @@
 <?php
 
-    $invoice = wpdm_query_var('invoice','txt')?wpdm_query_var('invoice','txt'):'';
-    if($invoice!=''){
-    $oorder = new Order();
-    $order = $oorder->GetOrder($invoice);
-    if($order->uid!=0) $invoice = '';
-    }
-
-    $redirect = isset($_GET['redirect_to']) ? $_GET['redirect_to'] : get_permalink(get_the_ID());
+    if(!isset($redirect)) $redirect = get_permalink(get_the_ID());
+    $redirect = isset($_GET['redirect_to']) ? $_GET['redirect_to'] : $redirect;
+    $nologo = 1;
+    $log_redirect =  $_SERVER['REQUEST_URI'];
+    if(isset($params['redirect'])) $log_redirect = esc_url($params['redirect']);
+    if(isset($_GET['redirect_to'])) $log_redirect = esc_url($_GET['redirect_to']);
 ?>
 
 
@@ -16,10 +14,15 @@
 
 
 
-        <div  style="width: 350px;max-width: 98%;margin: 50px auto">
+        <div  style="width: 450px;max-width: 98%;margin: 50px auto">
+            <?php if(isset($params['logo']) && $params['logo'] != ''){ ?>
+                <div class="text-center wpdmlogin-logo">
+                    <img src="<?php echo $params['logo'];?>" /><br/><br/>
+                </div>
+            <?php } ?>
             <div class="btn-group btn-group-justified" id="be-member-btns">
-                <a href="#wpdmlogin" data-toggle="tab" class="btn btn-info btn-lg active"><?php _e('Log In','wpdmpro'); ?></a>
-                <a href="#wpdmregister" data-toggle="tab" class="btn btn-info btn-lg"><?php _e('Register','wpdmpro'); ?></a>
+                <a href="#wpdmlogin" data-toggle="tab" class="btn btn-info btn-lg active"><?php _e('Log In','download-manager'); ?></a>
+                <a href="#wpdmregister" data-toggle="tab" class="btn btn-info btn-lg"><?php _e('Register','download-manager'); ?></a>
             </div>
             <div class="tab-content">
             <div class="tab-pane active" id="wpdmlogin">
@@ -40,7 +43,7 @@
                 <?php endif; ?>
                 <?php if(is_user_logged_in()){
 
-                    do_action("wpdm_user_logged_in","<div class='alert alert-success'>".__("You are already logged in.","wpdmpro")." <a href='".wp_logout_url()."'>".__("Logout","wpdmpro")."</a></div>");
+                    do_action("wpdm_user_logged_in","<div class='alert alert-success'>".__("You are already logged in.",'download-manager')."<br style='clear:both;display:block;margin-top:5px'/> <a class='btn btn-xs btn-primary' href='".get_permalink(get_option('__wpdm_user_dashboard'))."'>".__("Go To Dashboard",'download-manager')."</a>  <a class='btn btn-xs btn-danger' href='".wp_logout_url()."'>".__("Logout",'download-manager')."</a></div>");
 
                 } else {
 
@@ -53,34 +56,34 @@
 
                                 <?php global $wp_query; if(isset($_SESSION['login_error'])&&$_SESSION['login_error']!='') {  ?>
                                     <div class="error alert alert-danger" >
-                                        <b><?php _e('Login Failed!','wpdmpro'); ?></b><br/>
+                                        <b><?php _e('Login Failed!','download-manager'); ?></b><br/>
                                         <?php echo preg_replace("/<a.*?<\/a>\?/i","",$_SESSION['login_error']); $_SESSION['login_error']=''; ?>
                                     </div>
                                 <?php } ?>
                                 <div class="form-group">
                                     <div class="input-group input-group-lg">
                                         <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                                        <input placeholder="<?php _e('Username','wpdmpro'); ?>" type="text" name="wpdm_login[log]" id="user_login" class="form-control input-lg required text" value="" size="20" tabindex="38" />
+                                        <input placeholder="<?php _e('Username','download-manager'); ?>" type="text" name="wpdm_login[log]" id="user_login" class="form-control input-lg required text" value="" size="20" tabindex="38" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-key"></i></span>
-                                    <input type="password" placeholder="<?php _e('Password','wpdmpro'); ?>" name="wpdm_login[pwd]" id="user_pass" class="form-control input-lg required password" value="" size="20" tabindex="39" />
+                                    <input type="password" placeholder="<?php _e('Password','download-manager'); ?>" name="wpdm_login[pwd]" id="user_pass" class="form-control input-lg required password" value="" size="20" tabindex="39" />
                             </div>
                                 </div>
 
                                 <?php do_action("wpdm_login_form"); ?>
                                 <?php do_action("login_form"); ?>
 
-                                <p class="login-remember"><label><input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e('Remember Me','wpdmpro'); ?></label></p>
+                                <p class="login-remember"><label><input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e('Remember Me','download-manager'); ?></label></p>
                                 <p class="login-submit">
                                     <button type="submit" name="wp-submit" id="loginform-submit" class="btn btn-primary btn-block btn-lg"><i class="fa fa-key"></i>  Log In</button>
                                     <input type="hidden" name="redirect_to" value="<?php echo isset($redirect)?$redirect:$_SERVER['REQUEST_URI']; ?>" />
 
                                 </p>
 
-                                <?php _e('Forgot Password?','wpdmpro'); ?> <a href="<?php echo site_url('/wp-login.php?action=lostpassword'); ?>"><?php _e('Request New Password.','wpdmpro'); ?></a>
+                                <?php _e('Forgot Password?','download-manager'); ?> <a href="<?php echo site_url('/wp-login.php?action=lostpassword'); ?>"><?php _e('Request New Password.','download-manager'); ?></a>
 
                     </form>
 
@@ -97,7 +100,7 @@
                                             $('#loginform').prepend("<div class='alert alert-danger'><b>Error!</b><br/>Login failed! Please re-check login info.</div>");
                                             $('#loginform-submit').html(llbl);
                                         } else {
-                                            location.href = "<?php echo $redirect; ?>";
+                                            location.href = "<?php echo $log_redirect; ?>";
                                         }
                                     }
                                 });
@@ -189,6 +192,11 @@
         background: #35ADF5 !important;
         box-shadow: none;
         outline: none !important;
+    }
+    .w3eden.be-member .tab-content{
+        padding: 10px 0 0 0;
+        border: 0;
+        background: transparent !important;
     }
 </style>
 <script>

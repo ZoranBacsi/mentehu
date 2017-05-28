@@ -50,7 +50,7 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	// = Plugin Version =
 	// ==================
 	if ( ! defined( 'AI1EC_VERSION' ) ) {
-		define( 'AI1EC_VERSION', '2.1.5' );
+define( 'AI1EC_VERSION', '2.5.19' );
 	}
 
 	// ================
@@ -75,22 +75,12 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	if ( ! defined( 'AI1EC_CRON_VERSION' ) ) {
 		define( 'AI1EC_CRON_VERSION', AI1EC_VERSION );
 	}
-	if ( ! defined( 'AI1EC_N_CRON_VERSION' ) ) {
-		define( 'AI1EC_N_CRON_VERSION', AI1EC_VERSION );
-	}
-	if ( ! defined( 'AI1EC_N_CRON_FREQ' ) ) {
-		define( 'AI1EC_N_CRON_FREQ', 'daily' );
-	}
 	if ( ! defined( 'AI1EC_U_CRON_VERSION' ) ) {
 		define( 'AI1EC_U_CRON_VERSION', AI1EC_VERSION );
 	}
 	if ( ! defined( 'AI1EC_U_CRON_FREQ' ) ) {
 		define( 'AI1EC_U_CRON_FREQ', 'hourly' );
 	}
-	if ( ! defined( 'AI1EC_UPDATES_URL' ) ) {
-		define( 'AI1EC_UPDATES_URL', 'http://api.time.ly/plugin/pro/latest' );
-	}
-
 
 	// ==============
 	// = Plugin Url =
@@ -157,7 +147,7 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	if ( ! defined( 'AI1EC_TWIG_CACHE_PATH' ) ) {
 		define(
 		'AI1EC_TWIG_CACHE_PATH',
-		AI1EC_CACHE_PATH . DIRECTORY_SEPARATOR . 'twig' .
+		AI1EC_CACHE_PATH . 'twig' .
 			DIRECTORY_SEPARATOR
 		);
 	}
@@ -311,27 +301,13 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 		// = Convert http:// to webcal:// in AI1EC_SCRIPT_URL =
 		// =  (webcal:// protocol does not support https://)  =
 		// ====================================================
-		$webcal_url = str_replace( 'http://', 'webcal://', AI1EC_SCRIPT_URL );
+		$webcal_url = preg_replace( '/^https?:\/\//', 'webcal://', AI1EC_SCRIPT_URL );
 		define(
 			'AI1EC_EXPORT_URL',
 			$webcal_url . '&controller=ai1ec_exporter_controller' .
 				'&action=export_events'
 		);
 		unset( $webcal_url );
-	}
-
-	// =================
-	// = LOCATIONS API =
-	// =================
-	if ( ! defined( 'AI1EC_LOCATIONS_API' ) ) {
-		define( 'AI1EC_LOCATIONS_API', 'http://api.time.ly:32000' );
-	}
-
-	// =============
-	// = STATS API =
-	// =============
-	if ( ! defined( 'AI1EC_STATS_API' ) ) {
-		define( 'AI1EC_STATS_API', 'http://api.time.ly:31000' );
 	}
 
 	if ( ! defined( 'AI1EC_CA_ROOT_PEM' ) ) {
@@ -364,17 +340,6 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	if ( ! defined( 'AI1EC_ALTERNATIVE_ARCHIVE_URL' ) ) {
 		define( 'AI1EC_ALTERNATIVE_ARCHIVE_URL', 'ai1ec_events_archive' );
 	}
-
-	// ===============================
-	// = Time.ly redirection service =
-	// ===============================
-	if ( ! defined( 'AI1EC_REDIRECTION_SERVICE' ) ) {
-		define(
-			'AI1EC_REDIRECTION_SERVICE',
-			'http://aggregator.time.ly/ticket_redirect/'
-		);
-	}
-
 
 	// ===================
 	// = AI1EC Theme URL =
@@ -442,6 +407,12 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 		define( 'AI1EC_ADMIN_THEME_IMG_URL',  AI1EC_URL . '/public/admin/' . AI1EC_IMG_FOLDER );
 	}
 
+	// ====================
+	// = Add-ons list URL =
+	// ====================
+	if ( ! defined( 'AI1EC_TIMELY_ADDONS_URI' ) ) {
+		define( 'AI1EC_TIMELY_ADDONS_URI', 'http://time.ly/?action=addons_list' );
+	}
 
 	// Enable All-in-One-Event-Calendar to work in debug mode, which means,
 	// that cache is ignored, extra output may appear at places, etc.
@@ -459,7 +430,7 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 	if ( ! defined( 'AI1EC_CACHE' ) ) {
 		define( 'AI1EC_CACHE', true );
 	}
-	
+
 	if ( ! defined( 'AI1EC_DISABLE_FILE_CACHE' ) ) {
 		define( 'AI1EC_DISABLE_FILE_CACHE', false );
 	}
@@ -471,4 +442,52 @@ function ai1ec_initiate_constants( $ai1ec_base_dir, $ai1ec_base_url ) {
 		define( 'AI1EC_CACHE_UNAVAILABLE', 'AI1EC_CACHE_UNAVAILABLE' );
 	}
 
+	// Defines if backward (<= 2.1.5) theme compatibility is enabled or not.
+	if ( ! defined( 'AI1EC_THEME_COMPATIBILITY_FER' ) ) {
+		define( 'AI1EC_THEME_COMPATIBILITY_FER', true );
+	}
+
+	// Defines amount of needed free memory to compile LESS files.
+	if ( ! defined( 'AI1EC_LESS_MIN_AVAIL_MEMORY' ) ) {
+		define( 'AI1EC_LESS_MIN_AVAIL_MEMORY', '24M' );
+	}
+
+	// Defines if LESS files are parsed at every request
+	if ( ! defined( 'AI1EC_PARSE_LESS_FILES_AT_EVERY_REQUEST' ) ) {
+		define( 'AI1EC_PARSE_LESS_FILES_AT_EVERY_REQUEST', false );
+	}
+
+	// Defines a list of FER-enabled templates.
+	if ( ! defined( 'AI1EC_FER_ENABLED_TEMPLATES_LIST' ) ) {
+		define(
+			'AI1EC_FER_ENABLED_TEMPLATES_LIST',
+			'agenda,oneday,week,month,posterboard,stream'
+		);
+	}
+
+	// Defines API URL.
+	if ( ! defined( 'AI1EC_API_URL' ) ) {
+		define(
+			'AI1EC_API_URL',
+			'https://api.time.ly/api/'
+		);
+	}
+
+	// Defines Tickets checkout URL.
+	if ( ! defined( 'AI1EC_TICKETS_CHECKOUT_URL' ) ) {
+		define(
+			'AI1EC_TICKETS_CHECKOUT_URL',
+			'https://api.time.ly/events/{event_id}/checkout'
+		);
+	}
+
+	// ================================================
+	// = Force WordPress updates command link         =
+	// ================================================
+	if ( ! defined( 'AI1EC_FORCE_UPDATES_URL' ) ) {
+		define(
+			'AI1EC_FORCE_UPDATES_URL',
+			AI1EC_ADMIN_BASE_URL . '&ai1ec_force_updates=true'
+		);
+	}
 }

@@ -96,6 +96,23 @@ class Ai1ec_Theme_Loader {
 	}
 
 	/**
+	 * Runs the filter for the specified filename just once
+	 *
+	 * @param array $args
+	 * @param string $filename
+	 * @param boole $is_admin
+	 *
+	 * @return array
+	 */
+	public function apply_filters_to_args( array $args, $filename, $is_admin ) {
+		return  apply_filters(
+			self::ARGS_FILTER_PREFIX . $filename,
+			$args,
+			$is_admin
+		);
+	}
+
+	/**
 	 * Adds file search path to list. If an extension is adding this path, and
 	 * this is a custom child theme, inserts its path at the second index of the
 	 * list. Else pushes it onto the top of the stack.
@@ -113,6 +130,8 @@ class Ai1ec_Theme_Loader {
 			return false;
 		}
 
+		$path = apply_filters( 'ai1ec_theme_loader_add_path_file', $path, $url,  $target, $is_extension );
+		$url  = apply_filters( 'ai1ec_theme_loader_add_path_http', $url,  $path, $target, $is_extension );
 		// New element to insert into associative array.
 		$new = array( $path => $url );
 
@@ -234,10 +253,10 @@ class Ai1ec_Theme_Loader {
 		switch ( $ext ) {
 			case 'less':
 			case 'css':
-				$filename = substr( $filename, 0, $dot_position - 1);
-				$file     = $this->_registry->get(
+				$filename_base = substr( $filename, 0, $dot_position - 1);
+				$file          = $this->_registry->get(
 					'theme.file.less',
-					$filename,
+					$filename_base,
 					array_keys( $this->_paths['theme'] ) // Values (URLs) not used for CSS
 				);
 				break;
@@ -278,6 +297,7 @@ class Ai1ec_Theme_Loader {
 					$args,
 					$is_admin
 				);
+
 				if ( null === $paths ) {
 					$paths = $is_admin ? $this->_paths['admin'] : $this->_paths['theme'];
 					$paths = array_keys( $paths ); // Values (URLs) not used for Twig
@@ -316,6 +336,15 @@ class Ai1ec_Theme_Loader {
 			);
 		}
 		return $file;
+	}
+
+	/**
+	 * Reuturns loader paths.
+	 *
+	 * @return array Loader paths.
+	 */
+	public function get_paths() {
+		return $this->_paths;
 	}
 
 	/**
@@ -388,10 +417,12 @@ class Ai1ec_Theme_Loader {
 		}
 		$path          = false;
 		$scan_dirs     = array( AI1EC_TWIG_CACHE_PATH );
-		$filesystem    = $this->_registry->get( 'filesystem.checker' );
-		$upload_folder = $filesystem->get_ai1ec_static_dir_if_available();
-		if ( '' !== $upload_folder ) {
-			$scan_dirs[] = $upload_folder;
+		if ( apply_filters( 'ai1ec_check_static_dir', true ) ) {
+			$filesystem    = $this->_registry->get( 'filesystem.checker' );
+			$upload_folder = $filesystem->get_ai1ec_static_dir_if_available();
+			if ( '' !== $upload_folder ) {
+				$scan_dirs[] = $upload_folder;
+			}
 		}
 		foreach ( $scan_dirs as $dir ) {
 			if ( $this->_is_dir_writable( $dir ) ) {
@@ -416,13 +447,22 @@ class Ai1ec_Theme_Loader {
 	 * @return void Method doesn't return
 	 */
 	public function clean_cache_on_upgrade() {
+		if ( ! apply_filters( 'ai1ec_clean_cache_on_upgrade', true ) ) {
+			return;
+		}
 		$model_option = $this->_registry->get( 'model.option' );
 		if ( $model_option->get( self::OPTION_FORCE_CLEAN, false ) ) {
 			$model_option->set( self::OPTION_FORCE_CLEAN, false );
 			$cache = realpath( $this->get_cache_dir() );
-			if ( 0 !== strcmp( $cache, realpath( AI1EC_TWIG_CACHE_PATH ) ) ) {
-				$this->_registry->get( 'theme.compiler' )
-					->clean_and_check_dir( $cache );
+			if ( 0 === strcmp( $cache, realpath( AI1EC_TWIG_CACHE_PATH ) ) ) {
+				return;
+			}
+			if (
+				! $this->_registry->get(
+					'theme.compiler'
+				)->clean_and_check_dir( $cache )
+			) {
+				$this->_registry->get( 'twig.cache' )->set_unavailable( $cache );
 			}
 		}
 	}
@@ -455,7 +495,7 @@ class Ai1ec_Theme_Loader {
 			$environment = array(
 				'cache'            => $this->get_cache_dir(),
 				'optimizations'    => -1,   // all
-				'auto_reload'      => false,
+				'auto_reload'      => true,
 			);
 			if ( AI1EC_DEBUG ) {
 				$environment += array(
@@ -463,6 +503,7 @@ class Ai1ec_Theme_Loader {
 				);
 				// auto_reload never worked well
 				$environment['cache'] = false;
+				unset( $environment['auto_reload'] );
 			}
 			$environment = apply_filters(
 				'ai1ec_twig_environment',
@@ -526,6 +567,90 @@ class Ai1ec_Theme_Loader {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Switch to the given calendar theme.
+	 *
+	 * @param  array $theme            The theme's settings array
+	 * @param  bool  $delete_variables If true, deletes user variables from DB.
+	 *                                 Else replaces them with config file.
+	 */
+	public function switch_theme( array $theme, $delete_variables = true ) {
+		/* @var $option Ai1ec_Option */
+		$option = $this->_registry->get( 'model.option' );
+		$option->set(
+			'ai1ec_current_theme',
+			$theme
+		);
+		$option->delete( 'ai1ec_fer_checked' );
+		$lessphp = $this->_registry->get( 'less.lessphp' );
+		// If requested, delete theme variables from DB.
+		if ( $delete_variables ) {
+			$option->delete( Ai1ec_Less_Lessphp::DB_KEY_FOR_LESS_VARIABLES );
+		}
+		// Else replace them with those loaded from config file.
+		else {
+			$option->set(
+				Ai1ec_Less_Lessphp::DB_KEY_FOR_LESS_VARIABLES,
+				$lessphp->get_less_variable_data_from_config_file()
+			);
+		}
+		// Recompile CSS for new theme.
+		$css_controller = $this->_registry->get( 'css.frontend' );
+		$css_controller->invalidate_cache( null, false );
+	}
+
+	/**
+	 * Switches to default Vortex theme.
+	 *
+	 * @param bool $silent Whether notify admin or not.
+	 *
+	 * @return void Method does not return.
+	 */
+	public function switch_to_vortex( $silent = false ) {
+		$current_theme = $this->get_current_theme();
+		if (
+			isset( $current_theme['stylesheet'] ) &&
+			'vortex' === $current_theme['stylesheet']
+		) {
+			return $current_theme;
+		}
+		$root  = AI1EC_PATH . DIRECTORY_SEPARATOR . 'public' .
+			DIRECTORY_SEPARATOR . AI1EC_THEME_FOLDER;
+		$theme = array(
+			'theme_root' => $root,
+			'theme_dir'  => $root . DIRECTORY_SEPARATOR . 'vortex',
+			'theme_url'  => AI1EC_URL . '/public/' . AI1EC_THEME_FOLDER . '/vortex',
+			'stylesheet' => 'vortex',
+			'legacy'     => false
+		);
+		$this->switch_theme( $theme );
+		if ( ! $silent ) {
+			$this->_registry->get( 'notification.admin' )->store(
+				Ai1ec_I18n::__(
+					"Your calendar theme has been switched to Vortex due to a rendering problem. For more information, please enable debug mode by adding this line to your WordPress <code>wp-config.php</code> file:<pre>define( 'AI1EC_DEBUG', true );</pre>"
+				),
+				'error',
+				0,
+				array( Ai1ec_Notification_Admin::RCPT_ADMIN ),
+				true
+			);
+		}
+		return $theme;
+	}
+
+	/**
+	 * Returns current calendar theme.
+	 *
+	 * @return mixed Theme array or null.
+	 *
+	 * @throws Ai1ec_Bootstrap_Exception
+	 */
+	public function get_current_theme() {
+		return $this->_registry->get(
+			'model.option'
+		)->get( 'ai1ec_current_theme' );
 	}
 
 }

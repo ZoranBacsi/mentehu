@@ -1,111 +1,155 @@
-<p>The following is a collection of hints and suggestions to get the maximum out of the NGFB plugin.
-NGFB works great <em>right-out-of-the-box</em>, and you may decide to keep the default settings as-is,
-but modifying just a few options for your website will really help your click-through rate.</p>
+<p>NextGEN Facebook works great "<em>right out of the box</em>" &mdash; and you can keep the default plugin settings as-is &mdash; but taking a few minutes to review some basic options can help maximize your social presence and click-through rate. ;-)</p>
 
-<ol style="list-style-type:numeric">
+<dl>
+<dt><h3>Business Social Accounts (Optional)</h3></dt>
 
-<li>
-<p><strong>Create a Facebook Page, Twitter account, and Google+ account (or page) for your website</strong>
-if you haven't done so already. You can enter your website's social information on the NGFB General settings page:<p>
+<dd><img src="https://surniaulula.github.io/nextgen-facebook/assets/screenshot-05.png" style="max-width:50%;float:right;margin-left:30px;">
+<p>If you haven't already done so, create a Facebook Page, Twitter account, and Google+ account (or Page) for your website / business. You can enter your website / business social account information on the <strong>WordPress Settings &gt; Website Social Pages and Accounts</strong> settings page. The social account URLs are used by NextGEN Facebook for Open Graph, Schema, and other meta tag values &mdash; including the Organization social profiles in Schema JSON-LD markup (which may appear in Google Search results to highlight your website / business social pages).<p>
 
-<ul>
-<li>Enter your Facebook Page URL on the Authorship tab, in the Open Graph Settings.</li>
-<li>Enter your website's Twitter username on the Twitter tab, in the Publisher Settings.</li>
-<li>Enter the URL to your website's Google+ account (or page) on the Google / SEO tab, in the Publisher Settings.</li>
-</ul>
-</li>
-
-<li>
-<p><strong>Ask your authors to enter their Facebook, Google+, and Twitter contact information</strong> on their WordPress user profile page. 
-As mentioned above, the NGFB settings allow you to enter contact information for this website 
-(Facebook Page, website's Twitter account, etc.), but each author's contact information can also appear in the meta tags -- 
-if they complete their user profile. 
-Authors should also update their <a href="https://www.facebook.com/settings?tab=followers">Facebook Follower Settings</a> 
-to enable the Facebook Follow button on their shared content. 
-If the 'Plugin Settings to Display' option is set to 'All Plugin Options', additional WordPress profile contact fields 
-may be enabled from the NGFB Advanced settings page, but NGFB currently uses only the Facebook, Google+, 
-and Twitter contact values in the meta tags.</p>
-</li>
-
-<li>
-<p><strong>Review the Image Dimensions option on the NGFB General settings page</strong>. 
-If your original images are large enough, you should set the Open Graph Image Dimensions to 1200x1200px cropped or larger 
-(see the option's help popup for more information on Image Dimensions). 
-Images that are at least 1200px wide will be displayed more prominently by Facebook 
-(which uses the image provided by the Open Graph meta tags), so it's worth taking the time to make sure that
-<em>all</em> your original / full-size featured images are at least 1200px in width <em>and</em> height, 
-along with setting an Open Graph Image Dimension of 1200x1200px cropped.</p>
-</li>
-
-<li>
-<p><strong>Make sure Twitter Cards are enabled</strong> and, 
-if the 'Plugin Settings to Display' option is set to 'All Plugin Options', review the Twitter Cards Image Dimensions options. 
-The default Image Dimensions for Twitter Cards should be fine, but you may want to adjust them to match other 
-custom image sizes you might have (to cut down on the number of resized images created on disk).</p>
-</li>
-
-<li>
-<p><strong>Submit a few sample Posts and Pages to the 
-<a href="https://developers.facebook.com/tools/debug/">Facebook Debugger</a></strong> 
-to verify the accuracy of your Open Graph meta tags. 
-A link to the Facebook Debugger also available under the Validation Tools tab, 
-in the Social Settings metabox on Post / Page admin editing pages. 
-Submitting a URL to the Facebook Debugger also clears Facebook's cache (after clicking the "debug" button a few times), 
-so the link under the Validation Tools tab can be a useful resource.</p>
-</li>
-
-<li>
-<p><strong>Submit a Post / Page to the 
-<a href="http://developers.pinterest.com/rich_pins/validator/">Pinterest Rich Pin Validator</a></strong> 
-and request approval for Rich Pins. 
-Pinterest Rich Pins are an extension of Open Graph meta tags, but the Rich Pin Validator can be a little buggy, 
-so double check any errors with the Facebook Debugger to make sure they are actual / real errors. 
-Once approved, you can zoom a Pin to view the Rich Pin information.</p>
-</li>
-
-<li>
-<p><strong>Submit a few different Post Types and Pages to the 
-<a href="https://dev.twitter.com/docs/cards/validation/validator">Twitter Card Validator</a></strong> -- 
-<em>each card type must be approved individually</em>, so choose Posts and Pages with featured images, galleries, products, etc. 
-and submit an example of each. Here's a list of supported Twitter Cards, and how NGFB selects a Twitter Card based on the content.</p>
+<p><strong>Related information:</strong></p>
 
 <ul>
-	<li><strong>Product</strong> : Product information from a supported e-commerce plugin.</li>
-	<li><strong>Player</strong> : An embedded video in the content from YouTube, Vimeo, or Wistia.</li>
-	<li><strong>Gallery Card</strong> : A WordPress Media Library <em>gallery</em> or 
-		NextGEN Gallery <em>nggalbum</em>, <em>nggallery</em>, <em>nggtags</em> shortcodes.</li>
-	<li><strong>Photo Card</strong> : A WordPress Attachment Page or NextGEN Gallery ImageBrowser webpage.</li>
-	<li><strong>Large Image Summary Card</strong> : An image defined in the Post / Page Social Settings metabox, 
-		a Featured, Attached, or NextGEN Gallery <em>singlepic</em> shortcode image.</li>
-	<li><strong>Summary</strong> : All other webpages.</li>
+	<li><a href="https://www.facebook.com/business/learn/set-up-facebook-page">Setup a Facebook Business Page</a></li>
+	<li><a href="https://business.twitter.com/en/basics/create-a-twitter-business-profile.html">Create a Twitter Business Profile</a></li>
+	<li><a href="https://business.google.com/create">Add your Business to Google</a></li>
+	<li><a href="https://www.pinterest.com/business/create/">Create a Pinterest Business Account</a></li>
 </ul>
+</dd>
 
-<p>Links to additional validation tools and services are available in the Social Settings metabox on any Post / Page editing page. 
-Facebook caches information once from any given URL, so the Facebook Debugger can be a useful tool to refresh its cache 
-(unless the URL has already been shared, in which case the Facebook cache cannot be refreshed).</p>
-</li>
+<dt><h3>Author Social Accounts (Optional)</h3></dt>
 
-<li>
-<p><strong>Review the <a href="http://codex.ngfb.surniaulula.com/" target="">plugin codex</a> on the support website</strong>. 
-NGFB is a powerful tool, that can detect images and videos from a variety of sources (attached, featured, content, etc.), 
-along with e-commerce product information. It's worth noting some of the most common questions, to get an idea of what it can do,
-and some of the issues that may come up. Some of the most relevant / popular ones might be:</p>
+<dd><p>Ask your authors to enter their Facebook, Google+, and Twitter contact information on their WordPress user profile page. Each author's contact information can appear in various meta tag values and Schema JSON-LD markup &mdash; but only if they complete their user profile. All URLs found in the author's contact methods will be listed in the author  / Person social profile markup for Google.</p>
 
-<h4>FAQ</h4>
+<p><strong>Related information:</strong></p>
+
+<p>Authors should take a moment to update their <a href="https://www.facebook.com/settings?tab=followers">Facebook Follower Settings</a> to enable a <em>Follow</em> button on Facebook. In this way, authors can publish both private (for friends) and public (for friends and followers) content on their Facebook wall. When an author allows followers, Facebook will also link an author's name in shares to their profile page.</p>
+</dd>
+
+<dt><h3>Essential Plugin Settings</h3></dt>
+
+<dd><p>Review the site description on the <strong>NGFB &gt; Essential Settings</strong> page and select a default / fallback image ID or URL. The default image is used for index / archive pages, and as a fallback for Posts and Pages that do not have a suitable image featured, attached, or in their content.</p>
+</dd>
+
+<dt><h3>Interface and General Usage</h3></dt>
+
+<dd><p>On most WordPress admin pages you'll find a <em>Screen Options</em> drop-down tab on the upper right-hand side of the page. You can use these options to include/exclude certain NextGEN Facebook metaboxes and columns from the current page. For example, when viewing the Posts or Pages list you can use the <em>Screen Options</em> drop-down tab to hide / view the "NGFB Schema" and "NGFB Img" columns. You can also enable / disable these columns globally under the <strong>NGFB &gt; Advanced &gt; Custom Meta</strong> tab.</p>
+
+<p>When editing a Post, Page, category, tag, etc., you'll find a <em>Social Settings</em> metabox at the bottom of the page, where you can edit various social texts and image values. The "Preview" tab shows how this webpage might look like when shared on Facebook, the "Head Tags" tab shows a complete listing of meta tags created by NGFB, including additional Schema markup and LD+JSON for Google, and the "Validate" tab allows you to submit the current webpage URL to a number of test and validation tools.</p>
+</dd>
+
+<dt><h3>Social Image Dimensions</h3></dt>
+
+<dd><p>Review the <strong>WordPress Settings &gt; Social and SEO Image Dimensions</strong> values. If your original images are large enough, you should set the Open Graph image dimensions to 1200x630px cropped or larger. Images that are 600px and wider are displayed more prominently on Facebook, and 1200px or better is required to avoid upscaling (stretching) images for retina / high-PPI displays &mdash; so it's worth taking the time to make sure <em>all</em> your original images are at least 1200px wide, along with setting an Open Graph image dimension of 1200x630px cropped.</p>
+
+<table><tr>
+
+<td style="vertical-align:top;width:33%;height:320px;">
+<div style="margin:5px;overflow-y:scroll;height:100%;border-bottom:1px solid #333;">
+<blockquote style="display:block;margin:0;">
+<h4>Cropped or Uncropped?</h4>
+<p><strong>The difference between cropped and uncropped image dimensions is important to understand</strong> &mdash; when resizing <em>and</em> cropping an image, it will be resized so that <em>both</em> sides meet or exceed the image dimensions required and <em>the excess width or height is trimmed</em>. The resulting image will match the required dimensions <em>exactly</em> (having sacrificed parts of the image). When resizing without cropping, <em>the original aspect ratio is preserved</em>, and no parts of the image are sacrificed. The image will be resized so both the width and height fit <em>within</em> the designed size &mdash; so only one side of the image has to match the required size.</p>
+</blockquote>
+</div>
+</td>
+
+<td style="vertical-align:top;width:33%;height:320px;">
+<div style="margin:5px;overflow-y:scroll;height:100%;border-bottom:1px solid #333;">
+<blockquote style="display:block;margin:0;">
+<h4>Verify Dimensions?</h4>
+<p>NextGEN Facebook Pro can double-check that all images returned by WordPress match the dimensions it requested (as WordPress can return smaller and/or inaccurate images). This also insures that images which are too small and/or tall / wide for social sites are rejected in favour of other larger (and more suitable) images. You can enforce the image dimensions check by enabling the "Enforce Image Dimensions Check" option under the <strong>NGFB &gt; Advanced &gt; Integration</strong> tab.</p>
+</blockquote>
+</div>
+</td>
+
+<td style="vertical-align:top;width:33%;height:320px;">
+<div style="margin:5px;overflow-y:scroll;height:100%;border-bottom:1px solid #333;">
+<blockquote style="display:block;margin:0;">
+<h4>Upscale / Enlarge Images?</h4>
+<p>WordPress does not upscale (enlarge) images &mdash; it only creates smaller images from larger full-size originals. Upscaled images do not look as sharp or clean when upscaled, and if enlarged too much, images look fuzzy and unappealing &mdash; not something you want to publish on social sites. NextGEN Facebook Pro includes an optional module that allows you to upscale social images in the WordPress Media Library (up to a maximum upscale percentage). For example, a full-size image of 100x200px could be upscaled up to 150x300px using a maximum of 50%, but resizing any larger would fail. If you feel strongly that upscaling small images is something you require (instead of uploading larger full-size originals), you can enable this feature under the <strong>NGFB &gt; Advanced &gt; Integration</strong> tab.</p>
+</blockquote>
+</div>
+</td>
+
+</tr></table>
+</dd>
+
+<dt><h3>Validation Tools</h3></dt>
+
+<dd><p>Submit a few sample Posts, Pages, etc. to the <a href="https://developers.facebook.com/tools/debug/">Facebook Debugger</a></strong> to verify your Open Graph meta tags. A link to the Facebook Debugger is available under the Validate tab in the <em>Social Settings</em> metabox (on post, term, and user editing pages). Submitting a URL to the Facebook Debugger can also be used to clear Facebook's cache (after clicking the "Fetch new scrape information" button a few times). If you're validating older posts / pages, pre-dating the activation of NGFB, <a href="https://wpsso.com/docs/plugins/wpsso/faqs/why-does-facebook-show-the-wrong-image-text/">Facebook may continue to use the old meta tag values from its cache</a> even after fetching the new scrape information.</p>
+
+<p>Submit a Post / Page to the <a href="http://developers.pinterest.com/rich_pins/validator/">Pinterest Rich Pin Validator</a> and request approval for Rich Pins. Pinterest Rich Pins are an extension of Open Graph (and Schema) meta tags, but the Rich Pin Validator can be a little buggy, so double check any errors with the Facebook Debugger to make sure they are actual / real errors.</p>
+
+<p>Submit index / archive and Post / Page URLs to the <a href="https://validator.w3.org/">W3C Markup Validation Service</a> to verify the HTML of your theme templates. Social crawlers expect properly coded HTML markup that conforms to current HTML / XHTML standards. If your webpages contain serious markup errors, social and/or search engine crawlers may be unable to parse your webpage content. Fix and/or report any template markup issues with your theme author.</p>
+
+<p><strong>Related information:</strong></p>
+
 <ul>
-	<li><a href="http://surniaulula.com/codex/plugins/nextgen-facebook/faq/can-i-use-other-social-sharing-buttons/">Can I use other social sharing buttons?</a></li>
-	<li><a href="http://surniaulula.com/codex/plugins/nextgen-facebook/faq/how-does-ngfb-find-detect-select-images/">How does NGFB find / detect / select images?</a></li>
-	<li><a href="http://surniaulula.com/codex/plugins/nextgen-facebook/faq/why-doesnt-facebook-show-the-correct-image/">Why doesn’t Facebook show the correct image?</a></li>
-	<li>More <a href="http://codex.ngfb.surniaulula.com/" target="">Frequently Asked Questions</a>...</li>
+<li><a href="https://developers.facebook.com/tools/debug/og/object/">Facebook Open Graph Object Debugger</a></li>
+<li><a href="https://developers.pinterest.com/tools/url-debugger/">Pinterest Rich Pin Validator</a></li>
+<li><a href="https://cards-dev.twitter.com/validator">Twitter Card Validator</a></li>
+<li><a href="https://search.google.com/structured-data/testing-tool/u/0/">Google Structured Data Testing Tool</a> &mdash; validates meta tags and Schema markup in theme templates.</li>
+<li><a href="https://validator.w3.org/">W3C Markup Validation Service</a> &mdash; validates the syntax of HTML markup in theme templates.</li>
+<li><a href="https://www.webpagetest.org/">Webpage Performance Test</a></li>
 </ul>
+</dd>
 
-<h4>Notes</h4>
+<dt><h3>Documentation and Resources</h3></dt>
+
+<dd><p>NextGEN Facebook is a powerful tool and social framework that detects images and videos from a variety of sources (attached, featured, content, etc.), along with 3rd party plugins and e-commerce product information. It's worth noting some of the most common questions, to get an idea of what NextGEN Facebook can do, and some of the issues that may come up. Some of the most relevant / popular frequently asked questions are:</p>
+
+<h4>Frequently Asked Questions</h4>
+
 <ul>
-	<li><a href="http://surniaulula.com/codex/plugins/nextgen-facebook/notes/debugging-and-problem-solving/">Debugging and Problem Solving</a></li>
-	<li><a href="http://surniaulula.com/codex/plugins/nextgen-facebook/notes/performance-tuning/">Performance Tuning</a></li>
-	<li><a href="http://surniaulula.com/codex/plugins/nextgen-facebook/notes/working-with-image-attachments/">Working with Image Attachments</a></li>
-	<li>More <a href="http://notes.ngfb.surniaulula.com/" target="">Notes</a>...</li>
+	<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/faqs/social-sharing-buttons/can-i-use-other-social-sharing-buttons/">Can I use other social sharing buttons?</a></li>
+	<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/faqs/how-does-ngfb-find-detect-select-images/">How does NextGEN Facebook find / detect / select images?</a></li>
+	<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/faqs/why-does-facebook-show-the-wrong-image-text/">Why does Facebook show the wrong image / text?</a></li>
+	<li>More <a href="https://surniaulula.com/docs/plugins/nextgen-facebook/faqs/">frequently asked questions</a>...</li>
 </ul>
-</li>
 
-</ol>
+<h4>Other Notes</h4>
+
+<ul>
+	<li><a href="https://wpsso.com/docs/plugins/nextgen-facebook/installation/">Installation and Setup</a></li>
+	<ul>
+		<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/installation/performance-tuning/">Performance Tuning</a></li>
+		<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/installation/debugging-and-problem-solving/">Debugging and Problem Solving</a></li>
+	</ul>
+	<li><a href="https://wpsso.com/docs/plugins/wpsso/notes/">Documentation and Notes</a></li>
+	<ul>
+		<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/notes/working-with-image-attachments/">Working with Image Attachments</a></li>
+		<li><a href="https://surniaulula.com/docs/plugins/nextgen-facebook/notes/developer/">Developer Resources and Example Filters</a></li>
+	</ul>
+</ul>
+
+<p>Comments and suggestions to improve the plugin features are always welcome &mdash; please <a href="http://support.surniaulula.com/support/home">open a ticket if you have any ideas you would like to share with us</a>. ;-)</p>
+
+</dd>
+
+<dt><h3>Developers and Website Designers</h3></dt>
+
+<dd><p>Website developers / designers will probably want to consider a few additional settings...</p>
+
+<!-- Apply WordPress Content Filters -->
+<p>If your site uses shortcodes, you'll want to enable the "Apply WordPress Content Filters" option to expand shortcodes in the content for description text and/or image meta tags (the content can be searched for images).</p>
+
+<!-- NGFB_HIDE_ALL_WARNINGS -->
+<p>NextGEN Facebook may display warning notices if images are too small for the dimensions required. If you are using WordPress v4.2 or better, these notices can be dismissed individually. You can also define the <code>NGFB_HIDE_ALL_WARNINGS</code> constant as true to auto-hide all dismissable warnings.</p>
+
+<!-- Show NGFB Img / Desc Columns -->
+<p>Users can hide / unhide the "NGFB Img" and "NGFB Desc" columns using the <em>Screen Options</em> drop-down tab, but you can also enable / disable these columns globally under the <strong>NGFB &gt; Advanced &gt; Custom Meta</strong> tab.</p>
+
+<!-- Custom Field Names -->
+<p>If your theme uses custom fields to manage additional image and video URLs (and embed video HTML), you can enter those custom field names (aka post meta names) under the <strong>NGFB &gt; Advanced &gt; Social Settings</strong> tab.</p>
+
+<!-- Check for Duplicate Meta Tags -->
+<p>If you know that your theme header templates do not include any social meta tags, and no other plugin is adding social meta tags to your webpages, then you could disable the "Check for Duplicate Meta Tags" option.</p>
+
+<!-- head Attributes Filter Hook -->
+<p>NextGEN Facebook modifies the <code>&lt;head&gt;</code> element attributes to add a Schema item type for the <code>&lt;head&gt;</code> section only. To apply the Schema item type for the whole page instead, change the "&lt;head&gt; Attributes Filter Hook" value from 'head_attributes' to 'language_attributes'.</p>
+
+<!-- NGFB_IMAGE_UPSCALE_TEST -->
+<p>You can <em>simulate</em> the NextGEN Facebook image upscaling feature, to generate all the necessary success / failure notice messages, without having WordPress actually save the resulting images &mdash; define the <code>NGFB_IMAGE_UPSCALE_TEST</code> constant as true, or hook the 'ngfb_image_upscale_test' filter and return true. Other constants and filters are also available to upscale all images (not just the NextGEN Facebook image sizes) and adjust the maximum percentage.</p>
+
+</dd>
+
+</dl>

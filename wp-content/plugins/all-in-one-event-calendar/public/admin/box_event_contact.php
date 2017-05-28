@@ -22,7 +22,12 @@
 							id="ai1ec_contact_name"
 							class="ai1ec-form-control"
 							value="<?php echo esc_attr( $contact_name ); ?>">
+					</td>					
+					<?php if ( null !== $submitter_html ): ?>
+					<td rowspan="4" style="vertical-align: top;">
+						<?php echo $submitter_html; ?>
 					</td>
+					<?php endif; ?>
 				</tr>
 				<tr>
 					<td>
@@ -53,14 +58,14 @@
 				<tr>
 					<td>
 						<label for="ai1ec_contact_url">
-							<?php _e( 'External URL:', AI1EC_PLUGIN_NAME ); ?>
+							<?php _e( 'Website URL:', AI1EC_PLUGIN_NAME ); ?>
 						</label>
 					</td>
 					<td>
 						<input type="text" name="ai1ec_contact_url"
 							id="ai1ec_contact_url"
 							class="ai1ec-form-control"
-							value="<?php echo esc_attr( $event->get_nonloggable_url( $contact_url ) ); ?>">
+							value="<?php echo esc_attr( $contact_url ); ?>">
 					</td>
 				</tr>
 			</tbody>

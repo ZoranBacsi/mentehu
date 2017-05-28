@@ -1,46 +1,55 @@
 <?php
 /*
-Plugin Name: Polls by OpinionStage
+Plugin Name: Poll, Survey, Quiz & Contact Form Builder
 Plugin URI: http://www.opinionstage.com
-Description: Adds a highly engaging social polling system to your site. Easily add polls to any post/page or to your sites sidebar.
-Version: 11.6.0
+Description: Add a highly engaging poll, survey, quiz or contact form builder to your site. You can add the poll, survey, quiz or form to any post/page or to the sidebar.
+Version: 18.0.0
 Author: OpinionStage.com
 Author URI: http://www.opinionstage.com
+Text Domain: social-polls-by-opinionstage
 */
 
 /* --- Static initializer for Wordpress hooks --- */
 
 define('OPINIONSTAGE_SERVER_BASE', "www.opinionstage.com"); /* Don't include the protocol, added dynamically */
-define('OPINIONSTAGE_WIDGET_VERSION', '11.6.0');
-define('OPINIONSTAGE_WIDGET_PLUGIN_NAME', 'Polls by OpinionStage');
+define('OPINIONSTAGE_WIDGET_VERSION', '18.0.0');
+define('OPINIONSTAGE_WIDGET_PLUGIN_NAME', 'Poll, Survey, Quiz & Contact Form Builder');
 define('OPINIONSTAGE_WIDGET_API_KEY', 'wp35e8');
-define('OPINIONSTAGE_WIDGET_SHORTCODE', 'socialpoll');
+define('OPINIONSTAGE_OPTIONS_KEY', 'opinionstage_widget');
+define('OPINIONSTAGE_POLL_SHORTCODE', 'socialpoll');
+define('OPINIONSTAGE_WIDGET_SHORTCODE', 'os-widget');
+define('OPINIONSTAGE_FEED_SHORTCODE', 'os-section');
+define('OPINIONSTAGE_PLACEMENT_SHORTCODE', 'osplacement');
 define('OPINIONSTAGE_WIDGET_UNIQUE_ID', 'social-polls-by-opinionstage');
 define('OPINIONSTAGE_WIDGET_UNIQUE_LOCATION', __FILE__);
+define('OPINIONSTAGE_WIDGET_MENU_NAME', 'Poll, Survey, Quiz, Form');
+define('OPINIONSTAGE_LOGIN_PATH', OPINIONSTAGE_SERVER_BASE."/integrations/wordpress/new");
+define('OPINIONSTAGE_API_PATH', OPINIONSTAGE_SERVER_BASE."/api/v1"); 
 
+require_once(WP_PLUGIN_DIR."/".OPINIONSTAGE_WIDGET_UNIQUE_ID."/opinionstage-utility-functions.php");
 require_once(WP_PLUGIN_DIR."/".OPINIONSTAGE_WIDGET_UNIQUE_ID."/opinionstage-functions.php");
+require_once(WP_PLUGIN_DIR."/".OPINIONSTAGE_WIDGET_UNIQUE_ID."/opinionstage-ajax-functions.php");
+require_once(WP_PLUGIN_DIR."/".OPINIONSTAGE_WIDGET_UNIQUE_ID."/opinionstage-article-placement-functions.php");
 require_once(WP_PLUGIN_DIR."/".OPINIONSTAGE_WIDGET_UNIQUE_ID."/opinionstage-widget.php");
-
 
 /* --- Static initializer for Wordpress hooks --- */
 
-add_shortcode(OPINIONSTAGE_WIDGET_SHORTCODE, 'opinionstage_add_poll');
+// Check if OpinionStage plugin already installed.
+if (opinionstage_check_plugin_available('opinionstage_popup')) {
+	add_action('admin_notices', 'opinionstage_other_plugin_installed_warning');
+} else {
+	add_shortcode(OPINIONSTAGE_POLL_SHORTCODE, 'opinionstage_add_poll_or_set');
+	add_shortcode(OPINIONSTAGE_WIDGET_SHORTCODE, 'opinionstage_add_widget');
+	add_shortcode(OPINIONSTAGE_FEED_SHORTCODE, 'opinionstage_add_feed');
+	add_shortcode(OPINIONSTAGE_PLACEMENT_SHORTCODE, 'opinionstage_add_placement');
 
-// Post creation/edit hooks
-add_action('admin_footer-post-new.php', 'opinionstage_poll_footer_admin');
-add_action('admin_footer-post.php', 'opinionstage_poll_footer_admin');
-add_action('admin_footer-page-new.php', 'opinionstage_poll_footer_admin');
-add_action('admin_footer-page.php', 'opinionstage_poll_footer_admin');
+	add_action('plugins_loaded', 'opinionstage_init');
 
-// Post creation/edit hook for visual editing
-add_action('init', 'opinionstage_poll_tinymce_addbuttons');
+	// Side menu
+	add_action('admin_menu', 'opinionstage_poll_menu');
+	add_action('admin_enqueue_scripts', 'opinionstage_load_scripts');
 
-// Side menu
-add_action('admin_menu', 'opinionstage_poll_menu');
-
-add_action('admin_enqueue_scripts', 'opinionstage_load_scripts');
-
-// Insert poll popup 
-add_filter('admin_footer_text', 'opinionstage_add_poll_popup');
-
+	// Add fly-out to header
+	add_action('wp_head', 'opinionstage_add_flyout');
+}
 ?>

@@ -1,120 +1,137 @@
 <?php
+	// Sidebar widget class for embeding the Opinion Stage sidebar placement
 	class OpinionStageWidget extends WP_Widget {
-		function OpinionStageWidget() {
-			$widget_ops = array('classname' => 'opinionstage_widget', 'description' => __('Adds a highly engaging social polling system to your widget section.', OPINIONSTAGE_WIDGET_UNIQUE_ID));
-			$this->WP_Widget('opinionstage_widget', __('Polls by Opinion Stage', OPINIONSTAGE_WIDGET_UNIQUE_ID), $widget_ops);
+		function __construct() {		
+			// register new widget
+			$widget_ops = array(
+				'classname' => 'opinionstage_widget', 
+				'description' => __('Adds a highly engaging polls to your widget section.', OPINIONSTAGE_WIDGET_UNIQUE_ID)
+			);
+			parent::__construct(
+				'opinionstage_widget',
+				__( 'Opinion Stage Sidebar Widget', OPINIONSTAGE_WIDGET_UNIQUE_ID ),
+				$widget_ops
+			);
 		}
 
+		/*
+		 * Returns the widget content - including the title and the sidebar placement content (once enabled)
+		 */
 		function widget($args, $instance) {
 			extract($args);
 			echo $before_widget;
 			$title = @$instance['title'];
-			$id    = @$instance['id'];
-			$type  = @$instance['type'];
-			$type  = !isset($type) || empty($type) ? 0 : $type;
-			if (!empty($title)) echo $before_title . apply_filters('widget_title', $title) . $after_title;
-			if (!empty($id) && !empty($type)) echo do_shortcode('[' . OPINIONSTAGE_WIDGET_SHORTCODE . ' id="' . $id . '" type="' . $type . '"]');
+			$os_options = (array) get_option(OPINIONSTAGE_OPTIONS_KEY);	
+
+			// Show the title once widget is enabled 
+			if (!empty($title) && $os_options['sidebar_placement_active'] == 'true') echo $before_title . apply_filters('widget_title', $title) . $after_title;
+
+			// Add the placement shortcode once widget is enabled
+			if (!empty($os_options["sidebar_placement_id"]) && $os_options['sidebar_placement_active'] == 'true') {
+				echo opinionstage_create_placement_embed_code($os_options["sidebar_placement_id"]);
+			}	
+			
 			echo $after_widget;
 		}
 
+		/*
+		 * Updates the widget settings (title and enabled flag)
+		 */
 		function update($new_instance, $old_instance) {
 			$instance = $old_instance;
 			$instance['title'] = strip_tags($new_instance['title']);
-			$instance['id']    = strip_tags($new_instance['id']);
-			$instance['type']  = strip_tags($new_instance['type']);
+			$instance['enabled'] = strip_tags($new_instance['enabled']);
+			$os_options = (array) get_option(OPINIONSTAGE_OPTIONS_KEY);	
+			$os_options['sidebar_placement_active'] = ('1' == $instance['enabled']);
+			update_option(OPINIONSTAGE_OPTIONS_KEY, $os_options);	
 			return $instance;
 		}
 
+		/*
+		 * Generates the admin form for the widget.
+		 */
 		function form($instance) {
+			$os_options = (array) get_option(OPINIONSTAGE_OPTIONS_KEY);	
 			$title = isset($instance['title']) ? esc_attr($instance['title']) : '';
-			$id    = isset($instance['id'])    ? esc_attr($instance['id'])    : '';
-			$type  = isset($instance['type'])  ? esc_attr($instance['type'])  : 'poll';
+			$enabled = $os_options['sidebar_placement_active'] == 'true' ? '1' : '';			
+			if (empty($os_options["uid"])) {
+				$first_time = true;	
+			} else {
+				$first_time = false;
+			}
+			
 			?>
-				<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', OPINIONSTAGE_WIDGET_UNIQUE_ID); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
-				
-				<p>
-					<label for="<?php echo $this->get_field_id('type'); ?>"><?php _e('Content type:', OPINIONSTAGE_WIDGET_UNIQUE_ID); ?></label>
-					<select class="widefat" name="<?php echo $this->get_field_name('type'); ?>" id="<?php echo $this->get_field_id('type'); ?>">
-						<option value="poll" <?php selected($type, 'poll') ?>>Poll</option>
-						<option value="set" <?php selected($type, 'set') ?>>Set</option>
-						<option value="container" <?php selected($type, 'container') ?>>Placement</option>
-						<option value="0" <?php selected($type, 0) ?>>Do not display anything (Disable)</option>
-					</select>
-				</p>
-				
-				<p>
-					<label for="<?php echo $this->get_field_id('id'); ?>">
-						<span class="pollWrp" style="display: none;">
-							<?php _e('Poll ID:', OPINIONSTAGE_WIDGET_UNIQUE_ID); ?>
-						</span>
-						<span class="setWrp" style="display: none;">
-							<?php _e('Set ID:', OPINIONSTAGE_WIDGET_UNIQUE_ID); ?>
-						</span>
-						<span class="containerWrp" style="display: none;">
-							<?php _e('Container ID:', OPINIONSTAGE_WIDGET_UNIQUE_ID); ?>
-						</span>
-					</label>
-					<input class="widefat" id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>" type="text" value="<?php echo $id; ?>" />
-				</p>
-				
-				<div class="pollWrp" style="display: none;">
-					<p><?php echo opinionstage_create_link('Locate the Poll ID', 'dashboard', ''); ?></p>
-				</div>
-				<div class="setWrp" style="display: none;">
-					<p><?php echo opinionstage_create_link('Locate the Set ID', 'dashboard', 'tab=sets'); ?></p>
-				</div>
-				<div class="containerWrp" style="display: none;">
-					<p><?php echo opinionstage_create_link('Locate the Placement ID', 'dashboard', 'tab=containers'); ?></p>
-				</div>
-				
 				<script type="text/javascript">
-					jQuery(function ($)
-					{
-						var $pollWrp = $(".pollWrp");
-						var $setWrp = $(".setWrp");
-						var $containerWrp = $(".containerWrp");
-						$("#<?php echo $this->get_field_id('type'); ?>").change(function (e)
-						{
-							var $this = $(this);
-							var val = $this.val();
-							if (val == "poll")
-							{
-								$containerWrp.stop(false, true).fadeOut(0);
-								$setWrp.stop(false, true).fadeOut(0, function ()
-								{
-									$pollWrp.stop(false, true).fadeIn(e.isTrigger ? 0 : "fast");
-								});
+					jQuery(document).ready(function($) {
+						var callbackURL = function() {
+							return "<?php echo $url = get_admin_url('', '', 'admin') . 'admin.php?page='.OPINIONSTAGE_WIDGET_UNIQUE_ID.'/opinionstage-callback.php' ?>";
+						};
+						$('.opinionstage-sidebar-widget').on('click', '.start-login', function(){
+							var emailInput = $('#os-email');
+							var email = $(emailInput).val();
+							if (email == emailInput.data('watermark')) {
+								email = "";
 							}
-							else if (val == "set")
-							{
-								$containerWrp.stop(false, true).fadeOut(0);
-								$pollWrp.stop(false, true).fadeOut(0, function ()
-								{
-									$setWrp.stop(false, true).fadeIn(e.isTrigger ? 0 : "fast");
-								});					
-							}
-							else if (val == "container")
-							{
-								$setWrp.stop(false, true).fadeOut(0);
-								$pollWrp.stop(false, true).fadeOut(0, function ()
-								{
-									$containerWrp.stop(false, true).fadeIn(e.isTrigger ? 0 : "fast");
-								});					
-							}
-						}).trigger("change");
-						$(window).load(function ()
-						{
-							$("#<?php echo $this->get_field_id('type'); ?>").trigger("change");
+							var new_location = "http://" + "<?php echo OPINIONSTAGE_LOGIN_PATH.'?callback=' ?>" + encodeURIComponent(callbackURL()) + "&email=" + email; 
+							window.location = new_location;
 						});
-					});
+						
+						$('.opinionstage-sidebar-widget').on('click', '.switch-email', function(){
+							var new_location = "http://" + "<?php echo OPINIONSTAGE_LOGIN_PATH.'?callback=' ?>" + encodeURIComponent(callbackURL()); 
+							window.location = new_location;
+						});
+						
+						$('#os-email').keypress(function(e){
+							if (e.keyCode == 13) {
+								$('#os-start-login').click();
+							}
+						});	
+					});		
 				</script>				
+			
+				<div class="opinionstage-sidebar-widget">	
+					<?php if($first_time) {?>	    	
+						<p>Connect WordPress with Opinion Stage to enable the widget</p>
+						<div class="os-icon icon-os-poll-client"></div>
+						<input id="os-email" type="text" value="" class="watermark os-email" data-watermark="Enter Your Email"/>
+						<a href="javascript:void(0)" class="os-button start-login" id="os-start-login">Connect</a>	    	    			
+					<?php } else { ?>					
+						<div class="opinionstage-sidebar-connected">	
+							<div class="os-icon icon-os-form-success"></div>
+							<div class="opinionstage-connected-info">
+								<div class="opinionstage-connected-title"><b>You are connected</b> to Opinion Stage with:</div>
+								<input id="os-email" type="text" disabled="disabled" value="<?php echo($os_options["email"]) ?>"/>
+								<a href="javascript:void(0)" class="switch-email" id="os-switch-email" >Switch Account</a>
+							</div>
+						</div>
+						<p>
+							<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', OPINIONSTAGE_WIDGET_UNIQUE_ID); ?></label>
+							<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" class="watermark" data-watermark="Enter the title here" value="<?php echo $title; ?>" />
+						</p>
+						<div class="opinionstage-sidebar-actions">
+							<div class="opinionstage-sidebar-enabled">
+								<input type="checkbox" id="<?php echo $this->get_field_id('enabled'); ?>" name="<?php echo $this->get_field_name('enabled'); ?>" value="1" <?php echo($enabled == '1' ? "checked" : "") ?> />
+								<label for="<?php echo $this->get_field_id('enabled'); ?>">Enabled</label>
+							</div>							
+							<div class="opinionstage-sidebar-config">
+								<a href="<?php echo opinionstage_sidebar_placement_edit_url('content'); ?>" target="_blank" class='opinionstage-blue-bordered-btn'>EDIT CONTENT</a> 
+								<a href="<?php echo opinionstage_sidebar_placement_edit_url('settings'); ?>" class='opinionstage-blue-bordered-btn opinionstage-edit-settings <?php echo($first_time ? "disabled" : "")?>' target="_blank">
+									<div class="os-icon icon-os-common-settings"></div>													
+								</a>																		
+							</div>
+						</div>
+					<?php } ?>
+				</div>																		
 			<?php
 		}
 	}
 
+	/*
+	 * Register Sidebar Placement Widget
+	 */
 	function opinionstage_init_widget() {
 		register_widget('OpinionStageWidget');
+		opinionstage_add_stylesheet();
 	}
 
 	add_action('widgets_init', 'opinionstage_init_widget');

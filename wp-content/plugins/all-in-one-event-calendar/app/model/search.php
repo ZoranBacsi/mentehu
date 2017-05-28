@@ -17,11 +17,25 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	private $_dbi = null;
 
 	/**
+	 * Caches the ids of the last 'between' query
+	 *
+	 * @var array
+	 */
+	protected $_ids_between_cache = array();
+
+	/**
 	 * Creates local DBI instance.
 	 */
 	public function __construct( Ai1ec_Registry_Object $registry ){
 		parent::__construct( $registry );
 		$this->_dbi = $this->_registry->get( 'dbi.dbi' );
+	}
+
+	/**
+	 * @return array
+	 */
+	public function get_cached_between_ids() {
+		return $this->_ids_between_cache;
 	}
 
 	/**
@@ -54,11 +68,21 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	 * @param Ai1ec_Date_Time $start Limit to events starting after this.
 	 * @param Ai1ec_Date_Time $end   Limit to events starting before this.
 	 * @param array $filter          Array of filters for the events returned:
-	 *                                   ['cat_ids']  => list of category IDs;
-	 *                                   ['tag_ids']  => list of tag IDs;
-	 *                                   ['post_ids'] => list of post IDs;
-	 *                                   ['auth_ids'] => list of author IDs.
+	 *                                   ['cat_ids']      => list of category IDs;
+	 *                                   ['tag_ids']      => list of tag IDs;
+	 *                                   ['post_ids']     => list of post IDs;
+	 *                                   ['auth_ids']     => list of author IDs;
+	 *                                   ['instance_ids'] => list of events
+	 *                                                       instance ids;
 	 * @param bool $spanning         Also include events that span this period.
+	 * @param bool $single_day       This parameter is added for oneday view.
+	 *                               Query should find events lasting in
+	 *                               particular day instead of checking dates
+	 *                               range. If you need to call this method
+	 *                               with $single_day set to true consider
+	 *                               using method get_events_for_day. This
+	 *                               parameter matters only if $spanning is set
+	 *                               to false.
 	 *
 	 * @return array List of matching event objects.
 	 */
@@ -66,7 +90,8 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 		Ai1ec_Date_Time $start,
 		Ai1ec_Date_Time $end,
 		array $filter = array(),
-		$spanning     = false
+		$spanning     = false,
+		$single_day   = false
 	) {
 		// Query arguments
 		$args = array(
@@ -93,6 +118,8 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 
 		if ( $spanning ) {
 			$spanning_string = 'i.end > %d AND i.start < %d ';
+		} elseif ( $single_day ) {
+			$spanning_string = 'i.end >= %d AND i.start <= %d ';
 		} else {
 			$spanning_string = 'i.start BETWEEN %d AND %d ';
 		}
@@ -128,7 +155,9 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 				`e`.`ical_source_url`,
 				`e`.`ical_organizer`,
 				`e`.`ical_contact`,
-				`e`.`ical_uid`
+				`e`.`ical_uid`,
+				`e`.`longitude`,
+				`e`.`latitude`
 			FROM
 				' . $this->_dbi->get_table_name( 'ai1ec_events' ) . ' e
 				INNER JOIN
@@ -157,12 +186,22 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 		$events = $this->_dbi->get_results( $query, ARRAY_A );
 
 		$id_list = array();
+		$id_instance_list = array();
 		foreach ( $events as $event ) {
-			$id_list[] = $event['post_id'];
+
+			if ( ! in_array( $event['post_id'], $id_list, true ) ) {
+				$id_list[] = $event['post_id'];
+			}
+
+			$id_instance_list[] = array(
+				'id'          => $event['post_id'],
+				'instance_id' => $event['instance_id'],
+			);
 		}
 
 		if ( ! empty( $id_list ) ) {
 			update_meta_cache( 'post', $id_list );
+			$this->_ids_between_cache = $id_instance_list;
 		}
 
 		foreach ( $events as &$event ) {
@@ -185,16 +224,19 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	 * @param int $limit          return a maximum of this number of items
 	 * @param int $page_offset    offset the result set by $limit times this number
 	 * @param array $filter       Array of filters for the events returned.
-	 *                            ['cat_ids']   => non-associatative array of category IDs
-	 *                            ['tag_ids']   => non-associatative array of tag IDs
-	 *                            ['post_ids']  => non-associatative array of post IDs
-	 *                            ['auth_ids']  => non-associatative array of author IDs
+	 *                            ['cat_ids']      => non-associatative array of category IDs
+	 *                            ['tag_ids']      => non-associatative array of tag IDs
+	 *                            ['post_ids']     => non-associatative array of post IDs
+	 *                            ['auth_ids']     => non-associatative array of author IDs
+	 *                            ['instance_ids'] => non-associatative array of author IDs
 	 * @param int $last_day       Last day (time), that was displayed.
 	 *                            NOTE FROM NICOLA: be careful, if you want a query with events
 	 *                            that have a start date which is greater than today, pass 0 as
 	 *                            this parameter. If you pass false ( or pass nothing ) you end up with a query
 	 *                            with events that finish before today. I don't know the rationale
 	 *                            behind this but that's how it works
+	 * @param bool $unique        Whether display only unique events and don't
+	 *                            duplicate results with other instances or not.
 	 *
 	 * @return array              five-element array:
 	 *                              ['events'] an array of matching event objects
@@ -203,12 +245,13 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	 *                              ['date_first'] UNIX timestamp (date part) of first event
 	 *                              ['date_last'] UNIX timestamp (date part) of last event
 	 */
-	function get_events_relative_to(
+	public function get_events_relative_to(
 		$time,
 		$limit       = 0,
 		$page_offset = 0,
 		$filter      = array(),
-		$last_day    = false
+		$last_day    = false,
+		$unique      = false
 	) {
 		$localization_helper = $this->_registry->get( 'p28n.wpml' );
 		$settings = $this->_registry->get( 'model.settings' );
@@ -216,6 +259,7 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 
 		// Even if there ARE more than 5 times the limit results - we shall not
 		// try to fetch and display these, as it would crash system
+		$limit = preg_replace('/\D/', '', $limit);
 		$upper_boundary = $limit;
 		if (
 			$settings->get( 'agenda_include_entire_last_day' ) &&
@@ -225,7 +269,9 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 		}
 
 		// Convert timestamp to GMT time
-		$time = $this->_registry->get( 'date.time' )->format_to_gmt();
+		$time = $this->_registry->get(
+			'date.system'
+		)->get_current_rounded_time();
 		// Get post status Where snippet and associated SQL arguments
 		$where_parameters  = $this->_get_post_status_sql();
 		$post_status_where = $where_parameters['post_status_where'];
@@ -257,7 +303,7 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 		$order_direction    = ( $page_offset >= 0 ) ? 'ASC' : 'DESC';
 		if ( false !== $last_day ) {
 			if ( 0 == $last_day ) {
-				$last_day = $this->_registry->get( 'date.system' )->current_time();
+				$last_day = $time;
 			}
 			$filter_date_clause = ' i.end ';
 			if ( $page_offset < 0 ) {
@@ -279,20 +325,21 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 			'e.recurrence_rules, e.exception_rules, e.ticket_url, e.instant_event, e.recurrence_dates, e.exception_dates, ' .
 			'e.venue, e.country, e.address, e.city, e.province, e.postal_code, ' .
 			'e.show_map, e.contact_name, e.contact_phone, e.contact_email, e.cost, ' .
-			'e.ical_feed_url, e.ical_source_url, e.ical_organizer, e.ical_contact, e.ical_uid, e.timezone_name ' .
+			'e.ical_feed_url, e.ical_source_url, e.ical_organizer, e.ical_contact, e.ical_uid, e.timezone_name, e.longitude, e.latitude ' .
 			'FROM ' . $this->_dbi->get_table_name( 'ai1ec_events' ) . ' e ' .
 			'INNER JOIN ' . $this->_dbi->get_table_name( 'posts' ) . ' p ON e.post_id = p.ID ' .
 			$wpml_join_particle .
-			'INNER JOIN ' . $this->_dbi->get_table_name( 'ai1ec_event_instances' ) . ' i ON e.post_id = i.post_id ' .
+			' INNER JOIN ' . $this->_dbi->get_table_name( 'ai1ec_event_instances' ) . ' i ON e.post_id = i.post_id ' .
 			$filter['filter_join'] .
-			"WHERE post_type = '" . AI1EC_POST_TYPE . "' " .
-			'AND ' . $filter_date_clause .
+			" WHERE post_type = '" . AI1EC_POST_TYPE . "' " .
+			' AND ' . $filter_date_clause .
 			$wpml_where_particle .
 			$filter['filter_where'] .
 			$post_status_where .
+			( $unique ? ' GROUP BY e.post_id' : '' ) .
 			// Reverse order when viewing negative pages, to get correct set of
 			// records. Then reverse results later to order them properly.
-			'ORDER BY i.start ' . $order_direction .
+			' ORDER BY i.start ' . $order_direction .
 			', post_title ' . $order_direction .
 			' LIMIT ' . $first_record . ', ' . $upper_boundary,
 			$args
@@ -334,6 +381,176 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 			'next'       => $next,
 			'date_first' => $date_first,
 			'date_last'  => $date_last,
+		);
+	}
+
+	/**
+	 * get_events_relative_to_reference function
+	 *
+	 * Return all events starting after the given date reference, limiting the
+	 * result set to a maximum of $limit items, offset by $page_offset. A
+	 * negative $page_offset can be provided, which will return events *before*
+	 * the reference time, as expected.
+	 *
+	 * @param int $date_reference if page_offset is greater than or equal to zero, events with start date greater than the date_reference will be returned
+	 * 							  otherwise events with start date less than the date_reference will be returned.
+	 * @param int $limit          return a maximum of this number of items
+	 * @param int $page_offset    offset the result set by $limit times this number
+	 * @param array $filter       Array of filters for the events returned.
+	 *                            ['cat_ids']      => non-associatative array of category IDs
+	 *                            ['tag_ids']      => non-associatative array of tag IDs
+	 *                            ['post_ids']     => non-associatative array of post IDs
+	 *                            ['auth_ids']     => non-associatative array of author IDs
+	 *                            ['instance_ids'] => non-associatative array of author IDs
+	 * @param bool $unique        Whether display only unique events and don't
+	 *                            duplicate results with other instances or not.
+	 *
+	 * @return array              five-element array:
+	 *                              ['events'] an array of matching event objects
+	 *                              ['prev'] true if more previous events
+	 *                              ['next'] true if more next events
+	 *                              ['date_first'] UNIX timestamp (date part) of first event
+	 *                              ['date_last'] UNIX timestamp (date part) of last event
+	 */
+	public function get_events_relative_to_reference( $date_reference, $limit = 0, $page_offset = 0, $filter = array(), $unique = false ) {
+		$localization_helper = $this->_registry->get( 'p28n.wpml' );
+		$settings = $this->_registry->get( 'model.settings' );
+		
+		// Even if there ARE more than 5 times the limit results - we shall not
+		// try to fetch and display these, as it would crash system
+		$limit = preg_replace( '/\D/', '', $limit );
+				
+		// Convert timestamp to GMT time
+		if ( 0 == $date_reference ) {
+			$timezone     = $this->_registry->get( 'date.timezone' )->get( $settings->get( 'timezone_string' ) );
+			$current_time = new DateTime( 'now' );
+			$current_time->setTimezone( $timezone );
+			$time         = $current_time->format( 'U' );
+		} else {
+			$time = $date_reference;
+		}
+				
+		// Get post status Where snippet and associated SQL arguments
+		$where_parameters = $this->_get_post_status_sql();
+		$post_status_where = $where_parameters['post_status_where'];
+		
+		// Get the Join (filter_join) and Where (filter_where) statements based
+		// on $filter elements specified
+		$filter = $this->_get_filter_sql( $filter );
+		
+		// Query arguments
+		$args = array( $time );
+		$args = array_merge( $args, $where_parameters['args'] );
+				
+		if ( 0 == $date_reference ) {			
+			if ( $page_offset >= 0 ) {
+				$filter_date_clause = 'i.end >= %d ';
+				$order_direction    = 'ASC';
+			} else {			
+				$filter_date_clause = 'i.start < %d ';
+				$order_direction    = 'DESC';
+			}
+		} else {
+			if ( $page_offset < 0 ) {
+				$filter_date_clause = 'i.end < %d ';
+				$order_direction    = 'DESC';
+			} else {
+				$filter_date_clause = 'i.end >= %d ';
+				$order_direction    = 'ASC';
+			}
+		}
+		if ( $page_offset >= 0 ) {
+			$first_record       = $page_offset * $limit;
+		} else {
+			$first_record       = ( - $page_offset - 1 ) * $limit;
+		}
+		$wpml_join_particle  = $localization_helper->get_wpml_table_join( 'p.ID' );		
+		$wpml_where_particle = $localization_helper->get_wpml_table_where();				
+		
+		$query = $this->_dbi->prepare( 
+			'SELECT DISTINCT p.*, e.post_id, i.id AS instance_id, ' . 'i.start AS start, ' . 'i.end AS end, ' .
+				 'e.allday AS event_allday, ' .
+				 'e.recurrence_rules, e.exception_rules, e.ticket_url, e.instant_event, e.recurrence_dates, e.exception_dates, ' .
+				 'e.venue, e.country, e.address, e.city, e.province, e.postal_code, ' .
+				 'e.show_map, e.contact_name, e.contact_phone, e.contact_email, e.cost, ' .
+				 'e.ical_feed_url, e.ical_source_url, e.ical_organizer, e.ical_contact, e.ical_uid, e.timezone_name, e.longitude, e.latitude ' .
+				 'FROM ' . $this->_dbi->get_table_name( 'ai1ec_events' ) . ' e ' . 'INNER JOIN ' .
+				 $this->_dbi->get_table_name( 'posts' ) . ' p ON e.post_id = p.ID ' . $wpml_join_particle .
+				 ' INNER JOIN ' . $this->_dbi->get_table_name( 'ai1ec_event_instances' ) . ' i ON e.post_id = i.post_id ' .
+				 $filter['filter_join'] . " WHERE post_type = '" . AI1EC_POST_TYPE . "' " . ' AND ' . $filter_date_clause .
+				 $wpml_where_particle . $filter['filter_where'] . $post_status_where .
+				 ( $unique ? ' GROUP BY e.post_id' : '' ) . 
+				// Reverse order when viewing negative pages, to get correct set of
+				// records. Then reverse results later to order them properly.
+				' ORDER BY i.start ' . $order_direction . ', post_title ' . $order_direction . ' LIMIT ' . $first_record .
+				 ', ' . ( $limit + 1 ), 
+				$args );
+				
+		$events = $this->_dbi->get_results( $query, ARRAY_A );
+		
+		if ( $page_offset >= 0 ) {
+			$prev = true;
+			$next = ( count( $events ) > $limit );
+			if ( $next ) {
+				 array_pop( $events );
+			}
+		} else {
+			$prev = ( count( $events ) > $limit );
+			if ( $prev ) {
+				array_pop( $events );
+			}
+			$next = true;
+		}
+		
+		// Reorder records if in negative page offset
+		if ( $page_offset < 0 ) {
+			$events = array_reverse( $events );
+		}
+		
+		$date_first = $date_last = NULL;
+		
+		foreach ( $events as &$event ) {
+			$event['allday'] = $this->_is_all_day( $event );
+			$event = $this->_registry->get( 'model.event', $event );
+			if ( null === $date_first ) {
+				$date_first = $event->get( 'start' );
+			}
+			$date_last = $event->get( 'start' );
+		}
+		$date_first = $this->_registry->get( 'date.time', $date_first );
+		$date_last = $this->_registry->get( 'date.time', $date_last );
+		
+		return array( 
+			'events' => $events, 
+			'prev' => $prev, 
+			'next' => $next, 
+			'date_first' => $date_first, 
+			'date_last' => $date_last );
+	}
+
+	/**
+	 * Returns events for given day. Event must start before end of day and must
+	 * ends after beginning of day.
+	 *
+	 * @param Ai1ec_Date_Time $day    Date object.
+	 * @param array           $filter Search filters;
+	 *
+	 * @return array List of events.
+	 */
+	public function get_events_for_day(
+		Ai1ec_Date_Time $day,
+		array $filter = array()
+	) {
+		$end_of_day   = $this->_registry->get( 'date.time', $day )
+			->set_time( 23, 59, 59 );
+		$start_of_day = $this->_registry->get( 'date.time', $day )
+			->set_time( 0, 0, 0 );
+		return $this->get_events_between(
+			$start_of_day,
+			$end_of_day,
+			$filter,
+			false,
+			true
 		);
 	}
 
@@ -427,6 +644,42 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	}
 
 	/**
+	 * Returns events instances closest to today.
+	 *
+	 * @param array $events_ids Events ids filter.
+	 *
+	 * @return array Events collection.
+	 * @throws Ai1ec_Bootstrap_Exception
+	 */
+	public function get_instances_closest_to_today( array $events_ids = array() ) {
+		$where_events_ids = '';
+		if ( ! empty( $events_ids ) ) {
+			$where_events_ids = 'i.post_id IN ('
+				. implode( ',', $events_ids ) . ') AND ';
+		}
+		$query = 'SELECT i.id, i.post_id FROM ' .
+			$this->_dbi->get_table_name( 'ai1ec_event_instances' ) .
+			' i WHERE ' .
+			$where_events_ids .
+			' i.start > %d ' .
+			' GROUP BY i.post_id';
+		/** @var $today Ai1ec_Date_Time */
+		$today   = $this->_registry->get( 'date.time', 'now', 'sys.default' );
+		$today->set_time( 0, 0, 0 );
+		$query   = $this->_dbi->prepare( $query, $today->format( 'U' ) );
+		$results = $this->_dbi->get_results( $query );
+		$events  = array();
+		foreach ( $results as $result ) {
+			$events[] = $this->get_event(
+				$result->post_id,
+				$result->id
+			);
+		}
+
+		return $events;
+	}
+
+	/**
 	 * Check if given event must be treated as all-day event.
 	 *
 	 * Event instances that span 24 hours are treated as all-day.
@@ -501,8 +754,6 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	 * args: the arguments for prepare()
 	 */
 	protected function _get_post_status_sql() {
-		global $current_user;
-
 		$args = array();
 
 		// Query the correct post status
@@ -518,8 +769,13 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 			// User has privilege of seeing all published and only their own
 			// private posts.
 
-			// get user info
-			get_currentuserinfo();
+			// Get user ID
+			$user_id           = 0;
+			if ( is_callable( 'wp_get_current_user' ) ) {
+				$user          = wp_get_current_user();
+				$user_id       = (int)$user->ID;
+				unset( $user );
+			}
 
 			// include post_status = published
 			//   OR
@@ -532,7 +788,7 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 
 			$args[] = 'publish';
 			$args[] = 'private';
-			$args[] = $current_user->ID;
+			$args[] = $user_id;
 		} else {
 			// User can only see published posts.
 			$post_status_where = 'AND post_status = %s ';
@@ -552,10 +808,11 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	 * statements for running an SQL query limited to the specified options.
 	 *
 	 * @param array $filter Array of filters for the events returned:
-	 *                          ['cat_ids']   => list of category IDs
-	 *                          ['tag_ids']   => list of tag IDs
-	 *                          ['post_ids']  => list of event post IDs
-	 *                          ['auth_ids']  => list of event author IDs
+	 *                          ['cat_ids']      => list of category IDs
+	 *                          ['tag_ids']      => list of tag IDs
+	 *                          ['post_ids']     => list of event post IDs
+	 *                          ['auth_ids']     => list of event author IDs
+	 *                          ['instance_ids'] => list of event instance IDs
 	 *
 	 * @return array The modified filter array to having:
 	 *                   ['filter_join']  the Join statements for the SQL
@@ -608,7 +865,7 @@ class Ai1ec_Event_Search extends Ai1ec_Base {
 	 */
 	public function get_distinct_types_operator() {
 		static $operators = array( 'AND' => 1, 'OR' => 2 );
-		$default          = key( $operators );
+		$default          = 'AND';
 		$where_operator   = strtoupper( trim( (string)apply_filters(
 			'ai1ec_filter_distinct_types_logic',
 			$default

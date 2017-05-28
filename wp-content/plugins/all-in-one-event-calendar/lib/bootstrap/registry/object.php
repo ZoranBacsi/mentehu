@@ -81,6 +81,12 @@ class Ai1ec_Registry_Object implements Ai1ec_Registry {
 			);
 		}
 		$class_name   = $class_data['c'];
+		if (
+			'Ai1ec_Event' === $class_name &&
+			$this->get( 'compatibility.check' )->use_backward_compatibility()
+		) {
+			$class_name = 'Ai1ec_Event_Compatibility';
+		}
 		$instantiator = $class_data['i'];
 		$args         = array_slice( func_get_args(), 1 );
 		if ( isset ( $class_data['r'] ) ) {
